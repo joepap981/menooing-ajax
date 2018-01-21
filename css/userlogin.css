@@ -460,7 +460,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   max-width: 40rem;
 }
 
-footer.sticky-footer {
+footer {
   position: absolute;
   right: 0;
   bottom: 0;
