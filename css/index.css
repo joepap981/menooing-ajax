@@ -15,9 +15,13 @@ h6 {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700; }
 
-.btn-toolbar {
-  margin-left: 10px;
-  margin-right: 10px;
+.btn {
+  margin-right:5px;
+  margin-left:5px;
+}
+
+html {
+  height: 100%;
 }
 
 header.masthead {

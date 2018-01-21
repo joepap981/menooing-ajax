@@ -2,7 +2,7 @@
 <html lang="en" ng-app="myApp">
 
   <head>
-
+    <base href="/" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template -->
-    <link href="css/landing-page.min.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
 
 		<!-- Angular core -->
 		<script src="lib/angular.min.js"></script>
@@ -35,12 +35,11 @@
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
-      </div>
-
-      <div class="btn-toolbar">
-        <a class="btn btn-secondary" href="#">Sign Up</a>
-        <a class="btn btn-primary" href="#">Sign In</a>
+        <a class="navbar-brand" href="/">Menooing</a>
+        <div class="btns">
+          <a class="btn btn-secondary" href="/signin">Sign In</a>
+          <a class="btn btn-primary" href="/signup">Sign Up</a>
+        </div>
       </div>
     </nav>
 
@@ -69,7 +68,7 @@
                 <a href="#">Privacy Policy</a>
               </li>
             </ul>
-            <p class="text-muted small mb-4 mb-lg-0">&copy; Start Bootstrap 2017. All Rights Reserved.</p>
+            <p class="text-muted small mb-4 mb-lg-0">&copy; Menooing 2017. All Rights Reserved.</p>
           </div>
           <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
             <ul class="list-inline mb-0">
