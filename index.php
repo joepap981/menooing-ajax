@@ -1,56 +1,49 @@
-<!DOCTYPE html>
+<?php $timeStr = time() + (7 * 24 * 60 * 60) ;
+$jsTimeStamp = '?version=v-'.$timeStr;
+?>
+
+
+<!doctype html>
 <html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../../../favicon.ico">
+<title>Menooing.com   </title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-  <head>
-    <base href="/" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<link href="css/index.css<?php echo $jsTimeStamp ?>" rel="stylesheet">
 
-    <title>Menooing</title>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 
-    <!-- Bootstrap core CSS -->
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
 
-    <!-- Custom fonts for this template -->
-    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="lib/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- Angular core -->
-    <script src="lib/angular.min.js"></script>
-    <script src="lib/angular-route.min.js"></script>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="lib/jquery/jquery.min.js"></script>
-    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Javascript -->
-    <script src="js/app.js"></script>
+<body ng-app="menuApp"  >
 
 
-  </head>
+<?php
+$urlStr =  $_SERVER['REQUEST_URI'];
+$urlStr = substr($urlStr, -3);
+$b2bFlag = false;
 
-  <body ng-app="myApp">
+if ( $urlStr == "b2b"){
+	$b2bFlag = true;
 
-    <?php
-    //get the URL string
-    $urlStr =  $_SERVER['REQUEST_URI'];
-    $urlStr = substr($urlStr, 1,5);
+}
+if ($b2bFlag ){
+	include 'index_inc_b2b.php';
+}else{
+	include 'user_index.php';
+}
 
-    //if the URL is admin, use admin template
-    if($urlStr == "admin") {
-      include 'admin_main.php';
-    //else use the user template
-    } else {
-      include 'user_main.php';
-    }
-    ?>
+?>
 
-
-
-
-  </body>
-
+</body>
 </html>
