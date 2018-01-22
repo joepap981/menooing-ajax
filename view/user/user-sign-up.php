@@ -10,11 +10,11 @@
 					<div class="form-row">
 						<div class="col-md-6">
 							<label for="exampleInputName">First name</label>
-							<input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name" ng-model="signup.user_first_name">
+							<input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name" ng-model="signup.user_first_name" required>
 						</div>
 						<div class="col-md-6">
 							<label for="exampleInputLastName">Last name</label>
-							<input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name" ng-model="signup.user_last_name">
+							<input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name" ng-model="signup.user_last_name" required>
 						</div>
 					</div>
 				</div>
@@ -27,7 +27,7 @@
 					<div class="form-row">
 						<div class="col-md-6">
 							<label for="exampleInputPassword1">Password</label>
-							<input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password" ng-model="signup.user_password" ng-model="signup.user_password">
+							<input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password" ng-model="signup.user_password" ng-model="signup.user_password" required>
 						</div>
 						<div class="col-md-6">
 							<label for="exampleConfirmPassword">Confirm password</label>
