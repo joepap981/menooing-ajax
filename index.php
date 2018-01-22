@@ -28,10 +28,10 @@ $jsTimeStamp = '?version=v-'.$timeStr;
 
 	<body ng-app="menuApp">
 		<?php
-			/*
+
 			$urlStr =  $_SERVER['REQUEST_URI'];
-			$urlStr = substr($urlStr,-4);
-			print $urlStr;
+			$urlStr = substr($urlStr, -5);
+
 			$b2bFlag = false;
 
 			if ($urlStr == "admin"){
@@ -39,12 +39,11 @@ $jsTimeStamp = '?version=v-'.$timeStr;
 			}
 
 			if ($b2bFlag ) {
-				include 'index_inc_b2b.php';
+				include 'admin_index.php';
 			} else {
 				include 'user_index.php';
 			}
-			*/
-			include 'user_index.php';
+
 
 	?>
 

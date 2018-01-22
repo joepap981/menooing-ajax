@@ -65,6 +65,14 @@ body.fixed-nav {
   z-index: 1;
 }
 
+.card-login {
+  max-width: 25rem;
+}
+
+.card-register {
+  max-width: 40rem;
+}
+
 footer {
   position: absolute;
   right: 0;

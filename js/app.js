@@ -18,6 +18,9 @@ angular.module('menuApp',['ngRoute'])
     .when('/forgot-password', {
       templateUrl: 'view/user/forgot-password.php'
     })
+    .when('/admin', {
+      templateUrl: 'admin_index.php'
+    })
   	.otherwise({
   		redirectTo: '/'
   	});
