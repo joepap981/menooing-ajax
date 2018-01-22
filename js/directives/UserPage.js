@@ -44,16 +44,16 @@ angular.module('menuApp').directive('leftNav', function() {
 
 angular.module('menuApp').directive('topNav', function() {
   return {
-    templateUrl: 'view/top-nav.'+ verStr
+    templateUrl: 'view/user/top-nav.'+ verStr
   };
 });
 angular.module('menuApp').directive('footerStatic', function() {
   return {
-    templateUrl: 'view/footer.'+ verStr
+    templateUrl: 'view/user/footer.'+ verStr
   };
 });
 angular.module('menuApp').directive('landingPage', function() {
   return {
-    templateUrl: 'view/landing-page.'+ verStr
+    templateUrl: 'view/user/landing-page.'+ verStr
   };
 });
