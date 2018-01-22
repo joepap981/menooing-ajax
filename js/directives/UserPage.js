@@ -42,9 +42,9 @@ angular.module('menuApp').directive('leftNav', function() {
 });
 
 
-angular.module('menuApp').directive('topNav', function() {
+angular.module('menuApp').directive('topNavDefault', function() {
   return {
-    templateUrl: 'view/user/top-nav.'+ verStr
+    templateUrl: 'view/user/top-nav-default.'+ verStr
   };
 });
 angular.module('menuApp').directive('footerStatic', function() {
@@ -55,5 +55,10 @@ angular.module('menuApp').directive('footerStatic', function() {
 angular.module('menuApp').directive('landingPage', function() {
   return {
     templateUrl: 'view/user/landing-page.'+ verStr
+  };
+});
+angular.module('menuApp').directive('userSignUp', function() {
+  return {
+    templateUrl: 'view/user/user-sign-up.'+ verStr
   };
 });

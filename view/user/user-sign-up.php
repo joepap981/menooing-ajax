@@ -5,7 +5,7 @@
 	<div class="card card-register mx-auto mt-5">
 		<div class="card-header">Register an Account</div>
 		<div class="card-body">
-			<form>
+			<form action="db/user_authetification/signup.php" method="POST">
 				<div class="form-group">
 					<div class="form-row">
 						<div class="col-md-6">
@@ -34,11 +34,11 @@
 						</div>
 					</div>
 				</div>
-				<a class="btn btn-primary btn-block" href="login.html">Register</a>
+				<button type="submit" class="btn btn-primary btn-block">Register</button>
 			</form>
 			<div class="text-center">
-				<a class="d-block small mt-3" href="login.html">Login Page</a>
-				<a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+				<a class="d-block small mt-3" href="/signin">Login Page</a>
+				<a class="d-block small" href="/forgot-password">Forgot Password?</a>
 			</div>
 		</div>
 	</div>
