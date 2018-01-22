@@ -2,13 +2,19 @@
 <link href="css/index.css" rel="stylesheet">
 
 
+<!-- Javascript -->
+<script src="js/directives/UserPage.js"></script>
+<script src="js/app.js"></script>
+
+<div ng-controller="MainController">
+<div top-nav></div>
 
 <!--View for main -->
 
-<main ng-view></main>
+
 
 <!-- Footer -->
-<footer class="footer bg-light" ng-hide="isAdmin">
+<footer class="footer bg-light">
   <div class="container">
     <div class="row">
       <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
@@ -53,3 +59,4 @@
     </div>
   </div>
 </footer>
+</div>

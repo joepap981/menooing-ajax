@@ -1,24 +1,16 @@
-var myApp = angular.module('myApp', ['ngRoute']);
-
 //URL mapping and routes
-myApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+angular.module('myApp', ['ngRoute']).config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
 	$locationProvider.html5Mode(true);
 
 	$routeProvider
-	.when('/main', {
+	.when('/', {
 		templateUrl: 'views/user/landing_page.php'
 	})
-	.when('/signup', {
-		templateUrl: 'views/user/user_signup.php'
-	})
-	.when('/signin', {
-		templateUrl: 'views/user/user_signin.php'
-	})
 	.when('/admin', {
-		templateUrl: 'admin.php'
+		templateUrl: 'admin_main.php'
 	})
 	.otherwise({
-		redirectTo: '/main'
+		redirectTo: '/'
 	});
 }]);

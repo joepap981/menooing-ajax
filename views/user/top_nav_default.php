@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav class="navbar navbar-light bg-light static-top" ng-hide="state == 'admin'">
+<nav class="navbar navbar-light bg-light static-top">
   <div class="container">
     <a class="navbar-brand" href="/">Menooing</a>
     <div class="btns">

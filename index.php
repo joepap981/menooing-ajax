@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp" ng-controller="IndexController">
+<html lang="en">
 
   <head>
     <base href="/" />
@@ -18,15 +18,21 @@
     <link href="lib/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
+    <!-- Angular core -->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>
 
-		<!-- Angular core -->
-		<script src="lib/angular.min.js"></script>
-		<script src="lib/angular-route.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Javascript -->
+    <script src="js/app.js"></script>
 
 
   </head>
 
-  <body>
+  <body ng-app="myApp">
 
     <?php
     //get the URL string
@@ -43,9 +49,7 @@
     ?>
 
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="lib/jquery/jquery.min.js"></script>
-    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 
   </body>
 
