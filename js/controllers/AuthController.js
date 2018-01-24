@@ -1,39 +1,15 @@
-angular.module('menuApp').controller('AuthController', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
-  $scope.signin = {};
-  $scope.signup = {};
-  $scope.sa_login = function(customer) {
-    Data.post('signIn', {
-      customer: customer
-    }).then(function(results) {
-      Data.toast(results) {
-        if(results.status = "success") {
-          $location.path('home');
-        }
-      }
-    });
-  };
-
-  $scope.signup = {
-    user_email: '',
-    user_password: '';
-    user_name: '';
-  };
-
-  $scope.signUp = function(customer) {
-    Data.post('signUp', {
-      customer: customer
-    }).then(function(results) {
-      Data.toast(results);
+angular.module('menuApp').controller('AuthController', function ($scope, $http) {
+  $scope.signUp = function(signup) {
+    $http.post("insert.php",
+    {
+      'user_first_name': $scope.user_first_name,
+      'user_last_name':$scope.user_last_name,
+      'user_email':$scope.user_email,
+      'user_password':$scope.user_password
+    }).success(function(results) {
       if (results.status =="success") {
-        $location.path('home')
+        $location.path('/')
       }
-    });
-  };
-
-  $scope.logout = function() {
-    Data.get('logout').then(function(results) {
-      Data.toast(results);
-      $location.path('signin');
     });
   }
 });

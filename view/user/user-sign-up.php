@@ -10,24 +10,24 @@
 					<div class="form-row">
 						<div class="col-md-6">
 							<label for="exampleInputName">First name</label>
-							<input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name" ng-model="signup.user_first_name" required>
+							<input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name" ng-model="user_first_name" required>
 						</div>
 						<div class="col-md-6">
 							<label for="exampleInputLastName">Last name</label>
-							<input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name" ng-model="signup.user_last_name" required>
+							<input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name" ng-model="user_last_name" required>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Email address</label>
-					<input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email" ng-model="signup.user_email" focus>
+					<input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email" ng-model="user_email" focus>
 					<span ng-show ="signUpForm.user_email.$error.user_email" class="help-inline">Invalid email address</span>
 				</div>
 				<div class="form-group">
 					<div class="form-row">
 						<div class="col-md-6">
 							<label for="exampleInputPassword1">Password</label>
-							<input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password" ng-model="signup.user_password" ng-model="signup.user_password" required>
+							<input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password" ng-model="user_password" required>
 						</div>
 						<div class="col-md-6">
 							<label for="exampleConfirmPassword">Confirm password</label>
@@ -37,7 +37,7 @@
 						</div>
 					</div>
 				</div>
-				<button type="submit" class="btn btn-primary btn-block" ng-click="signUp(signup)" data-ng-disabled="signUpForm.$invalid">Register</button>
+				<button type="submit" class="btn btn-primary btn-block" ng-click="signUp()" data-ng-disabled="signUpForm.$invalid">Register</button>
 			</form>
 			<div class="text-center">
 				<a class="d-block small mt-3" href="/signin">Login Page</a>
