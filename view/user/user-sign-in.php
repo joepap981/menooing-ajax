@@ -20,7 +20,7 @@
 							<input class="form-check-input" type="checkbox"> Remember Password</label>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-primary btn-block" ng-click="sa_login(signin)" data-ng-disabled="signInForm.$invalid">Login</button>
+					<button type="submit" class="btn btn-primary btn-block" ng-click="sa_login()" data-ng-disabled="signInForm.$invalid">Login</button>
 				</form>
 				<div class="text-center">
 					<a class="d-block small mt-3" href="/signup">Register an Account</a>

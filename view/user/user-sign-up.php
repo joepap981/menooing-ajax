@@ -37,7 +37,7 @@
 						</div>
 					</div>
 				</div>
-				<button type="submit" class="btn btn-primary btn-block" ng-click="signUp(signup)" data-ng-disabled="signUpForm.$invalid">Register</button>
+				<button type="submit" class="btn btn-primary btn-block" ng-click="signUp()" data-ng-disabled="signUpForm.$invalid">Register</button>
 			</form>
 			<div class="text-center">
 				<a class="d-block small mt-3" href="/signin">Login Page</a>
