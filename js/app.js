@@ -2,7 +2,16 @@ angular.module('menuApp',['ngRoute'])
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
     $locationProvider.html5Mode(true);
+    
     $routeProvider
+    //Admin Page
+    .when('/admin', {
+      templateUrl: 'admin_index.php'
+    })
+    .when('/sample', {
+      templateUrl: 'view/admin/sample.php'
+    })
+    //Userside
   	.when('/', {
   		templateUrl: 'view/user/landing-page.php'
   	})
@@ -14,9 +23,6 @@ angular.module('menuApp',['ngRoute'])
   	})
     .when('/forgot-password', {
       templateUrl: 'view/user/forgot-password.php'
-    })
-    .when('/admin', {
-      templateUrl: 'admin_index.php'
     })
     .when('/home', {
       templateUrl: 'view/user/home.php'

@@ -1,6 +1,5 @@
 <?php
 include '../inc_db/inc_signin_db.php';
-include '../inc_db/inc_password_hashing.php';
 
 //connect to mysql with infor from inc_signin_db
 $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
