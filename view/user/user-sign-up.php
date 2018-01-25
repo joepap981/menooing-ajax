@@ -20,8 +20,9 @@
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Email address</label>
-					<input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email" ng-model="signup.user_email" focus>
+					<input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email" ng-model="signup.user_email">
 					<span ng-show ="signUpForm.user_email.$error.user_email" class="help-inline">Invalid email address</span>
+    			<span ng-show="email_exists"> This email address is already registered! </span>
 				</div>
 				<div class="form-group">
 					<div class="form-row">

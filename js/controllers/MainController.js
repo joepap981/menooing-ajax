@@ -3,10 +3,10 @@
  */
 
 
-angular.module('menuApp').controller('MainController', function ($scope, $http) {
+angular.module('menuApp').controller('MainController',['$scope', '$http', '$location', function ($scope, $http, $location) {
   $scope.signin = {};
   $scope.signup = {};
-  $scope.user_exists = 0;
+  $scope.email_exists = false;
 
   $scope.sa_login = function () {
     console.log($scope.signin);
@@ -17,19 +17,34 @@ angular.module('menuApp').controller('MainController', function ($scope, $http) 
       }, function myError(response) {
     });
   };
+
+  //sign up and record user info to db
   $scope.signUp = function () {
     $http({
       method : "POST", url: 'action/signup/', data: $scope.signup
       }).then(function mySuccess(response) {
-          $scope.user_exists = response;
+        //check if email already exists and if it does,
+        if (response.data == "Unavailable") {
+          $scope.email_exists = true;
+          console.log($scope.email_status);
+        } else {
+          $scope.email_status = false;
+          $
+        }
       }, function myError(response) {
     });
   };
 
-  $scope.checkUserExist = function () {
-    if ($scope.user_exists == -1)
-      return true;
-   else
-      return false;
-  }
-});
+
+  // Set class
+ $scope.addClass = function(email_status){
+   if(email_status == 'Available'){
+     return 'response exists';
+   } else if (email_status == 'Not available') {
+     return 'response not-exists';
+   } else {
+     return 'hide';
+   }
+ }
+
+}]);
