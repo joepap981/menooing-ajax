@@ -19,3 +19,5 @@
 <script src="js/controllers/AuthController.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/services/MenuStorage.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/directives/UserPage.js<?php echo $jsTimeStamp ?>"></script>
+<script src="js/directives/Auth.js"></script>
+<script src="db/input.js"></script>
