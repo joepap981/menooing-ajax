@@ -9,13 +9,19 @@ angular.module('menuApp').controller('AuthController',['$scope', '$http', '$loca
 
   $scope.email_exists = false;
   $scope.passwordNoMatch = false;
+  $scope.user_no_match = false;
 
   $scope.signIn = function () {
-    console.log($scope.signin);
     $http({
       method : "POST", url: 'action/signin/', data: $scope.signin
       }).then(function mySuccess(response) {
-        console.log(response);
+        if(response.data == "Success") {
+          $scope.user_no_match = false;
+          $scope.signin = {};
+          $location.path('/home');
+        } else {
+          $scope.user_no_match = true;
+        }
       }, function myError(response) {
     });
   };
@@ -32,6 +38,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$http', '$loca
           $scope.email_exists = true;
         } else {
           $scope.email_exists = false;
+          $scope.signup = {};
           $location.path('signup_success');
         }}, function myError(response) {
       });

@@ -32,15 +32,15 @@ while($listItem = mysqli_fetch_array($result)) {
 }
 
 if ($cnt == 0) {
-  echo "No email and password matches.";
+  echo "Not found";
   return false;
 }
 else if ($cnt > 1) {
-  echo "Error: more than one sql result";
+  echo "More than one";
   return false;
 } else {
   $return_arr = array('list'=>$append_arr);
-  echo json_encode($return_arr);
+  echo "Success";
   return true;
 }
 
