@@ -17,31 +17,28 @@ if(!$postdata) {
 $data = json_decode($postdata, true);
 
 //query mysql for sql result
-$query = "SELECT * FROM tb_user WHERE user_email = '" . $data["user_email"] . "' and user_password = '" . $data["user_password"] . "'";
+$query = "SELECT user_password FROM tb_user WHERE user_email = '" . $data["user_email"] . "'";
 $result = mysqli_query($conn, $query);
-
-$append_arr = array();  //array to get final result
 
 //check if there are multiple email and password matches
 $cnt = 0;
 while($listItem = mysqli_fetch_array($result)) {
-	$row_array['user_name'] = $listItem['user_first_name'] . " " . $listItem['user_last_name'];
+	$pass_array[$cnt] = $listItem['user_password'];
 	$cnt++;
-
-	array_push($append_arr,$row_array);// stopped here -> have to makeit appear on table
 }
 
+
 if ($cnt == 0) {
-  echo "Not found";
-  return false;
+  echo "User Not found";
 }
 else if ($cnt > 1) {
   echo "More than one";
-  return false;
 } else {
-  $return_arr = array('list'=>$append_arr);
-  echo "Success";
-  return true;
+	if (password_verify($data["user_password"], $pass_array[0])) {
+		echo "Success";
+	} else {
+		echo "Incorrect";
+	}
 }
 
 mysqli_close($conn);
