@@ -29,22 +29,11 @@ angular.module('menuApp').controller('MainController',['$scope', '$http', '$loca
           console.log($scope.email_exists);
         } else {
           $scope.email_exists = false;
-          $
+          $location.path('signup_success');
         }
       }, function myError(response) {
     });
   };
 
-
-  // Set class
- $scope.addClass = function(email_status){
-   if(email_status == 'Available'){
-     return 'response exists';
-   } else if (email_status == 'Not available') {
-     return 'response not-exists';
-   } else {
-     return 'hide';
-   }
- }
 
 }]);

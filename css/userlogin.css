@@ -73,6 +73,12 @@ body.fixed-nav {
   max-width: 40rem;
 }
 
+.signup-success {
+  padding-top: 1rem;
+  text-align: center;
+  padding-top: 7rem;
+}
+
 footer {
   position: absolute;
   right: 0;
