@@ -33,10 +33,10 @@
 						<div class="col-md-6">
 							<label for="exampleConfirmPassword">Confirm password</label>
 							<input class="form-control" id="exampleConfirmPassword" type="password" placeholder="Confirm password" ng-model="signup.confPassword" password-match="signup.user_password" required>
-							<span class="errorMessage" data-ng-show="signUpForm.confPassword.$dirty && signUpForm.confPassword.$error.required"> Enter confirm password </span>
-							<span style="color:#F00" class="errorMessage" data-ng-show="signUpForm.confPassword.$drity && signUpForm.confPassword.$error.passwordNoMatch && !signUpForm.confPassword.$error.required">Passwords do no match</span>
+							<span class="error-message" data-ng-show="signUpForm.confPassword.$dirty && signUpForm.confPassword.$error.required"> Enter confirm password </span>
 						</div>
 					</div>
+					<div class="error-message" data-ng-show="passwordNoMatch">Passwords do not match. Please enter again.</div>
 				</div>
 				<button type="submit" class="btn btn-primary btn-block" ng-click="signUp()" data-ng-disabled="signUpForm.$invalid">Register</button>
 			</form>

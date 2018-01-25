@@ -79,6 +79,11 @@ body.fixed-nav {
   padding-top: 7rem;
 }
 
+.error-message {
+  color:#F00;
+  text-align: center;
+}
+
 footer {
   position: absolute;
   right: 0;
