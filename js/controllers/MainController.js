@@ -26,9 +26,9 @@ angular.module('menuApp').controller('MainController',['$scope', '$http', '$loca
         //check if email already exists and if it does,
         if (response.data == "Unavailable") {
           $scope.email_exists = true;
-          console.log($scope.email_status);
+          console.log($scope.email_exists);
         } else {
-          $scope.email_status = false;
+          $scope.email_exists = false;
           $
         }
       }, function myError(response) {
