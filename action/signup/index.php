@@ -31,7 +31,7 @@ if ($result != "null") {
 $user_info["user_first_name"] = $data["user_first_name"];
 $user_info["user_last_name"] = $data["user_last_name"];
 $user_info["user_email"] = $data["user_email"];
-$user_info["user_password"] = $data["user_password"];
+$user_info["user_password"] = password_hashing::hash($data["user_password"]);
 
 $query = "INSERT INTO tb_user (user_first_name, user_last_name, user_email, user_password) VALUES ('" . $user_info['user_first_name'] . "', '" . $user_info["user_last_name"] . "', '" . $user_info["user_email"] . "', '" . $user_info["user_password"] . "');";
 $result = mysqli_query($conn, $query);

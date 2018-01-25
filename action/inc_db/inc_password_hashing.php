@@ -3,7 +3,7 @@ class password_hashing {
   private static $formula = '$2a';
   private static $value = '$10';
   public static function unique_salt() {
-    return substr(shal(mt_rand()), 0, 22);
+    return substr(sha1(mt_rand()), 0, 22);
   }
 
   public static function hash ($user_password) {
