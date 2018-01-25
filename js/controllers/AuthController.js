@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-/**
- *  Mene Controller will be
- */
-
-
 angular.module('menuApp').controller('AuthController',['$scope', '$http', '$location', function ($scope, $http, $location) {
   $scope.signin = {};
   $scope.signup = {};
@@ -41,6 +35,8 @@ angular.module('menuApp').controller('AuthController',['$scope', '$http', '$loca
 
   //check if the confPassword matches the input user password
   $scope.checkPassword = function () {
+    $scope.myCon($scope.signup["user_password"]);
+    $scope.myCon($scope.signup["confPassword"]);
     if ($scope.signup["user_password"] != $scope.signup["confPassword"]) {
       $scope.passwordNoMatch = true;
       $scope.myCon("password:false");
