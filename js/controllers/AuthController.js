@@ -12,6 +12,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$http', '$loca
   $scope.user_no_match = false;
 
   $scope.signIn = function () {
+
     $http({
       method : "POST", url: 'action/signin/', data: $scope.signin
       }).then(function mySuccess(response) {

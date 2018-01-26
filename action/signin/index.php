@@ -33,22 +33,24 @@ while($listItem = mysqli_fetch_array($result)) {
 
 if ($cnt == 0) {
 	$pass_array["result"] = "User Not found";
-  echo "User Not found";
+  echo json_encode($pass_array);
 }
 else if ($cnt > 1) {
-  echo "More than one";
+	$pass_array["result"] = "More than one";
+  echo json_encode($pass_array);
 } else {
 	if (password_verify($data["user_password"], $fetched_password)) {
 		//Session data store
 		session_start();
 		$_SESSION['user'] = $pass_array;
-
+		
 		$pass_array["result"] = "Success";
 
 		echo json_encode($pass_array);
 
 	} else {
-		echo "Incorrect";
+		$pass_array["result"] = "Incorrect";
+	  echo json_encode($pass_array);
 	}
 }
 
