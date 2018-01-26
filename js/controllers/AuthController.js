@@ -15,7 +15,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$http', '$loca
     $http({
       method : "POST", url: 'action/signin/', data: $scope.signin
       }).then(function mySuccess(response) {
-        if(response.data == "Success") {
+        if(response.data["result"] == "Success") {
           $scope.user_no_match = false;
           $scope.signin = {};
           $location.path('/home');
