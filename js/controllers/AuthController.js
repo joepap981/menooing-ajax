@@ -11,14 +11,15 @@ angular.module('menuApp').controller('AuthController',['$scope', '$http', '$loca
   $scope.passwordNoMatch = false;
   $scope.user_no_match = false;
 
-  $scope.signIn = function () {
+  $scope.session_data = {};
 
-    $http({
-      method : "POST", url: 'action/signin/', data: $scope.signin
-      }).then(function mySuccess(response) {
+  $scope.signIn = function () {
+    $http({method : "POST", url: 'action/signin/', data: $scope.signin})
+    .then(function mySuccess(response) {
         if(response.data["result"] == "Success") {
           $scope.user_no_match = false;
           $scope.signin = {};
+
           $location.path('/home');
         } else {
           $scope.user_no_match = true;
@@ -31,9 +32,8 @@ angular.module('menuApp').controller('AuthController',['$scope', '$http', '$loca
   $scope.signUp = function () {
 
     if($scope.checkPassword()) {
-    $http({
-      method : "POST", url: 'action/signup/', data: $scope.signup
-      }).then(function mySuccess(response) {
+    $http({ method : "POST", url: 'action/signup/', data: $scope.signup})
+    .then(function mySuccess(response) {
         //check if email already exists and if it does,
         if (response.data == "Unavailable") {
           $scope.email_exists = true;
@@ -57,7 +57,15 @@ angular.module('menuApp').controller('AuthController',['$scope', '$http', '$loca
       $scope.myCon("password:true");
       return true;
     }
-  }
+  };
+
+  $scope.getSession = function () {
+    $http({method: 'GET', url: 'action/session/'})
+    .then(function mySuccess(response) {
+      console.log(response.data["user_id"]);
+      return response.data;
+    });
+  };
 
   //debugging console printer
   $scope.myCon = function (msgStr) {

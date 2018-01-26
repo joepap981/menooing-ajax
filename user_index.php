@@ -19,4 +19,3 @@
 <script src="js/controllers/AuthController.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/services/MenuStorage.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/directives/UserPage.js<?php echo $jsTimeStamp ?>"></script>
-<script src="js/services/CommonService.js<?php echo $jsTimeStamp ?>"></script>
