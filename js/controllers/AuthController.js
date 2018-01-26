@@ -20,6 +20,9 @@ angular.module('menuApp').controller('AuthController',['$scope', '$http', '$loca
           $scope.user_no_match = false;
           $scope.signin = {};
 
+          $scope.session_data = response.data;
+          console.log($scope.session_data);
+
           $location.path('/home');
         } else {
           $scope.user_no_match = true;
@@ -62,8 +65,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$http', '$loca
   $scope.getSession = function () {
     $http({method: 'GET', url: 'action/session/'})
     .then(function mySuccess(response) {
-      console.log(response.data["user_id"]);
-      return response.data;
+      $scope.session_data = response.data;
     });
   };
 
