@@ -6,7 +6,7 @@
 
 
 	<!-- Main View Section -->
-	<main ng-view></main>
+	<main class="container" ng-view></main>
 
 	<!--Footer -->
 	<div footer-static></div>
