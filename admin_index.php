@@ -10,19 +10,16 @@
   <!-- Custom fonts for this template-->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-  <!-- Page level plugin CSS-->
-  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="css/admin/admin.css" rel="stylesheet">
 
   <!-- Javascript links -->
   <script src="js/app.js<?php echo $jsTimeStamp ?>"></script>
-  <script src="js/controllers/AuthController.js<?php echo $jsTimeStamp ?>"></script>
-  <script src="js/services/MenuStorage.js<?php echo $jsTimeStamp ?>"></script>
-  <script src="js/directives/UserPage.js<?php echo $jsTimeStamp ?>"></script>
+  <script src="js/controllers/AdminController.js<?php echo $jsTimeStamp ?>"></script>
+  <script src="js/directives/AdminViewDirective.js<?php echo $jsTimeStamp ?>"></script>
 
 
-<div class="fixed-nav sticky-footer bg-dark" id="page-top">
+<div class="fixed-nav sticky-footer bg-dark" id="page-top" ng-controller="AdminController">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <a class="navbar-brand" href="index.html">Admin</a>
@@ -33,14 +30,14 @@
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <!--Dashboad-->
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" ng-click ="changePage(1)">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Dashboard</span>
           </a>
         </li>
         <!--Users-->
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
-          <a class="nav-link" href="charts.html">
+          <a class="nav-link" ng-click ="changePage(2)">
             <i class="fa fa-fw fa-user"></i>
             <span class="nav-link-text">Users</span>
           </a>
@@ -160,9 +157,13 @@
 
 
   <div class="content-wrapper">
-    <div class="container-fluid">
+    <div class="container-fluid" >
 
     <!--Main view container-->
+    <div class="main-container">
+      <div ng-if="pageNum == 1" landing-page-view></div>
+      <div ng-if="pageNum == 2" user-list-view></div>
+    </div>
 
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->

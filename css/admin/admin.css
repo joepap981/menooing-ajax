@@ -24,6 +24,11 @@ body.fixed-nav {
   padding-top: 1rem;
 }
 
+.main-container {
+  padding-top: 5rem;
+  padding-left: 2rem;
+}
+
 .scroll-to-top {
   position: fixed;
   right: 15px;
