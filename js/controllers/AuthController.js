@@ -60,7 +60,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$http', '$loca
 
   //debugging console printer
   $scope.myCon = function (msgStr) {
-    console.log(msgStr);
+    //console.log(msgStr);
   }
 
 }]);

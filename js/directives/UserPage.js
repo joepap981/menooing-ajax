@@ -42,8 +42,13 @@ angular.module('menuApp').directive('leftNav', function() {
     templateUrl: 'view/left-nav.'+ verStr
   };
 });
-
-
+//admin view directives
+angular.module('menuApp').directive('adminNav', function() {
+  return {
+    templateUrl: 'view/admin/admin_nav.'+ verStr
+  };
+});
+//user view directives
 angular.module('menuApp').directive('topNavDefault', function() {
   return {
     templateUrl: 'view/user/top-nav-default.'+ verStr
