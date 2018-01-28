@@ -41,9 +41,12 @@ else if ($cnt > 1) {
 } else {
 	if (password_verify($data["user_password"], $fetched_password)) {
 		//Session data store
-		session_start();
+		if (!isset($_SESSION)) {
+    session_start();
+		}
+		  
 		$_SESSION['user'] = $pass_array;
-		
+
 		$pass_array["result"] = "Success";
 
 		echo json_encode($pass_array);

@@ -6,7 +6,7 @@
 
 
 	<!-- Main View Section -->
-	<main class="container" ng-view></main>
+	<main ng-view></main>
 
 	<!--Footer -->
 	<div footer-static></div>
@@ -19,3 +19,4 @@
 <script src="js/controllers/AuthController.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/services/MenuStorage.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/directives/UserPage.js<?php echo $jsTimeStamp ?>"></script>
+<script src="js/services/CommonService.js<?php echo $jsTimeStamp ?>"></script>

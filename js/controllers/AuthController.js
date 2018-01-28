@@ -3,7 +3,7 @@
  */
 
 
-angular.module('menuApp').controller('AuthController',['$scope', '$http', '$location', function ($scope, $http, $location) {
+angular.module('menuApp').controller('AuthController',['$rootScope', '$scope', '$http', '$location', 'Session', function ($rootScope, $scope, $http, $location, Session) {
   $scope.signin = {};
   $scope.signup = {};
 
@@ -11,7 +11,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$http', '$loca
   $scope.passwordNoMatch = false;
   $scope.user_no_match = false;
 
-  $scope.session_data = {};
+  $rootScope.session = {};
 
   $scope.signIn = function () {
     $http({method : "POST", url: 'action/signin/', data: $scope.signin})
@@ -20,10 +20,9 @@ angular.module('menuApp').controller('AuthController',['$scope', '$http', '$loca
           $scope.user_no_match = false;
           $scope.signin = {};
 
-          $scope.session_data = response.data;
-          console.log($scope.session_data);
-
+          $rootScope.session = response.data;
           $location.path('/home');
+
         } else {
           $scope.user_no_match = true;
         }
@@ -62,12 +61,14 @@ angular.module('menuApp').controller('AuthController',['$scope', '$http', '$loca
     }
   };
 
-  $scope.getSession = function () {
-    $http({method: 'GET', url: 'action/session/'})
-    .then(function mySuccess(response) {
-      $scope.session_data = response.data;
-    });
-  };
+  
+
+  $scope.logout = function () {
+    Session.endSession().then(function(response) {
+      $rootScope.session = null;
+    })
+  }
+
 
   //debugging console printer
   $scope.myCon = function (msgStr) {
