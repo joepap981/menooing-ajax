@@ -5,8 +5,9 @@
     <!--show before a user is in session -->
     <div id="guest" ng-show="session['user_id'] == null" >
       <div class="btns">
+        <span class="clear-btn larger-space" ng-click="redirect('/sharekitchen')"> Share Your Kitchen </span>
         <span class="clear-btn" ng-click="redirect('/signin')"> Sign in</span>
-        <span class="clear-btn" ng-click="redirect('/signup')">Sign up</a>
+        <span class="clear-btn" ng-click="redirect('/signup')">Sign up</span>
       </div>
     </div>
     <!-- show when a session is running-->
