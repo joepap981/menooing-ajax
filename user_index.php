@@ -1,5 +1,7 @@
 <div ng-controller="AuthController">
 	<link href="css/user/index.css<?php echo $jsTimeStamp ?>" rel="stylesheet">
+	<!--fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
 
 	<!-- Navigation -->
 	<header> <div top-nav-default></div></header>
