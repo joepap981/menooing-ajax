@@ -38,7 +38,9 @@
 					</div>
 					<div class="error-message" data-ng-show="passwordNoMatch">Passwords do not match. Please enter again.</div>
 				</div>
-				<button type="submit" class="btn btn-primary btn-block" ng-click="signUp()" data-ng-disabled="signUpForm.$invalid">Register</button>
+				<div class="text-center">
+					<button type="submit" class="clear-btn text-center padding-bottom" ng-click="signUp()" data-ng-disabled="signUpForm.$invalid">Register</button>
+				</div>
 			</form>
 			<div class="text-center">
 				<a class="d-block small mt-3" href="/signin">Login Page</a>

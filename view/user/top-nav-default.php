@@ -12,7 +12,7 @@
     </div>
     <!-- show when a session is running-->
     <div id="logon-user" ng-show="session['user_id'] != null" >
-        <a class="clear-btn" ng-click="logout()">Logouts</a>
+        <a class="clear-btn" ng-click="logout()">Logout</a>
     </div>
   </div>
 </nav>

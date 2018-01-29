@@ -118,14 +118,21 @@ header.masthead {
   padding-right: 7px;
   cursor: pointer;
 
-}
-.small {
-  font-size: 0.8em;
+  border: none;
+  background: none;
+
 }
 
 .padding-bottom {
   padding-bottom: 7px;
 }
+
+
+.small {
+  font-size: 0.8em;
+}
+
+
 
 .clear-btn:hover {
   color: #5D6771;
