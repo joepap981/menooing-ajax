@@ -12,11 +12,13 @@
           <div class="form-group">
             <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email address">
           </div>
-          <a class="btn btn-primary btn-block" href="login.html">Reset Password</a>
+          <div class="text-center">
+            <div class="clear-btn text-center padding-bottom" href="login.html">Reset Password</div>
+          </div>
         </form>
         <div class="text-center">
-          <a class="d-block small mt-3" href="/signup">Register an Account</a>
-          <a class="d-block small" href="/signin">Login Page</a>
+          <div class="clear-btn small" ng-click="redirect('/signup')">Register an Account</div>
+          <div class="clear-btn small" ng-click="redirect('/signin')">Login Page</div>
         </div>
       </div>
     </div>

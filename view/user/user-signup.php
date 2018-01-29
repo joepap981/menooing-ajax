@@ -43,8 +43,8 @@
 				</div>
 			</form>
 			<div class="text-center">
-				<a class="d-block small mt-3" href="/signin">Login Page</a>
-				<a class="d-block small" href="/forgot-password">Forgot Password?</a>
+				<div class="clear-btn small" ng-click="redirect('/signin')">Login Page</a>
+				<div class="clear-btn small" ng-click="redirect('/forgot-password')">Forgot Password?</a>
 			</div>
 		</div>
 	</div>
