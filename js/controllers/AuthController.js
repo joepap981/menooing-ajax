@@ -42,7 +42,7 @@ angular.module('menuApp').controller('AuthController',['$rootScope', '$scope', '
         } else {
           $scope.email_exists = false;
           $scope.signup = {};
-          $location.path('signup_success');
+          $location.path('/home');
         }}, function myError(response) {
       });
     }
@@ -61,14 +61,18 @@ angular.module('menuApp').controller('AuthController',['$rootScope', '$scope', '
     }
   };
 
-  
+
 
   $scope.logout = function () {
     Session.endSession().then(function(response) {
       $rootScope.session = null;
+      $location.path('/');
     })
   }
 
+  $scope.redirect = function (url) {
+    $location.path(url);
+  }
 
   //debugging console printer
   $scope.myCon = function (msgStr) {

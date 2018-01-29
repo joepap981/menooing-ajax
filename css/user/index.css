@@ -107,6 +107,22 @@ header.masthead {
     left: 0;
     opacity: 0.3; }
 
+#logo {
+  width: 151.3131px;
+  height: 45px;
+  cursor: pointer;
+}
+
+.clear-btn {
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  color: #F86829;
+}
+
 
 footer.footer {
   padding-top: 4rem;

@@ -1,17 +1,17 @@
 <!-- Navigation -->
 <nav class="navbar navbar-light bg-light static-top">
   <div class="container">
-    <a class="navbar-brand" href="/">Menooing</a>
+    <span ng-click ="redirect('/')" class="navbar-brand"> <img id="logo" src="img/men_logo.png" alt="Menooing" /> </span>
     <!--show before a user is in session -->
     <div id="guest" ng-show="session['user_id'] == null" >
       <div class="btns">
-        <a class="btn btn-secondary" href="/signin">Sign In</a>
-        <a class="btn btn-primary" href="/signup">Sign Up</a>
+        <span class="clear-btn" ng-click="redirect('/signin')"> SIGN IN</span>
+        <span class="clear-btn" ng-click="redirect('/signup')">SIGN UP</a>
       </div>
     </div>
     <!-- show when a session is running-->
     <div id="logon-user" ng-show="session['user_id'] != null" >
-        <a class="btn btn-primary" ng-click="logout()">Logout</a>
+        <a class="clear-btn" href="/" ng-click="logout()">LOGOUT</a>
     </div>
   </div>
 </nav>
