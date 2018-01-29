@@ -19,28 +19,28 @@
       <div class="col-lg-4">
         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
           <div class="features-icons-icon d-flex">
-            <i class="icon-screen-desktop m-auto text-primary"></i>
+            <i class="icon-home m-auto"></i>
           </div>
-          <h3>Fully Responsive</h3>
-          <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
+          <h3>Find your kitchen</h3>
+          <p class="lead mb-0">Look for the place that will suit your culinary needs.</p>
         </div>
       </div>
       <div class="col-lg-4">
         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
           <div class="features-icons-icon d-flex">
-            <i class="icon-layers m-auto text-primary"></i>
+            <i class="icon-user m-auto"></i>
           </div>
-          <h3>Bootstrap 4 Ready</h3>
-          <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>
+          <h3>Connect with the Owner</h3>
+          <p class="lead mb-0">Find out if this is the right kitchen for you.</p>
         </div>
       </div>
       <div class="col-lg-4">
         <div class="features-icons-item mx-auto mb-0 mb-lg-3">
           <div class="features-icons-icon d-flex">
-            <i class="icon-check m-auto text-primary"></i>
+            <i class="icon-food m-auto"></i>
           </div>
-          <h3>Easy to Use</h3>
-          <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
+          <h3>Start Your restaurant</h3>
+          <p class="lead mb-0">Ready to to cook, with minimal seed capital.</p>
         </div>
       </div>
     </div>

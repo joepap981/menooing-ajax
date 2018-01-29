@@ -3,6 +3,8 @@
 	<!--fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
 
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
 	<!-- Navigation -->
 	<header> <div top-nav-default></div></header>
 
