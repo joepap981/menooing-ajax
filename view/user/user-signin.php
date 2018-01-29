@@ -20,12 +20,12 @@
 							<input class="form-check-input" type="checkbox"> Remember Password</label>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-primary btn-block" ng-click="signIn()" data-ng-disabled="signInForm.$invalid">Login</button>
+					<div class="clear-btn text-center padding-bottom" ng-click="signIn()" data-ng-disabled="signInForm.$invalid">Login</div>
 				</form>
 				<div class="text-center">
 					<span ng-show="user_no_match" class="error-message"> User and password does not match! </span>
-					<a class="d-block small mt-3" href="/signup">Register an Account</a>
-					<a class="d-block small" href="/forgot-password">Forgot Password?</a>
+					<div class="clear-btn small" ng-click="redirect('/signup')">Register an Account</div>
+					<div class="clear-btn small" ng-click="redirect('/forgot-password')">Forgot Password?</div>
 				</div>
 			</div>
 		</div>

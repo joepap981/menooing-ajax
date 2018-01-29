@@ -113,11 +113,18 @@ header.masthead {
 
 .clear-btn {
   color: #343a40;
-  font-weight: bold;
   font-family: 'Cabin', sans-serif;
   padding-left: 7px;
   padding-right: 7px;
   cursor: pointer;
+
+}
+.small {
+  font-size: 0.8em;
+}
+
+.padding-bottom {
+  padding-bottom: 7px;
 }
 
 .clear-btn:hover {
