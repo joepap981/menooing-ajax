@@ -185,8 +185,19 @@ header.sharekitchen-masthead {
   padding: 0;
 }
 
+/*User ICON dropdown menu */
+
 .dropdown-toggle::after {
   border: none;
+}
+
+.dropdown-menu {
+  min-width: 5rem;
+}
+
+.dropdown-item {
+  text-align: center;
+  font-size: 10px;
 }
 
 

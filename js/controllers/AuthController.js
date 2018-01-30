@@ -89,6 +89,17 @@ angular.module('menuApp').controller('AuthController',['$rootScope', '$scope', '
     }
   }
 
+  $scope.homeIfNoSession = function() {
+    $http({method : "POST", url: 'action/signin/'})
+    .then(function mySuccess(response) {
+        if(response.data["user_id"] == null) {
+          console.log(response.data["user_id"]);
+          $location.path('/');
+        }
+      }, function myError(response) {
+    });
+  }
+
   //debugging console printer
   $scope.myCon = function (msgStr) {
     //console.log(msgStr);

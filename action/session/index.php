@@ -1,6 +1,7 @@
 <?php
 if (!isset($_SESSION))
 {
+    echo "here";
     session_start();
 }
 

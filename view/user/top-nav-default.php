@@ -12,29 +12,19 @@
     </div>
     <!-- show when a session is running-->
     <div id="logon-user" ng-show="session['user_id'] != null" >
-
-        <span class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img class="img-fluid rounded-circle user_img" src="/img/default-user.png" alt="">
-          </a>
-          <span class="dropdown-menu" aria-labelledby="messagesDropdown">
-            <h6 class="dropdown-header">New Messages:</h6>
-            <div class="dropdown-divider"></div>
-              <a class="clear-btn" ng-click="logout()">Logout</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <strong>Jane Smith</strong>
-              <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00 instead of 4:00. Thanks!</div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <strong>John Doe</strong>
-              <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>
-            </a>
-          </span>
+        <!-- User ICON NAVIGATION -->
+      <span class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img class="img-fluid rounded-circle user_img" src="/img/default-user.png" alt="">
+        </a>
+        <span class="dropdown-menu" aria-labelledby="messagesDropdown">
+          <a class="dropdown-item" href="#">Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" ng-click="logout()">Logout</a>
         </span>
+      </span>
     </div>
   </div>
 </nav>

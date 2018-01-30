@@ -48,6 +48,7 @@ angular.module('menuApp').directive('adminNav', function() {
     templateUrl: 'view/admin/admin_nav.'+ verStr
   };
 });
+
 //user view directives
 angular.module('menuApp').directive('topNavDefault', function() {
   return {
