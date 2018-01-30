@@ -13,6 +13,9 @@ angular.module('menuApp').controller('AuthController',['$rootScope', '$scope', '
 
   $rootScope.session = {};
 
+  //query db to check if user_email and user_password match
+  //if match, begin session saving user_first_name, user_last_name, user_id
+  //redirect to home
   $scope.signIn = function () {
     $http({method : "POST", url: 'action/signin/', data: $scope.signin})
     .then(function mySuccess(response) {
@@ -62,7 +65,7 @@ angular.module('menuApp').controller('AuthController',['$rootScope', '$scope', '
   };
 
 
-
+  //logout of the current session
   $scope.logout = function () {
     Session.endSession().then(function(response) {
       $rootScope.session = null;
@@ -70,8 +73,20 @@ angular.module('menuApp').controller('AuthController',['$rootScope', '$scope', '
     })
   }
 
+  //redirect page to input url
   $scope.redirect = function (url) {
     $location.path(url);
+  }
+
+  //check if url matches with current url passwordNoMatch
+  //return true if match
+  $scope.checkURL = function (url) {
+    if ($location.path() == url ){
+      console.log($location.path());
+      return true;
+    } else {
+      return false;
+    }
   }
 
   //debugging console printer
