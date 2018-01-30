@@ -2,7 +2,7 @@ angular.module('menuApp',['ngRoute'])
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
     $locationProvider.html5Mode(true);
-    
+
     $routeProvider
     //Admin Page
     .when('/admin', {
@@ -27,8 +27,8 @@ angular.module('menuApp',['ngRoute'])
     .when('/home', {
       templateUrl: 'view/user/home.php'
     })
-    .when('/signup_success', {
-      templateUrl: 'view/user/signup-success.php'
+    .when('/sharekitchen', {
+      templateUrl: 'view/user/share-kitchen.php'
     })
   	.otherwise({
   		redirectTo: '/'

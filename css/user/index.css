@@ -56,6 +56,34 @@ header.masthead {
       header.masthead h1 {
         font-size: 3rem; } }
 
+/*share-kitchen landing page*/
+header.sharekitchen-masthead {
+  position: relative;
+  background-color: #343a40;
+  background: url("/img/share-masthead.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 8rem;
+  padding-bottom: 8rem; }
+  header.sharekitchen-masthead .overlay {
+    position: absolute;
+    background-color: #212529;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.3; }
+  header.sharekitchen-masthead h1 {
+    font-size: 2rem; }
+  @media (min-width: 768px) {
+    header.sharekitchen-masthead {
+      padding-top: 12rem;
+      padding-bottom: 12rem; }
+      header.sharekitchen-masthead h1 {
+        font-size: 3rem; } }
+
 .showcase .showcase-text {
   padding: 3rem; }
 
