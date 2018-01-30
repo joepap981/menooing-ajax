@@ -90,10 +90,10 @@ angular.module('menuApp').controller('AuthController',['$rootScope', '$scope', '
   }
 
   $scope.homeIfNoSession = function() {
-    $http({method : "POST", url: 'action/signin/'})
+    $http({method : "POST", url: 'action/session/'})
     .then(function mySuccess(response) {
-        if(response.data["user_id"] == null) {
-          console.log(response.data["user_id"]);
+      console.log(response.data);
+        if($scope.session["user_id"] == null) {
           $location.path('/');
         }
       }, function myError(response) {
