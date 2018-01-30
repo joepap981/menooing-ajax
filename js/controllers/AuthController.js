@@ -80,7 +80,7 @@ angular.module('menuApp').controller('AuthController',['$rootScope', '$scope', '
 
   //check if url matches with current url passwordNoMatch
   //return true if match
-  $scope.checkURL = function (url) {
+  $scope.isURL = function (url) {
     if ($location.path() == url ){
       console.log($location.path());
       return true;

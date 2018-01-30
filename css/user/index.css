@@ -139,6 +139,8 @@ header.sharekitchen-masthead {
   cursor: pointer;
 }
 
+/*common button styling */
+
 .clear-btn {
   color: #343a40;
   font-family: 'Cabin', sans-serif;
@@ -148,22 +150,18 @@ header.sharekitchen-masthead {
 
   border: none;
   background: none;
+}
 
+.clear-btn:hover {
+  color: #5D6771;
 }
 
 .padding-bottom {
   padding-bottom: 7px;
 }
 
-
 .small {
   font-size: 0.8em;
-}
-
-
-
-.clear-btn:hover {
-  color: #5D6771;
 }
 
 .light-text {
@@ -173,6 +171,22 @@ header.sharekitchen-masthead {
 .larger-space {
   padding-left:40px;
   padding-right:40px;
+}
+
+/*top-nav user-icon */
+
+.user_img {
+  max-width: 3.1em;
+  max-height: 3.1em;
+  padding-left: 10px;
+}
+
+.nav-link {
+  padding: 0;
+}
+
+.dropdown-toggle::after {
+  border: none;
 }
 
 
