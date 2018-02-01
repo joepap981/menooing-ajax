@@ -156,6 +156,17 @@ header.sharekitchen-masthead {
   color: #5D6771;
 }
 
+.clear-btn2 {
+  color: white;
+  cursor: pointer;
+  font-family: 'Cabin', sans-serif;
+  border: none;
+  background: none;
+}
+.clear-btn2:hover {
+  color: #D6DAE0;
+}
+
 .padding-bottom {
   padding-bottom: 7px;
 }

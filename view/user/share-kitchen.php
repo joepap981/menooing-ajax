@@ -4,9 +4,11 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-9 mx-auto">
-        <h1 class="mb-5">Maximize Your Capital Investment</h1>
+        <h1 class="mb-5">Maximize the capacity of your brick and mortar restaurant.</h1>
       </div>
       <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+        <h4> Start now by registering your restaurant</h4>
+        <span class="clear-btn2" ng-click="redirect('/signup')"> Register </span>
       </div>
     </div>
   </div>
