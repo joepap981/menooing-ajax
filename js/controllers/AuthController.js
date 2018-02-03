@@ -2,8 +2,7 @@
  *  Mene Controller will be
  */
 
-
-angular.module('menuApp').controller('AuthController',['$rootScope', '$scope', '$http', '$location', 'Session', function ($rootScope, $scope, $http, $location, Session) {
+angular.module('menuApp').controller('AuthController',['$scope', '$location', 'accessDB', function ($scope, $location, accessDB) {
   $scope.signin = {};
   $scope.signup = {};
 
@@ -11,25 +10,36 @@ angular.module('menuApp').controller('AuthController',['$rootScope', '$scope', '
   $scope.passwordNoMatch = false;
   $scope.user_no_match = false;
 
-  $rootScope.session = {};
+  $scope.response = {};
+  $scope.session = accessDB.checkSession();
+
 
   //query db to check if user_email and user_password match
   //if match, begin session saving user_first_name, user_last_name, user_id
   //redirect to home
   $scope.signIn = function () {
-    $http({method : "POST", url: 'action/signin/', data: $scope.signin})
-    .then(function mySuccess(response) {
-        if(response.data["result"] == "Success") {
-          $scope.user_no_match = false;
-          $scope.signin = {};
+    var myData = accessDB.get($scope.signin);
+    myData.then(function (result) {
+      $scope.response = result;
 
-          $rootScope.session = response.data;
-          $location.path('/home');
+      if($scope.response["result"] == "Success") {
+        $scope.user_no_match = false;
+        $scope.signin = {};
 
-        } else {
-          $scope.user_no_match = true;
-        }
-      }, function myError(response) {
+        //check for session
+        myData = accessDB.checkSession();
+        myData.then(function (result) {
+          if (result["user_id"] != null) {
+            $scope.session = result;
+            $location.path('/home');
+          } else {
+            $scope.session = {};
+            $location.path('/');
+          }
+        });
+      } else {
+        $scope.user_no_match = true;
+      }
     });
   };
 
@@ -65,10 +75,10 @@ angular.module('menuApp').controller('AuthController',['$rootScope', '$scope', '
   };
 
 
-  //logout of the current session
+  //logout of user account and end session
   $scope.logout = function () {
-    Session.endSession().then(function(response) {
-      $rootScope.session = null;
+    accessDB.endSession().then(function(response) {
+      $scope.session = response;
       $location.path('/');
     })
   }
@@ -87,17 +97,6 @@ angular.module('menuApp').controller('AuthController',['$rootScope', '$scope', '
     } else {
       return false;
     }
-  }
-
-  $scope.homeIfNoSession = function() {
-    $http({method : "POST", url: 'action/session/'})
-    .then(function mySuccess(response) {
-      console.log(response.data);
-        if($scope.session["user_id"] == null) {
-          $location.path('/');
-        }
-      }, function myError(response) {
-    });
   }
 
   //debugging console printer

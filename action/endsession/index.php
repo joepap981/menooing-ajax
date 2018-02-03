@@ -5,6 +5,5 @@ if (isset($_SESSION))
     session_destroy();
 }
 
-
 echo 'null';
 ?>

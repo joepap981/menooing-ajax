@@ -25,7 +25,7 @@
 					</div>
 				</form>
 				<div class="text-center">
-					<span ng-show="user_no_match" class="error-message"> User and password does not match! </span>
+					<span ng-show="user_no_match == true" class="error-message"> User and password does not match! </span>
 					<div class="clear-btn small" ng-click="redirect('/signup')">Register an Account</div>
 					<div class="clear-btn small" ng-click="redirect('/forgot-password')">Forgot Password?</div>
 				</div>

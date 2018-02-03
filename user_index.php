@@ -8,7 +8,6 @@
 	<!-- Navigation -->
 	<header> <div top-nav-default></div></header>
 
-
 	<!-- Main View Section -->
 	<main ng-view></main>
 
@@ -23,4 +22,4 @@
 <script src="js/controllers/AuthController.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/services/MenuStorage.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/directives/UserPage.js<?php echo $jsTimeStamp ?>"></script>
-<script src="js/services/CommonService.js<?php echo $jsTimeStamp ?>"></script>
+<script src="js/services/AuthService.js<?php echo $jsTimeStamp ?>"></script>

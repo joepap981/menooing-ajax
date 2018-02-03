@@ -1,7 +1,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-light bg-light static-top">
   <div class="container">
-    <span ng-click ="redirect('/home')" class="navbar-brand logo"> menooing </span>
+    <span ng-click ="redirect('/')" class="navbar-brand logo"> menooing </span>
     <!--show before a user is in session -->
     <div id="guest" ng-show="session['user_id'] == null" >
       <div class="btns">
