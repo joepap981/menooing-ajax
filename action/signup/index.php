@@ -35,13 +35,13 @@ $user_info["user_password"] = password_hash($data["user_password"],PASSWORD_DEFA
 $query = "INSERT INTO tb_user (user_first_name, user_last_name, user_email, user_password) VALUES ('" . $user_info['user_first_name'] . "', '" . $user_info["user_last_name"] . "', '" . $user_info["user_email"] . "', '" . $user_info["user_password"] . "');";
 $result = mysqli_query($conn, $query);
 
-
+/*
 $query = "SELECT * FROM tb_user WHERE user_email = '" . $data["user_email"] . "'";
 $result = mysqli_query($conn, $query);
 
 $query = "INSERT INTO tb_user (user_first_name, user_last_name, user_email, user_password) VALUES ('" . $user_info['user_first_name'] . "', '" . $user_info["user_last_name"] . "', '" . $user_info["user_email"] . "', '" . $user_info["user_password"] . "');";
 $result = mysqli_query($conn, $query);
-
+*/
 echo "Available";
 }
 

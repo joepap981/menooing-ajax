@@ -11,7 +11,6 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
   $scope.user_no_match = false;
 
   $scope.response = {};
-  $scope.inSession;
   $scope.session = {};
 
   //check every time a page is loaded to see if session is live
