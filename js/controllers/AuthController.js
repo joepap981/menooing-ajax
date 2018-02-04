@@ -11,7 +11,24 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
   $scope.user_no_match = false;
 
   $scope.response = {};
-  $scope.session = accessDB.checkSession();
+  $scope.inSession;
+  $scope.session = {};
+
+  //check every time a page is loaded to see if session is live
+  var init = function () {
+    var myData = accessDB.checkSession();
+    myData.then(function (response) {
+      if(response != null){
+        $scope.session = response;
+        console.log(response);
+        return true;
+      } else {
+        console.log("FAILED!!");
+        return false;
+      }
+    });
+  }
+  init();
 
 
   //query db to check if user_email and user_password match

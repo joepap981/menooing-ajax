@@ -1,9 +1,5 @@
 <?php
-if (isset($_SESSION))
-{
-    session_unset();
-    session_destroy();
-}
-
-echo 'null';
+session_start();
+session_unset();
+echo null
 ?>

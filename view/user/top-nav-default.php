@@ -3,7 +3,7 @@
   <div class="container">
     <span ng-click ="redirect('/')" class="navbar-brand logo"> menooing </span>
     <!--show before a user is in session -->
-    <div id="guest" ng-show="session['user_id'] == null" >
+    <div id="guest" ng-if="session['user_id'] == null" >
       <div class="btns">
         <span ng-hide="isURL('/sharekitchen')" class="clear-btn larger-space" ng-click="redirect('/sharekitchen')"> Share Your Kitchen </span>
         <span class="clear-btn" ng-click="redirect('/signin')"> Sign in</span>
@@ -11,7 +11,7 @@
       </div>
     </div>
     <!-- show when a session is running-->
-    <div id="logon-user" ng-show="session['user_id'] != null" >
+    <div id="logon-user" ng-if="session['user_id'] != null" >
         <!-- User ICON NAVIGATION -->
       <span class="nav-item dropdown">
         <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
