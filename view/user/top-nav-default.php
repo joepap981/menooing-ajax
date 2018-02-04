@@ -18,7 +18,7 @@
           <img class="img-fluid rounded-circle user_img" src="/img/default-user.png" alt="">
         </a>
         <span class="dropdown-menu" aria-labelledby="messagesDropdown">
-          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" ng-click="redirect('/home')">Profile</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Settings</a>
           <div class="dropdown-divider"></div>
