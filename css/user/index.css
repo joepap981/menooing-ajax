@@ -197,6 +197,9 @@ header.sharekitchen-masthead {
 }
 
 /*User ICON dropdown menu */
+.dropdown {
+  display: inline-block;
+}
 
 .dropdown-toggle::after {
   border: none;
@@ -209,6 +212,11 @@ header.sharekitchen-masthead {
 .dropdown-item {
   text-align: center;
   font-size: 10px;
+}
+
+#session-user-name {
+  display: inline-block;
+  margin-right: 20px;
 }
 
 

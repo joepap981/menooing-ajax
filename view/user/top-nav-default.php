@@ -12,6 +12,7 @@
     </div>
     <!-- show when a session is running-->
     <div id="logon-user" ng-if="session['user_id'] != null" >
+      <div id="session-user-name"> {{ session['user_first_name'] }} </div>
         <!-- User ICON NAVIGATION -->
       <span class="nav-item dropdown">
         <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
