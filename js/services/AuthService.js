@@ -10,10 +10,10 @@ angular.module('menuApp').factory('accessDB', function($http) {
     },
 
     set: function(signup) {
-      return $http({ method : "POST", url: 'action/signup/', data: $scope.signup})
+      return $http({ method : "POST", url: 'action/signup/', data: signup})
       .then(function mySuccess(response) {
         //*** need to implement case where db read or write fail!! ***
-        
+
           //check if email already exists and if it does,
           if (response.data == "Unavailable") {
             return false;

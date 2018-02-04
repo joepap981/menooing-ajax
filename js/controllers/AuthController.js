@@ -19,7 +19,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
     myData.then(function (response) {
       if(response != null){
         $scope.session = response;
-        console.log(response);
+
         return true;
       } else {
         console.log("FAILED!!");
@@ -61,18 +61,22 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
 
   //sign up and record user info to db
   $scope.signUp = function () {
-
     if($scope.checkPassword()) {
-    $http({ method : "POST", url: 'action/signup/', data: $scope.signup})
-    .then(function mySuccess(response) {
-        //check if email already exists and if it does,
-        if (response.data == "Unavailable") {
-          $scope.email_exists = true;
-        } else {
+      accessDB.set($scope.signup).then(function(response) {
+        //successfully wrote into DB
+        if (response == true) {
           $scope.email_exists = false;
-          $scope.signup = {};
-          $location.path('/home');
-        }}, function myError(response) {
+
+          //auto logs in with current info and redirect to home
+          $scope.signin['user_email'] = $scope.signup['user_email'];
+          $scope.signin['user_password'] = $scope.signup['user_password'];
+
+          $scope.signIn();
+        }
+        //failed to write into DB
+        else {
+          $scope.email_exists = true;
+        }
       });
     }
   };
