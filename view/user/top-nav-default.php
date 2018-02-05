@@ -2,21 +2,21 @@
 <nav class="navbar navbar-light bg-light static-top">
   <!-- Sidebar when User is logged in-->
   <div ng-if="session['user_id'] != null" class="navbar-default">
-    <ul class="sidebar-nav">
+    <ul class="sidebar-nav" ng-controller="UserDashboardController">
       <li>
-        <a href="#" ng-click="redirect('home')">Dashboard</a>
+        <a href="#" ng-click="selectPage(1)">Dashboard</a>
       </li>
       <li>
-        <a href="#" ng-click="redirect('restaurant')">Restaurant</a>
+        <a href="#" ng-click="selectPage(2)">Restaurant</a>
       </li>
       <li>
-        <a href="#" ng-click="redirect('sharee')">Sharee</a>
+        <a href="#" ng-click="selectPage(3)">Sharee</a>
       </li>
       <li>
-        <a href="#" ng-click="redirect('requests')">Requests</a>
+        <a href="#" ng-click="selectPage(4)">Requests</a>
       </li>
       <li>
-        <a href="#" ng-click="redirect('profile')">Profile</a>
+        <a href="#" ng-click="selectPage(5)">Profile</a>
       </li>
     </ul>
   </div>

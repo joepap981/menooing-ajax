@@ -30,7 +30,10 @@ angular.module('menuApp',['ngRoute'])
 
     //User dashboard pages
     .when('/home', {
-      templateUrl: 'view/user/dashboard/home.php'
+      templateUrl: 'view/user/dashboard/index.php'
+    })
+    .when('/dashboard', {
+      templateUrl: 'view/user/dashboard/dashboard.php'
     })
     .when('/restaurant', {
       templateUrl: 'view/user/dashboard/restaurant.php'
