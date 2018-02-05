@@ -1,19 +1,19 @@
 <!-- Navigation -->
 <nav class="navbar navbar-light bg-light static-top">
-  <!-- Sidebar -->
+  <!-- Sidebar when User is logged in-->
   <div ng-if="session['user_id'] != null" class="navbar-default">
     <ul class="sidebar-nav">
       <li>
         <a href="#">Dashboard</a>
       </li>
       <li>
-        <a href="#">Shortcuts</a>
+        <a href="#">Your Restaurants</a>
       </li>
       <li>
-        <a href="#">Overview</a>
+        <a href="#">Profile</a>
       </li>
       <li>
-        <a href="#">Events</a>
+        <a href="#">Sharees</a>
       </li>
       <li>
         <a href="#">About</a>
@@ -44,7 +44,7 @@
         <img class="img-fluid rounded-circle user_img" src="/img/default-user.png" alt="">
       </a>
       <span class="dropdown-menu" aria-labelledby="messagesDropdown">
-        <a class="dropdown-item" ng-click="redirect('/home')">Profile</a>
+        <a class="dropdown-item" ng-click="redirect('/home')">Dashboard</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#">Settings</a>
         <div class="dropdown-divider"></div>
