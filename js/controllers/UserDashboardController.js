@@ -2,6 +2,5 @@ angular.module('menuApp').controller('UserDashboardController',['$scope', functi
   $scope.page = 1;
   $scope.selectPage = function (pageNum) {
     this.page = pageNum;
-    console.log($scope.page);
   }
 }]);
