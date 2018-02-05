@@ -1,25 +1,6 @@
 <!-- Navigation -->
 <nav class="navbar navbar-light bg-light static-top">
   <!-- Sidebar when User is logged in-->
-  <div ng-if="session['user_id'] != null" class="navbar-default">
-    <ul class="sidebar-nav" ng-controller="UserDashboardController">
-      <li>
-        <a href="#" ng-click="selectPage(1)">Dashboard</a>
-      </li>
-      <li>
-        <a href="#" ng-click="selectPage(2)">Restaurant</a>
-      </li>
-      <li>
-        <a href="#" ng-click="selectPage(3)">Sharee</a>
-      </li>
-      <li>
-        <a href="#" ng-click="selectPage(4)">Requests</a>
-      </li>
-      <li>
-        <a href="#" ng-click="selectPage(5)">Profile</a>
-      </li>
-    </ul>
-  </div>
   <div ng-click ="redirect('/')" class="navbar-brand cursor-pointer"> menooing </div>
   <!--show when NO session -->
   <div id="guest" ng-if="session['user_id'] == null" >

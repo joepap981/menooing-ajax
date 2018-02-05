@@ -27,3 +27,4 @@
 <script src="js/services/AuthService.js<?php echo $jsTimeStamp ?>"></script>
 
 <script src="js/directives/UserPage.js<?php echo $jsTimeStamp ?>"></script>
+<script src="js/directives/UserDashboardViewDirective.js<?php echo $jsTimeStamp ?>"></script>
