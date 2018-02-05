@@ -4,25 +4,19 @@
   <div ng-if="session['user_id'] != null" class="navbar-default">
     <ul class="sidebar-nav">
       <li>
-        <a href="#">Dashboard</a>
+        <a href="#" ng-click="redirect('home')">Dashboard</a>
       </li>
       <li>
-        <a href="#">Your Restaurants</a>
+        <a href="#" ng-click="redirect('restaurant')">Restaurant</a>
       </li>
       <li>
-        <a href="#">Profile</a>
+        <a href="#" ng-click="redirect('sharee')">Sharee</a>
       </li>
       <li>
-        <a href="#">Sharees</a>
+        <a href="#" ng-click="redirect('requests')">Requests</a>
       </li>
       <li>
-        <a href="#">About</a>
-      </li>
-      <li>
-        <a href="#">Services</a>
-      </li>
-      <li>
-        <a href="#">Contact</a>
+        <a href="#" ng-click="redirect('profile')">Profile</a>
       </li>
     </ul>
   </div>

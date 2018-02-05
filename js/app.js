@@ -24,11 +24,25 @@ angular.module('menuApp',['ngRoute'])
     .when('/forgot-password', {
       templateUrl: 'view/user/forgot-password.php'
     })
-    .when('/home', {
-      templateUrl: 'view/user/home.php'
-    })
     .when('/sharekitchen', {
       templateUrl: 'view/user/share-kitchen.php'
+    })
+
+    //User dashboard pages
+    .when('/home', {
+      templateUrl: 'view/user/dashboard/home.php'
+    })
+    .when('/restaurant', {
+      templateUrl: 'view/user/dashboard/restaurant.php'
+    })
+    .when('/sharee', {
+      templateUrl: 'view/user/dashboard/sharee.php'
+    })
+    .when('/requests', {
+      templateUrl: 'view/user/dashboard/requests.php'
+    })
+    .when('/profile', {
+      templateUrl: 'view/user/dashboard/profile.php'
     })
   	.otherwise({
   		redirectTo: '/'

@@ -1,6 +1,7 @@
 <!-- Custom CSS -->
 <link href="css/user/userlogin.css" rel="stylesheet">
 <link href="css/user/home.css" rel="stylesheet">
+
 <div class="home-content">
   <div id="no_session" ng-if="session['user_id'] == null">
     <div class="container">
@@ -11,6 +12,6 @@
 
   <!--Content -->
   <div class="container" ng-if="session['user_id'] != null">
-    <h1> Hey jude </h1>
+    <h1> This is the Your Restaurants Page </h1>
   </div>
 </div>
