@@ -1,35 +1,33 @@
 <!-- Navigation -->
 <nav class="navbar navbar-light bg-light static-top">
   <!-- Sidebar -->
-  <div class="navbar-default">
-    <div>
-      <ul class="sidebar-nav">
-        <li>
-          <a href="#">Dashboard</a>
-        </li>
-        <li>
-          <a href="#">Shortcuts</a>
-        </li>
-        <li>
-          <a href="#">Overview</a>
-        </li>
-        <li>
-          <a href="#">Events</a>
-        </li>
-        <li>
-          <a href="#">About</a>
-        </li>
-        <li>
-          <a href="#">Services</a>
-        </li>
-        <li>
-          <a href="#">Contact</a>
-        </li>
-      </ul>
-    </div>
+  <div ng-if="session['user_id'] != null" class="navbar-default">
+    <ul class="sidebar-nav">
+      <li>
+        <a href="#">Dashboard</a>
+      </li>
+      <li>
+        <a href="#">Shortcuts</a>
+      </li>
+      <li>
+        <a href="#">Overview</a>
+      </li>
+      <li>
+        <a href="#">Events</a>
+      </li>
+      <li>
+        <a href="#">About</a>
+      </li>
+      <li>
+        <a href="#">Services</a>
+      </li>
+      <li>
+        <a href="#">Contact</a>
+      </li>
+    </ul>
   </div>
   <div ng-click ="redirect('/')" class="navbar-brand cursor-pointer"> menooing </div>
-  <!--show before a user is in session -->
+  <!--show when NO session -->
   <div id="guest" ng-if="session['user_id'] == null" >
     <div class="btns">
       <span ng-hide="isURL('/sharekitchen')" class="clear-btn larger-space" ng-click="redirect('/sharekitchen')"> Share Your Kitchen </span>
