@@ -3,4 +3,8 @@ angular.module('menuApp').controller('UserDashboardController',['$scope', functi
   $scope.selectPage = function (pageNum) {
     this.page = pageNum;
   }
+
+  //Restaurant registration
+  $scope.restaurant = {};
+  
 }]);

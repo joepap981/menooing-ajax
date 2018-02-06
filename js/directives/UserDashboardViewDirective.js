@@ -33,3 +33,9 @@ angular.module('menuApp').directive('restaurantNewView', function() {
     templateUrl: 'view/user/dashboard/restaurant-new.php'
   };
 });
+
+angular.module('menuApp').directive('restaurantNew2View', function() {
+  return {
+    templateUrl: 'view/user/dashboard/restaurant-new2.php'
+  };
+});

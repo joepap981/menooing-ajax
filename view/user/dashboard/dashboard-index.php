@@ -1,6 +1,6 @@
-<!-- Custom CSS --> 
+<!-- Custom CSS -->
 <link href="css/user/dashboard.css" rel="stylesheet">
-
+<link href="css/user/userlogin.css" rel="stylesheet">
 <?php
 session_start();
 ?>
@@ -44,6 +44,7 @@ session_start();
 
       <!-- Sub tabs -->
       <restaurant-new-view ng-show="page == 'restaurant-new'"></restaurant-new-view>
+      <restaurant-new2-view ng-show="page == 'restaurant-new2'"></restaurant2-new-view>
     </div>
   </div>
 </div>
