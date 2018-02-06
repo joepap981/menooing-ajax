@@ -1,5 +1,6 @@
 .home-content {
   margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 /* Sidebar nav */
@@ -63,10 +64,50 @@ label {
   margin: 3px;
 }
 
+.form-group {
+  margin-bottom: 5px;
+}
+
 .form-control {
   padding-top: 1.5px;
   padding-bottom: 1.5px;
   padding-left: 6px;
   padding-right: 6px;
   border-radius: 1px;
+}
+
+.top-margin {
+  margin-top: 10px;
+}
+
+/*restaurant */
+form {
+  margin-bottom: 30px;
+}
+
+#circular-button {
+  height: 20px;
+  width: 20px;
+}
+
+#circular-button:hover {
+  opacity: 0.2;
+}
+
+.form-inline .form-group input{
+  width: 160px;
+  margin-bottom: 6px;
+
+}
+#img-fork {
+  margin-top: 100px;
+  width: 300px;
+  height: 300px;
+}
+
+#city {
+  margin-right: 10px;
+}
+#state {
+  margin-right: 10px;
 }
