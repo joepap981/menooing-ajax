@@ -85,6 +85,10 @@ form {
   margin-bottom: 30px;
 }
 
+.submitted {
+    box-shadow: 0 0 5px #f00;
+}
+
 #circular-button {
   height: 20px;
   width: 20px;

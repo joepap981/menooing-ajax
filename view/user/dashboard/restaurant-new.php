@@ -3,37 +3,37 @@
     <h3> Welcome {{ session['user_first_name']}}! </h3>
     <h5> Please give us basic information about your restaurant!</h5>
     <br></br>
-    <form>
+    <form name="restaurantRegistration">
       <div class="form-group">
         <label for="restaurant_name">Name</label>
-        <input type="text" class="form-control" id="address1" placeholder="">
+        <input name="name" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" class="form-control" placeholder="" required>
       </div>
       <div class="form-group">
         <label for="address">Location</label>
-        <input type="text" ng-model="restaurant.address1" class="form-control" id="address1" placeholder="Address 1">
+        <input name="address1" type="text" ng-model="restaurant.address1" class="form-control" placeholder="Address 1" required>
       </div>
       <div class="form-group">
-        <input type="text" ng-model="restaurant.address2" class="form-control" id="address2" placeholder="Address 2">
+        <input name="address2" type="text" ng-model="restaurant.address2" class="form-control" placeholder="Address 2" required>
       </div>
       <div class="form-inline">
         <div class="form-group">
-          <input type="text" ng-model="restaurant.city" class="form-control" id="city" placeholder="City">
+          <input name="city" type="text" ng-model="restaurant.city" class="form-control" placeholder="City" required>
         </div>
         <div class="form-group">
-          <input type="text" ng-model="restaurant.state" class="form-control" id="state" placeholder="State">
+          <input name="state" type="text" ng-model="restaurant.state" class="form-control" placeholder="State" required>
         </div>
         <div class="form-group">
-          <input type="text" ng-model="restaurant.zipcode" class="form-control" id="zipcode" placeholder="Zip Code">
+          <input name="zipcode" type="text" ng-model="restaurant.zipcode" class="form-control" placeholder="Zip Code" required>
         </div>
       </div>
 
       <div class="form-group">
         <label for="Cuisine">Cuisine</label>
-        <input type="text" ng-model="restaurant.cuisine" class="form-control" id="zipcode" placeholder="Chinese, Mexican, Burger...">
+        <input type="text" ng-model="restaurant.cuisine" class="form-control" id="zipcode" placeholder="Chinese, Mexican, Burger..." required>
       </div>
     </form>
-    <a href='#' class="right-margin clear-btn" ng-click="selectPage('restaurant')"><img id="circular-button" src="/img/left-arrow-circular-button.png">Back</a>
-    <a href='#' class="clear-btn" ng-click="selectPage('restaurant-new2')">Submit <img id="circular-button" src="/img/right-arrow-circular-button.png"></a>
+    <button class="right-margin clear-btn" ng-click="selectPage('restaurant')"><img id="circular-button" src="/img/left-arrow-circular-button.png"> Back</button>
+    <button type='submit' class="clear-btn" ng-click="registerRestaurant()">Submit <img id="circular-button" src="/img/right-arrow-circular-button.png"></button>
   </div>
   <div class="col-md-5">
     <img id="img-fork" src="/img/fork.png">

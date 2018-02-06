@@ -6,5 +6,14 @@ angular.module('menuApp').controller('UserDashboardController',['$scope', functi
 
   //Restaurant registration
   $scope.restaurant = {};
-  
+  //submit input form information to DB
+  $scope.registerRestaurant = function () {
+    if ($scope.restaurantRegistration.$valid) {
+      console.log("valid");
+    } else {
+      $scope.restaurantRegistration.submitted = true;
+      console.log($scope.restaurantRegistration.$valid);
+
+    }
+  }
 }]);
