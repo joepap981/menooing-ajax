@@ -1,1 +1,3 @@
-<h1> This is the Your Restaurants Page </h1>
+<div id="restaurant-menubar">
+  <div class='btn btn-primary' ng-click="selectPage('restaurant-new')"> Register New Restaurant </div>
+</div>

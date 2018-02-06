@@ -27,3 +27,9 @@ angular.module('menuApp').directive('profilePageView', function() {
     templateUrl: 'view/user/dashboard/profile.php'
   };
 });
+
+angular.module('menuApp').directive('restaurantNewView', function() {
+  return {
+    templateUrl: 'view/user/dashboard/restaurant-new.php'
+  };
+});
