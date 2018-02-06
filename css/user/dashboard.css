@@ -85,7 +85,7 @@ form {
   margin-bottom: 30px;
 }
 
-.submitted {
+input:invalid.submitted {
     box-shadow: 0 0 5px #f00;
 }
 
