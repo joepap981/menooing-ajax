@@ -33,6 +33,17 @@ angular.module('menuApp').factory('accessDB', function($http) {
       return $http({method : "GET", url: 'action/session/'}).then(function mySuccess(response) {
         return response.data;
       });
+    },
+
+    insertRestaurantInfo: function(restaurant) {
+      return $http({ method: "POST", url: "action/restaurant_register/", data: restaurant})
+      .then(function mySuccess (response) {
+        if (response.data == "Success") {
+          return true;
+        } else {
+          return false;
+        }
+      });
     }
   }
 });

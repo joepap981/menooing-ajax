@@ -13,7 +13,7 @@
         <input name="address1" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.address1" class="form-control" placeholder="Address 1" required>
       </div>
       <div class="form-group">
-        <input name="address2" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.address2" class="form-control" placeholder="Address 2" required>
+        <input name="address2" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.address2" class="form-control" placeholder="Address 2">
       </div>
       <div class="form-inline">
         <div class="form-group">
@@ -23,7 +23,7 @@
           <input name="state" id="state" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.state" class="form-control" placeholder="State" required>
         </div>
         <div class="form-group">
-          <input name="zipcode" id="zipcode" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.zipcode" class="form-control" placeholder="Zip Code" required>
+          <input name="zipcode" id="zipcode" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.zip" class="form-control" placeholder="Zip Code" required>
         </div>
       </div>
 
@@ -32,7 +32,7 @@
         <input type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.cuisine" class="form-control" id="zipcode" placeholder="Chinese, Mexican, Burger..." required>
       </div>
     </form>
-    <button class="right-margin clear-btn" ng-click="selectPage('restaurant')"><img id="circular-button" src="/img/left-arrow-circular-button.png"> Back</button>
+    <button class="submit right-margin clear-btn" ng-click="selectPage('restaurant')"><img id="circular-button" src="/img/left-arrow-circular-button.png"> Back</button>
     <button type='submit' class="clear-btn" ng-click="registerRestaurant()">Submit <img id="circular-button" src="/img/right-arrow-circular-button.png"></button>
   </div>
   <div class="col-md-5">

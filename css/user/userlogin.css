@@ -81,10 +81,11 @@ body.fixed-nav {
 
 .error-message {
   color:#F00;
-  text-align: center;
 }
 
-
+.ng-invalid.ng-touched {
+    box-shadow: 0 0 5px #f00;
+}
 
 footer {
   position: absolute;

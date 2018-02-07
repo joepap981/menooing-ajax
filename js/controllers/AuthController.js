@@ -39,7 +39,6 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
       $scope.response = result;
 
       if($scope.response["result"] == "Success") {
-        console.log("signin");
         $scope.user_no_match = false;
         $scope.signin = {};
 
@@ -64,10 +63,8 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
   $scope.signUp = function () {
     if($scope.checkPassword()) {
       accessDB.set($scope.signup).then(function(response) {
-        console.log("signup");
         //successfully wrote into DB
         if (response == true) {
-          console.log("signup success");
           $scope.email_exists = false;
 
           //auto logs in with current info and redirect to home
@@ -76,7 +73,6 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
           signinData['user_password'] = $scope.signup['user_password'];
 
           $scope.signIn(signinData);
-
 
         }
         //failed to write into DB
