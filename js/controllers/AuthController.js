@@ -33,12 +33,13 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
   //query db to check if user_email and user_password match
   //if match, begin session saving user_first_name, user_last_name, user_id
   //redirect to home
-  $scope.signIn = function () {
-    var myData = accessDB.get($scope.signin);
+  $scope.signIn = function (signin) {
+    var myData = accessDB.get(signin);
     myData.then(function (result) {
       $scope.response = result;
 
       if($scope.response["result"] == "Success") {
+        console.log("signin");
         $scope.user_no_match = false;
         $scope.signin = {};
 
@@ -63,15 +64,20 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
   $scope.signUp = function () {
     if($scope.checkPassword()) {
       accessDB.set($scope.signup).then(function(response) {
+        console.log("signup");
         //successfully wrote into DB
         if (response == true) {
+          console.log("signup success");
           $scope.email_exists = false;
 
           //auto logs in with current info and redirect to home
-          $scope.signin['user_email'] = $scope.signup['user_email'];
-          $scope.signin['user_password'] = $scope.signup['user_password'];
+          var signinData = {};
+          signinData['user_email'] = $scope.signup['user_email'];
+          signinData['user_password'] = $scope.signup['user_password'];
 
-          $scope.signIn();
+          $scope.signIn(signinData);
+
+
         }
         //failed to write into DB
         else {

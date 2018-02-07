@@ -17,13 +17,13 @@
       </div>
       <div class="form-inline">
         <div class="form-group">
-          <input name="city" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.city" class="form-control" placeholder="City" required>
+          <input name="city" id="city" type="text"  ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.city" class="form-control" placeholder="City" required>
         </div>
         <div class="form-group">
-          <input name="state" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.state" class="form-control" placeholder="State" required>
+          <input name="state" id="state" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.state" class="form-control" placeholder="State" required>
         </div>
         <div class="form-group">
-          <input name="zipcode" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.zipcode" class="form-control" placeholder="Zip Code" required>
+          <input name="zipcode" id="zipcode" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.zipcode" class="form-control" placeholder="Zip Code" required>
         </div>
       </div>
 
