@@ -33,15 +33,11 @@ foreach($data as $key => $value) {
 
 //trim end ,
 $query = substr($query, 0, -2) . ");";
-print $query. "\n";
 
 $result = (mysqli_query($conn, $query));
-print $result;
 
-//echo json_encode($data);
-
-//insert data into the current session user_id
-/*
-$query = "INSERT INTO tb_restaurant (restaurant_name, restaurant_address1, restaurant_address2, restaurant_city, restaurant_state, restaurant_zip, restaurant_cuisine)
- VALUES ('" . $rest_info['restaurant_name'] . "', '" . $rest_info["restaurant_address1"] . "', '" . $rest_info["restaurant_address2"] . "', '" . $rest_info["restaurant_city"] . "', '" . $rest_info["restaurant_state"] . "', '" . $rest_info["restaurant_zip"] . "', '" . $rest_info["restaurant_zip"] . "';"";
-*/
+if ($result == 1) {
+  echo "Success";
+} else {
+  echo "Failed";
+}

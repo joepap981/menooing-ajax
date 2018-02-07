@@ -17,6 +17,7 @@ $jsTimeStamp = '?version=v-'.$timeStr;
 		<!-- Bootstrap core stylesheet-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 		<link href="css/user/index.css<?php echo $jsTimeStamp ?>" rel="stylesheet">
+		<link href="lib/growl-css/angular-growl.min.css" rel="stylesheet">
 
 		<!-- Bootstrap core JavaScript ================================================== -->
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -47,5 +48,6 @@ $jsTimeStamp = '?version=v-'.$timeStr;
 
 	?>
 
+	<script src="lib/growl-js/angular-growl.min.js"></script>
 	</body>
 </html>

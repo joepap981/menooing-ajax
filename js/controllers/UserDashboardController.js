@@ -11,11 +11,13 @@ angular.module('menuApp').controller('UserDashboardController',['$scope', 'acces
     if ($scope.restaurantRegistration.$valid) {
       accessDB.insertRestaurantInfo(this.restaurant).then(function(response) {
         if (response == true) {
-          console.log("Successfully insert to DB");
+          console.log("Successfully inserted");
 
           this.page = "restaurant";
+          return true;
         } else {
-          console.log("Failed to insert to DB");
+          console.log("Failed to insert");
+          return false;
         }
       });
     } else {
