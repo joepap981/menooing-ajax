@@ -12,6 +12,7 @@ angular.module('menuApp').controller('UserDashboardController',['$scope', 'acces
   //run initialization method
   init();
 
+
   //navigate tabs
   $scope.page = 'dashboard';
   $scope.selectPage = function (pageNum) {
