@@ -89,6 +89,10 @@ label {
   width: 90%;
 }
 
+#restaurant-list .card {
+  margin-bottom: 50px;
+}
+
 /* restaurant registration form */
 form {
   margin-bottom: 30px;

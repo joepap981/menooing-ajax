@@ -11,12 +11,11 @@ angular.module('menuApp').controller('UserDashboardController',['$scope', 'acces
     if ($scope.restaurantRegistration.$valid) {
       accessDB.insertRestaurantInfo(this.restaurant).then(function(response) {
         if (response == true) {
-          console.log("Successfully inserted");
           growl.success("Your restaurant has been registered!", {title: 'Success!'});
           $scope.page = 'restaurant';
           return true;
         } else {
-          console.log("Failed to insert");
+          growl.error("Something went wrong!", {title: 'Failed to Register!'});
           return false;
         }
       });
