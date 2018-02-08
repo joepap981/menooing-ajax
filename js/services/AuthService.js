@@ -52,7 +52,6 @@ angular.module('menuApp').factory('accessDB', function($http) {
       return $http({ method: "GET", url: "action/restaurant_get/"})
       .then(function mySuccess (response) {
         if (response.data['length'] != 0) {
-          console.log(response.data);
           return response.data;
         } else {
           console.log("No result");
