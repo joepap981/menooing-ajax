@@ -1,7 +1,7 @@
 angular.module('menuApp').controller('UserDashboardController',['$scope', 'accessDB', 'growl', function ($scope, accessDB, growl) {
   $scope.page = 'dashboard';
   $scope.selectPage = function (pageNum) {
-    this.page = pageNum;
+    $scope.page = pageNum;
   }
 
   //Restaurant registration
@@ -12,8 +12,8 @@ angular.module('menuApp').controller('UserDashboardController',['$scope', 'acces
       accessDB.insertRestaurantInfo(this.restaurant).then(function(response) {
         if (response == true) {
           console.log("Successfully inserted");
+          $scope.page = 'restaurant';
           growl.success("Your restaurant has been registered!", {title: 'Success!'});
-          this.page = "restaurant";
           return true;
         } else {
           console.log("Failed to insert");
