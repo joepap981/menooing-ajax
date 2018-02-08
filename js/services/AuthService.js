@@ -51,7 +51,7 @@ angular.module('menuApp').factory('accessDB', function($http) {
     getRestaurantInfo: function(user_id) {
       return $http({ method: "GET", url: "action/restaurant_get/"})
       .then(function mySuccess (response) {
-        if (response.data != null) {
+        if (response.data['length'] != 0) {
           console.log(response.data);
           return response.data;
         } else {

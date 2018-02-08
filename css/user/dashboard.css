@@ -98,7 +98,7 @@ form {
   margin-bottom: 30px;
 }
 
-input:invalid.submitted {
+input.ng-invalid.submitted {
     box-shadow: 0 0 5px #f00;
 }
 

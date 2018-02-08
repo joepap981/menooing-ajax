@@ -25,5 +25,3 @@ if(isset($_SESSION)) {
 } else {
   echo 'No Session';
 }
-
-session_destroy();

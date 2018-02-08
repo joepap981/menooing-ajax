@@ -6,7 +6,7 @@
     <form name="restaurantRegistration">
       <div class="form-group">
         <label for="restaurant_name">Name</label>
-        <input name="name" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" class="form-control" placeholder="" required>
+        <input name="name" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.name" class="form-control" placeholder="" required>
       </div>
       <div class="form-group">
         <label for="address">Location</label>
@@ -23,7 +23,7 @@
           <input name="state" id="state" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.state" class="form-control" placeholder="State" required>
         </div>
         <div class="form-group">
-          <input name="zipcode" id="zipcode" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.zip" class="form-control" placeholder="Zip Code" required>
+          <input name="zipcode" id="zipcode" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.zip" class="form-control" placeholder="Zip Code" ng-maxlength= "5" required>
         </div>
       </div>
 
