@@ -9,12 +9,12 @@
 	<header> <div top-nav-default></div></header>
 	<!-- Main View Section -->
 
-		<main class="content" ng-view></main>
-		<div class="push"></div>
+	<main ng-view></main>
 
 
 	<!--Footer -->
 	<div footer-static></div>
+
 
 </div>
 

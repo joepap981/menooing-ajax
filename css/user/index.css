@@ -134,9 +134,9 @@ header.sharekitchen-masthead {
     opacity: 0.3; }
 
 
-.content {
-  height: 83%;
-  margin: 0;
+.login-fillscreen {
+  margin-top: 5% !important;
+  margin-bottom: 5% !important;
 }
 
 .cursor-pointer {
