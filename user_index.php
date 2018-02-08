@@ -1,4 +1,4 @@
-<div ng-controller="AuthController">
+<div class="content" ng-controller="AuthController">
 	<link href="css/user/index.css<?php echo $jsTimeStamp ?>" rel="stylesheet">
 	<!--fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
@@ -8,7 +8,10 @@
 	<!-- Navigation -->
 	<header> <div top-nav-default></div></header>
 	<!-- Main View Section -->
-	<main ng-view></main>
+
+		<main class="content" ng-view></main>
+		<div class="push"></div>
+
 
 	<!--Footer -->
 	<div footer-static></div>

@@ -1,7 +1,4 @@
-html {
-  position: relative;
-  min-height: 100%;
-}
+
 
 body {
   overflow-x: hidden;
@@ -85,16 +82,6 @@ body.fixed-nav {
 
 .ng-invalid.ng-touched {
     box-shadow: 0 0 5px #f00;
-}
-
-footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 56px;
-  background-color: #e9ecef;
-  line-height: 55px;
 }
 
 @media (min-width: 992px) {
