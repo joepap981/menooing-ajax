@@ -35,7 +35,7 @@ session_start();
   <div class="col-md-10">
     <div class="home-content">
       <!-- Main tabs -->
-      <dashboard-page-view class="fullscreen" g-show="page == 'dashboard'"></dashboard-page-view>
+      <dashboard-page-view ng-show="page == 'dashboard'"></dashboard-page-view>
       <restaurant-page-view ng-show="page == 'restaurant'"></restaurant-page-view>
       <sharee-page-view ng-show="page == 'sharee'"></sharee-page-view>
       <requests-page-view ng-show="page == 'requests'"></requests-page-view>

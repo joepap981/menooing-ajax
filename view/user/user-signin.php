@@ -1,7 +1,7 @@
 <!-- Custom styles for this template -->
 <link href="css/user/userlogin.css" rel="stylesheet">
 
-<div class="container login-fillscreen">
+<div class="container">
 	<div class="card card-login mx-auto mt-5">
 		<div class="card-header">Login</div>
 		<div class="card-body">

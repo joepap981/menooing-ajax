@@ -12,8 +12,8 @@ angular.module('menuApp').controller('UserDashboardController',['$scope', 'acces
       accessDB.insertRestaurantInfo(this.restaurant).then(function(response) {
         if (response == true) {
           console.log("Successfully inserted");
-          $scope.page = 'restaurant';
           growl.success("Your restaurant has been registered!", {title: 'Success!'});
+          $scope.page = 'restaurant';
           return true;
         } else {
           console.log("Failed to insert");

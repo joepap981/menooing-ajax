@@ -9,7 +9,7 @@
 	<header> <div top-nav-default></div></header>
 	<!-- Main View Section -->
 
-	<main ng-view></main>
+	<main class="content" ng-view></main>
 
 
 	<!--Footer -->

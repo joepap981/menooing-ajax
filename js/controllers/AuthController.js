@@ -66,12 +66,12 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
         myData.then(function (result) {
           if (result["user_id"] != null) {
             $scope.session = result;
-            $location.path('/home');
             growl.success('Signed in!',{title: 'Success'});
+            $location.path('/home');
           } else {
             $scope.session = {};
-            $location.path('/');
             growl.error('There is no session...', {title: "Error!"});
+            $location.path('/');
           }
         });
       } else {
