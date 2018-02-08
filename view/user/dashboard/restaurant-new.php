@@ -34,7 +34,6 @@
     </form>
     <button class="submit right-margin clear-btn" ng-click="selectPage('restaurant')"><img id="circular-button" src="/img/left-arrow-circular-button.png"> Back</button>
     <button type='submit' class="clear-btn" ng-click="registerRestaurant()">Submit <img id="circular-button" src="/img/right-arrow-circular-button.png"></button>
-    <p> {{ page }} </p>
   </div>
   <div class="col-md-5">
     <img id="img-fork" src="/img/fork.png">

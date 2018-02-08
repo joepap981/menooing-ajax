@@ -7,7 +7,6 @@
 
 	<!-- Navigation -->
 	<header> <div top-nav-default></div></header>
-
 	<!-- Main View Section -->
 	<main ng-view></main>
 

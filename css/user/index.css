@@ -4,7 +4,9 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-landing-page/blob/master/LICENSE)
  */
 body {
-  font-family: font-family: 'Cabin', sans-serif; }
+  font-family: font-family: 'Cabin', sans-serif;
+  min-height: 100%;
+ }
 
 h1,
 h2,
@@ -237,7 +239,6 @@ header.sharekitchen-masthead {
   display: inline-block;
   margin-right: 20px;
 }
-
 
 footer.footer {
   padding-top: 4rem;
