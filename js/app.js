@@ -1,6 +1,6 @@
 angular.module('menuApp',['ngRoute', 'angular-growl'])
     .config(['$routeProvider', '$locationProvider','growlProvider', function ($routeProvider, $locationProvider, growlProvider) {
-    growlProvider.globalTimeToLive(5000);
+    growlProvider.globalTimeToLive(3000);
     $locationProvider.html5Mode(true);
 
     $routeProvider

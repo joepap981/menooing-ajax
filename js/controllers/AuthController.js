@@ -57,7 +57,6 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
     var myData = accessDB.get(signin);
     myData.then(function (result) {
       $scope.response = result;
-        growl.warning('This is warning message.',{title: 'Warning!'});
       if($scope.response["result"] == "Success") {
         $scope.user_no_match = false;
         $scope.signin = {};
@@ -67,11 +66,12 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
         myData.then(function (result) {
           if (result["user_id"] != null) {
             $scope.session = result;
-
             $location.path('/home');
+            growl.success('Signed in!',{title: 'Success'});
           } else {
             $scope.session = {};
             $location.path('/');
+            growl.error('There is no session...', {title: "Error!"});
           }
         });
       } else {
