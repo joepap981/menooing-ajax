@@ -44,6 +44,21 @@ angular.module('menuApp').factory('accessDB', function($http) {
           return false;
         }
       });
+    },
+
+
+    //check for user session and return restaurnt information related to user
+    getRestaurantInfo: function(user_id) {
+      return $http({ method: "GET", url: "action/restaurant_get/"})
+      .then(function mySuccess (response) {
+        if (response.data != null) {
+          console.log(response.data);
+          return response.data;
+        } else {
+          console.log("No result");
+          return null;
+        }
+      });
     }
   }
 });
