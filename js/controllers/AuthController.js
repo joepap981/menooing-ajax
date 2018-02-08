@@ -2,7 +2,7 @@
  *  Mene Controller will be
  */
 
-angular.module('menuApp').controller('AuthController',['$scope', '$location', 'accessDB', function ($scope, $location, accessDB) {
+angular.module('menuApp').controller('AuthController',['$scope', '$location', 'accessDB', 'growl', function ($scope, $location, accessDB, growl) {
   $scope.signin = {};
   $scope.signup = {};
 
@@ -29,6 +29,26 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
   }
   init();
 
+  //growl methods
+  $scope.showWarning = function(){
+        growl.warning('This is warning message.',{title: 'Warning!'});
+    }
+    $scope.showError = function(){
+        growl.error('This is error message.',{title: 'Error!'});
+    }
+    $scope.showSuccess = function(){
+        growl.success('This is success message.',{title: 'Success!'});
+    }
+    $scope.showInfo = function(){
+        growl.info('This is an info message.',{title: 'Info!'});
+    }
+    $scope.showAll = function(){
+        growl.warning('This is warning message.',{title: 'Warning!'});
+        growl.error('This is error message.',{title: 'Error!'});
+        growl.success('This is success message.',{title: 'Success!'});
+        growl.info('This is an info message.',{title: 'Info!'});
+    }
+
 
   //query db to check if user_email and user_password match
   //if match, begin session saving user_first_name, user_last_name, user_id
@@ -37,7 +57,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
     var myData = accessDB.get(signin);
     myData.then(function (result) {
       $scope.response = result;
-
+        growl.warning('This is warning message.',{title: 'Warning!'});
       if($scope.response["result"] == "Success") {
         $scope.user_no_match = false;
         $scope.signin = {};
@@ -47,6 +67,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
         myData.then(function (result) {
           if (result["user_id"] != null) {
             $scope.session = result;
+
             $location.path('/home');
           } else {
             $scope.session = {};
