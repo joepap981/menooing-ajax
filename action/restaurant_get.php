@@ -1,5 +1,5 @@
 <?php
-include '../inc_db/inc_signin_db.php';
+include 'inc_signin_db.php';
 
 session_start();
 

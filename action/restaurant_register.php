@@ -1,5 +1,5 @@
 <?php
-include_once '../inc_db/inc_signin_db.php';
+include_once 'inc_signin_db.php';
 $table_name = "tb_restaurant";
 
 //connect to mysql with infor from inc_signin_db

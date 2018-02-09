@@ -36,7 +36,7 @@ angular.module('menuApp').factory('accessDB', function($http) {
     },
 
     insertRestaurantInfo: function(restaurant) {
-      return $http({ method: "POST", url: "action/restaurant_register/", data: restaurant})
+      return $http({ method: "POST", url: "action/restaurant_register.php", data: restaurant})
       .then(function mySuccess (response) {
         if (response.data == "Success") {
           return true;
@@ -49,7 +49,7 @@ angular.module('menuApp').factory('accessDB', function($http) {
 
     //check for user session and return restaurnt information related to user
     getRestaurantInfo: function(user_id) {
-      return $http({ method: "GET", url: "action/restaurant_get/"})
+      return $http({ method: "GET", url: "action/restaurant_get.php"})
       .then(function mySuccess (response) {
         if (response.data['length'] != 0) {
           return response.data;
