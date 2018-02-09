@@ -47,12 +47,18 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl'])
     .when('/restaurant-profile', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-profile.php'
     })
+
+    //sharee
     .when('/sharee', {
       templateUrl: 'view/user/dashboard/sharee/'
     })
+
+    //requests
     .when('/requests', {
       templateUrl: 'view/user/dashboard/requests/'
     })
+
+    //profile
     .when('/profile', {
       templateUrl: 'view/user/dashboard/profile/'
     })

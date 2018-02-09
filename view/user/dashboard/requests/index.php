@@ -1,4 +1,4 @@
-<!-- Dashboard Index -->
+<!-- Requests Index -->
 <!-- Custom CSS -->
 <link href="css/user/dashboard.css" rel="stylesheet">
 

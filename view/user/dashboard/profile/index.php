@@ -1,4 +1,4 @@
-<!-- Dashboard Index -->
+<!-- Profile Index -->
 <!-- Custom CSS -->
 <link href="css/user/dashboard.css" rel="stylesheet">
 
