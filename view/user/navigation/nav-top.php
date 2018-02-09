@@ -16,23 +16,20 @@
 <nav class="navbar navbar-light bg-light static-top" ng-if="session['user_id'] != null">
   <!--logo-->
   <div ng-click ="redirect('/')" class="navbar-brand cursor-pointer"> menooing </div>
+  <div class="nav-item ml-auto"> {{ session['user_first_name'] }} </div>
+  <div class="nav-item dropdown">
+    <!-- User ICON image -->
+    <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <img class="img-fluid rounded-circle user_img" src="/img/default-user.png" alt="">
+    </a>
 
-  <div class="row"> 
-    <div class="nav-item"> {{ session['user_first_name'] }} </div>
-    <div class="nav-item dropdown">
-      <!-- User ICON image -->
-      <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img class="img-fluid rounded-circle user_img" src="/img/default-user.png" alt="">
-      </a>
-
-      <!--dropdown menu-->
-      <span class="dropdown-menu" aria-labelledby="messagesDropdown">
-        <a class="dropdown-item" ng-click="redirect('/home')">Dashboard</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Settings</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" ng-click="logout()">Logout</a>
-      </span>
-    </div>
+    <!--dropdown menu-->
+    <span class="dropdown-menu" aria-labelledby="messagesDropdown">
+      <a class="dropdown-item" ng-click="redirect('/home')">Dashboard</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Settings</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" ng-click="logout()">Logout</a>
+    </span>
   </div>
 </nav>

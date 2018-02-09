@@ -186,9 +186,10 @@ header.sharekitchen-masthead {
   padding-left:40px;
   padding-right:40px;
 }
+
+/*****TOP NAVIGATION STYLING*****/
+
 /*top nav right*/
-
-
 .navbar {
   height: 50px;
 }
@@ -198,7 +199,6 @@ header.sharekitchen-masthead {
 .user_img {
   max-width: 3.1em;
   max-height: 3.1em;
-  padding-left: 10px;
 }
 
 .nav-link {
@@ -208,6 +208,7 @@ header.sharekitchen-masthead {
 /*User ICON dropdown menu */
 .dropdown {
   display: inline-block;
+  margin-left: 2%;
 }
 
 .dropdown-toggle::after {
@@ -223,10 +224,15 @@ header.sharekitchen-masthead {
   font-size: 10px;
 }
 
-#session-user-name {
-  display: inline-block;
-  margin-right: 20px;
+.dropdown {
+  margin-right: 4%;
 }
+
+.navbar-brand {
+  margin-left: 4%;
+}
+
+/***** /TOP NAV STYLING *****/
 
 footer.footer {
   padding-top: 4rem;
