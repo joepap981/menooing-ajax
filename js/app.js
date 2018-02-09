@@ -31,22 +31,19 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl'])
 
     //User dashboard pages
     .when('/home', {
-      templateUrl: 'view/user/dashboard/dashboard-index.php'
-    })
-    .when('/dashboard', {
-      templateUrl: 'view/user/dashboard/dashboard.php'
+      templateUrl: 'view/user/dashboard/'
     })
     .when('/restaurant', {
-      templateUrl: 'view/user/dashboard/restaurant.php'
+      templateUrl: 'view/user/dashboard/restaurant/'
     })
     .when('/sharee', {
-      templateUrl: 'view/user/dashboard/sharee.php'
+      templateUrl: 'view/user/dashboard/sharee/'
     })
     .when('/requests', {
-      templateUrl: 'view/user/dashboard/requests.php'
+      templateUrl: 'view/user/dashboard/requests/'
     })
     .when('/profile', {
-      templateUrl: 'view/user/dashboard/profile.php'
+      templateUrl: 'view/user/dashboard/profile/'
     })
   	.otherwise({
   		redirectTo: '/'

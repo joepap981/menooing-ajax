@@ -45,3 +45,8 @@ angular.module('menuApp').directive('restaurantProfileView', function() {
     templateUrl: 'view/user/dashboard/restaurant-profile.php'
   };
 });
+angular.module('menuApp').directive('navSideView', function() {
+  return {
+    templateUrl: 'view/user/dashboard/nav-side.html'
+  };
+});
