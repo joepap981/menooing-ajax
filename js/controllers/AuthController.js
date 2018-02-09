@@ -135,7 +135,6 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
   //return true if match
   $scope.isURL = function (url) {
     if ($location.path() == url ){
-      console.log($location.path());
       return true;
     } else {
       return false;

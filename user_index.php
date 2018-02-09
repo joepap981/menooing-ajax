@@ -11,7 +11,6 @@
 
 	<main class="content" ng-view></main>
 
-
 	<!--Footer -->
 	<div footer-static></div>
 

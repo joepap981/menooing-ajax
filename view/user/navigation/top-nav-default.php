@@ -2,6 +2,8 @@
 <nav class="navbar navbar-light bg-light static-top">
   <!-- Sidebar when User is logged in-->
   <div ng-click ="redirect('/')" class="navbar-brand cursor-pointer"> menooing </div>
+
+  
   <!--show when NO session -->
   <div id="guest" ng-if="session['user_id'] == null" >
     <div class="btns">
@@ -10,6 +12,8 @@
       <span class="clear-btn" ng-click="redirect('/signup')">Sign up</span>
     </div>
   </div>
+
+
   <!-- show when a session is running-->
   <div id="logon-user" ng-if="session['user_id'] != null" >
     <div id="session-user-name"> {{ session['user_first_name'] }} </div>
