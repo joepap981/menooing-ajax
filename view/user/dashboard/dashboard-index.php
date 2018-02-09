@@ -42,8 +42,10 @@ session_start();
       <profile-page-view ng-show="page == 'profile'"></profile-page-view>
 
       <!-- Sub tabs -->
+      <restaurant-profile-view ng-show="page == 'restaurant-profile'"></restaurant-profile-view>
       <restaurant-new-view ng-show="page == 'restaurant-new'"></restaurant-new-view>
       <restaurant-new2-view ng-show="page == 'restaurant-new2'"></restaurant2-new-view>
+
     </div>
   </div>
 </div>
