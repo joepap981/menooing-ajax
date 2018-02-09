@@ -24,13 +24,13 @@ angular.module('menuApp').factory('accessDB', function($http) {
     },
 
     endSession: function() {
-      return $http.get('action/endsession/').then(function(result) {
+      return $http.get('action/endsession.php').then(function(result) {
         return result.data;
       });
     },
 
     checkSession: function () {
-      return $http({method : "GET", url: 'action/session/'}).then(function mySuccess(response) {
+      return $http({method : "GET", url: 'action/session.php'}).then(function mySuccess(response) {
         return response.data;
       });
     },
