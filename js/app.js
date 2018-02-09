@@ -13,20 +13,21 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl'])
     })
     //Userside
   	.when('/', {
-  		templateUrl: 'view/user/landing-page.php'
+  		templateUrl: 'view/user/navigation/landing-page.php'
   	})
+    .when('/sharekitchen', {
+      templateUrl: 'view/user/navigation/share-kitchen.php'
+    })
     .when('/signup', {
-  		templateUrl: 'view/user/user-signup.php',
+  		templateUrl: 'view/user/authentication/user-signup.php',
   	})
     .when('/signin', {
-  		templateUrl: 'view/user/user-signin.php',
+  		templateUrl: 'view/user/authentication/user-signin.php',
   	})
     .when('/forgot-password', {
-      templateUrl: 'view/user/forgot-password.php'
+      templateUrl: 'view/user/authentication/forgot-password.php'
     })
-    .when('/sharekitchen', {
-      templateUrl: 'view/user/share-kitchen.php'
-    })
+
 
     //User dashboard pages
     .when('/home', {

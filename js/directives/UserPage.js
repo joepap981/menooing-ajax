@@ -11,21 +11,11 @@ angular.module('menuApp').directive('adminNav', function() {
 //user view directives
 angular.module('menuApp').directive('topNavDefault', function() {
   return {
-    templateUrl: 'view/user/top-nav-default.'+ verStr
+    templateUrl: 'view/user/navigation/top-nav-default.'+ verStr
   };
 });
 angular.module('menuApp').directive('footerStatic', function() {
   return {
-    templateUrl: 'view/user/footer.'+ verStr
-  };
-});
-angular.module('menuApp').directive('landingPage', function() {
-  return {
-    templateUrl: 'view/user/landing-page.'+ verStr
-  };
-});
-angular.module('menuApp').directive('userSignUp', function() {
-  return {
-    templateUrl: 'view/user/user-sign-up.'+ verStr
+    templateUrl: 'view/user/navigation/footer.'+ verStr
   };
 });
