@@ -31,9 +31,8 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl'])
 
     //User dashboard pages
     .when('/home', {
-      templateUrl: 'view/user/dashboard/'
+      templateUrl: 'view/user/dashboard/index.php'
     })
-
     //restaurant
     .when('/restaurant', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-list.php'
