@@ -11,7 +11,7 @@ angular.module('menuApp').directive('adminNav', function() {
 //user view directives
 angular.module('menuApp').directive('navTop', function() {
   return {
-    templateUrl: 'view/user/navigation/nav-top.'+ verStr
+    templateUrl: 'view/user/navigation/navbar.'+ verStr
   };
 });
 angular.module('menuApp').directive('footerStatic', function() {
