@@ -9,7 +9,7 @@ angular.module('menuApp').directive('adminNav', function() {
 });
 
 //user view directives
-angular.module('menuApp').directive('navTop', function() {
+angular.module('menuApp').directive('navbar', function() {
   return {
     templateUrl: 'view/user/navigation/navbar.'+ verStr
   };
