@@ -14,6 +14,24 @@
 
 <!-- SESSION (LOGGED IN) -->
 <nav class="navbar navbar-light bg-light static-top" ng-if="session['user_id'] != null">
+  <ul class="sidebar-nav" ng-controller="AuthController" >
+    <li>
+      <a href="#" ng-click="redirect('/home')">Dashboard</a>
+    </li>
+    <li>
+      <a href="#" ng-click="redirect('/restaurant')">Restaurant</a>
+    </li>
+    <li>
+      <a href="#" ng-click="redirect('/sharee')">Sharee</a>
+    </li>
+    <li>
+      <a href="#" ng-click="redirect('/requests')">Requests</a>
+    </li>
+    <li>
+      <a href="#" ng-click="redirect('/profile')">Profile</a>
+    </li>
+  </ul>
+
   <!--logo-->
   <div ng-click ="redirect('/')" class="navbar-brand cursor-pointer"> menooing </div>
   <div class="nav-item ml-auto"> {{ session['user_first_name'] }} </div>

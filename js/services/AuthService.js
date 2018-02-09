@@ -39,9 +39,11 @@ angular.module('menuApp').factory('accessDB', function($http) {
       return $http({ method: "POST", url: "action/restaurant_register.php", data: restaurant})
       .then(function mySuccess (response) {
         if (response.data == "Success") {
-          return true;
+          return 1;
+        } else if (response.data == "Failed"){
+          return 0;
         } else {
-          return false;
+          return -1;
         }
       });
     },

@@ -1,17 +1,17 @@
-<ul class="sidebar-nav" >
+<ul class="sidebar-nav" ng-controller="AuthController" >
   <li>
-    <a href="#" ng-click="selectPage('dashboard')">Dashboard</a>
+    <a href="#" ng-click="redirect('/home')">Dashboard</a>
   </li>
   <li>
-    <a href="#" ng-click="selectPage('restaurant')">Restaurant</a>
+    <a href="#" ng-click="redirect('/restaurant')">Restaurant</a>
   </li>
   <li>
-    <a href="#" ng-click="selectPage('sharee')">Sharee</a>
+    <a href="#" ng-click="redirect('/sharee')">Sharee</a>
   </li>
   <li>
-    <a href="#" ng-click="selectPage('requests')">Requests</a>
+    <a href="#" ng-click="redirect('/requests')">Requests</a>
   </li>
   <li>
-    <a href="#" ng-click="selectPage('profile')">Profile</a>
+    <a href="#" ng-click="redirect('/profile')">Profile</a>
   </li>
 </ul>

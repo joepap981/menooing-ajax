@@ -33,8 +33,19 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl'])
     .when('/home', {
       templateUrl: 'view/user/dashboard/'
     })
+
+    //restaurant
     .when('/restaurant', {
-      templateUrl: 'view/user/dashboard/restaurant/'
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-list.php'
+    })
+    .when('/restaurant-new', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-new.php'
+    })
+    .when('/restaurant-success', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-success.php'
+    })
+    .when('/restaurant-profile', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-profile.php'
     })
     .when('/sharee', {
       templateUrl: 'view/user/dashboard/sharee/'

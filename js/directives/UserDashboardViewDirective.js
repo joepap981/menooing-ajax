@@ -28,25 +28,35 @@ angular.module('menuApp').directive('profilePageView', function() {
   };
 });
 
+
+angular.module('menuApp').directive('restaurantListView', function() {
+  return {
+    templateUrl: 'view/user/dashboard/restaurant/restaurant-list.php'
+  };
+});
 angular.module('menuApp').directive('restaurantNewView', function() {
   return {
-    templateUrl: 'view/user/dashboard/restaurant-new.php'
+    templateUrl: 'view/user/dashboard/restaurant/restaurant-new.php'
   };
 });
-
 angular.module('menuApp').directive('restaurantNew2View', function() {
   return {
-    templateUrl: 'view/user/dashboard/restaurant-new2.php'
+    templateUrl: 'view/user/dashboard/restaurant/restaurant-new2.php'
+  };
+});
+angular.module('menuApp').directive('restaurantProfileView', function() {
+  return {
+    templateUrl: 'view/user/dashboard/restaurant/restaurant-profile.php'
   };
 });
 
-angular.module('menuApp').directive('restaurantProfileView', function() {
-  return {
-    templateUrl: 'view/user/dashboard/restaurant-profile.php'
-  };
-});
 angular.module('menuApp').directive('navSideView', function() {
   return {
     templateUrl: 'view/user/dashboard/nav-side.html'
+  };
+});
+angular.module('menuApp').directive('noSessionView', function() {
+  return {
+    templateUrl: 'view/user/dashboard/nosession.html'
   };
 });

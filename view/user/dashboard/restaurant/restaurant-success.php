@@ -9,15 +9,9 @@
 <div class="row" ng-if="session['user_id'] != null" ng-model="page" ng-controller="UserDashboardController">
     <div class="home-content">
 
-      <div class="navbar">
-        <button class="submit right-margin clear-btn" ng-click="redirect('restaurant')"><img id="circular-button" src="/img/left-arrow-circular-button.png"> Back</button>
-        <button class="clear-btn"> Profile </button>
-        <button class="clear-btn"> Menu </button>
-      </div>
-
-      <div class="content">
-      </div>
-
+      <h3> Thanks! Your registration request has been sent to our team! </h3>
+      <h5> After review, an email will be sent to you to finalize your restaurant registration.</h5>
+      <a href="#" ng-click="redirect('restaurant')"> Go back to 'Restaurant' </a>
 
     </div>
   </div>
