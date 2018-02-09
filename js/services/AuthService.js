@@ -2,7 +2,7 @@ angular.module('menuApp').factory('accessDB', function($http) {
   var data = {};
   return {
     get: function(signin) {
-      return $http({method : "POST", url: 'action/signin/', data: signin})
+      return $http({method : "POST", url: 'action/signin.php', data: signin})
       .then(function mySuccess(response) {
         data = response.data;
         return data;
@@ -10,7 +10,7 @@ angular.module('menuApp').factory('accessDB', function($http) {
     },
 
     set: function(signup) {
-      return $http({ method : "POST", url: 'action/signup/', data: signup})
+      return $http({ method : "POST", url: 'action/signup.php', data: signup})
       .then(function mySuccess(response) {
         //*** need to implement case where db read or write fail!! ***
 
