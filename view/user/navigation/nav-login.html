@@ -1,0 +1,39 @@
+<!-- show when a session is running-->
+
+<div ng-click ="redirect('/')" class="navbar-brand cursor-pointer"> menooing </div>
+
+<div id="logon-user" ng-if="session['user_id'] != null" >
+
+    <ul class="sidebar-nav" >
+      <li>
+        <a href="#" ng-click="selectPage('dashboard')">Dashboard</a>
+      </li>
+      <li>
+        <a href="#" ng-click="selectPage('restaurant')">Restaurant</a>
+      </li>
+      <li>
+        <a href="#" ng-click="selectPage('sharee')">Sharee</a>
+      </li>
+      <li>
+        <a href="#" ng-click="selectPage('requests')">Requests</a>
+      </li>
+      <li>
+        <a href="#" ng-click="selectPage('profile')">Profile</a>
+      </li>
+    </ul>
+
+  <div id="session-user-name"> {{ session['user_first_name'] }} </div>
+    <!-- User ICON NAVIGATION -->
+  <span class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <img class="img-fluid rounded-circle user_img" src="/img/default-user.png" alt="">
+    </a>
+    <span class="dropdown-menu" aria-labelledby="messagesDropdown">
+      <a class="dropdown-item" ng-click="redirect('/home')">Dashboard</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Settings</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" ng-click="logout()">Logout</a>
+    </span>
+  </span>
+</div>

@@ -13,25 +13,7 @@ session_start();
 
 <!-- show content when user session is in progress -->
 <div class="row" ng-if="session['user_id'] != null" ng-model="page" ng-controller="UserDashboardController">
-  <div class="col-md-2">
-    <ul class="sidebar-nav" >
-      <li>
-        <a href="#" ng-click="selectPage('dashboard')">Dashboard</a>
-      </li>
-      <li>
-        <a href="#" ng-click="selectPage('restaurant')">Restaurant</a>
-      </li>
-      <li>
-        <a href="#" ng-click="selectPage('sharee')">Sharee</a>
-      </li>
-      <li>
-        <a href="#" ng-click="selectPage('requests')">Requests</a>
-      </li>
-      <li>
-        <a href="#" ng-click="selectPage('profile')">Profile</a>
-      </li>
-    </ul>
-  </div>
+  
   <div class="col-md-10">
     <div class="home-content">
       <!-- Main tabs -->

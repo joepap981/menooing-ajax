@@ -141,11 +141,7 @@ header.sharekitchen-masthead {
   cursor: pointer;
 }
 
-.navbar-brand {
-  position: absolute;
-  left: 4%;
 
-}
 /*common button styling */
 
 .clear-btn {
@@ -191,15 +187,7 @@ header.sharekitchen-masthead {
   padding-right:40px;
 }
 /*top nav right*/
-#guest {
-  position: absolute;
-  right: 2%;
-}
 
-#logon-user {
-  position: absolute;
-  right: 2%;
-}
 
 .navbar {
   height: 50px;
