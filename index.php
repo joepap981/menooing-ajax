@@ -30,7 +30,6 @@ $jsTimeStamp = '?version=v-'.$timeStr;
 
 	<body ng-app="menuApp" ng-controller="AuthController">
 		<div growl></div>
-
 		<?php
 
 			$urlStr =  $_SERVER['REQUEST_URI'];

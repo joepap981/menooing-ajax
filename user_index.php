@@ -6,7 +6,8 @@
 	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
 	<!-- Navigation -->
-	<header> <div nav-default></div></header>
+	<header nav-top></header>
+
 	<!-- Main View Section -->
 
 	<main class="content" ng-view></main>

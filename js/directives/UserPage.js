@@ -9,9 +9,9 @@ angular.module('menuApp').directive('adminNav', function() {
 });
 
 //user view directives
-angular.module('menuApp').directive('navDefault', function() {
+angular.module('menuApp').directive('navTop', function() {
   return {
-    templateUrl: 'view/user/navigation/nav-default.'+ verStr
+    templateUrl: 'view/user/navigation/nav-top.'+ verStr
   };
 });
 angular.module('menuApp').directive('footerStatic', function() {
