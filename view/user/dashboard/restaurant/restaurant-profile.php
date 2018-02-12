@@ -12,7 +12,7 @@
       <div>
         <div class="btn clear-btn submit " ng-click="redirect('/restaurant-list')"><img id="circular-button" src="/img/left-arrow-circular-button.png"> Back</div>
         <div class="btn clear-btn"> Profile </div>
-        <div class="btn clear-btn"> Menu </div>
+        <div class="btn clear-btn" ng-click="redirect('/restaurant-menu')"> Menu </div>
       </div>
 
 
