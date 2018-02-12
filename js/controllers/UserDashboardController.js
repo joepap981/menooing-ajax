@@ -1,4 +1,12 @@
-angular.module('menuApp').controller('UserDashboardController',['$scope', '$location', 'accessDB', 'growl', function ($scope, $location, accessDB, growl) {
+angular.module('menuApp').controller('UserDashboardController',['$scope', '$location', 'accessDB', 'growl', function ($scope, $location, accessDB, growl, $modal) {
+
+  $scope.open = function () {
+    console.log("opening up");
+    var modalInstance = $modal.open({
+      templateUrl: "view/user/dashboard/restaurant/restaurant-menu-new.php",
+    });
+  }
+
 
   $scope.userRestaurants = [];
   var init = function () {

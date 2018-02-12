@@ -15,7 +15,7 @@
         <div class="btn clear-btn"> Menu </div>
       </div>
 
-      <button class="btn btn-primary" ng-click="$ctrl.open()"> Add Menu+ </button>
+      <button class="btn btn-primary" ng-click="open()"> Add Menu+ </button>
 
       <div id="restaurant-menu">
         <div class="restaurant-category">
