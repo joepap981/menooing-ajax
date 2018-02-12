@@ -22,7 +22,7 @@ angular.module('menuApp').controller('UserDashboardController',['$scope', '$loca
         if (response == 1) {
           growl.success("Your restaurant has been registered!", {title: 'Success!'});
 
-          $location.path('restaurant')
+          $location.path('/restaurant-success')
 
           //reset forms
           $scope.restaurant = {};

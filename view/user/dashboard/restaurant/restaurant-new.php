@@ -14,7 +14,7 @@
           <h3> Welcome {{ session['user_first_name']}}! </h3>
           <h5> Please give us basic information about your restaurant!</h5>
           <br></br>
-          <form name="restaurantRegistration">
+          <form name="restaurantRegistration" class="restaurant-information-form">
             <div class="form-group">
               <label for="restaurant_name">Name</label>
               <input name="name" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.name" class="form-control" placeholder="" required>
@@ -43,7 +43,7 @@
               <input type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.cuisine" class="form-control" id="zipcode" placeholder="Chinese, Mexican, Burger..." required>
             </div>
           </form>
-          <button class="submit right-margin clear-btn" ng-click="redirect('/restaurant')"><img id="circular-button" src="/img/left-arrow-circular-button.png"> Back</button>
+          <button class="submit right-margin clear-btn" ng-click="redirect('/restaurant-list')"><img id="circular-button" src="/img/left-arrow-circular-button.png"> Back</button>
           <button type='submit' class="clear-btn" ng-click="registerRestaurant()">Submit <img id="circular-button" src="/img/right-arrow-circular-button.png"></button>
         </div>
         <div class="col-md-5">

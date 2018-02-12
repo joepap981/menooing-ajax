@@ -19,7 +19,7 @@
       <a href="#" ng-click="redirect('/home')">Dashboard</a>
     </li>
     <li>
-      <a href="#" ng-click="redirect('/restaurant')">Restaurant</a>
+      <a href="#" ng-click="redirect('/restaurant-list')">Restaurant</a>
     </li>
     <li>
       <a href="#" ng-click="redirect('/sharee')">Sharee</a>
@@ -34,7 +34,7 @@
 
   <!--logo-->
   <div ng-click ="redirect('/')" class="navbar-brand cursor-pointer"> menooing </div>
-  <div class="nav-item ml-auto"> {{ session['user_first_name'] }} </div>
+  <div class="clear-btn nav-item ml-auto" ng-click="redirect('/home')"> Dashboard </div>
   <div class="nav-item dropdown">
     <!-- User ICON image -->
     <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

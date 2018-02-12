@@ -2,13 +2,11 @@
   margin-top: 2%;
   margin-bottom: 2%;
   margin-left: 20%;
+  width: 100%;
 }
 
 /*Registering new restaurant */
 
-form {
-  width: 500px;
-}
 
 label {
   margin: 3px;
@@ -30,7 +28,7 @@ label {
   margin-top: 10px;
 }
 
-/******restaurant ******/
+/****** Restaurant Styling ******/
 
 /* restaurant tempate */
 #restaurant-list {
@@ -43,6 +41,11 @@ label {
 }
 
 /* restaurant registration form */
+
+.restaurant-information-form {
+  width: 70.5%;
+}
+
 form {
   margin-bottom: 30px;
 }
@@ -82,3 +85,24 @@ input.ng-invalid.submitted {
 .right-margin {
   margin-right: 340px;
 }
+/* restaurant profile */
+
+.restaurant-profile {
+  margin-top: 2%;
+  margin-left: 10%;
+  width: 60%;
+}
+
+.card-block.container {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+.two-inline {
+  width: 50%;
+}
+
+
+/**** /Restaurant Styling ****/

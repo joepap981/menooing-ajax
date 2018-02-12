@@ -34,7 +34,7 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl'])
       templateUrl: 'view/user/dashboard/index.php'
     })
     //restaurant
-    .when('/restaurant', {
+    .when('/restaurant-list', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-list.php'
     })
     .when('/restaurant-new', {
