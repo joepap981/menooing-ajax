@@ -36,6 +36,7 @@ foreach($data as $key => $value) {
 
 //trim end ,
 $query = substr($query, 0, -2) . ");";
+//print $query;
 
 $result = (mysqli_query($conn, $query));
 
