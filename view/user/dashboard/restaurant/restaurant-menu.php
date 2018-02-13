@@ -40,27 +40,30 @@
               <form class="menu-form">
                 <div class="form-group row">
                   <label class="col-md-3" for="menu-name">Name</label>
-                  <input class="col-md-8"type="text" class="form-control" id="menu-name" aria-describedby="" placeholder="Name of your menu">
+                  <input class="col-md-8"type="text" class="form-control" ng-model="menu.menu_name" id="menu-name" aria-describedby="" placeholder="Name of your menu">
                 </div>
                 <div class="row">
                   <label class="col-md-3"> Category </label>
-                  <select id="menu-category" class="custom-select custom-select-lg col-md-8">
+                  <select id="menu-category"  ng-model="menu.menu_category" class="custom-select custom-select-lg col-md-8">
                     <option selected>Choose Category</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option value="1">Main</option>
+                    <option value="2">Appetizer</option>
+                    <option value="3">Drink</option>
                   </select>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-3" for="menu-price">Price</label>
-                  <input class="col-md-8"type="text" class="form-control" id="menu-price" aria-describedby="" placeholder="$">
+                  <input class="col-md-8"type="text" class="form-control" ng-model="menu.menu_price" id="menu-price" aria-describedby="" placeholder="$">
+                </div>
+
+                <div class="form-group">
+                  <label for="menu-description">Short Description</label>
+                  <textarea class="form-control" id="menu-description"  ng-model="menu.menu_description" rows="3"></textarea>
                 </div>
               </form>
-
-
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="clearForm()">Close</button>
               <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>

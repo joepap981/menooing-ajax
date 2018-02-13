@@ -50,9 +50,10 @@ angular.module('menuApp').controller('UserDashboardController',['$scope', '$loca
     }
   }
 
-  $scope.categorySelection = 'Choose';
-  //restaurant menu selection
-  $scope.selectCategory = function (category) {
-    $scope.categorySelection = category;
+
+  //menu add
+  $scope.menu = {};
+  $scope.clearForm = function () {
+    $scope.menu = {};
   }
 }]);
