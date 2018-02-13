@@ -121,6 +121,10 @@ input.ng-invalid.submitted {
   margin: 0 auto;
 }
 
+.menu-form {
+  margin: 2em;
+}
+
 
 
 /**** /Restaurant Styling ****/

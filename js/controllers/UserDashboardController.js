@@ -49,4 +49,10 @@ angular.module('menuApp').controller('UserDashboardController',['$scope', '$loca
       $scope.restaurantRegistration.submitted = true;
     }
   }
+
+  $scope.categorySelection = 'Category'
+  //restaurant menu selection
+  $scope.selectCategory = function (category) {
+    $scope.categorySelection = category;
+  }
 }]);

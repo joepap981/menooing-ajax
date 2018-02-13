@@ -9,7 +9,7 @@
 <div class="row" ng-if="session['user_id'] != null" ng-model="page" ng-controller="UserDashboardController">
     <div class="home-content">
 
-      <div class="restaurant-nav" ng-controller="UserDashboardController as $ctrl">
+      <div class="restaurant-nav">
         <div class="btn clear-btn submit " ng-click="redirect('/restaurant-list')"><img id="circular-button" src="/img/left-arrow-circular-button.png"> Back</div>
         <div class="btn clear-btn" ng-click="redirect('/restaurant-profile')"> Profile </div>
         <div class="btn clear-btn"> Menu </div>
@@ -36,6 +36,24 @@
               <div class="menu-img">
                 <a href="#"> Add image </a>
               </div>
+
+              <form class="menu-form">
+                <div class="form-group row">
+                  <label class="col-md-3" for="menu-name">Name</label>
+                  <input class="col-md-8"type="text" class="form-control" id="menu-name" aria-describedby="" placeholder="Name of your menu">
+                </div>
+                <div class="dropdown" ng-model ="categorySelection">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="menu-category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ categorySelection }}
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#" ng-click ="selectCategory('Main')">Main</a>
+                    <a class="dropdown-item" href="#" ng-click ="selectCategory('Appetizer')">Appetizer</a>
+                    <a class="dropdown-item" href="#" ng-click ="selectCategory('Drink')">Drink</a>
+                  </div>
+                </div>
+              </form>
+
 
             </div>
             <div class="modal-footer">
