@@ -44,16 +44,16 @@
                 </div>
                 <div class="row">
                   <label class="col-md-3"> Category </label>
-                  <div id="menu-category" class="dropdown col-md-8" ng-model ="categorySelection">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="menu-category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      {{ categorySelection }}
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#" ng-click ="selectCategory('Main')">Main</a>
-                      <a class="dropdown-item" href="#" ng-click ="selectCategory('Appetizer')">Appetizer</a>
-                      <a class="dropdown-item" href="#" ng-click ="selectCategory('Drink')">Drink</a>
-                    </div>
-                  </div>
+                  <select id="menu-category" class="custom-select custom-select-lg col-md-8">
+                    <option selected>Choose Category</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3" for="menu-price">Price</label>
+                  <input class="col-md-8"type="text" class="form-control" id="menu-price" aria-describedby="" placeholder="$">
                 </div>
               </form>
 

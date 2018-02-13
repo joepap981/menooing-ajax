@@ -131,9 +131,11 @@ button#menu-category.btn {
   margin:0;
 }
 
-#menu-category.dropdown {
-  margin: 0;
-  padding:0;
+#menu-category.custom-select {
+  height: calc(1.8rem + 2px);
+  padding-top: 1px;
+  padding-bottom: 1px;
+  margin-bottom: 4px;
 }
 
 
