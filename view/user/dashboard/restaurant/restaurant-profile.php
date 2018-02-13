@@ -6,7 +6,7 @@
 <no-session-view id="no_session" ng-if="session['user_id'] == null" ></no-session-view>
 
 <!-- show content when user session is in progress -->
-<div class="row" ng-if="session['user_id'] != null" ng-model="page" ng-controller="UserDashboardController">
+<div class="row" ng-if="session['user_id'] != null" ng-controller="restaurantProfileCtrl">
     <div class="home-content">
 
       <div>
@@ -16,19 +16,17 @@
       </div>
 
 
-
-
       <div class="card restaurant-profile">
         <div class="card-header"> Basic Info </div>
         <div class="card-block container">
 
           <form>
-            <div class="form-group row">
+            <div class="form-group row" >
               <div class="col-sm-3">
                 <label for="restaurantName"> Restaurant Name: </label>
               </div>
               <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="restaurantName" placeholder="" value="Sushiyaa">
+                <input type="text" readonly class="form-control-plaintext" id="restaurantName" ng-model = "restaurant.restaurant_name" value="{{ restaurant.name}}">
               </div>
             </div>
 

@@ -49,8 +49,8 @@ angular.module('menuApp').factory('accessDB', function($http) {
     },
 
     //check for user session and return restaurnt information related to user
-    getRestaurantInfo: function(user_id) {
-      return $http({ method: "GET", url: "action/restaurant_get.php"})
+    getRestaurantList: function(user_id) {
+      return $http({ method: "GET", url: "action/restaurant_get_list.php"})
       .then(function mySuccess (response) {
         if (response.data['length'] != 0) {
           return response.data;
@@ -59,6 +59,23 @@ angular.module('menuApp').factory('accessDB', function($http) {
           return null;
         }
       });
+    },
+
+    getRestaurantInfo: function(restaurant_id) {
+      var queryObj = {
+        "table": "tb_restaurant",
+        "key": {"restaurant_id": restaurant_id }
+      };
+
+      return $http({ method: "POST", url: "action/get.php", data: queryObj})
+      .then(function mySuccess (response) {
+        if (response.data != null) {
+          return response.data;
+        } else {
+          return null;
+        }
+      });
     }
+
   }
 });

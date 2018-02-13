@@ -1,17 +1,9 @@
 angular.module('menuApp').controller('UserDashboardController',['$scope', '$location', 'accessDB', 'growl', function ($scope, $location, accessDB, growl, $uibModal) {
 
-  $scope.open = function () {
-    console.log("opening up");
-    var modalInstance = $uibModal.open({
-      templateUrl: "myModalContent.html",
-    });
-  }
-
-
   $scope.userRestaurants = [];
   var init = function () {
     //get all restaurants from user in current session (check in server)
-    var restaurantList = accessDB.getRestaurantInfo();
+    var restaurantList = accessDB.getRestaurantList();
     restaurantList.then (function (result) {
       $scope.userRestaurants = result;
     });
