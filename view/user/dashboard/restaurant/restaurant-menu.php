@@ -15,7 +15,49 @@
         <div class="btn clear-btn"> Menu </div>
       </div>
 
-      <button class="btn btn-primary" ng-click="open()"> Add Menu+ </button>
+
+      <!-- Button trigger modal -->
+      <div class="restaurant-category">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMenu">Add Menu</button>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="addMenu" tabindex="-1" role="dialog" aria-labelledby="addMenu" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add a new menu</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <a href="#"><img class="menu-img" src="http://via.placeholder.com/300x200" alt=""></a>
+              <div class="menu-img">
+                <a href="#"> Add image </a>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <h4> body </h4>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="">Cancel</button>
+        </div>
+    </script>
 
       <div id="restaurant-menu">
         <div class="restaurant-category">

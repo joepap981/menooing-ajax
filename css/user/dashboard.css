@@ -87,6 +87,10 @@ input.ng-invalid.submitted {
 }
 /* restaurant profile */
 
+.restaurant-nav {
+  margin-bottom: 1em;
+}
+
 .restaurant-profile {
   margin-top: 2%;
   margin-left: 10%;
@@ -103,6 +107,20 @@ input.ng-invalid.submitted {
 .two-inline {
   width: 50%;
 }
+
+
+/* restaurant menu */
+.restaurant-category {
+  margin-bottom: 2rem;
+}
+
+.menu-img {
+  max-width: 300px;
+  max-height: 200px;
+  display: block;
+  margin: 0 auto;
+}
+
 
 
 /**** /Restaurant Styling ****/

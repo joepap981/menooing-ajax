@@ -1,9 +1,9 @@
-angular.module('menuApp').controller('UserDashboardController',['$scope', '$location', 'accessDB', 'growl', function ($scope, $location, accessDB, growl, $modal) {
+angular.module('menuApp').controller('UserDashboardController',['$scope', '$location', 'accessDB', 'growl', function ($scope, $location, accessDB, growl, $uibModal) {
 
   $scope.open = function () {
     console.log("opening up");
-    var modalInstance = $modal.open({
-      templateUrl: "view/user/dashboard/restaurant/restaurant-menu-new.php",
+    var modalInstance = $uibModal.open({
+      templateUrl: "myModalContent.html",
     });
   }
 
