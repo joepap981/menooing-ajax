@@ -125,6 +125,17 @@ input.ng-invalid.submitted {
   margin: 2em;
 }
 
+button#menu-category.btn {
+  padding: 1px;
+  width: 100%;
+  margin:0;
+}
+
+#menu-category.dropdown {
+  margin: 0;
+  padding:0;
+}
+
 
 
 /**** /Restaurant Styling ****/

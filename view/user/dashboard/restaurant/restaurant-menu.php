@@ -42,14 +42,17 @@
                   <label class="col-md-3" for="menu-name">Name</label>
                   <input class="col-md-8"type="text" class="form-control" id="menu-name" aria-describedby="" placeholder="Name of your menu">
                 </div>
-                <div class="dropdown" ng-model ="categorySelection">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="menu-category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ categorySelection }}
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#" ng-click ="selectCategory('Main')">Main</a>
-                    <a class="dropdown-item" href="#" ng-click ="selectCategory('Appetizer')">Appetizer</a>
-                    <a class="dropdown-item" href="#" ng-click ="selectCategory('Drink')">Drink</a>
+                <div class="row">
+                  <label class="col-md-3"> Category </label>
+                  <div id="menu-category" class="dropdown col-md-8" ng-model ="categorySelection">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="menu-category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{ categorySelection }}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#" ng-click ="selectCategory('Main')">Main</a>
+                      <a class="dropdown-item" href="#" ng-click ="selectCategory('Appetizer')">Appetizer</a>
+                      <a class="dropdown-item" href="#" ng-click ="selectCategory('Drink')">Drink</a>
+                    </div>
                   </div>
                 </div>
               </form>
