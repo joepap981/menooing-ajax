@@ -70,7 +70,8 @@ angular.module('menuApp').factory('accessDB', function($http) {
       return $http({ method: "POST", url: "action/get.php", data: queryObj})
       .then(function mySuccess (response) {
         if (response.data != null) {
-          return response.data;
+          var restaurant = response.data[0];
+          return restaurant;
         } else {
           return null;
         }

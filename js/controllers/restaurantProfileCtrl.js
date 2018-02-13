@@ -1,6 +1,8 @@
 angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$location', 'accessDB', 'growl', function ($scope, $location, accessDB, growl, $uibModal) {
 
-  $scope.restaurant = {};
+  $scope.restaurant = {
+    "restaurant_name": "Sushiyaa"
+  }
   var init = function () {
     //get all restaurants from user in current session (check in server)
     var restaurant= accessDB.getRestaurantInfo("1");

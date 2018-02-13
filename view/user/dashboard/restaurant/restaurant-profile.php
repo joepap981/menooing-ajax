@@ -6,7 +6,7 @@
 <no-session-view id="no_session" ng-if="session['user_id'] == null" ></no-session-view>
 
 <!-- show content when user session is in progress -->
-<div class="row" ng-if="session['user_id'] != null" ng-controller="restaurantProfileCtrl">
+<div class="row" ng-if="session['user_id'] != null" ng-controller="restaurantProfileCtrl" ng-model="restaurant">
     <div class="home-content">
 
       <div>
@@ -26,7 +26,7 @@
                 <label for="restaurantName"> Restaurant Name: </label>
               </div>
               <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="restaurantName" ng-model = "restaurant.restaurant_name" value="{{ restaurant.name}}">
+                <input type="text" readonly class="form-control-plaintext" id="restaurantName" ng-model ="restaurant.restaurant_name" value="{{ restaurant.restaurant_name }}">
               </div>
             </div>
 
