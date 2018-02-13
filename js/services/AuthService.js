@@ -48,7 +48,6 @@ angular.module('menuApp').factory('accessDB', function($http) {
       });
     },
 
-
     //check for user session and return restaurnt information related to user
     getRestaurantInfo: function(user_id) {
       return $http({ method: "GET", url: "action/restaurant_get.php"})

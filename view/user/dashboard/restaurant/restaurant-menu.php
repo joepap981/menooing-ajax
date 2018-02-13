@@ -16,12 +16,12 @@
       </div>
 
 
-      <!-- Button trigger modal -->
+      <!-- Button trigger modal for Menu Add -->
       <div class="restaurant-category">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMenu">Add Menu</button>
       </div>
 
-      <!-- Modal -->
+      <!-- Menu Add Modal -->
       <div class="modal fade" id="addMenu" tabindex="-1" role="dialog" aria-labelledby="addMenu" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -70,18 +70,6 @@
         </div>
       </div>
 
-      <script type="text/ng-template" id="myModalContent.html">
-        <div class="modal-header">
-            <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
-        </div>
-        <div class="modal-body" id="modal-body">
-            <h4> body </h4>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="">Cancel</button>
-        </div>
-    </script>
 
       <div id="restaurant-menu">
         <div class="restaurant-category">
@@ -101,7 +89,6 @@
             </div>
           </div>
         </div>
-
 
 
         <div class="restaurant-category">

@@ -6,10 +6,13 @@ session_start();
 
 //if there is a live session
 if(isset($_SESSION)) {
+  $user = $_SESSION['user'];
   //connect to mysql with info from inc_signin_db
   $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
 
-  $query = "SELECT * FROM " . $dbName . ".tb_restaurant;";
+  $query = "SELECT restaurant_name, restaurant_address1, restaurant_city, restaurant_status
+            FROM " . $dbName . ".tb_restaurant WHERE restaurant_owner_ref = " . $user['user_id'];
+
   $result = mysqli_query($conn, $query);
 
   $return_array = array();
