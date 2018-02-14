@@ -104,38 +104,54 @@
           <div class="card-block container">
             <form>
 
-              <div class="row">
+
                 <div class="form-group row col">
-                  <div class="col-sm-2">
-                    <label for="restaurantCity"> Open  </label>
-                  </div>
-                  <div class="col-sm-2">
-                    <input type="text" class="form-control" id="restaurantOpenDay"  ng-model ="restaurant.restaurant_open_day">
-                  </div>
-                  <span> to </span>
-                  <div class="col-sm-2">
-                    <input type="text" class="form-control" id="restaurantCloseDay" ng-model ="restaurant.restaurant_close_day">
-                  </div>
+                  <div class="form-row align-items-center">
+                    <div class="col-sm-3">
+                      <label> Restaurant Hours </label>
+                    </div>
+                    <div class="col-auto my-1">
+                      <select class="restaurant-hours custom-select mr-sm-2">
+                        <option selected>Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div>
+                    <div class="col-auto my-1">
+                      <select class="restaurant-hours custom-select mr-sm-2">
+                        <option selected>Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div>
+                    <div class="col-auto my-1">
+                      <select class="restaurant-hours custom-select mr-sm-2">
+                        <option selected>Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div>
+                    <div class="col-auto my-1">
+                      <select class="restaurant-hours custom-select mr-sm-2">
+                        <option selected>Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div>
 
-                  <div class="col-sm-1">
-                    <input type="text" readonly class="form-control-plaintext">
-                  </div>
-
-                  <div class="col-sm-2">
-                    <input type="text" class="form-control" id="restaurantOpenHour" ng-model ="restaurant.restaurant_open_hour">
-                  </div>
-                  <span> to </span>
-                  <div class="col-sm-2">
-                    <input type="text" class="form-control" id="restaurantCloseHour" ng-model ="restaurant.restaurant_close_hour">
-                  </div>
                 </div>
               </div>
 
+
               <div class="form-group row">
-                <div class="col-sm-4">
+                <div class="col-sm-5">
                   <label for="restaurantCuisine"> Restaurant Keyword </label>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-7">
                   <input type="text" class="form-control" id="restaurantKeyword" ng-model ="restaurant.restaurant_cuisine" >
                 </div>
               </div>
