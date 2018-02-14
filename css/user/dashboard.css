@@ -13,7 +13,7 @@ label {
 }
 
 .form-group {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   padding:0;
 }
 
@@ -22,7 +22,7 @@ label {
   padding-bottom: 1.5px;
   padding-left: 6px;
   padding-right: 6px;
-  border-radius: 1px;
+  border-radius: 4px;
 }
 
 .top-margin {
@@ -31,7 +31,7 @@ label {
 
 /****** Restaurant Styling ******/
 
-/* restaurant tempate */
+/* restaurant template */
 #restaurant-list {
   margin-top: 3%;
   width: 90%;
@@ -105,6 +105,35 @@ input.ng-invalid.submitted {
   width: 50%;
 }
 
+.col-label {
+  width: 30%;
+}
+
+.col-input {
+  width: 70%;
+}
+
+#city-label {
+  width: 10%;
+}
+#city-input {
+  width: 30%;
+  margin-right: 10%;
+}
+#state-label {
+  width: 10%;
+}
+#state-input {
+  width: 10%;
+  margin-right: 10%;
+}
+#zip-label {
+  width: 10%;
+}
+#zip-input {
+  width: 10%;
+}
+
 #restaurant-save-changes.btn {
   width: 25%;
   margin: auto;
@@ -119,16 +148,6 @@ input.ng-invalid.submitted {
   max-height: 100%;
 }
 
-select.restaurant-hours.custom-select {
-  padding-top: 1px;
-  padding-bottom: 1px;
-  height: 1.75rem;
-  width: 80%;
-}
-
-.col-auto.my-1 {
-  width: 18%;
-}
 
 
 

@@ -16,7 +16,7 @@
       </div>
 
       <div class="card restaurant-profile">
-        <div class="card-header"> Basic Info </div>
+        <div class="card-header"> Beautify </div>
         <div class="card-block container">
           <a href="#"><img id="restaurant-image" src="http://via.placeholder.com/700x300" alt=""></a>
           <a href="#"> Add image </a>
@@ -29,70 +29,33 @@
         <div class="card-block container">
 
           <form>
-            <div class="form-group row" >
-              <div class="col-sm-3">
-                <label for="restaurantName"> Restaurant Name: </label>
-              </div>
-              <div class="col-sm-9">
-                <input type="text" readonly class="form-control-plaintext" id="restaurantName" ng-model ="restaurant.restaurant_name" value="{{ restaurant.restaurant_name }}">
-              </div>
+            <div class=" form-group row" >
+              <span class="col-label" for="restaurantName"> Restaurant Name: </span>
+              <input type="text" readonly class="form-control-plaintext col-input" id="restaurantName" ng-model ="restaurant.restaurant_name" value="{{ restaurant.restaurant_name }}">
             </div>
 
             <div class="form-group row">
-              <div class="col-sm-3">
-                <label for="restaurantAdd1"> Address 1: </label>
-              </div>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="restaurantAdd1"  ng-model ="restaurant.restaurant_address1" text="Sushiyaa">
-              </div>
+              <span class="col-label" for="restaurantAdd1"> Address 1 </span>
+              <input class="form-control col-input" type="text" id="restaurantAdd1"  ng-model ="restaurant.restaurant_address1">
             </div>
 
             <div class="form-group row">
-              <div class="col-sm-3">
-                <label for="restaurantAdd2"> Address 2: </label>
-              </div>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="restaurantAdd2"  ng-model ="restaurant.restaurant_address2">
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="form-group row col-md-6">
-                <div class="col-sm-4">
-                  <label for="restaurantCity"> City: </label>
-                </div>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="restaurantCity"  ng-model ="restaurant.restaurant_city">
-                </div>
-              </div>
-
-              <div class="form-group row col-md-3">
-                <div class="col-sm-4">
-                  <label for="restaurantState"> State: </label>
-                </div>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="restaurantState" ng-model ="restaurant.restaurant_state" >
-                </div>
-              </div>
-
-
-              <div class="form-group row col-md-4">
-                <div class="col-sm-5">
-                  <label for="restaurantZip"> Zipcode: </label>
-                </div>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control" id="restaurantZip" ng-model ="restaurant.restaurant_zip" >
-                </div>
-              </div>
+              <span class="col-label" for="restaurantAdd2"> Address 2 </span>
+              <input type="text" class="form-control col-input" id="restaurantAdd2"  ng-model ="restaurant.restaurant_address2">
             </div>
 
             <div class="form-group row">
-              <div class="col-sm-3">
-                <label for="restaurantPhone"> Phone: </label>
-              </div>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="restaurantPhone"  ng-model ="restaurant.restaurant_phone" >
-              </div>
+              <span id="city-label" for="restaurantCity"> City: </span>
+              <input id="city-input" type="text" class="form-control" id="restaurantCity"  ng-model ="restaurant.restaurant_city">
+              <span id="state-label" for="restaurantState"> State: </span>
+              <input id="state-input" type="text" class="form-control" id="restaurantState" ng-model ="restaurant.restaurant_state">
+              <span id="zip-label" for="restaurantZip"> Zipcode: </span>
+              <input id="zip-input" type="text" class="form-control" id="restaurantZip" ng-model ="restaurant.restaurant_zip">
+            </div>
+
+            <div class="form-group row">
+              <span class="col-label" for="restaurantPhone"> Phone: </span>
+              <input type="text" class="form-control col-input" id="restaurantPhone"  ng-model ="restaurant.restaurant_phone">
             </div>
           </div>
 
