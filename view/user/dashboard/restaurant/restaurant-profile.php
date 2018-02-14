@@ -45,11 +45,11 @@
             </div>
 
             <div class="form-group row">
-              <span id="city-label" for="restaurantCity"> City: </span>
+              <span id="city-label" for="restaurantCity"> City </span>
               <input id="city-input" type="text" class="form-control" id="restaurantCity"  ng-model ="restaurant.restaurant_city">
-              <span id="state-label" for="restaurantState"> State: </span>
+              <span id="state-label" for="restaurantState"> State </span>
               <input id="state-input" type="text" class="form-control" id="restaurantState" ng-model ="restaurant.restaurant_state">
-              <span id="zip-label" for="restaurantZip"> Zipcode: </span>
+              <span id="zip-label" for="restaurantZip"> Zipcode </span>
               <input id="zip-input" type="text" class="form-control" id="restaurantZip" ng-model ="restaurant.restaurant_zip">
             </div>
 
@@ -66,66 +66,49 @@
           <div class="card-header"> Restaurant Management </div>
           <div class="card-block container">
             <form>
+              <div class="form-group row">
+                <span class="col-label"> Restaurant Hours </span>
+                <div class="col-input">
+                  <select class="restaurant-hours custom-select mr-sm-2">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
 
+                  <select class="restaurant-hours custom-select mr-sm-2">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
 
-                <div class="form-group row col">
-                  <div class="form-row align-items-center">
-                    <div class="col-sm-3">
-                      <label> Restaurant Hours </label>
-                    </div>
-                    <div class="col-auto my-1">
-                      <select class="restaurant-hours custom-select mr-sm-2">
-                        <option selected>Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
-                    <div class="col-auto my-1">
-                      <select class="restaurant-hours custom-select mr-sm-2">
-                        <option selected>Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
-                    <div class="col-auto my-1">
-                      <select class="restaurant-hours custom-select mr-sm-2">
-                        <option selected>Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
-                    <div class="col-auto my-1">
-                      <select class="restaurant-hours custom-select mr-sm-2">
-                        <option selected>Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
+                  <select class="restaurant-hours custom-select mr-sm-2">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
 
+                  <select class="restaurant-hours custom-select mr-sm-2">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
                 </div>
+
               </div>
 
 
               <div class="form-group row">
-                <div class="col-sm-5">
-                  <label for="restaurantCuisine"> Restaurant Keyword </label>
-                </div>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control" id="restaurantKeyword" ng-model ="restaurant.restaurant_cuisine" >
-                </div>
+                <span class="col-label" for="restaurantCuisine"> Restaurant Keyword </span>
+                <input type="text" class="form-control col-input" id="restaurantKeyword" ng-model ="restaurant.restaurant_cuisine" >
               </div>
 
               <div class="form-group row">
-                <div class="col-sm-4">
-                  <label for="restaurantPrice"> Price Range </label>
-                </div>
-                <div class="col-sm-8">
-                  <input type="text" readonly class="form-control-plaintext" id="restaurantPrice"  placeholder="" >
-                </div>
+                <span class="col-label" for="restaurantPrice"> Price Range </span>
+                <input type="text" readonly class="form-control-plaintext col-input" id="restaurantPrice"  placeholder="" >
               </div>
 
             </div>
