@@ -46,10 +46,6 @@ label {
   width: 70.5%;
 }
 
-form {
-  margin-bottom: 30px;
-}
-
 input.ng-invalid.submitted {
     box-shadow: 0 0 5px #f00;
 }
@@ -99,13 +95,27 @@ input.ng-invalid.submitted {
 
 .card-block.container {
   padding-top: 1em;
-  padding-bottom: 1em;
   padding-left: 3em;
   padding-right: 3em;
+  margin-bottom: 1em;
 }
 
 .two-inline {
   width: 50%;
+}
+
+#restaurant-save-changes.btn {
+  width: 25%;
+  margin: auto;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-left: 26%;
+}
+
+#restaurant-image {
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 
@@ -137,7 +147,6 @@ button#menu-category.btn {
   padding-bottom: 1px;
   margin-bottom: 4px;
 }
-
 
 
 /**** /Restaurant Styling ****/
