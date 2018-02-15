@@ -55,15 +55,13 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl', 'ui.bootstrap
 
 
     //sharee
-    .when('/sharee', {
-      templateUrl: 'view/user/dashboard/sharee/'
+    .when('/sharing', {
+      templateUrl: 'view/user/dashboard/sharing/'
     })
-
     //requests
     .when('/requests', {
       templateUrl: 'view/user/dashboard/requests/'
     })
-
     //profile
     .when('/profile', {
       templateUrl: 'view/user/dashboard/profile/'

@@ -6,7 +6,7 @@
     <a href="#" ng-click="redirect('/restaurant-list')">Restaurant</a>
   </li>
   <li>
-    <a href="#" ng-click="redirect('/sharee')">Sharees</a>
+    <a href="#" ng-click="redirect('/sharing')">Sharing</a>
   </li>
   <li>
     <a href="#" ng-click="redirect('/requests')">Requests</a>

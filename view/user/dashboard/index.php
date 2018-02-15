@@ -3,7 +3,9 @@
 <link href="css/user/dashboard.css" rel="stylesheet">
 
 <!-- if the session has ended show redirect page-->
-<no-session-view id="no_session" ng-if="session['user_id'] == null"></no-session-view>
+<div id="no_session" ng-if="session['user_id'] == null">
+  <no-session-view></no-session-view>
+</div>
 
 <div id="session" ng-if="session['user_id'] != null" >
   <div class="subnav"></div>
@@ -14,7 +16,7 @@
       </div>
       <div class="col-md-9">
         <!-- show content when user session is in progress -->
-        <div ng-model="page" ng-controller="UserDashboardController">
+        <div class="content-box" ng-controller="UserDashboardController">
           <h1> Welcome {{ session['user_first_name']}}!  </h1>
         </div>
       </div>

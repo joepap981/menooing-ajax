@@ -5,15 +5,67 @@
 
 .subnav {
   min-height: 2.5rem;
+  padding: 0% 30% 0% 30%;
 }
 
+.content-box {
+  margin-bottom: 2.5rem;
+}
+
+/*Side nav*/
+/* Sidebar nav */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 60%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: black;
+    background: #F7F7F7;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+    background: #F7F7F7;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+/***** Restaurant Styling *****/
 
 /*Registering new restaurant */
 
-
-label {
-  margin: 3px;
-}
 
 .form-group {
   margin-bottom: 10px;
@@ -31,8 +83,6 @@ label {
 .top-margin {
   margin-top: 10px;
 }
-
-/****** Restaurant Styling ******/
 
 /* restaurant template */
 #restaurant-list {
@@ -86,10 +136,6 @@ input.ng-invalid.submitted {
   margin-right: 340px;
 }
 /* restaurant profile */
-
-.restaurant-nav {
-  margin-bottom: 1em;
-}
 
 .restaurant-profile {
   margin-top: 2%;
