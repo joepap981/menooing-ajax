@@ -19,3 +19,9 @@ angular.module('menuApp').directive('footerStatic', function() {
     templateUrl: 'view/user/navigation/footer.'+ verStr
   };
 });
+
+angular.module('menuApp').directive('sideNav', function() {
+  return {
+    templateUrl: 'view/user/navigation/sidenav.'+ verStr
+  };
+});
