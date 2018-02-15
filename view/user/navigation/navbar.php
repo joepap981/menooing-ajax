@@ -22,7 +22,7 @@
       <a href="#" ng-click="redirect('/restaurant-list')">Restaurant</a>
     </li>
     <li>
-      <a href="#" ng-click="redirect('/sharee')">Sharee</a>
+      <a href="#" ng-click="redirect('/sharee')">Sharees</a>
     </li>
     <li>
       <a href="#" ng-click="redirect('/requests')">Requests</a>

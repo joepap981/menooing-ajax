@@ -1,7 +1,7 @@
 .home-content {
   margin-top: 2%;
   margin-bottom: 2%;
-  margin-left: 20%;
+  margin-left: 30%;
   width: 100%;
 }
 
@@ -90,7 +90,6 @@ input.ng-invalid.submitted {
 
 .restaurant-profile {
   margin-top: 2%;
-  margin-left: 10%;
   width: 60%;
 }
 
@@ -110,7 +109,11 @@ input.ng-invalid.submitted {
 }
 
 .col-input {
-  width: 70%;
+  width: 70%;;
+}
+
+.col-half {
+  width: 50%;
 }
 
 #city-label {
@@ -140,15 +143,25 @@ input.ng-invalid.submitted {
   padding-bottom: 1px;
   margin-bottom: 4px;
   margin-right: 1px;
-  width: 22%;
+  width: 6.5rem;
+}
+
+#restaurant-type.restaurant-hours.custom-select {
+  height: calc(1.8rem + 2px);
+  padding-top: 1px;
+  padding-bottom: 1px;
+  margin-left: 2rem;
+  margin-bottom: 4px;
+  margin-right: 1px;
+  width: 13rem;
 }
 
 #restaurant-save-changes.btn {
-  width: 25%;
+  width: 10rem;
   margin: auto;
   margin-bottom: 2rem;
   margin-top: 2rem;
-  margin-left: 26%;
+  margin-left: 22%;
 }
 
 #restaurant-image {

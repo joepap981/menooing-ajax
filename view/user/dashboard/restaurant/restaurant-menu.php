@@ -9,9 +9,9 @@
 <div class="row" ng-if="session['user_id'] != null" ng-model="page" ng-controller="UserDashboardController">
     <div class="home-content">
 
-      <div class="restaurant-nav">
-        <div class="btn clear-btn submit " ng-click="redirect('/restaurant-list')"><img id="circular-button" src="/img/left-arrow-circular-button.png"> Back</div>
-        <div class="btn clear-btn" ng-click="redirect('/restaurant-profile')"> Profile </div>
+      <div class="sub-nav">
+        <div class="btn clear-btn" ng-click="redirect('/restaurant-profile')"> Restaurant Info </div>
+        <div class="btn clear-btn" ng-click="redirect('/restaurant-sharer')"> Sharer Info</div>
         <div class="btn clear-btn"> Menu </div>
       </div>
 
