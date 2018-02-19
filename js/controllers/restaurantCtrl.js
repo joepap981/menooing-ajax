@@ -1,5 +1,5 @@
 angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'accessDB', 'growl', function ($scope, $location, accessDB, growl, $uibModal) {
-  $scope.test = $sessionStorage.restaurant;
+
   $scope.userRestaurants = [];
   var init = function () {
     //get all restaurants from user in current session (check in server)
@@ -40,8 +40,8 @@ angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'a
     }
   }
 
-  $scope.saveAndContinue = function () {
-    $sessionStorage.restaurant = $scope.restaurant;
-    $location.path('/restaurant-new-sharer2');
+  $scope.saveAndContinue = function (location) {
+    //$sessionStorage.restaurant = $scope.restaurant;
+    $location.path(location);
   }
 }]);

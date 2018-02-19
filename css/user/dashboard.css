@@ -103,8 +103,7 @@
 
 .margin-auto {
   width: calc(700px + 1.25rem);
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
 }
 
 .card-link:hover {

@@ -36,10 +36,8 @@
       </div>
       <div class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new')" class="btn btn-secondary"> Back </button>
-        <button ng-click="saveAndContinue()" class="btn btn-primary"> Continue </button>
+        <button ng-click="saveAndContinue('/restaurant-new-sharer2')" class="btn btn-primary"> Continue </button>
       </div>
     </form>
-
-    <p> {{restaurant}} </p>
   </div>
 </div>
