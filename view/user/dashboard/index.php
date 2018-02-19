@@ -7,6 +7,7 @@
   <no-session-view></no-session-view>
 </div>
 
+<!-- show content when user session is in progress -->
 <div id="session" ng-if="session['user_id'] != null" >
   <div class="subnav"></div>
   <div class="container">
@@ -15,7 +16,6 @@
         <side-nav></side-nav>
       </div>
       <div class="col-md-9">
-        <!-- show content when user session is in progress -->
         <div class="content-box" ng-controller="UserDashboardController">
           <h1> Welcome {{ session['user_first_name']}}!  </h1>
         </div>

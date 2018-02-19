@@ -9,9 +9,7 @@
 
 <!-- show content when user session is in progress -->
 <div id="session" ng-if="session['user_id'] != null" >
-  <div class="subnav">
-
-  </div>
+  <div class="subnav"></div>
   <div class="container">
     <div class="row" ng-if="session['user_id'] != null">
       <div class="col-md-3">

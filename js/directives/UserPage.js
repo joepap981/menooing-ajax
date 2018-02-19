@@ -25,3 +25,9 @@ angular.module('menuApp').directive('sideNav', function() {
     templateUrl: 'view/user/navigation/sidenav.'+ verStr
   };
 });
+
+angular.module('menuApp').directive('restaurantSubnav', function() {
+  return {
+    templateUrl: 'view/user/dashboard/restaurant/restaurant-subnav.'+ verStr
+  };
+});
