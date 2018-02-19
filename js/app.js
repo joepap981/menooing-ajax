@@ -40,6 +40,12 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl', 'ui.bootstrap
     .when('/restaurant-new', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-new.php'
     })
+    .when('/restaurant-new-sharer', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-sharer.php'
+    })
+    .when('/restaurant-new-sharer2', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-sharer2.php'
+    })
     .when('/restaurant-success', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-success.php'
     })

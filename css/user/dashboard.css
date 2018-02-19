@@ -73,14 +73,6 @@
   padding:0;
 }
 
-.form-control {
-  padding-top: 1.5px;
-  padding-bottom: 1.5px;
-  padding-left: 6px;
-  padding-right: 6px;
-  border-radius: 4px;
-}
-
 .top-margin {
   margin-top: 10px;
 }
@@ -97,7 +89,7 @@
 
 /* new restaurant */
 .restaurant-text-title {
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -124,6 +116,7 @@
 
 .restaurant-information-form {
   width: 70.5%;
+  margin: auto;
 }
 
 input.ng-invalid.submitted {
