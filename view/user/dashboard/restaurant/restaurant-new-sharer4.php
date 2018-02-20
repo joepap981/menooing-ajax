@@ -8,7 +8,7 @@
   </div>
   <div class="restaurant-text-title">
     <h3> Now, we need some information for you to become a Sharer!  </h3>
-    <p> We need to know a few things about you! </p>
+    <p> We need to know a few things about you, the owner! </p>
   </div>
   <div class="margin-auto">
     <div class="restaurant-information-form">
@@ -22,52 +22,17 @@
           <input type="text" class="form-control col-input" placeholder="" required>
         </div>
         <div class="form-group row">
-          <span>Food Mananger/Handler Certificate</span>
+          <label>Food Mananger/Handler Certificate</label>
+          <input id="restaurantAddFile" type="file" placeholder="" required>
         </div>
-          <input type="file" placeholder="" required>
 
-
-
-        <div class="restaurant-text-title">
-          <p> What are the operation hours? </p>
-        </div>
+        <p class="text-center mt-5"> We need some documents for your restaurant. </p>
 
         <div class="form-group row">
-          <span class="col-label">Open Days</span>
-          <div class="col-input">
-            <select class="custom-select" id="openDay">
-              <option selected>Choose...</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-            <span> to </span>
-            <select class="custom-select" id="closeDay">
-              <option selected>Choose...</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </div>
+          <label>Certificate of Occupancy</label>
+          <input id="restaurantAddFile" type="file" placeholder="" required>
         </div>
-        <div class="form-group row">
-          <span class="col-label">Open Hours</span>
-          <div class="col-input">
-            <select class="custom-select" id="openHour">
-              <option selected>Choose...</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-            <span> to </span>
-            <select class="custom-select" id="closeHour">
-              <option selected>Choose...</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </div>
-        </div>
+
         <div id="restaurantAdd" class="btn-toolbar mt-3">
           <button ng-click="redirect('/restaurant-new-sharer')" class="btn btn-secondary"> Back </button>
           <button ng-click="saveAndContinue('/restaurant-new-sharer3')" class="btn btn-primary"> Continue </button>

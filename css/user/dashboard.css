@@ -130,6 +130,11 @@
   margin: auto;
 }
 
+input[type='file'] {
+  color: transparent;
+  width:25%;
+  margin-left: auto;
+}
 /* restaurant registration form */
 
 .restaurant-information-form {
