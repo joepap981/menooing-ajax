@@ -89,7 +89,8 @@
 
 /* new restaurant */
 .restaurant-text-title {
-  padding: 1rem;
+  margin-top: 2rem;
+  padding: 0.5rem;
   text-align: center;
 }
 
@@ -111,24 +112,33 @@
   background-color: #FCFAFA;
 }
 
+#openDay {
+  margin-right: 0.5rem;
+}
+#closeDay {
+  margin-left: 0.5rem;
+}
+#openHour {
+  margin-right: 0.5rem;
+}
+#closeHour {
+  margin-left: 0.5rem;
+}
+
+#restaurantAdd.card {
+  max-width: 350px;
+  margin: auto;
+}
 /* restaurant registration form */
 
 .restaurant-information-form {
   width: 70.5%;
+  height: 300px;
   margin: auto;
 }
 
 input.ng-invalid.submitted {
     box-shadow: 0 0 5px #f00;
-}
-
-#circular-button {
-  height: 20px;
-  width: 20px;
-}
-
-#circular-button:hover {
-  opacity: 0.2;
 }
 
 .form-inline .form-group input{
