@@ -8,7 +8,7 @@
   </div>
   <div class="restaurant-text-title">
     <h3> Now, we need some information for you to become a Sharer!  </h3>
-    <h6> We need to know a few things about you, the owner! </h6>
+    <h6 class="mb-4"> We need to know a few things about you, the owner! </h6>
   </div>
   <div class="margin-auto">
     <div class="restaurant-information-form">
@@ -26,7 +26,7 @@
           <input id="restaurantAddFile" type="file" placeholder="" required>
         </div>
 
-        <h6 class="text-center mt-5 text-nowrap"> Now we need some document for your restaurant! </h6>
+        <h6 class="text-center mt-5 mb-3 text-nowrap"> Now we need some document for your restaurant! </h6>
 
         <div class="form-group row">
           <label>Certificate of Occupancy</label>
