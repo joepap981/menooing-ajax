@@ -34,7 +34,7 @@
           <input name="zipcode" id="zipcode" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.zip" class="form-control" placeholder="Zip Code" ng-maxlength= "5" required>
         </div>
       </div>
-      <div class="btn-toolbar mt-3">
+      <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new')" class="btn btn-secondary"> Back </button>
         <button ng-click="saveAndContinue('/restaurant-new-sharer2')" class="btn btn-primary"> Continue </button>
       </div>

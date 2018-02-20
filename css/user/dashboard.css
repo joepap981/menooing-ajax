@@ -89,7 +89,7 @@
 
 /* new restaurant */
 .restaurant-text-title {
-  margin-top: 2rem;
+  margin-top: 1rem;
   padding: 0.5rem;
   text-align: center;
 }
@@ -130,11 +130,29 @@
   margin: auto;
 }
 
+form[name='restaurantRegistration'] {
+  width: 70.5%;
+  margin: auto;
+}
+
 input[type='file'] {
   color: transparent;
   width:25%;
   margin-left: auto;
 }
+
+#small-left-margin {
+  margin-left: 0.0075rem;
+}
+
+#narrowInput {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  height: 1.6rem;
+}
+
 /* restaurant registration form */
 
 .restaurant-information-form {

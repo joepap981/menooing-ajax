@@ -15,9 +15,9 @@
       <div id="restaurantAdd" class="card">
          <a href="#"><img class="card-img-top" src="http://via.placeholder.com/250x150" alt="Card image cap"></a>
       </div>
-      <div class="btn-toolbar mt-3">
+      <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new-sharer2')" class="btn btn-secondary"> Back </button>
-        <button ng-click="saveAndContinue('/restaurant-new-sharer4')" class="btn btn-primary"> Continue/Skip </button>
+        <button ng-click="saveAndContinue('/restaurant-new-sharer4')" class="btn btn-primary"> Continue</button>
       </div>
     </form>
   </div>

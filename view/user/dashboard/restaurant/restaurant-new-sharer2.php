@@ -71,7 +71,7 @@
           </select>
         </div>
       </div>
-      <div id="restaurantAdd" class="btn-toolbar mt-3">
+      <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new-sharer')" class="btn btn-secondary"> Back </button>
         <button ng-click="saveAndContinue('/restaurant-new-sharer3')" class="btn btn-primary"> Continue </button>
       </div>
