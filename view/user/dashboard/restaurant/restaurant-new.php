@@ -18,7 +18,7 @@
           <p class="card-text">You are a brick and mortar restaurant extra owner who wants to rent out your kitchen space!</p>
         </div>
       </a>
-      <a href="#" class="card card-link">
+      <a href="#" ng-click="redirect('/restaurant-new-sharee')" class="card card-link">
         <div class="card-body text-center">
           <h5 class="card-title">Sharee</h5>
           <p class="card-text">You are a food entrepreneur looking for a place to show off your culinary skills and business acumen!</p>

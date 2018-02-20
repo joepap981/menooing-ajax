@@ -135,7 +135,7 @@ form[name='restaurantRegistration'] {
   margin: auto;
 }
 
-input[type='file'] {
+#restaurantAddFile.input[type='file'] {
   color: transparent;
   width:25%;
   margin-left: auto;
@@ -189,9 +189,13 @@ input.ng-invalid.submitted {
 }
 /* restaurant profile */
 
+#profile.card-header {
+  padding: 5px 9px 5px 9px;
+}
+
 .restaurant-profile {
   margin-top: 2%;
-  max-width: 80%;
+  max-width: 90%;
 }
 
 .card-block.container {
@@ -244,17 +248,17 @@ input.ng-invalid.submitted {
   padding-bottom: 1px;
   margin-bottom: 4px;
   margin-right: 1px;
-  width: 6.5rem;
+  width: 6rem;
 }
 
 #restaurant-type.restaurant-hours.custom-select {
   height: calc(1.8rem + 2px);
   padding-top: 1px;
   padding-bottom: 1px;
-  margin-left: 2rem;
+  margin-left: 1rem;
   margin-bottom: 4px;
   margin-right: 1px;
-  width: 13rem;
+  width: 10rem;
 }
 
 #restaurant-save-changes.btn {
@@ -262,18 +266,13 @@ input.ng-invalid.submitted {
   margin: auto;
   margin-bottom: 2rem;
   margin-top: 2rem;
-  margin-left: 22%;
+  margin-left: 35%;
 }
 
 #restaurant-image {
-  margin: auto;
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 300px;
+  max-height: 300px;
 }
-
-
-
-
 
 /* restaurant menu */
 .restaurant-category {

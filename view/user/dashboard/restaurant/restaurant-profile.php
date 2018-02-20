@@ -19,18 +19,9 @@
       <div class="col-md-9">
 
         <div class="content-box" ng-controller="UserDashboardController">
-          <!--Restaurant image-->
-          <div class="card restaurant-profile">
-            <div class="card-header"> Image </div>
-            <div class="card-block container">
-              <a href="#"><img id="restaurant-image" src="http://via.placeholder.com/700x300" alt=""></a>
-              <a href="#"> Add image </a>
-            </div>
-          </div>
-
           <!--Restaurant Basic information -->
           <div class="card restaurant-profile">
-            <div class="card-header"> Location Info </div>
+            <div id="profile" class="card-header"> Location Info </div>
             <div class="card-block container">
               <form>
                 <div class=" form-group row" >
@@ -64,7 +55,7 @@
 
                 <div class="form-group row">
                   <span class="col-label" for="restaurantPhone"> CO (Certificate of Occupancy) </span>
-                  <input type="file" class="form-control col-input" id="coFile" ng-model ="restaurant.co">
+                  <input type="file" class="col-input" id="coFile" ng-model ="restaurant.co">
                 </div>
               </form>
             </div>
@@ -73,7 +64,7 @@
 
           <!-- Restaurant management information-->
           <div class="card restaurant-profile">
-            <div class="card-header"> Restaurant Management </div>
+            <div id="profile" class="card-header"> Restaurant Management </div>
             <div class="card-block container">
               <form>
                 <!-- Restaurant hours dropdown-->
@@ -137,13 +128,40 @@
                   <input type="text" readonly class="form-control-plaintext col-input" id="restaurantPrice"  placeholder="" >
                 </div>
               </form>
+              <div class="row">
+                <div class="col-label">
+                  <p>Image/Logo </p>
+                </div>
+                <div class="col-input">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMenu">Add Image</button>
+                </div>
+                <!-- Menu Add Modal -->
+                <div class="modal fade" id="addMenu" tabindex="-1" role="dialog" aria-labelledby="addMenu" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Add a logo or image</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <a href="#"><img class="menu-img" src="http://via.placeholder.com/300x200" alt=""></a>
+                        <div class="menu-img">
+                          <a href="#"> Add image </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--Add modal end-->
             </div>
           </div>
           <!--//Restaurant management information end-->
-          <!-- Save changes button-->
-          <button id="restaurant-save-changes" class="btn btn-primary"> Save Changes </button>
         </div>
         <!--//content-box end-->
+        <!-- Save changes button-->
+        <button id="restaurant-save-changes" class="btn btn-primary"> Save Changes </button>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@
 
 <div class="content-box" ng-controller="restaurantCtrl">
   <div class="progress">
-      <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
   <div class="restaurant-text-title">
     <h3> Share a little more about your restaurant. </h3>
@@ -70,6 +70,35 @@
             <option value="3">Three</option>
           </select>
         </div>
+      </div>
+
+      <div class="row">
+        <div class="col-label">
+          <p>Image/Logo </p>
+        </div>
+        <div class="col-input">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMenu">Add Image</button>
+        </div>
+        <!-- Menu Add Modal -->
+        <div class="modal fade" id="addMenu" tabindex="-1" role="dialog" aria-labelledby="addMenu" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Add a logo or image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <a href="#"><img class="menu-img" src="http://via.placeholder.com/300x200" alt=""></a>
+                <div class="menu-img">
+                  <a href="#"> Add image </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Add modal end-->
       </div>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new-sharer')" class="btn btn-secondary"> Back </button>

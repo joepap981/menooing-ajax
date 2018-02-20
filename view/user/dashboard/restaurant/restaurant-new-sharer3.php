@@ -4,22 +4,41 @@
 
 <div class="content-box" ng-controller="restaurantCtrl">
   <div class="progress">
-      <div class="progress-bar" role="progressbar" style="width: 45%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
   <div class="restaurant-text-title">
-    <h3> Add a logo or image to represent your restaurant  </h3>
-    <small> You can skip this step and add an image later! </small>
+    <h3> Now, we need some information for you to become a Sharer!  </h3>
+    <h6> We need to know a few things about you, the owner! </h6>
   </div>
   <div class="margin-auto">
-    <form name="restaurantRegistration" class="restaurant-information-form">
-      <div id="restaurantAdd" class="card">
-         <a href="#"><img class="card-img-top" src="http://via.placeholder.com/250x150" alt="Card image cap"></a>
-      </div>
+    <div class="restaurant-information-form">
+      <form name="restaurantRegistration">
+        <div class="form-group row">
+          <label class="col-label" for="owner_name">Name</label>
+          <input type="text" class="form-control col-input" placeholder="" required>
+        </div>
+        <div class="form-group row">
+          <label class="col-label" for="owner_phone">Mobile</label>
+          <input type="text" class="form-control col-input" placeholder="" required>
+        </div>
+        <div class="form-group row">
+          <label>Food Mananger/Handler Certificate</label>
+          <input id="restaurantAddFile" type="file" placeholder="" required>
+        </div>
+
+        <h6 class="text-center mt-5 text-nowrap"> Now we need some document for your restaurant! </h6>
+
+        <div class="form-group row">
+          <label>Certificate of Occupancy</label>
+          <input id="restaurantAddFile" type="file" placeholder="" required>
+        </div>
+      </form>
+      <small class="ml-5"> You can <a href="#">skip</a> this step for now but your restaurant won't be published</small>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new-sharer2')" class="btn btn-secondary"> Back </button>
-        <button ng-click="saveAndContinue('/restaurant-new-sharer4')" class="btn btn-primary"> Continue</button>
+        <button ng-click="saveAndContinue('/restaurant-new-sharer4')" class="btn btn-primary"> Continue </button>
       </div>
-    </form>
+    </div>
   </div>
 
 

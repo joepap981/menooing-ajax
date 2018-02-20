@@ -7,8 +7,8 @@
       <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
   <div class="restaurant-text-title">
-    <h3> Hey Sharer!</h3>
-    <p> Give us some information about your brick and mortar restaurant</p>
+    <h3> Hey Sharee!</h3>
+    <p> Give us some information about your share kitchen restaurant!</p>
   </div>
   <div class="margin-auto">
     <form name="restaurantRegistration" class="restaurant-information-form">
