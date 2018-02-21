@@ -34,13 +34,13 @@
       <div class="ml-3">
         <div class="form-group row">
           <label>Copy of Drivers License</label>
-          <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Labor"
+          <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Drivers License"
           data-content="And here's some amazing content. It's very engaging. Right?">?</a>
           <input id="restaurantAddFile" type="file" placeholder="" required>
         </div>
         <div class="form-group row">
           <label>Food Manager Certificate</label>
-          <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Labor"
+          <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Food Manager Certificate"
           data-content="And here's some amazing content. It's very engaging. Right?">?</a>
           <input id="restaurantAddFile" type="file" placeholder="" required>
         </div>
@@ -48,7 +48,7 @@
 
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new')" class="btn btn-secondary"> Back </button>
-        <button ng-click="saveAndContinue('/restaurant-new-sharer2')" class="btn btn-primary"> Continue </button>
+        <button ng-click="saveAndContinue('/restaurant-new-sharee2')" class="btn btn-primary"> Continue </button>
       </div>
 
     </form>

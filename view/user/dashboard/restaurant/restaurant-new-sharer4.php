@@ -18,7 +18,7 @@
       <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
   <div class="restaurant-text-title">
-    <h3> The last information we need from you!  </h3>
+    <h3> What will you be sharing? </h3>
     <p> What type of excess capacity will you be offering your tenants? </p>
   </div>
   <div class="margin-auto">
@@ -60,11 +60,11 @@
           <input id="narrowInput" type="text" class="form-control col-input" placeholder="" required>
         </div>
       </form>
-        <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
-          <button ng-click="redirect('/restaurant-new-sharer3')" class="btn btn-secondary"> Back </button>
-          <button ng-click="saveAndContinue('/restaurant-new-sharer5')" class="btn btn-primary"> Submit for Confirmation </button>
-        </div>
-      </form>
+      <small class="text-nowrap text-center"> You can skip this step for now and edit them later.</small>
+      <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
+        <button ng-click="redirect('/restaurant-new-sharer3')" class="btn btn-secondary"> Back </button>
+        <button ng-click="saveAndContinue('/restaurant-new-sharer5')" class="btn btn-primary"> Submit for Confirmation </button>
+      </div>
     </div>
   </div>
 
