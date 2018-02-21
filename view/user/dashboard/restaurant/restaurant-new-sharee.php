@@ -46,6 +46,7 @@
         </div>
       </div>
 
+      <small class="text-nowrap text-center"> Your documents will be safe with us!</small>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new')" class="btn btn-secondary"> Back </button>
         <button ng-click="saveAndContinue('/restaurant-new-sharee2')" class="btn btn-primary"> Continue </button>

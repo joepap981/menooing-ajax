@@ -9,8 +9,8 @@
 
   <div ng-if="true">
     <div class="restaurant-text-title">
-      <h3> Your restaurant has been created! </h3>
-      <p> Your restaurant will not be visible to the public until the admin gives a confirmation.</p>
+      <h3> Thanks! Your registration request has been sent to our team! </h3>
+      <p> After review, an email will be sent to you to finalize your restaurant registration. Until then, your restaurant will not be public to users.</p>
       <p> You can still add menus and edit your restaurant information.</p>
       <button class="btn btn-secondary" ng-click="redirect('/restaurant-list')"> Edit Restaurant </button>
       <button class="btn btn-primary" ng-click="redirect('/restaurant-list')"> Move to Restaurants </button>

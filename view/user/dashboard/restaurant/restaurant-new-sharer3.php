@@ -8,7 +8,7 @@
   </div>
   <div class="restaurant-text-title">
     <h3> Share a little more about your restaurant. </h3>
-    <p> Tell us what kind of food your make </p>
+    <p> Tell us what kind of food you make. </p>
   </div>
   <div class="margin-auto">
     <form name="restaurantRegistration" class="restaurant-information-form">
