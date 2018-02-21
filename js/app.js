@@ -52,8 +52,8 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl', 'ui.bootstrap
     .when('/restaurant-new-sharer4', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-new-sharer4.php'
     })
-    .when('/restaurant-new-sharer5', {
-      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-sharer5.php'
+    .when('/restaurant-new-success', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-success.php'
     })
     .when('/restaurant-new-sharee', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-new-sharee.php'
@@ -86,6 +86,10 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl', 'ui.bootstrap
     //profile
     .when('/profile', {
       templateUrl: 'view/user/dashboard/profile/'
+    })
+
+    .when('/test-in', {
+      templateUrl: 'test.php'
     })
   	.otherwise({
   		redirectTo: '/'

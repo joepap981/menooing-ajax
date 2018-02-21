@@ -24,46 +24,52 @@
   <div class="margin-auto">
     <div class="restaurant-information-form">
       <form name="restaurantRegistration">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1"> Time </label>
-          <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Time"
-           data-content="And here's some amazing content. It's very engaging. Right?">?</a>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-          <label class="form-check-label" for="defaultCheck2">Labor</label>
-          <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Labor"
-          data-content="And here's some amazing content. It's very engaging. Right?">?</a>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-          <label class="form-check-label" for="defaultCheck2">Space</label>
-          <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Space"
-          data-content="And here's some amazing content. It's very engaging. Right?">?</a>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-          <label class="form-check-label" for="defaultCheck2">Equipment</label>
-          <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Equipment"
-          data-content="And here's some amazing content. It's very engaging. Right?">?</a>
-        </div>
-        <div id="small-left-margin" class="row">
-          <div class="col-label">
-            <div class="form-check">
+        <div class="form-group ml-large">
+          <div class="row">
+            <div class="form-check col">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1"> Time </label>
+              <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Time"
+               data-content="And here's some amazing content. It's very engaging. Right?">?</a>
+            </div>
+            <div class="form-check col">
               <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-              <label class="form-check-label " for="defaultCheck2">Other</label>
-              <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Other"
+              <label class="form-check-label" for="defaultCheck2">Labor</label>
+              <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Labor"
               data-content="And here's some amazing content. It's very engaging. Right?">?</a>
             </div>
           </div>
-          <input id="narrowInput" type="text" class="form-control col-input" placeholder="" required>
+          <div class="row">
+            <div class="form-check col">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+              <label class="form-check-label" for="defaultCheck2">Space</label>
+              <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Space"
+              data-content="And here's some amazing content. It's very engaging. Right?">?</a>
+            </div>
+            <div class="form-check col">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+              <label class="form-check-label" for="defaultCheck2">Equipment</label>
+              <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Equipment"
+              data-content="And here's some amazing content. It's very engaging. Right?">?</a>
+            </div>
+          </div>
+          <div id="small-left-margin" class="row">
+            <div class="col-label">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                <label class="form-check-label " for="defaultCheck2">Other</label>
+                <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Other"
+                data-content="And here's some amazing content. It's very engaging. Right?">?</a>
+              </div>
+            </div>
+            <input id="narrowInput" type="text" class="form-control col-input" placeholder="" required>
+          </div>
         </div>
       </form>
-      <small class="text-nowrap text-center"> You can skip this step for now and edit them later.</small>
+      <small class="text-nowrap ml-large"> You can skip this step for now and edit them later.</small>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new-sharer3')" class="btn btn-secondary"> Back </button>
-        <button ng-click="saveAndContinue('/restaurant-new-sharer5')" class="btn btn-primary"> Submit for Confirmation </button>
+        <button ng-click="saveAndContinue('/restaurant-new-success')" class="btn btn-primary"> Create Restaurant </button>
       </div>
     </div>
   </div>
