@@ -53,7 +53,6 @@ $jsTimeStamp = '?version=v-'.$timeStr;
 
 
 	?>
-
 	<script src="lib/growl-js/angular-growl.min.js"></script>
 	</body>
 </html>
