@@ -51,7 +51,18 @@
 
                 <div class="form-group row">
                   <span class="col-label" for="restaurantPhone"> Phone: </span>
-                  <input type="text" class="form-control col-input" id="restaurantPhone"  ng-model ="restaurant.restaurant_phone">
+                  <div class="col-input">
+                    <input data-toggle="collapse" data-target="#collapsePhone" type="text" class="form-control-plaintext" id="restaurantPhone" readonly ng-model ="restaurant.restaurant_phone">
+                    <div class="collapse" id="collapsePhone">
+                      <div class="card card-body collapse">
+                        <input type="text" class="form-control" id="restaurantPhone" ng-model ="restaurant.restaurant_phone">
+                        <div class="btn-box">
+                          <button data-toggle= "collapse" data-target="#collapseAddress" class="btn secondary"> Cancel </button>
+                          <button class="btn btn-primary"> Save Changes </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="form-group row">

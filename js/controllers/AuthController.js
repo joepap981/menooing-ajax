@@ -85,7 +85,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
     if($scope.checkPassword()) {
       accessDB.set($scope.signup).then(function(response) {
         //successfully wrote into DB
-        if (response == true) {
+        if (response == 'Available') {
           $scope.email_exists = false;
 
           //auto logs in with current info and redirect to home
@@ -97,8 +97,14 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
 
         }
         //failed to write into DB
-        else {
+        else if (response == 'Unavailable'){
           $scope.email_exists = true;
+        }
+        else if (response == "DBError") {
+          growl.error('Something went wrong inserting data to DB.', {title: "DB Error!"});
+        }
+        else {
+          growl.error('Something went terribly wrong. Contact the admin.', {title: "DB Error!"});
         }
       });
     }

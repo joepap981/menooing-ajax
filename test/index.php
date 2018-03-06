@@ -132,6 +132,8 @@
         // Get the place details from the autocomplete object.
         var place = autocomplete.getPlace();
 
+        console.log(place.address_components);
+
         for (var component in componentForm) {
           document.getElementById(component).value = '';
           document.getElementById(component).disabled = false;

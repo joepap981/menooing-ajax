@@ -23,21 +23,31 @@ $result = json_encode(mysqli_fetch_array(mysqli_query($conn, $query)));
 
 //return -1 if email already exists, does not add to database
 if ($result != "null") {
-  echo "Unavailable";
-//if the email does not exist, add to the database
+	echo "Unavailable";
+	//if the email does not exist, add to the database
 } else  {
+	$user_info["user_first_name"] = $data["user_first_name"];
+	$user_info["user_last_name"] = $data["user_last_name"];
+	$user_info["user_email"] = $data["user_email"];
+	$user_info["user_password"] = password_hash($data["user_password"],PASSWORD_DEFAULT);
 
-$user_info["user_first_name"] = $data["user_first_name"];
-$user_info["user_last_name"] = $data["user_last_name"];
-$user_info["user_email"] = $data["user_email"];
-$user_info["user_password"] = password_hash($data["user_password"],PASSWORD_DEFAULT);
+	$query = "INSERT INTO tb_user (user_first_name, user_last_name, user_email, user_password) VALUES ('" . $user_info['user_first_name'] . "', '" . $user_info["user_last_name"] . "', '" . $user_info["user_email"] . "', '" . $user_info["user_password"] . "');";
+	$result = mysqli_query($conn, $query);
 
-$query = "INSERT INTO tb_user (user_first_name, user_last_name, user_email, user_password) VALUES ('" . $user_info['user_first_name'] . "', '" . $user_info["user_last_name"] . "', '" . $user_info["user_email"] . "', '" . $user_info["user_password"] . "');";
-$result = mysqli_query($conn, $query);
+	if ($result == 1) {
+		$query = "SELECT user_id FROM tb_user WHERE user_email = '" . $data["user_email"] . "'";
+		$result = mysqli_fetch_array(mysqli_query($conn, $query));
 
-
-
-echo "Available";
+		$query = "INSERT INTO tb_user_info (user_ref) VALUES ('" . $result[0] . "');";
+		$result = mysqli_query($conn, $query);
+		if ($result == 1) {
+			echo "Available";
+		} else {
+			echo "Database Insert Error";
+		}
+	} else {
+		echo "Database Insert Error";
+	}
 }
 
 ?>

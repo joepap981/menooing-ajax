@@ -15,10 +15,14 @@ angular.module('menuApp').factory('accessDB', function($http) {
         //*** need to implement case where db read or write fail!! ***
 
           //check if email already exists and if it does,
-          if (response.data == "Unavailable") {
-            return false;
+          if (response.data == "Available") {
+            return 'Available';
+          } else if (response.data == "Database Insert Error") {
+            return 'DBError';
+          } else  if(response.data == "Unavailable"){
+            return 'Unavailable';
           } else {
-            return true;
+            return 'Failed';
           }}, function myError(response) {
         });
     },
