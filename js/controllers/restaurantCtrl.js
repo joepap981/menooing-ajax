@@ -1,4 +1,4 @@
-angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'accessDB', 'growl', function ($scope, $location, accessDB, growl, $uibModal) {
+angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'accessDB', 'growl', '$window', function ($scope, $location, accessDB, growl, $window) {
 
   $scope.userRestaurants = [];
   var init = function () {
@@ -12,7 +12,7 @@ angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'a
   init();
 
   //Restaurant registration
-  $scope.restaurant = {};
+  //$scope.restaurant = {};
   /*
   //submit input form information to DB
   $scope.registerRestaurant = function () {
@@ -42,16 +42,4 @@ angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'a
   }
   */
 
-  $scope.registerRestaurant = function (entity) {
-    if (entity == 'sharer') {
-      $location.path('/restaurant-new-sharer');
-    } else {
-      $location.path('/restaurant-new-sharee');
-    }
-  }
-
-  $scope.saveAndContinue = function (location) {
-    //$sessionStorage.restaurant = $scope.restaurant;
-    $location.path(location);
-  }
 }]);

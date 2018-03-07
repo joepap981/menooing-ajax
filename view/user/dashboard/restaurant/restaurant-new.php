@@ -2,7 +2,7 @@
 <!-- Custom CSS -->
 <link href="css/user/dashboard.css" rel="stylesheet">
 
-<div class="content-box" ng-controller="restaurantCtrl">
+<div class="content-box" ng-controller="restaurantRegisterCtrl">
   <div class="progress">
       <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>

@@ -25,6 +25,7 @@
 <script src="js/controllers/AuthController.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/UserDashboardController.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/restaurantCtrl.js<?php echo $jsTimeStamp ?>"></script>
+<script src="js/controllers/restaurantRegisterCtrl.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/restaurantProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/googlePlaceCtrl.js<?php echo $jsTimeStamp ?>"></script>
 
