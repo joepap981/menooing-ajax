@@ -13,6 +13,7 @@ angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'a
 
   //Restaurant registration
   $scope.restaurant = {};
+  /*
   //submit input form information to DB
   $scope.registerRestaurant = function () {
     if ($scope.restaurantRegistration.$valid) {
@@ -37,6 +38,15 @@ angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'a
       });
     } else {
       $scope.restaurantRegistration.submitted = true;
+    }
+  }
+  */
+
+  $scope.registerRestaurant = function (entity) {
+    if (entity == 'sharer') {
+      $location.path('/restaurant-new-sharer');
+    } else {
+      $location.path('/restaurant-new-sharee');
     }
   }
 
