@@ -1,4 +1,4 @@
-angular.module('menuApp').controller('googlePlaceCtrl',['$scope', 'accessDB', 'growl', function ($scope, accessDB, growl) {
+angular.module('menuApp').controller('googlePlaceCtrl',['$scope', 'growl', 'restaurantService', function ($scope, growl, restaurantService) {
 
     // This example displays an address form, using the autocomplete feature
     // of the Google Places API to help users fill in the information.
@@ -32,8 +32,8 @@ angular.module('menuApp').controller('googlePlaceCtrl',['$scope', 'accessDB', 'g
     $scope.fillInAddress = function() {
       // Get the place details from the autocomplete object.
       var place = autocomplete.getPlace();
-
-      console.log(place.address_components);
+      restaurantService.buildRestaurant('address', place.address_components);
+      //console.log(place.address_components);
     }
 
     // Bias the autocomplete object to the user's geographical location,
