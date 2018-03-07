@@ -1,13 +1,23 @@
-angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$location', 'accessDB', 'growl', '$window', function ($scope, $location, accessDB, growl, $window) {
+angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$location', 'restaurantService', 'growl', '$window', function ($scope, $location, restaurantService, growl, $window) {
+
+  $scope.restaurant = {};
 
   $scope.registerRestaurant = function (entity) {
     if (entity == 'sharer') {
-      $window.sessionStorage.restaurant = 'sharer';
+      restaurantService.buildRestaurant('restaurant_entity', 'sharer');
+      var sample = restaurantService.getRestaurant();
+      console.log(sample);
       $location.path('/restaurant-new-sharer');
     } else {
-      $window.sessionStorage.restaurant = 'sharee';
+      restaurantService.buildRestaurant('restaurant_entity', 'sharee');
+      var sample = restaurantService.getRestaurant();
+      console.log(sample);
       $location.path('/restaurant-new-sharee');
     }
+  }
+
+  $scope.registerRestaurant_2 = function () {
+      console.log($window.sessionStorage.restaurant['restaurant_entity']);
   }
 
   $scope.saveAndContinue = function (location) {

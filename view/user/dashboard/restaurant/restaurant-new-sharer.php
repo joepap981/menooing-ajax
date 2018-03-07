@@ -2,7 +2,7 @@
 <!-- Custom CSS -->
 <link href="css/user/dashboard.css" rel="stylesheet">
 
-<div class="content-box" ng-controller="restaurantCtrl">
+<div class="content-box" ng-controller="restaurantRegisterCtrl">
   <div class="progress">
       <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
@@ -15,7 +15,7 @@
       <input ng-controller= "googlePlaceCtrl" id="autocomplete" placeholder="Enter your address" ng-focus="geolocate()" type="text"></input>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new')" class="btn btn-secondary"> Back </button>
-        <button ng-click="saveAndContinue('/restaurant-new-sharer2')" class="btn btn-primary"> Continue </button>
+        <button ng-click="registerRestaurant_2()" class="btn btn-primary"> Continue </button>
       </div>
     </form>
   </div>
