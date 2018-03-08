@@ -1,6 +1,6 @@
 angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$location', 'restaurantService', 'growl', '$window', function ($scope, $location, restaurantService, growl, $window) {
 
-  function print (text) {
+  function debugm (text) {
     console.log(text);
   }
 
@@ -16,7 +16,7 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
       $location.path('/restaurant-new-sharee');
     }
     restaurantService.saveRestaurantToSession();
-    console.log($window.sessionStorage.restaurant);
+    debugm($window.sessionStorage.restaurant);
   }
 
   //new-sharer: add address

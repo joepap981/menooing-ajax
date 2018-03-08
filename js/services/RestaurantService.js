@@ -52,11 +52,14 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       restaurant[key] = value;
     },
 
-    //
+    //add restaurant data to sessionStorage for temporary storage
     saveRestaurantToSession: function () {
-
-      $window.sessionStorage.restaurant = JSON.stringify(restaurant);
-    }
+      var response = JSON.parse($window.sessionStorage.restaurant);
+      for(key in restaurant) {
+        response[key] = restaurant[key];
+      }
+      $window.sessionStorage.restaurant = JSON.stringify(response);
+    },
 
     //deletes an element of var restaurnat array attribute
     deleteRestaurantAttribute: function (attribute) {
