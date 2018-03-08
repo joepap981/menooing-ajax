@@ -1,7 +1,6 @@
 angular.module('menuApp').factory('restaurantService', function($http, $window) {
   var data = {};
   var googlePlace = {};
-  var restaurant = {};
 
   return {
     insertRestaurantInfo: function(restaurant) {
@@ -47,27 +46,21 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       });
     },
 
-    //add item to var restaurant
-    buildRestaurant: function (key, value) {
-      restaurant[key] = value;
-    },
-
     //add restaurant data to sessionStorage for temporary storage
-    saveRestaurantToSession: function () {
-      var response = JSON.parse($window.sessionStorage.restaurant);
+    saveRestaurantToSession: function (restaurant) {
+      //when there is nothing in Session, do not parse session.restaurant
+      if ($window.sessionStorage.restaurant == {}) {
+        var response = {};
+      }
+      //when there are items saved in session, parse JSON and add items
+      else {
+        var response = JSON.parse($window.sessionStorage.restaurant);
+      }
+
       for(key in restaurant) {
         response[key] = restaurant[key];
       }
       $window.sessionStorage.restaurant = JSON.stringify(response);
-    },
-
-    //deletes an element of var restaurnat array attribute
-    deleteRestaurantAttribute: function (attribute) {
-      delete restaurant[attribute];
-    },
-
-    getRestaurant: function () {
-      return restaurant;
     },
 
   }

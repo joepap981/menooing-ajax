@@ -1,26 +1,23 @@
 angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$location', 'restaurantService', 'growl', '$window', function ($scope, $location, restaurantService, growl, $window) {
 
-  function debugm (text) {
-    console.log(text);
-  }
 
   $scope.restaurant = {};
 
-  //registering restaurant: choose whether sharer or sharee
-  $scope.registerRestaurant = function (entity) {
-    if (entity == 'sharer') {
-      restaurantService.buildRestaurant('restaurant_entity', 'sharer');
-      $location.path('/restaurant-new-sharer');
-    } else {
-      restaurantService.buildRestaurant('restaurant_entity', 'sharee');
-      $location.path('/restaurant-new-sharee');
-    }
-    restaurantService.saveRestaurantToSession();
-    debugm($window.sessionStorage.restaurant);
+  //set value to $scope.restaurant
+  $scope.setRestaurantData = function (key, value) {
+    $scope.restaurant[key] = value;
   }
 
-  //new-sharer: add address
-  $scope.registerSharer = function () {
+  //add data to sessionStorage restaurant
+  $scope.registerRestaurant = function (redirectLocation) {
+    restaurantService.saveRestaurantToSession($scope.restaurant);
+    console.log($window.sessionStorage.restaurant);
+    $location.path(redirectLocation);
+  }
+
+
+  //extract required address information
+  $scope.extractAddress = function () {
     //attributes from autocomplete that needs to be saved
     var componentForm = {
       street_number: 'short_name',
@@ -40,14 +37,9 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
       if (componentForm[addressType]) {
         var val = fullAddress[i][componentForm[addressType]];
 
-        //save attribute to RestaurantService: var restaurant
-        restaurantService.buildRestaurant(addressType, val);
+        $scope.restaurant[addressType] = val;
       }
     }
-
-    restaurantService.saveRestaurantToSession();
-    console.log($window.sessionStorage.restaurant);
-    $location.path('restaurant-new-sharer2');
   }
 
   //new-sharer2: adding name and mobile; certificates
