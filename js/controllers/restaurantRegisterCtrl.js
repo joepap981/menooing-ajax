@@ -13,7 +13,7 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
     }
   }
 
-  //new-sharer2: add address
+  //new-sharer: add address
   $scope.registerSharer = function () {
     //attributes from autocomplete that needs to be saved
     var componentForm = {
@@ -41,6 +41,7 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
 
     //delete the address saved by googlePlaceCtrl in RestaurantService
     restaurantService.deleteRestaurantAttribute('address');
+    $location.path('restaurant-new-sharer2')
   }
 
 }]);

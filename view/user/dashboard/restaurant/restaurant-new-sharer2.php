@@ -2,7 +2,7 @@
 <!-- Custom CSS -->
 <link href="css/user/dashboard.css" rel="stylesheet">
 
-<div class="content-box" ng-controller="restaurantCtrl">
+<div class="content-box" ng-controller="restaurantRegisterCtrl">
   <div class="progress">
       <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
@@ -15,22 +15,22 @@
       <form name="restaurantRegistration">
         <div class="form-group row">
           <label class="col-label" for="owner_name">Name</label>
-          <input type="text" class="form-control col-input" placeholder="" required>
+          <input type="text" class="form-control col-input" placeholder="" ng-model='restaurant.name' required>
         </div>
         <div class="form-group row">
           <label class="col-label" for="owner_phone">Mobile</label>
-          <input type="text" class="form-control col-input" placeholder="" required>
+          <input type="text" class="form-control col-input" placeholder="" ng-model='restaurant.phone' required>
         </div>
         <div class="form-group row">
           <label>Food Mananger/Handler Certificate</label>
-          <input id="restaurantAddFile" type="file" placeholder="" required>
+          <input id="restaurantAddHandlerCert" type="file" placeholder="" required>
         </div>
 
         <p class="text-center mt-4 mb-3 text-nowrap"> Now we need some document for your restaurant! </p>
 
         <div class="form-group row">
           <label>Certificate of Occupancy</label>
-          <input id="restaurantAddFile" type="file" placeholder="" required>
+          <input id="restaurantAddCertOccupancy" type="file" placeholder="" required>
         </div>
       </form>
       <small class="text-nowrap"> Your documents will be reviewed by our admins before you can publish your restaurant.</small>
