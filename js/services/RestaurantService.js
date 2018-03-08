@@ -1,5 +1,6 @@
-angular.module('menuApp').factory('restaurantService', function($http) {
+angular.module('menuApp').factory('restaurantService', function($http, $window) {
   var data = {};
+  var googlePlace = {};
   var restaurant = {};
 
   return {
@@ -50,6 +51,12 @@ angular.module('menuApp').factory('restaurantService', function($http) {
     buildRestaurant: function (key, value) {
       restaurant[key] = value;
     },
+
+    //
+    saveRestaurantToSession: function () {
+
+      $window.sessionStorage.restaurant = JSON.stringify(restaurant);
+    }
 
     //deletes an element of var restaurnat array attribute
     deleteRestaurantAttribute: function (attribute) {

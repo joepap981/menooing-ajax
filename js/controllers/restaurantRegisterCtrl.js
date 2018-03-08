@@ -1,5 +1,9 @@
 angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$location', 'restaurantService', 'growl', '$window', function ($scope, $location, restaurantService, growl, $window) {
 
+  function print (text) {
+    console.log(text);
+  }
+
   $scope.restaurant = {};
 
   //registering restaurant: choose whether sharer or sharee
@@ -11,6 +15,8 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
       restaurantService.buildRestaurant('restaurant_entity', 'sharee');
       $location.path('/restaurant-new-sharee');
     }
+    restaurantService.saveRestaurantToSession();
+    console.log($window.sessionStorage.restaurant);
   }
 
   //new-sharer: add address
@@ -26,7 +32,7 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
     };
 
     //get the address saved to RestaurantService from googlePlaceCtrl
-    var fullAddress = restaurantService.getRestaurant().address;
+    var fullAddress = restaurantService.googlePlace;
 
     //iterate through the received address and save only the ones needed to RestaurantService restaurant
     for (var i = 0; i < fullAddress.length; i++) {
@@ -39,9 +45,22 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
       }
     }
 
-    //delete the address saved by googlePlaceCtrl in RestaurantService
-    restaurantService.deleteRestaurantAttribute('address');
-    $location.path('restaurant-new-sharer2')
+    restaurantService.saveRestaurantToSession();
+    console.log($window.sessionStorage.restaurant);
+    $location.path('restaurant-new-sharer2');
   }
+
+  //new-sharer2: adding name and mobile; certificates
+  $scope.registerSharer2 = function () {
+    for(key in $scope.restaurant) {
+      restaurantService.buildRestaurant(key, $scope.restaurant[key]);
+    }
+    restaurantService.saveRestaurantToSession();
+    $location.path('restaurant-new-sharer3');
+    console.log($window.sessionStorage.restaurant);
+  }
+
+
+
 
 }]);

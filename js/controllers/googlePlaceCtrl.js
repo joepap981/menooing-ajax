@@ -32,8 +32,7 @@ angular.module('menuApp').controller('googlePlaceCtrl',['$scope', 'growl', 'rest
     $scope.fillInAddress = function() {
       // Get the place details from the autocomplete object.
       var place = autocomplete.getPlace();
-      restaurantService.buildRestaurant('address', place.address_components);
-      //console.log(place.address_components);
+      restaurantService.googlePlace = place.address_components;
     }
 
     // Bias the autocomplete object to the user's geographical location,
