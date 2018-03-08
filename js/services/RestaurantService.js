@@ -46,12 +46,14 @@ angular.module('menuApp').factory('restaurantService', function($http) {
       });
     },
 
+    //add item to var restaurant
     buildRestaurant: function (key, value) {
       restaurant[key] = value;
     },
 
-    deleteRestaurant: function () {
-      restaurant = {};
+    //deletes an element of var restaurnat array attribute
+    deleteRestaurantAttribute: function (attribute) {
+      delete restaurant[attribute];
     },
 
     getRestaurant: function () {
