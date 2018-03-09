@@ -1,12 +1,6 @@
 angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$location', 'restaurantService', 'growl', '$window', function ($scope, $location, restaurantService, growl, $window) {
 
-
   $scope.restaurant = {};
-
-  //set value to $scope.restaurant
-  $scope.setRestaurantData = function (key, value) {
-    $scope.restaurant[key] = value;
-  }
 
   //add data to sessionStorage restaurant
   $scope.registerRestaurant = function (redirectLocation) {
@@ -15,6 +9,10 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
     $location.path(redirectLocation);
   }
 
+  //set value to $scope.restaurant
+  $scope.setRestaurantData = function (key, value) {
+    $scope.restaurant[key] = value;
+  }
 
   //extract required address information
   $scope.extractAddress = function () {
@@ -34,25 +32,12 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
     //iterate through the received address and save only the ones needed to RestaurantService restaurant
     for (var i = 0; i < fullAddress.length; i++) {
       var addressType = fullAddress[i].types[0];
+
+      //if the given address attribute matches one of the componentForms
       if (componentForm[addressType]) {
         var val = fullAddress[i][componentForm[addressType]];
-
         $scope.restaurant[addressType] = val;
       }
     }
   }
-
-  //new-sharer2: adding name and mobile; certificates
-  $scope.registerSharer2 = function () {
-    for(key in $scope.restaurant) {
-      restaurantService.buildRestaurant(key, $scope.restaurant[key]);
-    }
-    restaurantService.saveRestaurantToSession();
-    $location.path('restaurant-new-sharer3');
-    console.log($window.sessionStorage.restaurant);
-  }
-
-
-
-
 }]);

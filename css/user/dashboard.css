@@ -112,17 +112,28 @@
   background-color: #FCFAFA;
 }
 
+.row.half {
+  width: 48%;
+  margin-right: 0.5rem;
+}
+
 #openDay {
   margin-right: 0.5rem;
 }
 #closeDay {
   margin-left: 0.5rem;
 }
-#openHour {
-  margin-right: 0.5rem;
+
+.timepick {
+  padding: .375rem .1em .375rem .2em;
+  margin-right: 0.2rem;
+  margin-left: 0.2rem;
+  max-width: 3.5rem !important;
 }
-#closeHour {
-  margin-left: 0.5rem;
+
+.row{
+    margin-left: -2px;
+    margin-right: -2px;
 }
 
 #restaurantAdd.card {
