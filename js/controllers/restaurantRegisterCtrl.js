@@ -1,5 +1,6 @@
-angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$location', 'restaurantService', 'growl', '$window', function ($scope, $location, restaurantService, growl, $window) {
+angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$location', 'restaurantService', 'accessDB', 'growl', '$window', function ($scope, $location, restaurantService, accessDB, growl, $window) {
 
+  $scope.excessCapacity = {};
   $scope.operationHours = {};
   $scope.restaurant = {};
 
@@ -8,6 +9,21 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
     restaurantService.saveRestaurantToSession($scope.restaurant);
     console.log($window.sessionStorage.restaurant);
     $location.path(redirectLocation);
+  }
+
+  //create restaurant and insert to DB
+  $scope.createRestaurant = function () {
+    var session = accessDB.checkSession();
+    session.then(function (result) {
+      if (result["user_id"] != null) {
+        $window.sessionStorage.restaurant['user_ref'] = result["user_id"];
+        restaurantService.insertRestaurantInfo().then(function(response) {
+        });
+        $location.path('/restaurant-new-success');
+      } else {
+        $location.path('/nosession');
+      }
+    });
   }
 
   //set value to $scope.restaurant

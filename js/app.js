@@ -27,6 +27,9 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl', 'ui.bootstrap
     .when('/forgot-password', {
       templateUrl: 'view/user/authentication/forgot-password.php'
     })
+    .when('/nosession', {
+      templateUrl: 'view/user/dashboard/nosession.html'
+    })
 
 
     //User dashboard pages

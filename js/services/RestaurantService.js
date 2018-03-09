@@ -3,8 +3,9 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
   var googlePlace = {};
 
   return {
-    insertRestaurantInfo: function(restaurant) {
-      return $http({ method: "POST", url: "action/restaurant_register.php", data: restaurant})
+    //insert sessionStorage restaurant info to DB
+    insertRestaurantInfo: function() {
+      return $http({ method: "POST", url: "action/restaurant_register.php", data: $window.sessionStorage.restaurant})
       .then(function mySuccess (response) {
         if (response.data == "Success") {
           return 1;

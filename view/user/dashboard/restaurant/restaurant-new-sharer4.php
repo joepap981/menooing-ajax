@@ -13,7 +13,7 @@
 });
 </script>
 
-<div class="content-box" ng-controller="restaurantCtrl">
+<div class="content-box" ng-controller="restaurantRegisterCtrl">
   <div class="progress">
       <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
@@ -27,30 +27,30 @@
         <div class="form-group ml-large">
           <div class="row">
             <div class="form-check col">
-              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <input class="form-check-input" type="checkbox" value="" id="timeCheck" >
               <label class="form-check-label" for="defaultCheck1"> Time </label>
               <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Time"
-               data-content="And here's some amazing content. It's very engaging. Right?">?</a>
+               data-content="You give a portion of your restaurant's hours for your sharee.">?</a>
             </div>
             <div class="form-check col">
-              <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+              <input class="form-check-input" type="checkbox" value="" id="laborCheck">
               <label class="form-check-label" for="defaultCheck2">Labor</label>
               <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Labor"
-              data-content="And here's some amazing content. It's very engaging. Right?">?</a>
+              data-content="You can have one of employees do some of the work for your sharee.">?</a>
             </div>
           </div>
           <div class="row">
             <div class="form-check col">
-              <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+              <input class="form-check-input" type="checkbox" value="" id="spaceCheck">
               <label class="form-check-label" for="defaultCheck2">Space</label>
               <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Space"
-              data-content="And here's some amazing content. It's very engaging. Right?">?</a>
+              data-content="The idle space in your kitchen can be shared for extra cash.">?</a>
             </div>
             <div class="form-check col">
-              <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+              <input class="form-check-input" type="checkbox" value="" id="equipmentCheck">
               <label class="form-check-label" for="defaultCheck2">Equipment</label>
               <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Equipment"
-              data-content="And here's some amazing content. It's very engaging. Right?">?</a>
+              data-content="You can let your sharee use the equipment in you kitchen.">?</a>
             </div>
           </div>
           <div id="small-left-margin" class="row">
@@ -59,7 +59,7 @@
                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
                 <label class="form-check-label " for="defaultCheck2">Other</label>
                 <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Other"
-                data-content="And here's some amazing content. It's very engaging. Right?">?</a>
+                data-content="Anything else you want to share with your sharee.">?</a>
               </div>
             </div>
             <input id="narrowInput" type="text" class="form-control col-input" placeholder="" required>
@@ -69,10 +69,8 @@
       <small class="text-nowrap ml-large"> You can skip this step for now and edit them later.</small>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new-sharer3')" class="btn btn-secondary"> Back </button>
-        <button ng-click="saveAndContinue('/restaurant-new-success')" class="btn btn-primary"> Create Restaurant </button>
+        <button ng-click="createRestaurant()" class="btn btn-primary"> Create Restaurant </button>
       </div>
     </div>
   </div>
-
-
 </div>
