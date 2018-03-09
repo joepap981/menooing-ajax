@@ -43,6 +43,7 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
   }
 
   $scope.buildTime = function () {
-    
+    $scope.restaurant['restaurant_open_hour'] = $scope.operationHours['openHour'] + ":" + $scope.operationHours['openMin'] + $scope.operationHours['open'];
+    $scope.restaurant['restaurant_close_hour'] = $scope.operationHours['closeHour'] + ":" + $scope.operationHours['closeMin'] + $scope.operationHours['close'];
   }
 }]);

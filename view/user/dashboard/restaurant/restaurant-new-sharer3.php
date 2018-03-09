@@ -93,12 +93,12 @@
             </select>
             <span> : </span>
             <select class="custom-select col timepick" id="openMin" ng-model = "operationHours.openMin">
-              <option value="1" selected>00</option>
-              <option value="2">30</option>
+              <option value="00" selected>00</option>
+              <option value="30">30</option>
             </select>
             <select class="custom-select col timepick" id="open" ng-model = "operationHours.open">
-              <option value="1" selected>am</option>
-              <option value="2">pm</option>
+              <option value="am" selected>am</option>
+              <option value="pm">pm</option>
             </select>
           </div>
           <div class="row half">
@@ -119,12 +119,12 @@
             </select>
             <span>:</span>
             <select class="custom-select col timepick" id="closeHour" ng-model = "operationHours.closeMin">
-              <option value="1" selected>00</option>
-              <option value="2">30</option>
+              <option value="00" selected>00</option>
+              <option value="30">30</option>
             </select>
             <select class="custom-select col timepick" id="close" ng-model = "operationHours.close">
-              <option value="1" selected>am</option>
-              <option value="2">pm</option>
+              <option value="am" selected>am</option>
+              <option value="pm">pm</option>
             </select>
           </div>
         </div>
@@ -132,7 +132,7 @@
       <small class="text-nowrap text-center"> You can skip this step for now and edit them later.</small>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new-sharer2')" class="btn btn-secondary"> Back </button>
-        <button ng-click="saveAndContinue('/restaurant-new-sharer4')" class="btn btn-primary"> Continue </button>
+        <button ng-click="buildTime(); registerRestaurant('restaurant-new-sharer4')" class="btn btn-primary"> Continue </button>
       </div>
     </form>
   </div>
