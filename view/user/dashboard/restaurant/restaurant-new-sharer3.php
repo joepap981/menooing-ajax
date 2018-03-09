@@ -14,7 +14,7 @@
     <form name="restaurantRegistration" class="restaurant-information-form">
       <div class="form-group row">
         <span class="col-label">Restaurant Cuisine</span>
-        <select class="custom-select col-input" id="restaurantCuisine" ng-model="restaurant.restaurant_cuisine">
+        <select class="custom-select col-input" id="restaurantCuisine" ng-model="restaurant.cuisine">
           <option value="1" selected>American</option>
           <option value="2">British</option>
           <option value="3">Caribbean</option>
@@ -36,7 +36,7 @@
       </div>
       <div class="form-group row">
         <span class="col-label">Restaurant Category</span>
-        <select class="custom-select col-input" id="restaurantCategory" ng-model="restaurant.restaurant_category">
+        <select class="custom-select col-input" id="restaurantCategory" ng-model="restaurant.category">
           <option value="1" selected>Casual Dining</option>
           <option value="2">Fine Dining</option>
           <option value="3">Fast Casual</option>
@@ -51,7 +51,7 @@
       <div class="form-group row">
         <span class="col-label">Open Days</span>
         <div class="col-input">
-          <select class="custom-select" id="openDay" ng-model='restaurant.restaurant_open_day'>
+          <select class="custom-select" id="openDay" ng-model='restaurant.open_day'>
             <option value="Sunday" selected>Sunday</option>
             <option value="Monday">Monday</option>
             <option value="Tuesday">Tuesday</option>
@@ -61,7 +61,7 @@
             <option value=">Saturday">Saturday</option>
           </select>
           <span> to </span>
-          <select class="custom-select" id="closeDay" ng-model='restaurant.restaurant_close_day'>
+          <select class="custom-select" id="closeDay" ng-model='restaurant.close_day'>
             <option value="Sunday" selected>Sunday</option>
             <option value="Monday">Monday</option>
             <option value="Tuesday">Tuesday</option>

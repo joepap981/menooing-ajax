@@ -21,7 +21,7 @@ $data = json_decode($postdata, true);
 
 //**** Use this type of POST + GET for user signing and signout later on!! REFACTOR!!!
 //Building query string for INSERT into database
-$query = "INSERT INTO " . $dbName . "." . $table_name . "(restaurant_owner_ref, ";
+$query = "INSERT INTO " . $dbName . "." . $table_name . "(user_ref, ";
 
 foreach($data as $key => $value) {
   $query = $query . "restaurant_" . $key . ", ";
@@ -36,7 +36,7 @@ foreach($data as $key => $value) {
 
 //trim end ,
 $query = substr($query, 0, -2) . ");";
-//print $query;
+print $query;
 
 $result = (mysqli_query($conn, $query));
 

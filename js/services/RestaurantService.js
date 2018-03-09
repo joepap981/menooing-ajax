@@ -5,7 +5,12 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
   return {
     //insert sessionStorage restaurant info to DB
     insertRestaurantInfo: function() {
-      return $http({ method: "POST", url: "action/restaurant_register.php", data: $window.sessionStorage.restaurant})
+      if ($window.sessionStorage.restaurant != null) {
+        var restaurant = $window.sessionStorage.restaurant;
+      } else {
+        var restaurant = {};
+      }
+      return $http({ method: "POST", url: "action/restaurant_register.php", data: restaurant})
       .then(function mySuccess (response) {
         if (response.data == "Success") {
           return 1;
@@ -50,7 +55,7 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
     //add restaurant data to sessionStorage for temporary storage
     saveRestaurantToSession: function (restaurant) {
       //when there is nothing in Session, do not parse session.restaurant
-      if ($window.sessionStorage.restaurant == {}) {
+      if ($window.sessionStorage.restaurant == null) {
         var response = {};
       }
       //when there are items saved in session, parse JSON and add items

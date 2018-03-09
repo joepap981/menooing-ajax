@@ -16,7 +16,6 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
     var session = accessDB.checkSession();
     session.then(function (result) {
       if (result["user_id"] != null) {
-        $window.sessionStorage.restaurant['user_ref'] = result["user_id"];
         restaurantService.insertRestaurantInfo().then(function(response) {
         });
         $location.path('/restaurant-new-success');
@@ -59,7 +58,7 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
   }
 
   $scope.buildTime = function () {
-    $scope.restaurant['restaurant_open_hour'] = $scope.operationHours['openHour'] + ":" + $scope.operationHours['openMin'] + $scope.operationHours['open'];
-    $scope.restaurant['restaurant_close_hour'] = $scope.operationHours['closeHour'] + ":" + $scope.operationHours['closeMin'] + $scope.operationHours['close'];
+    $scope.restaurant['open_hour'] = $scope.operationHours['openHour'] + ":" + $scope.operationHours['openMin'] + $scope.operationHours['open'];
+    $scope.restaurant['close_hour'] = $scope.operationHours['closeHour'] + ":" + $scope.operationHours['closeMin'] + $scope.operationHours['close'];
   }
 }]);
