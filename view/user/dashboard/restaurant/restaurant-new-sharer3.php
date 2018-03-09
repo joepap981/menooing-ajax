@@ -14,9 +14,8 @@
     <form name="restaurantRegistration" class="restaurant-information-form">
       <div class="form-group row">
         <span class="col-label">Restaurant Cuisine</span>
-        <select class="custom-select col-input" id="restaurantCuisine">
-          <option selected>Choose...</option>
-          <option value="1">American</option>
+        <select class="custom-select col-input" id="restaurantCuisine" ng-model="restaurant.restaurant_cuisine">
+          <option value="1" selected>American</option>
           <option value="2">British</option>
           <option value="3">Caribbean</option>
           <option value="4">Chinese</option>
@@ -37,9 +36,8 @@
       </div>
       <div class="form-group row">
         <span class="col-label">Restaurant Category</span>
-        <select class="custom-select col-input" id="restaurantCategory">
-          <option selected>Choose...</option>
-          <option value="1">Casual Dining</option>
+        <select class="custom-select col-input" id="restaurantCategory" ng-model="restaurant.restaurant_category">
+          <option value="1" selected>Casual Dining</option>
           <option value="2">Fine Dining</option>
           <option value="3">Fast Casual</option>
           <option value="4">Fast Food</option>
@@ -53,26 +51,24 @@
       <div class="form-group row">
         <span class="col-label">Open Days</span>
         <div class="col-input">
-          <select class="custom-select" id="openDay">
-            <option selected>Choose...</option>
-            <option value="1">Sunday</option>
-            <option value="2">Monday</option>
-            <option value="3">Tuesday</option>
-            <option value="3">Wednesday</option>
-            <option value="3">Thursday</option>
-            <option value="3">Friday</option>
-            <option value="3">Saturday</option>
+          <select class="custom-select" id="openDay" ng-model='restaurant.restaurant_open_day'>
+            <option value="Sunday" selected>Sunday</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value=">Friday">Friday</option>
+            <option value=">Saturday">Saturday</option>
           </select>
           <span> to </span>
-          <select class="custom-select" id="closeDay">
-            <option selected>Choose...</option>
-            <option value="1">Sunday</option>
-            <option value="2">Monday</option>
-            <option value="3">Tuesday</option>
-            <option value="3">Wednesday</option>
-            <option value="3">Thursday</option>
-            <option value="3">Friday</option>
-            <option value="3">Saturday</option>
+          <select class="custom-select" id="closeDay" ng-model='restaurant.restaurant_close_day'>
+            <option value="Sunday" selected>Sunday</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value=">Friday">Friday</option>
+            <option value=">Saturday">Saturday</option>
           </select>
         </div>
       </div>
@@ -80,33 +76,53 @@
         <span class="col-label">Open Hours</span>
         <div class="row col-input shiftright">
           <div class="row half">
-            <select class="custom-select col timepick" id="openHour">
-              <option value="1" selected>00</option>
-              <option value="2">01</option>
-              <option value="3">Three</option>
+            <select class="custom-select col timepick" id="openHour" ng-model = "operationHours.openHour">
+              <option value="00" selected>00</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
             </select>
             <span> : </span>
-            <select class="custom-select col timepick" id="openMin">
+            <select class="custom-select col timepick" id="openMin" ng-model = "operationHours.openMin">
               <option value="1" selected>00</option>
               <option value="2">30</option>
             </select>
-            <select class="custom-select col timepick" id="open">
+            <select class="custom-select col timepick" id="open" ng-model = "operationHours.open">
               <option value="1" selected>am</option>
               <option value="2">pm</option>
             </select>
           </div>
           <div class="row half">
-            <select class="custom-select col timepick" id="closeHour">
-              <option value="1" selected>00</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+            <select class="custom-select col timepick" id="closeHour" ng-model = "operationHours.closeHour">
+              <option value="00" selected>00</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
             </select>
             <span>:</span>
-            <select class="custom-select col timepick" id="closeHour">
+            <select class="custom-select col timepick" id="closeHour" ng-model = "operationHours.closeMin">
               <option value="1" selected>00</option>
               <option value="2">30</option>
             </select>
-            <select class="custom-select col timepick" id="close">
+            <select class="custom-select col timepick" id="close" ng-model = "operationHours.close">
               <option value="1" selected>am</option>
               <option value="2">pm</option>
             </select>

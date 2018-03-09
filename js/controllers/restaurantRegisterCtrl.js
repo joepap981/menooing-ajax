@@ -1,5 +1,6 @@
 angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$location', 'restaurantService', 'growl', '$window', function ($scope, $location, restaurantService, growl, $window) {
 
+  $scope.operationHours = {};
   $scope.restaurant = {};
 
   //add data to sessionStorage restaurant
@@ -39,5 +40,9 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
         $scope.restaurant[addressType] = val;
       }
     }
+  }
+
+  $scope.buildTime = function () {
+    
   }
 }]);
