@@ -13,7 +13,7 @@
 });
 </script>
 
-<div class="content-box" ng-controller="restaurantCtrl">
+<div class="content-box" ng-controller="restaurantRegisterCtrl">
   <div class="progress">
       <div class="progress-bar" role="progressbar" style="width: 33%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
@@ -28,28 +28,28 @@
         <input name="name" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.name" class="form-control" placeholder="" required>
       </div>
       <div class="form-group">
-        <label for="user_name">Mobile</label>
-        <input name="name" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.name" class="form-control" placeholder="" required>
+        <label for="user_mobile">Mobile</label>
+        <input name="mobile" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="user.phone" class="form-control" placeholder="" required>
       </div>
       <div class="ml-3">
         <div class="form-group row">
           <label>Copy of Drivers License</label>
           <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Drivers License"
-          data-content="And here's some amazing content. It's very engaging. Right?">?</a>
-          <input id="restaurantAddFile" type="file" placeholder="" required>
+          data-content="Please upload a jpg, png, or pdf photocopy of your driver's license.">?</a>
+          <input id="restaurantAddFile" type="file" placeholder="">
         </div>
         <div class="form-group row">
           <label>Food Manager Certificate</label>
           <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Food Manager Certificate"
-          data-content="And here's some amazing content. It's very engaging. Right?">?</a>
-          <input id="restaurantAddFile" type="file" placeholder="" required>
+          data-content="Please upload a jpg, png, or pdf photocopy of your food manager certificate.">?</a>
+          <input id="restaurantAddFile" type="file" placeholder="">
         </div>
       </div>
 
       <small class="text-nowrap text-center"> Your documents will be safe with us!</small>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new')" class="btn btn-secondary"> Back </button>
-        <button ng-click="saveAndContinue('/restaurant-new-sharee2')" class="btn btn-primary"> Continue </button>
+        <button ng-click="registerRestaurant('/restaurant-new-sharee2')" class="btn btn-primary"> Continue </button>
       </div>
 
     </form>

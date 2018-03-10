@@ -14,14 +14,14 @@
     <form name="restaurantRegistration" class="restaurant-information-form">
       <div class="form-group row">
         <label class="col-label" for="owner_name">Name</label>
-        <input type="text" class="form-control col-input" placeholder="" ng-model='restaurant.name' required>
+        <input type="text" class="form-control col-input" placeholder="" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model='restaurant.name' placeholder="" required>
       </div>
 
       <div class="restaurant-text-title">
         <p> Where is your brick and mortar store located? </p>
       </div>
 
-      <input ng-controller= "googlePlaceCtrl" id="autocomplete" placeholder="Enter your address" ng-focus="geolocate()" type="text"></input>
+      <input name="location" ng-controller= "googlePlaceCtrl" id="autocomplete" placeholder="Enter your address" ng-focus="geolocate()" type="text" required></input>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new')" class="btn btn-secondary"> Back </button>
         <button ng-click="extractAddress(); registerRestaurant('/restaurant-new-sharer2')" class="btn btn-primary"> Continue </button>

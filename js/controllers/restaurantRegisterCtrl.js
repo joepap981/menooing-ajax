@@ -3,11 +3,14 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
   $scope.excessCapacity = {};
   $scope.operationHours = {};
   $scope.restaurant = {};
+  $scope.user = {};
 
   //add data to sessionStorage restaurant
   $scope.registerRestaurant = function (redirectLocation) {
-    restaurantService.saveRestaurantToSession($scope.restaurant);
+    restaurantService.saveToSession('restaurant', $scope.restaurant);
+    restaurantService.saveToSession('user', $scope.user);
     console.log($window.sessionStorage.restaurant);
+    console.log($window.sessionStorage.user);
     $location.path(redirectLocation);
   }
 
@@ -55,17 +58,22 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
     var fullAddress = restaurantService.googlePlace;
 
     //iterate through the received address and save only the ones needed to RestaurantService restaurant
-    for (var i = 0; i < fullAddress.length; i++) {
-      var addressType = fullAddress[i].types[0];
+    if (fullAddress != null) {
+      for (var i = 0; i < fullAddress.length; i++) {
+        var addressType = fullAddress[i].types[0];
 
-      //if the given address attribute matches one of the componentForms
-      if (componentForm[addressType]) {
-        var val = fullAddress[i][componentForm[addressType]];
-        $scope.restaurant[addressType] = val;
+        //if the given address attribute matches one of the componentForms
+        if (componentForm[addressType]) {
+          var val = fullAddress[i][componentForm[addressType]];
+          $scope.restaurant[addressType] = val;
+        }
       }
+    } else {
+
     }
   }
 
+  //cancatenate time string
   $scope.buildTime = function () {
     $scope.restaurant['open_hour'] = $scope.operationHours['openHour'] + ":" + $scope.operationHours['openMin'] + $scope.operationHours['open'];
     $scope.restaurant['close_hour'] = $scope.operationHours['closeHour'] + ":" + $scope.operationHours['closeMin'] + $scope.operationHours['close'];

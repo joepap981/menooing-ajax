@@ -54,20 +54,20 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
     },
 
     //add restaurant data to sessionStorage for temporary storage
-    saveRestaurantToSession: function (restaurant) {
+    saveToSession: function (type, obj) {
       //when there is nothing in Session, do not parse session.restaurant
-      if ($window.sessionStorage.restaurant == null) {
+      if ($window.sessionStorage[type] == null) {
         var response = {};
       }
       //when there are items saved in session, parse JSON and add items
       else {
-        var response = JSON.parse($window.sessionStorage.restaurant);
+        var response = JSON.parse($window.sessionStorage[type]);
       }
 
-      for(key in restaurant) {
-        response[key] = restaurant[key];
+      for(key in obj) {
+        response[key] = obj[key];
       }
-      $window.sessionStorage.restaurant = JSON.stringify(response);
+      $window.sessionStorage[type] = JSON.stringify(response);
     },
 
   }
