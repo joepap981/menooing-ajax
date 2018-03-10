@@ -14,10 +14,6 @@
     <div class="restaurant-information-form">
       <form name="restaurantRegistration">
         <div class="form-group row">
-          <label class="col-label" for="owner_name">Name</label>
-          <input type="text" class="form-control col-input" placeholder="" ng-model='restaurant.name' required>
-        </div>
-        <div class="form-group row">
           <label class="col-label" for="owner_phone">Mobile</label>
           <input type="text" class="form-control col-input" placeholder="" ng-model='restaurant.phone' required>
         </div>

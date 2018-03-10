@@ -67,7 +67,6 @@
 
 /*Registering new restaurant */
 
-
 .form-group {
   margin-bottom: 10px;
   padding:0;
@@ -88,6 +87,15 @@
 }
 
 /* new restaurant */
+
+input#autocomplete.ng-scope {
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  min-height: 2rem;
+  padding: .4rem;
+}
+
 .restaurant-text-title {
   margin-top: 1rem;
   padding: 0.5rem;
@@ -203,6 +211,8 @@ input.ng-invalid.submitted {
 .right-margin {
   margin-right: 340px;
 }
+
+
 /* restaurant profile */
 
 #profile.card-header {

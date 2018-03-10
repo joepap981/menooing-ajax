@@ -2,6 +2,7 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
   var data = {};
   var googlePlace = {};
 
+
   return {
     //insert sessionStorage restaurant info to DB
     insertRestaurantInfo: function() {

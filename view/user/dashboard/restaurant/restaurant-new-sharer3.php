@@ -15,32 +15,32 @@
       <div class="form-group row">
         <span class="col-label">Restaurant Cuisine</span>
         <select class="custom-select col-input" id="restaurantCuisine" ng-model="restaurant.cuisine">
-          <option value="1" selected>American</option>
-          <option value="2">British</option>
-          <option value="3">Caribbean</option>
-          <option value="4">Chinese</option>
-          <option value="5">French</option>
-          <option value="6">Greek</option>
-          <option value="7">Indian</option>
-          <option value="8">Italian</option>
-          <option value="9">Japanese</option>
-          <option value="10">Mediterranean</option>
-          <option value="11">Mexican</option>
-          <option value="12">Moroccan</option>
-          <option value="13">Spanish</option>
-          <option value="14">Thai</option>
-          <option value="15">Turkish</option>
-          <option value="16">Korean</option>
+          <option value="American" selected>American</option>
+          <option value="British">British</option>
+          <option value=">Caribbean">Caribbean</option>
+          <option value="Chinese">Chinese</option>
+          <option value="French">French</option>
+          <option value="Greek">Greek</option>
+          <option value="Indian">Indian</option>
+          <option value="Italian">Italian</option>
+          <option value="Japanese">Japanese</option>
+          <option value="Mediterranean">Mediterranean</option>
+          <option value="Mexican">Mexican</option>
+          <option value="Moroccan">Moroccan</option>
+          <option value="Spanish">Spanish</option>
+          <option value="Thai">Thai</option>
+          <option value="Turkish">Turkish</option>
+          <option value="Korean">Korean</option>
 
         </select>
       </div>
       <div class="form-group row">
         <span class="col-label">Restaurant Category</span>
         <select class="custom-select col-input" id="restaurantCategory" ng-model="restaurant.category">
-          <option value="1" selected>Casual Dining</option>
-          <option value="2">Fine Dining</option>
-          <option value="3">Fast Casual</option>
-          <option value="4">Fast Food</option>
+          <option value="Casual Dining" selected>Casual Dining</option>
+          <option value="Fine Dining">Fine Dining</option>
+          <option value="Fast Casual">Fast Casual</option>
+          <option value="Fast Food">Fast Food</option>
         </select>
       </div>
 
