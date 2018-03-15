@@ -19,7 +19,7 @@
         </div>
         <div class="form-group row">
           <label>Food Mananger/Handler Certificate</label>
-          <input id="restaurantAddHandlerCert" type="file" placeholder="" required>
+          <input id="restaurantAddHandlerCert" type="file" file-input ="files" required/>
         </div>
 
         <p class="text-center mt-4 mb-3 text-nowrap"> Now we need some document for your restaurant! </p>
