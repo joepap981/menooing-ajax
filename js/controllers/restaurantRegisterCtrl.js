@@ -86,4 +86,14 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
     $scope.restaurant['open_hour'] = $scope.operationHours['openHour'] + ":" + $scope.operationHours['openMin'] + $scope.operationHours['open'];
     $scope.restaurant['close_hour'] = $scope.operationHours['closeHour'] + ":" + $scope.operationHours['closeMin'] + $scope.operationHours['close'];
   }
+
+  //create a form_data for uploaded file
+  $scope.uploadFile = function() {
+    var form_data = new FormData();
+    angular.forEach($scope.files, function(file) {
+      form_data.append('file', file);
+    });
+
+    restaurantService.uploadFile(form_data);
+  }
 }]);

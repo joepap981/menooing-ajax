@@ -91,5 +91,12 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       $window.sessionStorage[type] = JSON.stringify(response);
     },
 
+    uploadFile: function (form_data) {
+      return $http({ method: "POST", url: "action/uploadfile.php", data: form_data, headers: {'Content-Type': undefined},
+    }).then(function mySuccess(response) {
+        alert(response);
+      });
+    }
+
   }
 });
