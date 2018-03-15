@@ -3,7 +3,7 @@ include_once 'inc_signin_db.php';
 session_start();
 $user =  $_SESSION['user'];
 
-$table_name = "tb_restaurant";
+$table_name = "tb_user_info";
 
 //connect to mysql with infor from inc_signin_db
 $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
@@ -24,7 +24,7 @@ $data = json_decode($postdata, true);
 $query = "INSERT INTO " . $dbName . "." . $table_name . "(user_ref, ";
 
 foreach($data as $key => $value) {
-  $query = $query . "restaurant_" . $key . ", ";
+  $query = $query . "user_" . $key . ", ";
 }
 
 //trim end ,

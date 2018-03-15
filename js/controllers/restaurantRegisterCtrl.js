@@ -1,5 +1,4 @@
 angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$location', 'restaurantService', 'accessDB', 'growl', '$window', function ($scope, $location, restaurantService, accessDB, growl, $window) {
-
   $scope.excessCapacity = {};
   $scope.operationHours = {};
   $scope.restaurant = {};

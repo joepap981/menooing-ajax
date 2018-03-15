@@ -25,7 +25,7 @@
     <form name="restaurantRegistration" class="restaurant-information-form" >
       <div class="form-group row">
         <span class="col-label">Restaurant Cuisine</span>
-        <select class="custom-select col-input" id="restaurantCuisine">
+        <select class="custom-select col-input" id="restaurantCuisine" ng-model="restaurant.cuisine">
           <option value="American" selected>American</option>
           <option value="British">British</option>
           <option value=">Caribbean">Caribbean</option>
@@ -46,7 +46,7 @@
       </div>
       <div class="form-group row">
         <span class="col-label">Restaurant Category</span>
-        <select class="custom-select col-input" id="restaurantCategory">
+        <select class="custom-select col-input" id="restaurantCategory" ng-model="restaurant.category">
           <option value="Casual Dining" selected>Casual Dining</option>
           <option value="Fine Dining">Fine Dining</option>
           <option value="Fast Casual">Fast Casual</option>
@@ -98,7 +98,7 @@
 
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new-sharee')" class="btn btn-secondary"> Back </button>
-        <button ng-click="registerRestaurant('/restaurant-new-success')" class="btn btn-primary"> Create Restaurant </button>
+        <button ng-click="createRestaurant()" class="btn btn-primary"> Create Restaurant </button>
       </div>
     </form>
 

@@ -25,7 +25,7 @@
     <form name="restaurantRegistration" class="restaurant-information-form">
       <div class="form-group">
         <label for="user_mobile">Mobile</label>
-        <input name="mobile" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="user.phone" class="form-control" placeholder="" required>
+        <input name="mobile" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="user.phone" class="form-control"  required>
       </div>
       <div class="ml-3">
         <div class="form-group row">
