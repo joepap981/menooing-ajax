@@ -23,6 +23,24 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       });
     },
 
+    insertUserInfo: function() {
+      if ($window.sessionStorage.user != null) {
+        var user = $window.sessionStorage.user;
+      } else {
+        var user = {};
+      }
+      return $http({ method: "POST", url: "action/user_info_input.php", data: user})
+      .then(function mySuccess (response) {
+        if (response.data == "Success") {
+          return 1;
+        } else if (response.data == "Failed"){
+          return 0;
+        } else {
+          return -1;
+        }
+      });
+    },
+
     //check for user session and return restaurnt information related to user
     getRestaurantList: function(user_id) {
       return $http({ method: "GET", url: "action/restaurant_get_list.php"})
@@ -53,7 +71,9 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       });
     },
 
-    //add restaurant data to sessionStorage for temporary storage
+    //add  data to sessionStorage for temporary storage
+    //type: name of sessionStorage object
+    //obj: object to save into sessionStorage object
     saveToSession: function (type, obj) {
       //when there is nothing in Session, do not parse session.restaurant
       if ($window.sessionStorage[type] == null) {
@@ -64,6 +84,7 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
         var response = JSON.parse($window.sessionStorage[type]);
       }
 
+      //loop through each item and save to session storage
       for(key in obj) {
         response[key] = obj[key];
       }

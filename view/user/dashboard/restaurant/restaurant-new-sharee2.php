@@ -13,7 +13,7 @@
 });
 </script>
 
-<div class="content-box" ng-controller="restaurantCtrl">
+<div class="content-box" ng-controller="restaurantRegisterCtrl">
   <div class="progress">
       <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
@@ -26,19 +26,31 @@
       <div class="form-group row">
         <span class="col-label">Restaurant Cuisine</span>
         <select class="custom-select col-input" id="restaurantCuisine">
-          <option selected>Choose...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option value="American" selected>American</option>
+          <option value="British">British</option>
+          <option value=">Caribbean">Caribbean</option>
+          <option value="Chinese">Chinese</option>
+          <option value="French">French</option>
+          <option value="Greek">Greek</option>
+          <option value="Indian">Indian</option>
+          <option value="Italian">Italian</option>
+          <option value="Japanese">Japanese</option>
+          <option value="Mediterranean">Mediterranean</option>
+          <option value="Mexican">Mexican</option>
+          <option value="Moroccan">Moroccan</option>
+          <option value="Spanish">Spanish</option>
+          <option value="Thai">Thai</option>
+          <option value="Turkish">Turkish</option>
+          <option value="Korean">Korean</option>
         </select>
       </div>
       <div class="form-group row">
         <span class="col-label">Restaurant Category</span>
         <select class="custom-select col-input" id="restaurantCategory">
-          <option selected>Choose...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option value="Casual Dining" selected>Casual Dining</option>
+          <option value="Fine Dining">Fine Dining</option>
+          <option value="Fast Casual">Fast Casual</option>
+          <option value="Fast Food">Fast Food</option>
         </select>
       </div>
       <p class="text-center mt-4"> As a Sharee, what would you need from your Sharer?? </p>
@@ -80,13 +92,13 @@
               data-content="And here's some amazing content. It's very engaging. Right?">?</a>
             </div>
           </div>
-          <input id="narrowInput" type="text" class="form-control col-input" placeholder="" required>
+          <input id="narrowInput" type="text" class="form-control col-input" placeholder="">
         </div>
       </div>
 
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new-sharee')" class="btn btn-secondary"> Back </button>
-        <button ng-click="saveAndContinue('/restaurant-new-success')" class="btn btn-primary"> Create Restaurant </button>
+        <button ng-click="registerRestaurant('/restaurant-new-success')" class="btn btn-primary"> Create Restaurant </button>
       </div>
     </form>
 

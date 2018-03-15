@@ -21,15 +21,24 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
       if (result["user_id"] != null) {
         restaurantService.insertRestaurantInfo().then(function(response) {
           if (response == 1) {
-            growl.success('Your restaurant has been created!',{title: 'Success!'});
-            delete $window.sessionStorage.restaurant;
-            $location.path('/restaurant-new-success');
+            restaurantService.insertUserInfo().then(function(response2) {
+              if (response2 == 1) {
+                growl.success('Your restaurant has been created!',{title: 'Success!'});
+                delete $window.sessionStorage.user;
+                delete $window.sessionStorage.restaurant;
+                $location.path('/restaurant-new-success');
+              } else if (response2 == 0) {
+                growl.error('Your restaurant has failed to be registered. Try again from the beginning.',{title: 'DB Error!'});
+              } else {
+                growl.error('Something has gone terribly wrong. Notify the admin about this.',{title: 'Error!'});
+              }
+            });
           } else if (response == 0) {
             growl.error('Your restaurant has failed to be registered. Try again from the beginning.',{title: 'DB Error!'});
           } else {
             growl.error('Something has gone terribly wrong. Notify the admin about this.',{title: 'Error!'});
           }
-          });
+        });
       }
       else {
           $location.path('/nosession');

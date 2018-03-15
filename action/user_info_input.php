@@ -31,7 +31,7 @@ foreach($data as $key => $value) {
 $query = substr($query, 0, -2) . ") VALUES (" . $user['user_id'] . ", ";
 
 foreach($data as $key => $value) {
-  $query = $query . '"' . $value . '", ';
+  $query = $query . "'" . $value . "', ";
 }
 
 //trim end ,

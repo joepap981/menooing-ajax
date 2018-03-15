@@ -24,10 +24,6 @@
   <div class="margin-auto">
     <form name="restaurantRegistration" class="restaurant-information-form">
       <div class="form-group">
-        <label for="user_name">Name</label>
-        <input name="name" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="restaurant.name" class="form-control" placeholder="" required>
-      </div>
-      <div class="form-group">
         <label for="user_mobile">Mobile</label>
         <input name="mobile" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="user.phone" class="form-control" placeholder="" required>
       </div>

@@ -9,6 +9,7 @@ angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'a
     });
   }
   //run initialization method
-  init();
+  //init();
+
 
 }]);
