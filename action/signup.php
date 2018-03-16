@@ -38,12 +38,27 @@ if ($result != "null") {
 		$query = "SELECT user_id FROM tb_user WHERE user_email = '" . $data["user_email"] . "'";
 		$result = mysqli_fetch_array(mysqli_query($conn, $query));
 
-		$query = "INSERT INTO tb_user_info (user_ref) VALUES ('" . $result[0] . "');";
+		//create a user_info table pointing to new user
+		//salt for storage directory
+		$storage_salt = substr(sha1(rand()), 0, 15);
+		$query = "INSERT INTO tb_user_info (user_ref, user_storage_salt) VALUES ('$result[0]', '$storage_salt');";
 		$result = mysqli_query($conn, $query);
 		if ($result == 1) {
-			echo "Available";
+			//create restaurant storage folder
+			$query = "SELECT user_ref FROM tb_user_info WHERE user_storage_salt = '$storage_salt'";
+			$result = (mysqli_query($conn, $query));
+			$row = mysqli_fetch_array($result);
+
+			//create directory location with restaurant id and storage_salt.
+			$file_location = "../noexec/" . $row['restaurant_id'] . "/" . $storage_salt . "/";
+			if (!file_exists($file_location)) {
+				mkdir($file_location, 0777, true);
+				echo "Available";
+			} else {
+				echo "Failed to create new storage directory";
+			}
 		} else {
-			echo "Database Insert Error";
+			echo "Database Insert Error2";
 		}
 	} else {
 		echo "Database Insert Error";
