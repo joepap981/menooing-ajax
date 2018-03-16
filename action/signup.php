@@ -42,15 +42,13 @@ if ($result != "null") {
 		//salt for storage directory
 		$storage_salt = substr(sha1(rand()), 0, 15);
 		$query = "INSERT INTO tb_user_info (user_ref, user_storage_salt) VALUES ('$result[0]', '$storage_salt');";
-		$result = mysqli_query($conn, $query);
-		if ($result == 1) {
-			//create restaurant storage folder
-			$query = "SELECT user_ref FROM tb_user_info WHERE user_storage_salt = '$storage_salt'";
-			$result = (mysqli_query($conn, $query));
-			$row = mysqli_fetch_array($result);
 
-			//create directory location with restaurant id and storage_salt.
-			$file_location = "../noexec/" . $row['restaurant_id'] . "/" . $storage_salt . "/";
+		$insert_result = mysqli_query($conn, $query);
+		if ($insert_result == 1) {
+			//create restaurant storage folder
+			//create directory location with user_id and storage_salt.
+			$file_location = "../noexec/" . $result[0] . "/" . $storage_salt . "/";
+
 			if (!file_exists($file_location)) {
 				mkdir($file_location, 0777, true);
 				echo "Available";
