@@ -17,7 +17,7 @@
         <select class="custom-select col-input" id="restaurantCuisine" ng-model="restaurant.cuisine">
           <option value="American" selected>American</option>
           <option value="British">British</option>
-          <option value=">Caribbean">Caribbean</option>
+          <option value="Caribbean">Caribbean</option>
           <option value="Chinese">Chinese</option>
           <option value="French">French</option>
           <option value="Greek">Greek</option>
