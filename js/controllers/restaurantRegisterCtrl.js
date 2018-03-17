@@ -88,11 +88,16 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
   }
 
   //create a form_data for uploaded file
-  $scope.uploadFile = function() {
+  $scope.uploadFile = function(upload_file, table_name) {
     var form_data = new FormData();
-    angular.forEach($scope.files, function(file) {
-      form_data.append('file', file);
+
+    angular.forEach($scope[upload_file], function(file) {
+      form_data.append(upload_file, file);
     });
+
+    //name of file
+    form_data.append('file_type', upload_file);
+    form_data.append('table_name', table_name);
 
     restaurantService.uploadFile(form_data);
   }

@@ -19,21 +19,21 @@
         </div>
         <div class="form-group row">
           <label>Food Mananger/Handler Certificate</label>
-          <input id="restaurantAddHandlerCert" type="file" file-input ="files" required/>
+          <input id="restaurantAddHandlerCert" type="file" file-input ="user_cert_img_ref" required/>
         </div>
 
         <p class="text-center mt-4 mb-3 text-nowrap"> Now we need some document for your restaurant! </p>
 
         <div class="form-group row">
           <label>Certificate of Occupancy</label>
-          <input id="restaurantAddCertOccupancy" type="file" placeholder="" required>
+          <input id="restaurantAddCertOccupancy" type="file" file-input ="restaurant_cert"  required>
         </div>
       </form>
       <small class="text-nowrap"> Your documents will be reviewed by our admins before you can publish your restaurant.</small>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new-sharer')" class="btn btn-secondary"> Back </button>
         <button ng-click="registerRestaurant('/restaurant-new-sharer3')" class="btn btn-primary"> Continue </button>
-        <button ng-click="uploadFile()" class="btn btn-primary"> Test </button>
+        <button ng-click="uploadFile('user_cert_img_ref', 'tb_user_info'); uploadFile('restaurant_cert', 'tb_restaurant')" class="btn btn-primary"> Test </button>
       </div>
     </div>
   </div>
