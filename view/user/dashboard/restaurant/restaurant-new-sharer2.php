@@ -32,8 +32,8 @@
       <small class="text-nowrap"> Your documents will be reviewed by our admins before you can publish your restaurant.</small>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new-sharer')" class="btn btn-secondary"> Back </button>
-        <button ng-click="registerRestaurant('/restaurant-new-sharer3')" class="btn btn-primary"> Continue </button>
-        <button ng-click="uploadFile('user_cert_img_ref', 'tb_user_info'); uploadFile('restaurant_cert', 'tb_restaurant')" class="btn btn-primary"> Test </button>
+        <button ng-click="registerRestaurant('/restaurant-new-sharer3'); saveFile()" class="btn btn-primary"> Continue </button>
+        <button ng-click="" class="btn btn-primary"> Test </button>
       </div>
     </div>
   </div>

@@ -7,6 +7,7 @@ $user =  $_SESSION['user'];
 $file_type = $_POST['file_type'];
 $table_name = $_POST['table_name'];
 
+
 //connect to mysql with info from inc_signin_db
 $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
 $select_query = "SELECT user_storage_salt FROM tb_user_info WHERE user_ref = " . $user['user_id'] . ";";

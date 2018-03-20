@@ -1,6 +1,7 @@
 angular.module('menuApp').factory('restaurantService', function($http, $window) {
   var data = {};
   var googlePlace = {};
+  var file_list = [];
 
 
   return {
@@ -96,6 +97,14 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
     }).then(function mySuccess(response) {
         alert(response);
       });
+    },
+
+    pushToFileList: function (form_data) {
+      file_list.push(form_data);
+    },
+
+    getFileList: function () {
+      return file_list;
     }
 
   }

@@ -3,6 +3,7 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
   $scope.operationHours = {};
   $scope.restaurant = {};
   $scope.user = {};
+  $scope.files = {};
 
   //add data to sessionStorage restaurant
   $scope.registerRestaurant = function (redirectLocation) {
@@ -88,17 +89,35 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
   }
 
   //create a form_data for uploaded file
-  $scope.uploadFile = function(upload_file, table_name) {
-    var form_data = new FormData();
-
-    angular.forEach($scope[upload_file], function(file) {
-      form_data.append(upload_file, file);
+  $scope.uploadFile = function() {
+    angular.forEach(restaurantService.getFileList(), function (form_data) {
+      restaurantService.uploadFile(form_data);
     });
+  }
 
-    //name of file
-    form_data.append('file_type', upload_file);
-    form_data.append('table_name', table_name);
+  //save upload file to restaurantService
+  $scope.saveFile = function() {
+    angular.forEach($scope.files, function (file) {
+      var form_data = new FormData();
+      //append file itself
+      form_data.append(file.file_type, file[0]);
+      //append file type indicator
+      form_data.append('file_type', file.file_type);
 
-    restaurantService.uploadFile(form_data);
+      var table_name = (file.file_type).split("_")[0];
+
+      if(table_name == 'restaurant') {
+        form_data.append('table_name', 'tb_restaurant');
+      } else if (table_name == 'user') {
+        form_data.append('table_name', 'tb_user_info');
+      } else {}
+
+      restaurantService.pushToFileList(form_data);
+    });
+  }
+
+  $scope.testing = function() {
+    $scope.saveFile();
+    $scope.uploadFile();
   }
 }]);
