@@ -6,6 +6,7 @@ session_start();
 $user =  $_SESSION['user'];
 $file_type = $_POST['file_type'];
 $table_name = $_POST['table_name'];
+$restaurant_id = $_POST['restaurant_id'];
 
 
 //connect to mysql with info from inc_signin_db
@@ -18,8 +19,14 @@ $filename = $file_type . substr(sha1(rand()), 0, 10);
 $upload_location = "../noexec/" . $user['user_id'] . "/" . $select_result['user_storage_salt'] . "/";
 
 //upload file to the directory of user
-if (move_uploaded_file($_FILES[$file_type]['tmp_name'], $upload_location.$filename)) {
-  $insert_query = "UPDATE $table_name SET $file_type = '$upload_location$filename';";
+//*location/restaurantid_filename
+if (move_uploaded_file($_FILES[$file_type]['tmp_name'], $upload_location.$restaurant_id. '_' . $filename)) {
+  if ($table_name == 'tb_restaurant') {
+    $insert_query = "UPDATE $table_name SET $file_type = '$upload_location$restaurant_id_$filename' WHERE restaurant_id = $restaurant_id;";
+  } else if($table_name == 'tb_user_info') {
+    $insert_query = "UPDATE $table_name SET $file_type = '$upload_location$filename' WHERE user_ref = " . $user['user_id'] .";";
+  } else {}
+
   $insert_result = mysqli_query($conn, $insert_query);
 
   if ($insert_result == 1) {

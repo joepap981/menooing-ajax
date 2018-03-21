@@ -33,7 +33,6 @@
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new-sharer')" class="btn btn-secondary"> Back </button>
         <button ng-click="registerRestaurant('/restaurant-new-sharer3'); saveFile()" class="btn btn-primary"> Continue </button>
-        <button ng-click="" class="btn btn-primary"> Test </button>
       </div>
     </div>
   </div>

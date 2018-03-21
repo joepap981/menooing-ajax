@@ -17,11 +17,17 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
   //create restaurant and insert to DB
   $scope.createRestaurant = function () {
     var session = accessDB.checkSession();
+    //check for session
     session.then(function (result) {
+
+      //if a user is in session
       if (result["user_id"] != null) {
         restaurantService.insertRestaurantInfo().then(function(response) {
-          if (response == 1) {
+          //receive inserted restaurant id number
+          if (!isNaN(response)) {
+            //insert related user_info to database
             restaurantService.insertUserInfo().then(function(response2) {
+              //if sucessfully insert user information
               if (response2 == 1) {
                 growl.success('Your restaurant has been created!',{title: 'Success!'});
                 delete $window.sessionStorage.user;
@@ -33,6 +39,12 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
                 growl.error('Something has gone terribly wrong. Notify the admin about this.',{title: 'Error!'});
               }
             });
+
+            //upload files to file system and save location reference to DB
+            $scope.uploadFile(response).then(function() {
+              restaurantService.clearFileList();
+            });
+
           } else if (response == 0) {
             growl.error('Your restaurant has failed to be registered. Try again from the beginning.',{title: 'DB Error!'});
           } else {
@@ -40,6 +52,8 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
           }
         });
       }
+
+      //if there is no user in session, redirect to nosession info page
       else {
           $location.path('/nosession');
       }
@@ -89,8 +103,9 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
   }
 
   //create a form_data for uploaded file
-  $scope.uploadFile = function() {
+  $scope.uploadFile = function(restaurant_id) {
     angular.forEach(restaurantService.getFileList(), function (form_data) {
+      form_data.append('restaurant_id', restaurant_id);
       restaurantService.uploadFile(form_data);
     });
   }

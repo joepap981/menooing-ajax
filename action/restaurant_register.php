@@ -40,8 +40,10 @@ $query = substr($query, 0, -2) . ");";
 
 $result = (mysqli_query($conn, $query));
 
+
+
 if ($result == 1) {
-	echo "Success";
+	echo json_encode(mysqli_insert_id($conn));
 } else {
   echo "Failed to write to DB";
 }

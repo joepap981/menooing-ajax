@@ -14,12 +14,12 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       }
       return $http({ method: "POST", url: "action/restaurant_register.php", data: restaurant})
       .then(function mySuccess (response) {
-        if (response.data == "Success") {
-          return 1;
-        } else if (response.data == "Failed"){
-          return 0;
+        if (response.data == "Failed to write to DB") {
+          return 'Failed to write to DB';
+        } else if (!isNaN(parseInt(response.data))){
+          return parseInt(response.data);
         } else {
-          return -1;
+          return "Something terribly has gone wrong.";
         }
       });
     },
@@ -105,7 +105,11 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
 
     getFileList: function () {
       return file_list;
-    }
+    },
+
+    clearFileList: function () {
+      file_list = [];
+    },
 
   }
 });
