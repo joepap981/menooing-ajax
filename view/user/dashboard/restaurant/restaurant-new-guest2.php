@@ -53,7 +53,7 @@
           <option value="Fast Food">Fast Food</option>
         </select>
       </div>
-      <p class="text-center mt-4"> As a Sharee, what would you need from your Sharer?? </p>
+      <p class="text-center mt-4"> As a Guest, what would you need from your Host? </p>
       <div class="form-group">
         <div class="row">
           <div class="form-check col">
@@ -97,7 +97,7 @@
       </div>
 
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
-        <button ng-click="redirect('/restaurant-new-sharee')" class="btn btn-secondary"> Back </button>
+        <button ng-click="redirect('/restaurant-new-guest')" class="btn btn-secondary"> Back </button>
         <button ng-click="createRestaurant()" class="btn btn-primary"> Create Restaurant </button>
       </div>
     </form>

@@ -18,7 +18,7 @@
       <div class="progress-bar" role="progressbar" style="width: 33%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
   <div class="restaurant-text-title">
-    <h3> Hey Sharee!</h3>
+    <h3> Hey Guest!</h3>
     <p> Before we move on to anything, we need some information and documents to identify you!</p>
   </div>
   <div class="margin-auto">
@@ -45,7 +45,7 @@
       <small class="text-nowrap text-center"> Your documents will be safe with us!</small>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new')" class="btn btn-secondary"> Back </button>
-        <button ng-click="registerRestaurant('/restaurant-new-sharee2'); saveFile()" class="btn btn-primary"> Continue </button>
+        <button ng-click="registerRestaurant('/restaurant-new-guest2'); saveFile()" class="btn btn-primary"> Continue </button>
       </div>
 
     </form>

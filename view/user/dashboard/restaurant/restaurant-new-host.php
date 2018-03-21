@@ -7,7 +7,7 @@
       <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
   <div class="restaurant-text-title">
-    <h3> Hey Sharer!</h3>
+    <h3> Hey Host!</h3>
     <p> What is the name of your restaurant?</p>
   </div>
   <div class="margin-auto">
@@ -24,7 +24,7 @@
       <input name="location" ng-controller= "googlePlaceCtrl" id="autocomplete" placeholder="Enter your address" ng-focus="geolocate()" type="text" required></input>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new')" class="btn btn-secondary"> Back </button>
-        <button ng-click="extractAddress(); registerRestaurant('/restaurant-new-sharer2')" class="btn btn-primary"> Continue </button>
+        <button ng-click="extractAddress(); registerRestaurant('/restaurant-new-host2')" class="btn btn-primary"> Continue </button>
       </div>
     </form>
   </div>

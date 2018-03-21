@@ -43,26 +43,26 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl', 'ui.bootstrap
     .when('/restaurant-new', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-new.php'
     })
-    .when('/restaurant-new-sharer', {
-      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-sharer.php'
+    .when('/restaurant-new-host', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-host.php'
     })
-    .when('/restaurant-new-sharer2', {
-      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-sharer2.php'
+    .when('/restaurant-new-host2', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-host2.php'
     })
-    .when('/restaurant-new-sharer3', {
-      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-sharer3.php'
+    .when('/restaurant-new-host3', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-host3.php'
     })
-    .when('/restaurant-new-sharer4', {
-      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-sharer4.php'
+    .when('/restaurant-new-host4', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-host4.php'
     })
     .when('/restaurant-new-success', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-new-success.php'
     })
-    .when('/restaurant-new-sharee', {
-      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-sharee.php'
+    .when('/restaurant-new-guest', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-guest.php'
     })
-    .when('/restaurant-new-sharee2', {
-      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-sharee2.php'
+    .when('/restaurant-new-guest2', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-guest2.php'
     })
     .when('/restaurant-success', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-success.php'
@@ -70,8 +70,8 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl', 'ui.bootstrap
     .when('/restaurant-profile', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-profile.php'
     })
-    .when('/restaurant-sharer', {
-      templateUrl: 'view/user/dashboard/restaurant/restaurant-sharer.php'
+    .when('/restaurant-host', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-host.php'
     })
     .when('/restaurant-menu', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-menu.php'

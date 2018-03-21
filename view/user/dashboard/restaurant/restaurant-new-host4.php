@@ -30,13 +30,13 @@
               <input class="form-check-input" type="checkbox" value="" id="timeCheck" >
               <label class="form-check-label" for="defaultCheck1"> Time </label>
               <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Time"
-               data-content="You give a portion of your restaurant's hours for your sharee.">?</a>
+               data-content="You give a portion of your restaurant's hours for your guest.">?</a>
             </div>
             <div class="form-check col">
               <input class="form-check-input" type="checkbox" value="" id="laborCheck">
               <label class="form-check-label" for="defaultCheck2">Labor</label>
               <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Labor"
-              data-content="You can have one of employees do some of the work for your sharee.">?</a>
+              data-content="You can have one of employees do some of the work for your guest.">?</a>
             </div>
           </div>
           <div class="row">
@@ -50,7 +50,7 @@
               <input class="form-check-input" type="checkbox" value="" id="equipmentCheck">
               <label class="form-check-label" for="defaultCheck2">Equipment</label>
               <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Equipment"
-              data-content="You can let your sharee use the equipment in you kitchen.">?</a>
+              data-content="You can let your guest use the equipment in you kitchen.">?</a>
             </div>
           </div>
           <div id="small-left-margin" class="row">
@@ -59,7 +59,7 @@
                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
                 <label class="form-check-label " for="defaultCheck2">Other</label>
                 <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Other"
-                data-content="Anything else you want to share with your sharee.">?</a>
+                data-content="Anything else you want to share with your guest.">?</a>
               </div>
             </div>
             <input id="narrowInput" type="text" class="form-control col-input" placeholder="" required>
@@ -68,7 +68,7 @@
       </form>
       <small class="text-nowrap ml-large"> You can skip this step for now and edit them later.</small>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
-        <button ng-click="redirect('/restaurant-new-sharer3')" class="btn btn-secondary"> Back </button>
+        <button ng-click="redirect('/restaurant-new-host3')" class="btn btn-secondary"> Back </button>
         <button ng-click="createRestaurant()" class="btn btn-primary"> Create Restaurant </button>
       </div>
     </div>

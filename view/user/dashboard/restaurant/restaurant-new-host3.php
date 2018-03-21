@@ -131,8 +131,8 @@
       </div>
       <small class="text-nowrap text-center"> You can skip this step for now and edit them later.</small>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
-        <button ng-click="redirect('/restaurant-new-sharer2')" class="btn btn-secondary"> Back </button>
-        <button ng-click="buildTime(); registerRestaurant('restaurant-new-sharer4')" class="btn btn-primary"> Continue </button>
+        <button ng-click="redirect('/restaurant-new-host2')" class="btn btn-secondary"> Back </button>
+        <button ng-click="buildTime(); registerRestaurant('restaurant-new-host4')" class="btn btn-primary"> Continue </button>
       </div>
     </form>
   </div>
