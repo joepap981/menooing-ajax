@@ -19,7 +19,7 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
         } else if (!isNaN(parseInt(response.data))){
           return parseInt(response.data);
         } else {
-          return "Something terribly has gone wrong.";
+          return "Something has terribly gone wrong.";
         }
       });
     },
@@ -30,7 +30,7 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       } else {
         var user = {};
       }
-      return $http({ method: "POST", url: "action/user_info_input.php", data: user})
+      return $http({ method: "POST", url: "action/update_user_info.php", data: user})
       .then(function mySuccess (response) {
         if (response.data == "Success") {
           return 1;
@@ -95,7 +95,6 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
     uploadFile: function (form_data) {
       return $http({ method: "POST", url: "action/uploadfile.php", data: form_data, headers: {'Content-Type': undefined},
     }).then(function mySuccess(response) {
-        alert(response);
       });
     },
 

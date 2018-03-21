@@ -15,94 +15,39 @@
 
 <div class="content-box" ng-controller="restaurantRegisterCtrl">
   <div class="progress">
-      <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress-bar" role="progressbar" style="width: 33%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
   <div class="restaurant-text-title">
-    <h3> Tell us a little bit about what kind of restaurant you are planning. </h3>
-    <p> Kind of food are you making? </p>
+    <h3> Hey Guest!</h3>
+    <p> Before we move on to anything, we need some information and documents to identify you!</p>
   </div>
   <div class="margin-auto">
-    <form name="restaurantRegistration" class="restaurant-information-form" >
-      <div class="form-group row">
-        <span class="col-label">Restaurant Cuisine</span>
-        <select class="custom-select col-input" id="restaurantCuisine" ng-model="restaurant.cuisine">
-          <option value="American" selected>American</option>
-          <option value="British">British</option>
-          <option value="Caribbean">Caribbean</option>
-          <option value="Chinese">Chinese</option>
-          <option value="French">French</option>
-          <option value="Greek">Greek</option>
-          <option value="Indian">Indian</option>
-          <option value="Italian">Italian</option>
-          <option value="Japanese">Japanese</option>
-          <option value="Mediterranean">Mediterranean</option>
-          <option value="Mexican">Mexican</option>
-          <option value="Moroccan">Moroccan</option>
-          <option value="Spanish">Spanish</option>
-          <option value="Thai">Thai</option>
-          <option value="Turkish">Turkish</option>
-          <option value="Korean">Korean</option>
-        </select>
-      </div>
-      <div class="form-group row">
-        <span class="col-label">Restaurant Category</span>
-        <select class="custom-select col-input" id="restaurantCategory" ng-model="restaurant.category">
-          <option value="Casual Dining" selected>Casual Dining</option>
-          <option value="Fine Dining">Fine Dining</option>
-          <option value="Fast Casual">Fast Casual</option>
-          <option value="Fast Food">Fast Food</option>
-        </select>
-      </div>
-      <p class="text-center mt-4"> As a Guest, what would you need from your Host? </p>
+    <form name="restaurantRegistration" class="restaurant-information-form">
       <div class="form-group">
-        <div class="row">
-          <div class="form-check col">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1"> Time </label>
-            <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Time"
-             data-content="And here's some amazing content. It's very engaging. Right?">?</a>
-          </div>
-          <div class="form-check col">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-            <label class="form-check-label" for="defaultCheck2">Labor</label>
-            <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Labor"
-            data-content="And here's some amazing content. It's very engaging. Right?">?</a>
-          </div>
+        <label for="user_mobile">Mobile #</label>
+        <input name="mobile" type="text" ng-class="{'submitted':restaurantRegistration.submitted}" ng-model="user.phone" class="form-control"  required>
+      </div>
+      <div class="ml-3">
+        <div class="form-group row">
+          <label>Copy of Drivers License</label>
+          <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Drivers License"
+          data-content="Please upload a jpg, png, or pdf photocopy of your driver's license.">?</a>
+          <input id="restaurantAddFile" type="file"  file-input ="user_id_img_ref" placeholder="">
         </div>
-        <div class="row">
-          <div class="form-check col">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-            <label class="form-check-label" for="defaultCheck2">Space</label>
-            <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Space"
-            data-content="And here's some amazing content. It's very engaging. Right?">?</a>
-          </div>
-          <div class="form-check col">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-            <label class="form-check-label" for="defaultCheck2">Equipment</label>
-            <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Equipment"
-            data-content="And here's some amazing content. It's very engaging. Right?">?</a>
-          </div>
-        </div>
-        <div id="small-left-margin" class="row">
-          <div class="col-label">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-              <label class="form-check-label " for="defaultCheck2">Other</label>
-              <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Other"
-              data-content="And here's some amazing content. It's very engaging. Right?">?</a>
-            </div>
-          </div>
-          <input id="narrowInput" type="text" class="form-control col-input" placeholder="">
+        <div class="form-group row">
+          <label>Food Manager Certificate</label>
+          <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Food Manager Certificate"
+          data-content="Please upload a jpg, png, or pdf photocopy of your food manager certificate.">?</a>
+          <input id="restaurantAddFile" type="file"  file-input ="user_cert_img_ref" placeholder="">
         </div>
       </div>
 
+      <small class="text-nowrap text-center"> Your documents will be safe with us!</small>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new-guest')" class="btn btn-secondary"> Back </button>
-        <button ng-click="createRestaurant()" class="btn btn-primary"> Create Restaurant </button>
+        <button ng-click="registerRestaurant('/restaurant-new-guest3'); saveFile()" class="btn btn-primary"> Continue </button>
       </div>
+
     </form>
-
-
-
   </div>
 </div>

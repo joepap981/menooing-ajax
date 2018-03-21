@@ -18,29 +18,24 @@ if(!$postdata) {
 //decoding json into array
 $data = json_decode($postdata, true);
 
-
 //**** Use this type of POST + GET for user signing and signout later on!! REFACTOR!!!
 //Building query string for INSERT into database
-$query = "INSERT INTO " . $dbName . "." . $table_name . "(user_ref, ";
+$update_query = "UPDATE $dbName.$table_name SET ";
 
 foreach($data as $key => $value) {
-  $query = $query . "user_" . $key . ", ";
+  $update_query = $update_query . "user_$key = '$value', ";
 }
 
 //trim end ,
-$query = substr($query, 0, -2) . ") VALUES (" . $user['user_id'] . ", ";
+$update_query = substr($update_query, 0, -2) . " WHERE user_ref = " . $user['user_id'] . ";";
 
-foreach($data as $key => $value) {
-  $query = $query . "'" . $value . "', ";
-}
+$result = (mysqli_query($conn, $update_query));
 
-//trim end ,
-$query = substr($query, 0, -2) . ");";
-
-$result = (mysqli_query($conn, $query));
 
 if ($result == 1) {
   echo "Success";
 } else {
   echo "Failed";
 }
+
+?>

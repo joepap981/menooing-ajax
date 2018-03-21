@@ -64,6 +64,9 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl', 'ui.bootstrap
     .when('/restaurant-new-guest2', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-new-guest2.php'
     })
+    .when('/restaurant-new-guest3', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-new-guest3.php'
+    })
     .when('/restaurant-success', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-success.php'
     })

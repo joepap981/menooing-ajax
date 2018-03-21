@@ -4,8 +4,11 @@ include_once 'inc_signin_db.php';
 //start session
 session_start();
 $user =  $_SESSION['user'];
+//same name for database attribute
 $file_type = $_POST['file_type'];
+//database table the entry belongs in
 $table_name = $_POST['table_name'];
+//restaurant_id of uploaded file
 $restaurant_id = $_POST['restaurant_id'];
 
 
@@ -20,11 +23,18 @@ $upload_location = "../noexec/" . $user['user_id'] . "/" . $select_result['user_
 
 //upload file to the directory of user
 //*location/restaurantid_filename
-if (move_uploaded_file($_FILES[$file_type]['tmp_name'], $upload_location.$restaurant_id. '_' . $filename)) {
+//build full address path according to restaurant or user related file
+if ($table_name == 'tb_restaurant') {
+  $full_path = $upload_location.$restaurant_id . '_' . $filename;
+} else if ($table_name == 'tb_user_info'){
+  $full_path =  $upload_location . $filename;
+}
+
+if (move_uploaded_file($_FILES[$file_type]['tmp_name'], $full_path)) {
   if ($table_name == 'tb_restaurant') {
-    $insert_query = "UPDATE $table_name SET $file_type = '$upload_location$restaurant_id_$filename' WHERE restaurant_id = $restaurant_id;";
+    $insert_query = "UPDATE $table_name SET $file_type = '$full_path' WHERE restaurant_id = $restaurant_id;";
   } else if($table_name == 'tb_user_info') {
-    $insert_query = "UPDATE $table_name SET $file_type = '$upload_location$filename' WHERE user_ref = " . $user['user_id'] .";";
+    $insert_query = "UPDATE $table_name SET $file_type = '$full_path' WHERE user_ref = " . $user['user_id'] .";";
   } else {}
 
   $insert_result = mysqli_query($conn, $insert_query);

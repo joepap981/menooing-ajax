@@ -41,9 +41,8 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
             });
 
             //upload files to file system and save location reference to DB
-            $scope.uploadFile(response).then(function(response) {
-              restaurantService.clearFileList();
-            });
+            $scope.uploadFile(response);
+            restaurantService.clearFileList();
 
           } else if (response == 0) {
             growl.error('Your restaurant has failed to be registered. Try again from the beginning.',{title: 'DB Error!'});
