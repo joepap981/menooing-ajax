@@ -32,20 +32,20 @@
           <label>Copy of Drivers License</label>
           <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Drivers License"
           data-content="Please upload a jpg, png, or pdf photocopy of your driver's license.">?</a>
-          <input id="restaurantAddFile" type="file" placeholder="">
+          <input id="restaurantAddFile" type="file"  file-input ="user_id_img_ref" placeholder="">
         </div>
         <div class="form-group row">
           <label>Food Manager Certificate</label>
           <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Food Manager Certificate"
           data-content="Please upload a jpg, png, or pdf photocopy of your food manager certificate.">?</a>
-          <input id="restaurantAddFile" type="file" placeholder="">
+          <input id="restaurantAddFile" type="file"  file-input ="user_cert_img_ref" placeholder="">
         </div>
       </div>
 
       <small class="text-nowrap text-center"> Your documents will be safe with us!</small>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new')" class="btn btn-secondary"> Back </button>
-        <button ng-click="registerRestaurant('/restaurant-new-sharee2')" class="btn btn-primary"> Continue </button>
+        <button ng-click="registerRestaurant('/restaurant-new-sharee2'); saveFile()" class="btn btn-primary"> Continue </button>
       </div>
 
     </form>

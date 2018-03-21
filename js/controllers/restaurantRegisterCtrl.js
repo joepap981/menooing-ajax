@@ -41,7 +41,7 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
             });
 
             //upload files to file system and save location reference to DB
-            $scope.uploadFile(response).then(function() {
+            $scope.uploadFile(response).then(function(response) {
               restaurantService.clearFileList();
             });
 
