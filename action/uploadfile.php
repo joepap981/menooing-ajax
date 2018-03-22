@@ -14,6 +14,7 @@ $restaurant_id = $_POST['restaurant_id'];
 
 //connect to mysql with info from inc_signin_db
 $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
+//get location salt from tb_user_info
 $select_query = "SELECT user_storage_salt FROM tb_user_info WHERE user_ref = " . $user['user_id'] . ";";
 $select_result = mysqli_fetch_array(mysqli_query($conn, $select_query));
 
@@ -42,10 +43,10 @@ if (move_uploaded_file($_FILES[$file_type]['tmp_name'], $full_path)) {
   if ($insert_result == 1) {
     echo "Successfully uploaded/inserted.";
   } else {
-    echo "Failed to insert to DB.";
+    echo "Failed to insert file location to DB. Refresh page";
   }
 } else {
-  echo "Failed to upload file.";
+  echo "Failed to upload file(s) to file system.";
 }
 
 ?>

@@ -5,39 +5,20 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
 
 
   return {
-    //insert sessionStorage restaurant info to DB
+    //insert sessionStorage restaurant + user info to DB
     insertRestaurantInfo: function() {
-      if ($window.sessionStorage.restaurant != null) {
-        var restaurant = $window.sessionStorage.restaurant;
-      } else {
-        var restaurant = {};
-      }
-      return $http({ method: "POST", url: "action/restaurant_register.php", data: restaurant})
+      var post_data = {};
+      post_data['restaurant'] = $window.sessionStorage.restaurant;
+      post_data['user'] = $window.sessionStorage.user;
+
+      return $http({ method: "POST", url: "action/restaurant_create.php", data: post_data})
       .then(function mySuccess (response) {
-        if (response.data == "Failed to write to DB") {
-          return 'Failed to write to DB';
-        } else if (!isNaN(parseInt(response.data))){
+        if (!isNaN(parseInt(response.data))) {
           return parseInt(response.data);
+        } else if (response.data == "Failed to write to DB"){
+          return 'Failed to write to DB';
         } else {
           return "Something has terribly gone wrong.";
-        }
-      });
-    },
-
-    insertUserInfo: function() {
-      if ($window.sessionStorage.user != null) {
-        var user = $window.sessionStorage.user;
-      } else {
-        var user = {};
-      }
-      return $http({ method: "POST", url: "action/update_user_info.php", data: user})
-      .then(function mySuccess (response) {
-        if (response.data == "Success") {
-          return 1;
-        } else if (response.data == "Failed"){
-          return 0;
-        } else {
-          return -1;
         }
       });
     },
@@ -95,6 +76,13 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
     uploadFile: function (form_data) {
       return $http({ method: "POST", url: "action/uploadfile.php", data: form_data, headers: {'Content-Type': undefined},
     }).then(function mySuccess(response) {
+      console.log(response.data);
+        if (response.data == "Successfully uploaded/inserted.") {
+          return true;
+        } else {
+          console.log(response.data);
+          return false;
+        }
       });
     },
 

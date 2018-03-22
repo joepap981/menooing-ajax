@@ -25,29 +25,18 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
         restaurantService.insertRestaurantInfo().then(function(response) {
           //receive inserted restaurant id number
           if (!isNaN(response)) {
-            //insert related user_info to database
-            restaurantService.insertUserInfo().then(function(response2) {
-              //if sucessfully insert user information
-              if (response2 == 1) {
-                growl.success('Your restaurant has been created!',{title: 'Success!'});
-                delete $window.sessionStorage.user;
-                delete $window.sessionStorage.restaurant;
-                $location.path('/restaurant-new-success');
-              } else if (response2 == 0) {
-                growl.error('Your restaurant has failed to be registered. Try again from the beginning.',{title: 'DB Error!'});
-              } else {
-                growl.error('Something has gone terribly wrong. Notify the admin about this.',{title: 'Error!'});
-              }
-            });
-
             //upload files to file system and save location reference to DB
-            $scope.uploadFile(response);
-            restaurantService.clearFileList();
-
-          } else if (response == 0) {
-            growl.error('Your restaurant has failed to be registered. Try again from the beginning.',{title: 'DB Error!'});
+            //if successfully upload both files
+            if($scope.uploadFile(response)) {
+              restaurantService.clearFileList();
+              $location.path('restaurant-new-success');
+              growl.success('Your restaurant has successfully been created.',{title: 'Success!'});
+            } else {
+              $location.path('restaurant-new');
+              growl.error('Something has gone terribly wrong. Try again.',{title: 'Error!'});
+            }
           } else {
-            growl.error('Something has gone terribly wrong. Notify the admin about this.',{title: 'Error!'});
+            growl.error(response,{title: 'Error!'});
           }
         });
       }
@@ -103,10 +92,14 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
 
   //create a form_data for uploaded file
   $scope.uploadFile = function(restaurant_id) {
+    //incomplete way of checking if both files were successfully uploaded.
+    var flag = true;
     angular.forEach(restaurantService.getFileList(), function (form_data) {
       form_data.append('restaurant_id', restaurant_id);
-      restaurantService.uploadFile(form_data);
+      flag = flag && restaurantService.uploadFile(form_data);
     });
+
+    return flag;
   }
 
   //save upload file to restaurantService
