@@ -68,7 +68,20 @@ if ($update_result != 1) {
 	$rollback_result = mysqli_query($conn, $rollback_query);
 	exit("Failed to insert User Info");
 //if successful, return newly created restaurant's restaurant_id
-} else {
+}
+
+//create request for admin to confirm
+$create_request_query = "INSERT INTO tb_request (request_type, restaurant_ref, user_ref) " .
+	"VALUES ('restaurant_confirmation', $restaurant_id, " . $user['user_id'] . ");";
+
+
+$create_request_result = (mysqli_query($conn, $create_request_query));
+
+if($create_request_result != 1) {
+	$rollback_result = mysqli_query($conn, $rollback_query);
+	exit("Failed to create a Confirmation Request");
+}
+else {
 	$commit_result = mysqli_query($conn, $commit_query);
 	echo $restaurant_id;
 }

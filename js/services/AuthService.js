@@ -38,5 +38,10 @@ angular.module('menuApp').factory('accessDB', function($http) {
         return response.data;
       });
     },
+
+    getRestaurantList: function() {
+      var sessionUser = checkSession();
+      return sessionUser['user_id'];
+    }
   }
 });

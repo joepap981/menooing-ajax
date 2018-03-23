@@ -32,7 +32,7 @@ $jsTimeStamp = '?version=v-'.$timeStr;
 
 	</head>
 
-	<body ng-app="menuApp" ng-controller="AuthController">
+	<body ng-app="menuApp">
 		<div growl></div>
 		<?php
 
