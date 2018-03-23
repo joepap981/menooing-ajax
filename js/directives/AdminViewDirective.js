@@ -9,3 +9,9 @@ angular.module('menuApp').directive('userListView', function() {
     templateUrl: 'view/admin/user-list.php'
   };
 });
+
+angular.module('menuApp').directive('requestsView', function() {
+  return {
+    templateUrl: 'view/admin/requests.php'
+  };
+});

@@ -16,6 +16,8 @@
   <!-- Javascript links -->
   <script src="js/app.js<?php echo $jsTimeStamp ?>"></script>
   <script src="js/controllers/AdminController.js<?php echo $jsTimeStamp ?>"></script>
+  <script src="js/controllers/adminRequestCtrl.js<?php echo $jsTimeStamp ?>"></script>
+  <script src="js/services/adminService.js<?php echo $jsTimeStamp ?>"></script>
   <script src="js/directives/AdminViewDirective.js<?php echo $jsTimeStamp ?>"></script>
 
 
@@ -40,6 +42,13 @@
           <a class="nav-link" ng-click ="changePage(2)">
             <i class="fa fa-fw fa-user"></i>
             <span class="nav-link-text">Users</span>
+          </a>
+        </li>
+        <!--Requests-->
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Requests">
+          <a class="nav-link" ng-click ="changePage(3)">
+            <i class="fa fa-fw fa-user"></i>
+            <span class="nav-link-text">Requests</span>
           </a>
         </li>
 
@@ -163,6 +172,7 @@
     <div class="main-container">
       <div ng-if="pageNum == 1" landing-page-view></div>
       <div ng-if="pageNum == 2" user-list-view></div>
+      <div ng-if="pageNum == 3" requests-view></div>
     </div>
 
     <!-- /.container-fluid-->
