@@ -11,6 +11,15 @@ angular.module('menuApp').factory('adminService', function($http) {
           return null;
         }
       });
-    }
+    },
+
+    //confirm restaurant_status to confirmed + request_status to handled
+    confirmRestaurantRegister: function(data) {
+      return $http({ method: "POST", url: "action/restaurant_confirmation.php", data: data})
+      .then(function mySuccess (response) {
+        return response.data;
+      });
+    },
   }
+
 });

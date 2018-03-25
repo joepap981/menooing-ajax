@@ -1,4 +1,6 @@
-angular.module('menuApp').controller('adminRequestCtrl',['$scope', 'adminService', function ($scope, adminService) {
+angular.module('menuApp').controller('adminRequestCtrl',['$scope', 'adminService', 'growl', function ($scope, adminService, growl) {
+  $scope.selectedRequest;
+
   $scope.Requests = [];
   var init = function () {
     //get all restaurants from user in current session (check in server)
@@ -11,15 +13,39 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', 'adminService
   init();
 
 
-  $('#exampleModal').on('show.bs.modal', function (event) {
+  $('#requestModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Button that triggered the modal
-    var recipient = button.data('whatever'); // Extract info from data-* attributes
+    $scope.selectedRequest = button.data('whatever'); // Extract info from data-* attributes
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-    console.log(recipient);
+
+
+    //get restaurant information from database
+    //
+
+    console.log($scope.selectedRequest);
     var modal = $(this);
-    modal.find('.modal-title').text('New message to ' + recipient);
-    modal.find('.modal-body input').val(recipient);
+    modal.find('.modal-title').text($scope.selectedRequest.request_type + ' request from ' + $scope.selectedRequest.restaurant_ref);
+    modal.find('.modal-body input').val($scope.selectedRequest.request_type);
   })
+
+  //confirm request
+  $scope.confirmRequest = function () {
+    var data = {};
+    data['request_type'] = $scope.selectedRequest['request_type'];
+    data['restaurant_ref'] = $scope.selectedRequest['restaurant_ref'];
+    data['request_id'] = $scope.selectedRequest['request_id']
+    adminService.confirmRestaurantRegister(data)
+    .then(function mySuccess(response) {
+      if(response == "Successfully updated restaurant status") {
+        growl.success(response,{title: 'Success!'});
+        $('#requestModal').modal('hide');
+      } else {
+        growl.error(response,{title: 'Error!'});
+      }
+    });
+  }
+
+
 
 }]);
