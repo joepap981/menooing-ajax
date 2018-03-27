@@ -10,8 +10,8 @@ if(isset($_SESSION)) {
   //connect to mysql with info from inc_signin_db
   $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
 
-  $query = "SELECT restaurant_name, restaurant_address1, restaurant_city, restaurant_status
-            FROM " . $dbName . ".tb_restaurant WHERE restaurant_owner_ref = " . $user['user_id'];
+  $query = "SELECT restaurant_id, restaurant_status, restaurant_name, restaurant_locality, restaurant_administrative_area_level_1, restaurant_img_ref
+            FROM $dbName.tb_restaurant WHERE user_ref = " . $user['user_id'];
 
   $result = mysqli_query($conn, $query);
 
@@ -24,7 +24,6 @@ if(isset($_SESSION)) {
    }
 
    echo json_encode($return_array);
-
 
 } else {
   echo 'No Session';

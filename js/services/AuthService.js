@@ -1,4 +1,4 @@
-angular.module('menuApp').factory('accessDB', function($http) {
+angular.module('menuApp').factory('authService', function($http) {
   var data = {};
   return {
     get: function(signin) {
@@ -38,10 +38,5 @@ angular.module('menuApp').factory('accessDB', function($http) {
         return response.data;
       });
     },
-
-    getRestaurantList: function() {
-      var sessionUser = checkSession();
-      return sessionUser['user_id'];
-    }
   }
 });

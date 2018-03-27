@@ -27,7 +27,7 @@
                     <h4 class="card-title">
                       <a href="#" ng-click="redirect('/restaurant-profile')">{{ restaurant.restaurant_name }}</a>
                     </h4>
-                    <p class="card-text">{{ restaurant.restaurant_address1 }}, {{ restaurant.restaurant_city }} </p>
+                    <p class="card-text">{{ restaurant.restaurant_locality}}, {{ restaurant.restaurant_administrative_area_level_1 }} </p>
                     <p class="card-text"> Status: {{ restaurant.restaurant_status }} <p>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$location', 'restaurantService', 'accessDB', 'growl', '$window', function ($scope, $location, restaurantService, accessDB, growl, $window) {
+angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$location', 'restaurantService', 'authService', 'growl', '$window', function ($scope, $location, restaurantService, authService, growl, $window) {
   $scope.excessCapacity = {};
   $scope.operationHours = {};
   $scope.restaurant = {};
@@ -16,7 +16,7 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
 
   //create restaurant and insert to DB
   $scope.createRestaurant = function () {
-    var session = accessDB.checkSession();
+    var session = authService.checkSession();
     //check for session
     session.then(function (result) {
 

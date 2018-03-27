@@ -2,7 +2,7 @@
  *  Mene Controller will be
  */
 
-angular.module('menuApp').controller('AuthController',['$scope', '$location', 'accessDB', 'growl', function ($scope, $location, accessDB, growl) {
+angular.module('menuApp').controller('AuthController',['$scope', '$location', 'authService', 'growl', function ($scope, $location, authService, growl) {
   $scope.signin = {};
   $scope.signup = {};
 
@@ -15,7 +15,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
 
   //check every time a page is loaded to see if session is live
   var init = function () {
-    var myData = accessDB.checkSession();
+    var myData = authService.checkSession();
     myData.then(function (response) {
       if(response != null){
         $scope.session = response;
@@ -54,7 +54,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
   //if match, begin session saving user_first_name, user_last_name, user_id
   //redirect to home
   $scope.signIn = function (signin) {
-    var myData = accessDB.get(signin);
+    var myData = authService.get(signin);
     myData.then(function (result) {
       $scope.response = result;
       if($scope.response["result"] == "Success") {
@@ -62,7 +62,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
         $scope.signin = {};
 
         //check for session
-        myData = accessDB.checkSession();
+        myData = authService.checkSession();
         myData.then(function (result) {
           if (result["user_id"] != null) {
             $scope.session = result;
@@ -83,7 +83,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
   //sign up and record user info to db
   $scope.signUp = function () {
     if($scope.checkPassword()) {
-      accessDB.set($scope.signup).then(function(response) {
+      authService.set($scope.signup).then(function(response) {
         //successfully wrote into DB
         if (response == 'Available') {
           $scope.email_exists = false;
@@ -126,7 +126,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
 
   //logout of user account and end session
   $scope.logout = function () {
-    accessDB.endSession().then(function(response) {
+    authService.endSession().then(function(response) {
       $scope.session = response;
       $location.path('/');
     })
