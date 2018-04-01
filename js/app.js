@@ -70,8 +70,9 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl', 'ui.bootstrap
     .when('/restaurant-success', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-success.php'
     })
-    .when('/restaurant-profile', {
-      templateUrl: 'view/user/dashboard/restaurant/restaurant-profile.php'
+    .when('/restaurant-profile/:restaurant_id', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-profile.php',
+      controller: 'restaurantProfileCtrl'
     })
     .when('/restaurant-host', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-host.php'

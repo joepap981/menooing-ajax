@@ -4,12 +4,16 @@ angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'r
   var init = function () {
     //get all restaurants from user in current session (check in server)
     var restaurantList = restaurantService.getRestaurantList();
-    restaurantList.then (function (result) {
+    restaurantList.then(function (result) {
       $scope.userRestaurants = result;
     });
   }
   //run initialization method
   init();
+
+  $scope.redirectToProfile = function (restaurant_id) {
+    $location.path('/restaurant-profile/'+restaurant_id);
+  };
 
 
 }]);

@@ -45,8 +45,7 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       return $http({ method: "POST", url: "action/get.php", data: queryObj})
       .then(function mySuccess (response) {
         if (response.data != null) {
-          var restaurant = response.data[0];
-          return restaurant;
+          return response.data;
         } else {
           return null;
         }

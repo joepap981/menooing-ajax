@@ -10,7 +10,7 @@ if(isset($_SESSION)) {
   //connect to mysql with info from inc_signin_db
   $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
 
-  $query = "SELECT restaurant_id, restaurant_status, restaurant_name, restaurant_locality, restaurant_administrative_area_level_1, restaurant_img_ref
+  $query = "SELECT restaurant_id, restaurant_status, restaurant_name, restaurant_locality, restaurant_administrative_area_level_1, restaurant_img_ref, restaurant_entity
             FROM $dbName.tb_restaurant WHERE user_ref = " . $user['user_id'];
 
   $result = mysqli_query($conn, $query);
@@ -18,10 +18,10 @@ if(isset($_SESSION)) {
   $return_array = array();
   $count=0;
   while ($row = mysqli_fetch_assoc($result))
-   {
-       $return_array[$count] = $row;
-       $count++;
-   }
+ {
+     $return_array[$count] = $row;
+     $count++;
+ }
 
    echo json_encode($return_array);
 

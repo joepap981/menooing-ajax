@@ -8,7 +8,6 @@
 </div>
 
 <!-- show content when user session is in progress -->
-<!-- show content when user session is in progress -->
 <div id="session" ng-if="session['user_id'] != null" >
   <div class="container">
     <restaurant-subnav></restaurant-subnav>
@@ -18,7 +17,7 @@
       </div>
       <div class="col-md-9">
 
-        <div class="content-box" ng-controller="UserDashboardController">
+        <div class="content-box" ng-controller="restaurantProfileCtrl">
           <!--Restaurant Basic information -->
           <div class="card restaurant-profile">
             <div id="profile" class="card-header"> Location Info </div>
@@ -30,9 +29,9 @@
                 </div>
 
                 <div class=" form-group row" >
-                  <span class="col-label" for="restaurantName"> Address: </span>
+                  <span class="col-label" for="restaurantAddress"> Address: </span>
                   <div class="col-input">
-                    <input data-toggle="collapse" data-target="#collapseAddress" type="text" readonly class="form-control-plaintext" id="restaurantAddress" ng-model ="restaurant.restaurant_name" value="click to add address">
+                    <input data-toggle="collapse" data-target="#collapseAddress" type="text" readonly class="form-control-plaintext" id="restaurantAddress" ng-model ="restaurant.address" value="{{ restaurant.address }}">
                     <div class="collapse" id="collapseAddress">
                       <div class="card card-body collapse">
                         <div id="locationField">
@@ -57,7 +56,7 @@
                       <div class="card card-body collapse">
                         <input type="text" class="form-control" id="restaurantPhone" ng-model ="restaurant.restaurant_phone">
                         <div class="btn-box">
-                          <button data-toggle= "collapse" data-target="#collapseAddress" class="btn secondary"> Cancel </button>
+                          <button data-toggle= "collapse" data-target="#collapsePhone" class="btn secondary"> Cancel </button>
                           <button class="btn btn-primary"> Save Changes </button>
                         </div>
                       </div>
@@ -67,6 +66,8 @@
 
                 <div class="form-group row">
                   <span class="col-label" for="restaurantPhone"> CO (Certificate of Occupancy) </span>
+                  <span ng-if="restaurant.restaurant_cert == null"> No file uploaded </span>
+                  <a href="" ng-click="downloadFile()" ng-if="restaurant.restaurant_cert != null"> View file </a>
                   <input type="file" class="col-input" id="coFile" ng-model ="restaurant.co">
                 </div>
               </form>

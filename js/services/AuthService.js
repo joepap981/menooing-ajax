@@ -38,5 +38,14 @@ angular.module('menuApp').factory('authService', function($http) {
         return response.data;
       });
     },
+
+    downloadFile: function (downloadInfo) {
+      return $http({ method : "POST", url: 'action/download.php', data: downloadInfo})
+      .then(function mySuccess(response) {
+        return response.data;
+      });
+    },
+
+
   }
 });

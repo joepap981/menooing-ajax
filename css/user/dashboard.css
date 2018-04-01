@@ -247,27 +247,6 @@ input.ng-invalid.submitted {
   width: 50%;
 }
 
-#city-label {
-  width: 10%;
-}
-#city-input {
-  width: 30%;
-  margin-right: 10%;
-}
-#state-label {
-  width: 10%;
-}
-#state-input {
-  width: 10%;
-  margin-right: 10%;
-}
-#zip-label {
-  width: 10%;
-}
-#zip-input {
-  width: 10%;
-}
-
 .restaurant-hours.custom-select {
   height: calc(1.8rem + 2px);
   padding-top: 1px;
@@ -306,6 +285,10 @@ input.ng-invalid.submitted {
 #restaurant-image {
   max-width: 300px;
   max-height: 300px;
+}
+
+input#restaurantAddress.form-control-plaintext {
+  width: 100%;
 }
 
 /* restaurant menu */
