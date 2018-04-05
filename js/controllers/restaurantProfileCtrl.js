@@ -1,4 +1,4 @@
-angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$location', '$routeParams', 'restaurantService', 'authService', 'growl', function ($scope, $location, $routeParams, restaurantService, authService, growl, $uibModal) {
+angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$location', '$routeParams', 'restaurantService', 'authService', 'growl', 'FileSaver', 'Blob', function ($scope, $location, $routeParams, restaurantService, authService, growl, FileSaver, Blob, $uibModal) {
 
   var restaurant_id;
   $scope.restaurant = {};
@@ -23,12 +23,15 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       'user_id': $scope.restaurant.user_ref,
       'path': $scope.restaurant.restaurant_cert,
     }
-    var result = authService.downloadFile(downloadInfo);
+    authService.downloadFile(downloadInfo);
+
+    /*
     result.then(function(response) {
       if (response != "Success") {
         growl.error(response,{title: 'Error!'});
       } else {}
     });
+    */
   }
 
   //menu add

@@ -27,7 +27,7 @@ if ($session_user['user_id'] != $data['user_id']) {
 //code from: https://stackoverflow.com/questions/29079844/download-file-from-server-with-angular-http-get
 //read file for download
 //$file_name = $data['path'];
-$file_name = "../test.html";
+$file_name = "../pikachu.png";
 $abs_file_name = realpath(dirname(__FILE__)).'/'.$file_name;
 if(is_file($abs_file_name) && file_exists($abs_file_name)) {
 
@@ -39,6 +39,7 @@ if(is_file($abs_file_name) && file_exists($abs_file_name)) {
       case 'pdf': $mime = 'application/pdf'; break;
       case 'jpeg':
       case 'jpg': $mime = 'image/jpg'; break;
+      case 'png': $mime = 'image/png'; break;
       default: $mime = 'application/force-download';
   }
   header('Content-Description: File Transfer');

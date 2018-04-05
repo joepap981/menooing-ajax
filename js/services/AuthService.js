@@ -1,4 +1,4 @@
-angular.module('menuApp').factory('authService', function($http) {
+angular.module('menuApp').factory('authService', function($http, FileSaver) {
   var data = {};
   return {
     get: function(signin) {
@@ -40,9 +40,10 @@ angular.module('menuApp').factory('authService', function($http) {
     },
 
     downloadFile: function (downloadInfo) {
-      return $http({ method : "POST", url: 'action/download.php', data: downloadInfo})
+      return $http({ method : "POST", url: 'action/download.php', data: downloadInfo, responseType: 'blob'})
       .then(function mySuccess(response) {
-        return response.data;
+        var myData = new Blob([response.data], {type: 'image/png'});
+        FileSaver.saveAs(myData, 'pic.png');
       });
     },
 
