@@ -75,13 +75,8 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
     uploadFile: function (form_data) {
       return $http({ method: "POST", url: "action/uploadfile.php", data: form_data, headers: {'Content-Type': undefined},
     }).then(function mySuccess(response) {
-      console.log(response.data);
-        if (response.data == "Successfully uploaded/inserted.") {
-          return true;
-        } else {
-          console.log(response.data);
-          return false;
-        }
+        console.log(response.data);
+        return response.data;
       });
     },
 

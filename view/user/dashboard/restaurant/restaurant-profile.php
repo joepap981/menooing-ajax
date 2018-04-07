@@ -67,7 +67,7 @@
                 <div class="form-group row">
                   <span class="col-label" for="restaurantPhone"> CO (Certificate of Occupancy) </span>
                   <span ng-if="restaurant.restaurant_cert == null"> No file uploaded </span>
-                  <a href="" ng-click="downloadFile()" ng-if="restaurant.restaurant_cert != null"> View file </a>
+                  <a href="" ng-click="downloadRestaurantCert()" ng-if="restaurant.restaurant_cert != null"> View file </a>
                   <input type="file" class="col-input" id="coFile" ng-model ="restaurant.co">
                 </div>
               </form>

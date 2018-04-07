@@ -18,11 +18,12 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
   init();
 
   //file download
-  $scope.downloadFile = function () {
+  $scope.downloadRestaurantCert = function () {
     var downloadInfo = {
       'user_id': $scope.restaurant.user_ref,
       'path': $scope.restaurant.restaurant_cert,
     }
+
     authService.downloadFile(downloadInfo);
 
     /*

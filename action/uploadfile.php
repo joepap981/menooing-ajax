@@ -19,8 +19,16 @@ $select_query = "SELECT user_storage_salt FROM tb_user_info WHERE user_ref = " .
 $select_result = mysqli_fetch_array(mysqli_query($conn, $select_query));
 
 //storage salt for slightly more secure user document storage file name
-$filename = $file_type . substr(sha1(rand()), 0, 10);
+$uploadName = $_FILES[$file_type]['name'];
+$ext = strtolower(substr($uploadName, strripos($uploadName, '.')+1));
+$filename = $file_type . '_' . substr(sha1(rand()), 0, 10) . '.' . $ext;
 $upload_location = "../noexec/" . $user['user_id'] . "/" . $select_result['user_storage_salt'] . "/";
+
+//check for file extension type before uploaded
+$allowed_extension = array("pdf", "jpg", "jpeg", "png");
+if (!in_array($ext, $allowed_extension)) {
+  exit("UNACCEPTABLE EXTENSION");
+}
 
 //upload file to the directory of user
 //*location/restaurantid_filename
@@ -41,7 +49,7 @@ if (move_uploaded_file($_FILES[$file_type]['tmp_name'], $full_path)) {
   $insert_result = mysqli_query($conn, $insert_query);
 
   if ($insert_result == 1) {
-    echo "Successfully uploaded/inserted.";
+    echo "SUCCESSFULLY UPLOADED";
   } else {
     echo "Failed to insert file location to DB. Refresh page";
   }

@@ -42,8 +42,19 @@ angular.module('menuApp').factory('authService', function($http, FileSaver) {
     downloadFile: function (downloadInfo) {
       return $http({ method : "POST", url: 'action/download.php', data: downloadInfo, responseType: 'blob'})
       .then(function mySuccess(response) {
-        var myData = new Blob([response.data], {type: 'image/png'});
-        FileSaver.saveAs(myData, 'pic.png');
+
+        //build output filename
+        var ext = response.data['type'].split('/')[1];
+        var filename = downloadInfo['path'].split('/').pop();
+        filename = filename.split('_');
+        filename.pop();
+        filename = filename.join('_');
+        filename = filename + '.' + ext;
+
+
+        myData = new Blob([response.data], {type: response.data['type']});
+
+        FileSaver.saveAs(myData, filename);
       });
     },
 

@@ -26,8 +26,8 @@ if ($session_user['user_id'] != $data['user_id']) {
 
 //code from: https://stackoverflow.com/questions/29079844/download-file-from-server-with-angular-http-get
 //read file for download
-//$file_name = $data['path'];
-$file_name = "../pikachu.png";
+$file_name = $data['path'];
+
 $abs_file_name = realpath(dirname(__FILE__)).'/'.$file_name;
 if(is_file($abs_file_name) && file_exists($abs_file_name)) {
 
