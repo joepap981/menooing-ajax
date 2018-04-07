@@ -27,14 +27,21 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
           if (!isNaN(response)) {
             //upload files to file system and save location reference to DB
             //if successfully upload both files
-            if($scope.uploadFile(response)) {
-              restaurantService.clearFileList();
-              $location.path('restaurant-new-success');
-              growl.success('Your restaurant has successfully been created.',{title: 'Success!'});
-            } else {
-              $location.path('restaurant-new');
-              growl.error('Something has gone terribly wrong. Try again.',{title: 'Error!'});
-            }
+            var uploadResponse = $scope.uploadFile(response);
+            uploadResponse.then(function(response2) {
+              if(response2 == "SUCCESSFULLY UPLOADED") {
+                restaurantService.clearFileList();
+                $location.path('restaurant-new-success');
+                growl.success('Your restaurant has successfully been created.',{title: 'Success!'});
+              } else if (response2 == "UNACCEPTABLE EXTENSION"){
+                $location.path('restaurant-new-host2');
+                growl.error('Unacceptable file extension for upload.',{title: 'Error!'});
+              }
+              else {
+                $location.path('restaurant-new');
+                growl.error('Something has gone terribly wrong. Try again.',{title: 'Error!'});
+              }
+            })
           } else {
             growl.error(response,{title: 'Error!'});
           }

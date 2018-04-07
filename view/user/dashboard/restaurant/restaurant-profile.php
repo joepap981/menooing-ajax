@@ -46,8 +46,6 @@
                   </div>
                 </div>
 
-
-
                 <div class="form-group row">
                   <span class="col-label" for="restaurantPhone"> Phone: </span>
                   <div class="col-input">
@@ -67,8 +65,18 @@
                 <div class="form-group row">
                   <span class="col-label" for="restaurantPhone"> CO (Certificate of Occupancy) </span>
                   <span ng-if="restaurant.restaurant_cert == null"> No file uploaded </span>
-                  <a href="" ng-click="downloadRestaurantCert()" ng-if="restaurant.restaurant_cert != null"> View file </a>
-                  <input type="file" class="col-input" id="coFile" ng-model ="restaurant.co">
+                  <a href="" ng-click="downloadRestaurantCert()" ng-if="restaurant.restaurant_cert != null"> {{ restaurant.restaurant_cert}} </a>
+
+
+                  <div class="collapse" id="collapseCert">
+                    <div class="card card-body collapse">
+                      <input type="file" class="col-input" id="coFile" ng-model ="restaurant.co">
+                      <div class="btn-box">
+                        <button data-toggle= "collapse" data-target="#collapsePhone" class="btn secondary"> Cancel </button>
+                        <button class="btn btn-primary"> Upload </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>
