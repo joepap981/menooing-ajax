@@ -1,3 +1,9 @@
+/**** general ****/
+
+.pointer {
+  cursor: pointer;
+}
+
 /******Page templating******/
 #session {
   height: inherit;
@@ -153,7 +159,7 @@ form[name='restaurantRegistration'] {
   margin: auto;
 }
 
-input[type='file'] {
+input[type='file'].to-right {
   color: transparent;
   width:25%;
   margin-left: auto;

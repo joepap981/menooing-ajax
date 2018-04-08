@@ -72,6 +72,13 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       $window.sessionStorage[type] = JSON.stringify(response);
     },
 
+    updateRestaurant: function (restaurant_info) {
+      return $http({ method: "POST", url: "action/update_restaurant_info.php", data: restaurant_info
+    }).then(function mySuccess(response) {
+        return response.data;
+      });
+    },
+
     uploadFile: function (form_data) {
       return $http({ method: "POST", url: "action/uploadfile.php", data: form_data, headers: {'Content-Type': undefined},
     }).then(function mySuccess(response) {

@@ -31,7 +31,7 @@
                 <div class=" form-group row" >
                   <span class="col-label" for="restaurantAddress"> Address: </span>
                   <div class="col-input">
-                    <input data-toggle="collapse" data-target="#collapseAddress" type="text" readonly class="form-control-plaintext" id="restaurantAddress" ng-model ="restaurant.address" value="{{ restaurant.address }}">
+                    <input data-toggle="collapse" data-target="#collapseAddress" type="text" readonly class="form-control-plaintext pointer" id="restaurantAddress" ng-model ="restaurant.address" value="{{ restaurant.address }}">
                     <div class="collapse" id="collapseAddress">
                       <div class="card card-body collapse">
                         <div id="locationField">
@@ -39,7 +39,7 @@
                         </div>
                         <div class="btn-box">
                           <button data-toggle= "collapse" data-target="#collapseAddress" class="btn secondary"> Cancel </button>
-                          <button class="btn btn-primary"> Save Changes </button>
+                          <button ng-click= "updateAddress()" class="btn btn-primary"> Save Changes </button>
                         </div>
                       </div>
                     </div>
@@ -49,7 +49,8 @@
                 <div class="form-group row">
                   <span class="col-label" for="restaurantPhone"> Phone: </span>
                   <div class="col-input">
-                    <input data-toggle="collapse" data-target="#collapsePhone" type="text" class="form-control-plaintext" id="restaurantPhone" readonly ng-model ="restaurant.restaurant_phone">
+                    <input ng-if = "restaurant.restaurant_phone != null" data-toggle="collapse" data-target="#collapsePhone" type="text" class="form-control-plaintext pointer" id="restaurantPhone" readonly ng-model ="restaurant.restaurant_phone">
+                    <a href='#' data-toggle="collapse" data-target="#collapsePhone"> Click to add number </a>
                     <div class="collapse" id="collapsePhone">
                       <div class="card card-body collapse">
                         <input type="text" class="form-control" id="restaurantPhone" ng-model ="restaurant.restaurant_phone">
@@ -63,20 +64,23 @@
                 </div>
 
                 <div class="form-group row">
-                  <span class="col-label" for="restaurantPhone"> CO (Certificate of Occupancy) </span>
-                  <span ng-if="restaurant.restaurant_cert == null"> No file uploaded </span>
-                  <a href="" ng-click="downloadRestaurantCert()" ng-if="restaurant.restaurant_cert != null"> {{ restaurant.restaurant_cert}} </a>
-
-
-                  <div class="collapse" id="collapseCert">
-                    <div class="card card-body collapse">
-                      <input type="file" class="col-input" id="coFile" ng-model ="restaurant.co">
-                      <div class="btn-box">
-                        <button data-toggle= "collapse" data-target="#collapsePhone" class="btn secondary"> Cancel </button>
-                        <button class="btn btn-primary"> Upload </button>
+                  <span class="col-label" for="restaurantPhone"> Certificate of Occupancy </span>
+                  <span ng-if="restaurant.restaurant_cert == null"> Upload Certificate </span>
+                  <div>
+                    <a href="" ng-click="downloadRestaurantCert()" ng-if="restaurant.restaurant_cert != null"> {{ restaurant.cert_name}} </a>
+                    <span class="ml-5 pointer" data-toggle="collapse" data-target="#collapseCert"> Change file </span>
+                    <div class="collapse" id="collapseCert">
+                      <div class="card card-body collapse">
+                        <input type="file" class="col-input" id="coFile" ng-model ="restaurant.co">
+                        <div class="btn-box">
+                          <button data-toggle= "collapse" data-target="#collapseCert" class="btn secondary"> Cancel </button>
+                          <button class="btn btn-primary"> Upload </button>
+                        </div>
                       </div>
                     </div>
                   </div>
+
+
                 </div>
               </form>
             </div>

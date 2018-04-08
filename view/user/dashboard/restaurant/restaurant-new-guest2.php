@@ -32,13 +32,13 @@
           <label>Copy of Drivers License</label>
           <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Drivers License"
           data-content="Please upload a jpg, png, or pdf photocopy of your driver's license.">?</a>
-          <input id="restaurantAddFile" type="file"  file-input ="user_id_img_ref" placeholder="">
+          <input id="restaurantAddFile" class="to-right" type="file"  file-input ="user_id_img_ref" placeholder="">
         </div>
         <div class="form-group row">
           <label>Food Manager Certificate</label>
           <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Food Manager Certificate"
           data-content="Please upload a jpg, png, or pdf photocopy of your food manager certificate.">?</a>
-          <input id="restaurantAddFile" type="file"  file-input ="user_cert_img_ref" placeholder="">
+          <input id="restaurantAddFile" class="to-right" type="file"  file-input ="user_cert_img_ref" placeholder="">
         </div>
       </div>
 

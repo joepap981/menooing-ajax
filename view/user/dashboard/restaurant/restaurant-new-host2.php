@@ -19,14 +19,14 @@
         </div>
         <div class="form-group row">
           <label>Food Mananger/Handler Certificate</label>
-          <input id="restaurantAddHandlerCert" type="file" file-input ="user_cert_img_ref" required/>
+          <input id="restaurantAddHandlerCert" class="to-right" type="file" file-input ="user_cert_img_ref" required/>
         </div>
 
         <p class="text-center mt-4 mb-3 text-nowrap"> Please provide legal documents of your restaurant. </p>
 
         <div class="form-group row">
           <label>Certificate of Occupancy</label>
-          <input id="restaurantAddCertOccupancy" type="file" file-input ="restaurant_cert"  required>
+          <input id="restaurantAddCertOccupancy" class="to-right" type="file" file-input ="restaurant_cert"  required>
         </div>
       </form>
       <small class="text-nowrap"> These documents are required for your restaurant to be published to the public.</small>
