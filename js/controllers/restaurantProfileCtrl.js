@@ -2,6 +2,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
   var restaurant_id;
   $scope.restaurant = {};
+  $scope.input = {};
 
   var init = function () {
     var url = $location.path().split('/');
@@ -80,6 +81,27 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
           growl.error('Failed to update restaurant address info.',{title: 'Error!'});
       }
     });
+  };
+
+  $scope.updatePhone = function () {
+    var ajaxObj = {};
+    ajaxObj['update_info'] = {'phone': $scope.input.phone};
+    ajaxObj['condition'] = {'restaurant_id': restaurant_id};
+
+    restaurantService.updateRestaurant(ajaxObj).then(function(response) {
+      if (response == "SUCCESS") {
+          growl.success('Successfully updated restaurant phone number.',{title: 'Success!'});
+
+          //clear address input + collapse address editing card
+          $scope.input.phone = null;
+          $('#collapsePhone').collapse('hide');
+
+          //update page change
+          init();
+      }else {
+          growl.error('Failed to update restaurant phone number.',{title: 'Error!'});
+      }
+    })
   };
 
   //menu add

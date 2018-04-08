@@ -25,13 +25,13 @@
               <form>
                 <div class=" form-group row" >
                   <span class="col-label" for="restaurantName"> Restaurant Name: </span>
-                  <input type="text" readonly class="form-control-plaintext col-input" id="restaurantName" ng-model ="restaurant.restaurant_name" value="{{ restaurant.restaurant_name }}">
+                  <p class="col-input" id="restaurantName" ng-model ="restaurant.restaurant_name"> {{ restaurant.restaurant_name }} </p>
                 </div>
 
                 <div class=" form-group row" >
                   <span class="col-label" for="restaurantAddress"> Address: </span>
                   <div class="col-input">
-                    <input data-toggle="collapse" data-target="#collapseAddress" type="text" readonly class="form-control-plaintext pointer" id="restaurantAddress" ng-model ="restaurant.address" value="{{ restaurant.address }}">
+                    <p data-toggle="collapse" data-target="#collapseAddress" class="pointer" id="restaurantAddress" ng-model ="restaurant.address">{{ restaurant.address }} </p>
                     <div class="collapse" id="collapseAddress">
                       <div class="card card-body collapse">
                         <div id="locationField">
@@ -49,14 +49,14 @@
                 <div class="form-group row">
                   <span class="col-label" for="restaurantPhone"> Phone: </span>
                   <div class="col-input">
-                    <input ng-if = "restaurant.restaurant_phone != null" data-toggle="collapse" data-target="#collapsePhone" type="text" class="form-control-plaintext pointer" id="restaurantPhone" readonly ng-model ="restaurant.restaurant_phone">
-                    <a href='#' data-toggle="collapse" data-target="#collapsePhone"> Click to add number </a>
+                    <p ng-if = "restaurant.restaurant_phone != null" data-toggle="collapse" data-target="#collapsePhone" class="pointer" id="restaurantPhone" ng-model ="restaurant.restaurant_phone"> {{ restaurant.restaurant_phone }} </p>
+                    <a href='#' ng-if = "restaurant.restaurant_phone == null" data-toggle="collapse" data-target="#collapsePhone"> Click to add number </a>
                     <div class="collapse" id="collapsePhone">
                       <div class="card card-body collapse">
-                        <input type="text" class="form-control" id="restaurantPhone" ng-model ="restaurant.restaurant_phone">
+                        <input type="text" class="form-control" id="restaurantPhone" ng-model ="input.phone">
                         <div class="btn-box">
                           <button data-toggle= "collapse" data-target="#collapsePhone" class="btn secondary"> Cancel </button>
-                          <button class="btn btn-primary"> Save Changes </button>
+                          <button class="btn btn-primary" ng-click= "updatePhone()"> Save Changes </button>
                         </div>
                       </div>
                     </div>
@@ -96,6 +96,18 @@
                 <div class="form-group row">
                   <span class="col-label"> Restaurant Hours </span>
                   <div class="col-input">
+                    <p ng-if = " ">
+
+                    <div class="collapse" id="collapseHours">
+                      <div class="card card-body collapse">
+                        <input type="file" class="col-input" id="coFile" ng-model ="restaurant.co">
+                        <div class="btn-box">
+                          <button data-toggle= "collapse" data-target="#collapseHours" class="btn secondary"> Cancel </button>
+                          <button class="btn btn-primary"> Upload </button>
+                        </div>
+                      </div>
+                    </div>
+
                     <select class="restaurant-hours custom-select mr-sm-2">
                       <option selected>Day</option>
                       <option value="1">Monday</option>
