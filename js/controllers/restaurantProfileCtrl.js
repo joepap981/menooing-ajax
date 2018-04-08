@@ -13,6 +13,10 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       $scope.restaurant = result[0];
       $scope.restaurant.cert_name = $scope.restaurant.restaurant_cert.split('/').pop();
       $scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
+
+      if ($scope.checkDateHours() == true) {
+        $scope.restaurant.open_time = $scope.restaurant.restaurant_open_day + "~" + $scope.restaurant.restaurant_close_day + ", " + $scope.restaurant.restaurant_open_hour + "-" + $scope.restaurant.restaurant_close_hour;
+      }
     });
   };
 
@@ -103,6 +107,14 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       }
     })
   };
+
+  $scope.checkDateHours = function () {
+    if (($scope.restaurant.restaurant_open_day && $scope.restaurant.restaurant_close_day &&
+      $scope.restaurant.restaurant_open_hour && $scope.restaurant.restaurant_close_hour) != null) {
+        return true;
+    }
+    return false;
+  }
 
   //menu add
   $scope.menu = {};

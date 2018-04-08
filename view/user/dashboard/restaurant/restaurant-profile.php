@@ -96,66 +96,133 @@
                 <div class="form-group row">
                   <span class="col-label"> Restaurant Hours </span>
                   <div class="col-input">
-                    <p ng-if = " ">
+                    <p ng-if ="checkDateHours() == true" data-toggle="collapse" data-target="#collapseOpen" class="pointer" id="restaurantOpen"> {{ restaurant.open_time }}</p>
 
-                    <div class="collapse" id="collapseHours">
+                    <div class="collapse" id="collapseOpen">
                       <div class="card card-body collapse">
-                        <input type="file" class="col-input" id="coFile" ng-model ="restaurant.co">
-                        <div class="btn-box">
-                          <button data-toggle= "collapse" data-target="#collapseHours" class="btn secondary"> Cancel </button>
-                          <button class="btn btn-primary"> Upload </button>
+                        <div class="form-group row">
+                          <span class="w-25">Open Days</span>
+                          <div class="w-75">
+                            <select class="custom-select" id="openDay" ng-model='restaurant.open_day'>
+                              <option value="Sunday" selected>Sunday</option>
+                              <option value="Monday">Monday</option>
+                              <option value="Tuesday">Tuesday</option>
+                              <option value="Wednesday">Wednesday</option>
+                              <option value="Thursday">Thursday</option>
+                              <option value=">Friday">Friday</option>
+                              <option value=">Saturday">Saturday</option>
+                            </select>
+                            <span> to </span>
+                            <select class="custom-select" id="closeDay" ng-model='restaurant.close_day'>
+                              <option value="Sunday" selected>Sunday</option>
+                              <option value="Monday">Monday</option>
+                              <option value="Tuesday">Tuesday</option>
+                              <option value="Wednesday">Wednesday</option>
+                              <option value="Thursday">Thursday</option>
+                              <option value="Friday">Friday</option>
+                              <option value="Saturday">Saturday</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <span class="w-25">Open Hours</span>
+                          <div class="row w-75 shiftright">
+                            <div class="row half">
+                              <select class="custom-select col timepick" id="openHour" ng-model = "operationHours.openHour">
+                                <option value="00" selected>00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                              </select>
+                              <span> : </span>
+                              <select class="custom-select col timepick" id="openMin" ng-model = "operationHours.openMin">
+                                <option value="00" selected>00</option>
+                                <option value="30">30</option>
+                              </select>
+                              <select class="custom-select col timepick" id="open" ng-model = "operationHours.open">
+                                <option value="am" selected>am</option>
+                                <option value="pm">pm</option>
+                              </select>
+                            </div>
+                            <div class="row half">
+                              <select class="custom-select col timepick" id="closeHour" ng-model = "operationHours.closeHour">
+                                <option value="00" selected>00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                              </select>
+                              <span>:</span>
+                              <select class="custom-select col timepick" id="closeHour" ng-model = "operationHours.closeMin">
+                                <option value="00" selected>00</option>
+                                <option value="30">30</option>
+                              </select>
+                              <select class="custom-select col timepick" id="close" ng-model = "operationHours.close">
+                                <option value="am" selected>am</option>
+                                <option value="pm">pm</option>
+                              </select>
+                            </div>
+                          </div>
                         </div>
                       </div>
+                      <div class="btn-box">
+                        <button data-toggle= "collapse" data-target="#collapseHours" class="btn secondary"> Cancel </button>
+                        <button class="btn btn-primary"> Save Changes </button>
+                      </div>
                     </div>
-
-                    <select class="restaurant-hours custom-select mr-sm-2">
-                      <option selected>Day</option>
-                      <option value="1">Monday</option>
-                      <option value="2">Tuesday</option>
-                      <option value="3">Wednesday</option>
-                      <option value="4">Thursday</option>
-                      <option value="5">Friday</option>
-                      <option value="6">Saturday</option>
-                      <option value="7">Sunday</option>
-                    </select>
-                    <select class="restaurant-hours custom-select mr-sm-2">
-                      <option selected>Day</option>
-                      <option value="1">Monday</option>
-                      <option value="2">Tuesday</option>
-                      <option value="3">Wednesday</option>
-                      <option value="4">Thursday</option>
-                      <option value="5">Friday</option>
-                      <option value="6">Saturday</option>
-                      <option value="7">Sunday</option>
-                    </select>
-                    <select class="restaurant-hours custom-select mr-sm-2">
-                      <option selected>Choose...</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
-                    <select class="restaurant-hours custom-select mr-sm-2">
-                      <option selected>Choose...</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
                   </div>
                 </div>
 
                 <!--Restaurant category dropdown-->
                 <div class="form-group row">
-                  <div class="col-half">
-                    <span class="col-label"> Category </span>
-                    <select id="restaurant-type" class="restaurant-hours custom-select mr-sm-2">
-                      <option selected>Day</option>
-                    </select>
+                  <span class="col-label"> Category </span>
+                  <p data-toggle="collapse" data-target="#collapseAddress" class="pointer" id="restaurantAddress" ng-model ="restaurant.address">{{ restaurant.address }} </p>
+                  <div class="collapse" id="collapseAddress">
+                    <div class="card card-body collapse">
+
+                      <select id="restaurant-type" class="restaurant-hours custom-select mr-sm-2">
+                        <option selected>Day</option>
+                      </select>
+
+                      <div class="btn-box">
+                        <button data-toggle= "collapse" data-target="#collapseAddress" class="btn secondary"> Cancel </button>
+                        <button ng-click= "updateAddress()" class="btn btn-primary"> Save Changes </button>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-half">
-                    <span class="col-label"> Cuisine </span>
-                    <select id="restaurant-type" class="restaurant-hours custom-select mr-sm-2">
-                      <option selected>Day</option>
-                    </select>
+                </div>
+                <div class="form-group row">
+                  <span class="col-label"> Cuisine </span>
+                  <p data-toggle="collapse" data-target="#collapseAddress" class="pointer" id="restaurantAddress" ng-model ="restaurant.address">{{ restaurant.address }} </p>
+                  <div class="collapse" id="collapseAddress">
+                    <div class="card card-body collapse">
+
+                      <select id="restaurant-type" class="restaurant-hours custom-select mr-sm-2">
+                        <option selected>Day</option>
+                      </select>
+
+                      <div class="btn-box">
+                        <button data-toggle= "collapse" data-target="#collapseAddress" class="btn secondary"> Cancel </button>
+                        <button ng-click= "updateAddress()" class="btn btn-primary"> Save Changes </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -191,10 +258,10 @@
                     </div>
                   </div>
                 </div>
-                <!--Add modal end-->
+                  <!--Add modal end-->
+              </div>
             </div>
-          </div>
-          <!--//Restaurant management information end-->
+            <!--//Restaurant management information end-->
         </div>
         <!--//content-box end-->
         <!-- Save changes button-->
