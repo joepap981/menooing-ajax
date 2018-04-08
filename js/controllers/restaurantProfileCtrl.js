@@ -26,14 +26,6 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     }
 
     authService.downloadFile(downloadInfo);
-
-    /*
-    result.then(function(response) {
-      if (response != "Success") {
-        growl.error(response,{title: 'Error!'});
-      } else {}
-    });
-    */
   }
 
   //extract required address information
@@ -67,15 +59,28 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
     }
 
+    //create an object to update restaurant database info
+    //update_info : key and value of items that need to be changed
+    //condition: key and value of conditions that need to be satisfied in order to be updated
     var ajaxObj = {};
     ajaxObj['update_info'] = restaurant_address;
     ajaxObj['condition'] = {'restaurant_id': restaurant_id};
 
-    restaurantService.updateRestaurant(ajaxObj).then(function(response)  {
-      console.log(response);
-    });
+    restaurantService.updateRestaurant(ajaxObj).then(function(response) {
+      if (response == "SUCCESS") {
+          growl.success('Successfully updated restaurant address info.',{title: 'Success!'});
 
-  }
+          //clear address input + collapse address editing card
+          document.getElementById('autocomplete').value = '';
+          $('#collapseAddress').collapse('hide');
+
+          //update page change
+          init();
+      }else {
+          growl.error('Failed to update restaurant address info.',{title: 'Error!'});
+      }
+    });
+  };
 
   //menu add
   $scope.menu = {};

@@ -15,8 +15,6 @@ if(!$postdata) {
 	die('Could not read contents of POST request');
 }
 
-print $postdata;
-
 //decoding json into array
 $data = json_decode($postdata, true);
 
@@ -44,9 +42,9 @@ $result = (mysqli_query($conn, $update_query));
 
 
 if ($result == 1) {
-  echo "Success";
+  echo "SUCCESS";
 } else {
-  echo "Failed";
+  echo "FAILED";
 }
 
 ?>
