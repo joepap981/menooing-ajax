@@ -140,7 +140,15 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
       //does not erase original file, just add new file and new path to db
       restaurantService.uploadFile(form_data).then(function (response) {
-        growl.success(response, {title: 'Success'});
+        if (response == "SUCCESSFULLY UPLOADED") {
+          $scope.files.restaurant_cert[0] = null;
+          $('#collapseCert').collapse('hide');
+          $('#coFile').val('');
+          growl.success(response, {title: 'Success'});
+        } else {
+          growl.error(response,{title: 'Error!'});
+        }
+
       });
     }
   }
