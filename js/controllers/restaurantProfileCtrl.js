@@ -3,6 +3,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
   var restaurant_id;
   $scope.restaurant = {};
   $scope.input = {};
+  $scope.files = {};
 
   var init = function () {
     var url = $location.path().split('/');
@@ -11,9 +12,16 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     var getRestaurant = restaurantService.getRestaurantInfo(restaurant_id);
     getRestaurant.then(function (result) {
       $scope.restaurant = result[0];
-      $scope.restaurant.cert_name = $scope.restaurant.restaurant_cert.split('/').pop();
+
+      //if restaurant cert exists, slice out path information
+      if($scope.restaurant.restaurant_cert != null) {
+        $scope.restaurant.cert_name = $scope.restaurant.restaurant_cert.split('/').pop();
+      }
+
+      //build restaurant address
       $scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
 
+      //if open date and hours information exists, build into readable string
       if ($scope.checkDateHours() == true) {
         $scope.restaurant.open_time = $scope.restaurant.restaurant_open_day + "~" + $scope.restaurant.restaurant_close_day + ", " + $scope.restaurant.restaurant_open_hour + "-" + $scope.restaurant.restaurant_close_hour;
       }
@@ -114,6 +122,27 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
         return true;
     }
     return false;
+  }
+
+  $scope.uploadFile = function () {
+    if ($scope.files.restaurant_cert == null) {
+      console.log($scope.files.restaurant_cert[0]);
+      growl.warning('Select a file to upload.',{title: 'Error!'});
+    } else {
+      //create form_data for ajax post
+      var form_data = new FormData();
+      form_data.append($scope.files.restaurant_cert.file_type, $scope.files.restaurant_cert[0]);
+      //append file type indicator
+      form_data.append('file_type', $scope.files.restaurant_cert.file_type);
+      //append database table name
+      form_data.append('table_name', 'tb_restaurant');
+      form_data.append('restaurant_id', restaurant_id);
+
+      //does not erase original file, just add new file and new path to db
+      restaurantService.uploadFile(form_data).then(function (response) {
+        growl.success(response, {title: 'Success'});
+      });
+    }
   }
 
   //menu add

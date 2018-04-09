@@ -9,8 +9,6 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
   $scope.registerRestaurant = function (redirectLocation) {
     restaurantService.saveToSession('restaurant', $scope.restaurant);
     restaurantService.saveToSession('user', $scope.user);
-    console.log($window.sessionStorage.restaurant);
-    console.log($window.sessionStorage.user);
     $location.path(redirectLocation);
   }
 
@@ -27,7 +25,8 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
           if (!isNaN(response)) {
             //upload files to file system and save location reference to DB
             //if successfully upload both files
-            var uploadResponse = $scope.uploadFile(response);
+            //
+            var uploadResponse = $scope.getAndUploadFile(response);
             uploadResponse.then(function(response2) {
               if(response2 == "SUCCESSFULLY UPLOADED") {
                 restaurantService.clearFileList();
@@ -98,7 +97,7 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
   }
 
   //create a form_data for uploaded file
-  $scope.uploadFile = function(restaurant_id) {
+  $scope.getAndUploadFile= function(restaurant_id) {
     //incomplete way of checking if both files were successfully uploaded.
     var flag = true;
     angular.forEach(restaurantService.getFileList(), function (form_data) {
@@ -110,6 +109,10 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
   }
 
   //save upload file to restaurantService
+  //create form_data package
+  //file name : File
+  //file_type: file_name
+  //table_name : table_name
   $scope.saveFile = function() {
     angular.forEach($scope.files, function (file) {
       var form_data = new FormData();

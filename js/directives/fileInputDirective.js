@@ -1,3 +1,4 @@
+//directive reads selected file and makes it available for use in controller
 angular.module('menuApp').directive('fileInput', function($parse) {
   return {
     link: function($scope, element, attrs) {
@@ -9,9 +10,9 @@ angular.module('menuApp').directive('fileInput', function($parse) {
 
         $scope[attrs.fileInput].file_type = attrs.fileInput;
 
+        //ex. $scope.files.restaurant_cert
         $scope.files[attrs.fileInput] = $scope[attrs.fileInput];
 
-        console.log($scope.files[attrs.fileInput]);
 
       })
     }

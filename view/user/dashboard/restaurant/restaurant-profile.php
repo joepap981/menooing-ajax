@@ -50,7 +50,9 @@
                   <span class="col-label" for="restaurantPhone"> Phone: </span>
                   <div class="col-input">
                     <p ng-if = "restaurant.restaurant_phone != null" data-toggle="collapse" data-target="#collapsePhone" class="pointer" id="restaurantPhone" ng-model ="restaurant.restaurant_phone"> {{ restaurant.restaurant_phone }} </p>
-                    <a href='#' ng-if = "restaurant.restaurant_phone == null" data-toggle="collapse" data-target="#collapsePhone"> Click to add number </a>
+                    <div class="mb-3">
+                      <a href='#' ng-if = "restaurant.restaurant_phone == null" data-toggle="collapse" data-target="#collapsePhone"> Click to add number </a>
+                    </div>
                     <div class="collapse" id="collapsePhone">
                       <div class="card card-body collapse">
                         <input type="text" class="form-control" id="restaurantPhone" ng-model ="input.phone">
@@ -65,16 +67,18 @@
 
                 <div class="form-group row">
                   <span class="col-label" for="restaurantPhone"> Certificate of Occupancy </span>
-                  <span ng-if="restaurant.restaurant_cert == null"> Upload Certificate </span>
                   <div>
-                    <a href="" ng-click="downloadRestaurantCert()" ng-if="restaurant.restaurant_cert != null"> {{ restaurant.cert_name}} </a>
-                    <span class="ml-5 pointer" data-toggle="collapse" data-target="#collapseCert"> Change file </span>
-                    <div class="collapse" id="collapseCert">
+                    <a href="#" ng-if="restaurant.restaurant_cert == null" class="pointer" data-toggle="collapse" data-target="#collapseCert"> Upload Certificate </a>
+                    <div ng-if="restaurant.restaurant_cert != null">
+                      <a href="" ng-click="downloadRestaurantCert()"> {{ restaurant.cert_name}} </a>
+                      <span class="ml-5 pointer" data-toggle="collapse" data-target="#collapseCert"> Change file </span>
+                    </div>
+                    <div class="collapse mt-3" id="collapseCert">
                       <div class="card card-body collapse">
-                        <input type="file" class="col-input" id="coFile" ng-model ="restaurant.co">
+                        <input type="file" class="col-input" file-input ="restaurant_cert" id="coFile" ng-model ="files.restaurant_cert">
                         <div class="btn-box">
                           <button data-toggle= "collapse" data-target="#collapseCert" class="btn secondary"> Cancel </button>
-                          <button class="btn btn-primary"> Upload </button>
+                          <button class="btn btn-primary" ng-click = "uploadFile()"> Upload </button>
                         </div>
                       </div>
                     </div>
@@ -193,34 +197,54 @@
                 <!--Restaurant category dropdown-->
                 <div class="form-group row">
                   <span class="col-label"> Category </span>
-                  <p data-toggle="collapse" data-target="#collapseAddress" class="pointer" id="restaurantAddress" ng-model ="restaurant.address">{{ restaurant.address }} </p>
-                  <div class="collapse" id="collapseAddress">
-                    <div class="card card-body collapse">
+                  <div>
+                    <p data-toggle="collapse" data-target="#collapseCategory" class="pointer" id="restaurantAddress">{{ restaurant.restaurant_category }} </p>
 
-                      <select id="restaurant-type" class="restaurant-hours custom-select mr-sm-2">
-                        <option selected>Day</option>
-                      </select>
-
-                      <div class="btn-box">
-                        <button data-toggle= "collapse" data-target="#collapseAddress" class="btn secondary"> Cancel </button>
-                        <button ng-click= "updateAddress()" class="btn btn-primary"> Save Changes </button>
+                    <div class="collapse" id="collapseCategory">
+                      <div class="card card-body collapse">
+                        <select id="restaurant-type" class="restaurant-hours custom-select mr-sm-2">
+                          <option value="Casual Dining" selected>Casual Dining</option>
+                          <option value="Fine Dining">Fine Dining</option>
+                          <option value="Fast Casual">Fast Casual</option>
+                          <option value="Fast Food">Fast Food</option>
+                        </select>
+                        <div class="btn-box">
+                          <button data-toggle= "collapse" data-target="#collapseCategory" class="btn secondary"> Cancel </button>
+                          <button ng-click= "updateAddress()" class="btn btn-primary"> Save Changes </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="form-group row">
                   <span class="col-label"> Cuisine </span>
-                  <p data-toggle="collapse" data-target="#collapseAddress" class="pointer" id="restaurantAddress" ng-model ="restaurant.address">{{ restaurant.address }} </p>
-                  <div class="collapse" id="collapseAddress">
-                    <div class="card card-body collapse">
+                  <div>
+                    <p data-toggle="collapse" data-target="#collapseCuisine" class="pointer" id="restaurantCuisine">{{ restaurant.restaurant_cuisine }} </p>
 
-                      <select id="restaurant-type" class="restaurant-hours custom-select mr-sm-2">
-                        <option selected>Day</option>
-                      </select>
-
-                      <div class="btn-box">
-                        <button data-toggle= "collapse" data-target="#collapseAddress" class="btn secondary"> Cancel </button>
-                        <button ng-click= "updateAddress()" class="btn btn-primary"> Save Changes </button>
+                    <div class="collapse" id="collapseCuisine">
+                      <div class="card card-body collapse">
+                        <select id="restaurant-type" class="restaurant-hours custom-select mr-sm-2">
+                          <option value="American" selected>American</option>
+                          <option value="British">British</option>
+                          <option value="Caribbean">Caribbean</option>
+                          <option value="Chinese">Chinese</option>
+                          <option value="French">French</option>
+                          <option value="Greek">Greek</option>
+                          <option value="Indian">Indian</option>
+                          <option value="Italian">Italian</option>
+                          <option value="Japanese">Japanese</option>
+                          <option value="Mediterranean">Mediterranean</option>
+                          <option value="Mexican">Mexican</option>
+                          <option value="Moroccan">Moroccan</option>
+                          <option value="Spanish">Spanish</option>
+                          <option value="Thai">Thai</option>
+                          <option value="Turkish">Turkish</option>
+                          <option value="Korean">Korean</option>
+                        </select>
+                        <div class="btn-box">
+                          <button data-toggle= "collapse" data-target="#collapseCuisine" class="btn secondary"> Cancel </button>
+                          <button ng-click= "updateAddress()" class="btn btn-primary"> Save Changes </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -264,8 +288,6 @@
             <!--//Restaurant management information end-->
         </div>
         <!--//content-box end-->
-        <!-- Save changes button-->
-        <button id="restaurant-save-changes" class="btn btn-primary"> Save Changes </button>
       </div>
     </div>
   </div>
