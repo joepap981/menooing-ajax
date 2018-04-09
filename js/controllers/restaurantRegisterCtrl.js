@@ -1,6 +1,9 @@
 angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$location', 'restaurantService', 'authService', 'growl', '$window', function ($scope, $location, restaurantService, authService, growl, $window) {
   $scope.excessCapacity = {};
-  $scope.operationHours = {};
+  $scope.operationHours = {
+    'openHour': null, 'openMin': null, 'open': null,
+    'closeHour': null, 'closeMin': null, 'close': null
+  };
   $scope.restaurant = {};
   $scope.user = {};
   $scope.files = {};
@@ -92,8 +95,18 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
 
   //cancatenate time string
   $scope.buildTime = function () {
+    //if user has selected all of the operation hour selections
+    //build the operation hours and update
+    for (var element in $scope.operationHours) {
+      if ($scope.operationHours[element] == null) {
+        growl.warning('Fill in all of the operation hour selections', {title: 'Warning'});
+        return false;
+      }
+    }
     $scope.restaurant['open_hour'] = $scope.operationHours['openHour'] + ":" + $scope.operationHours['openMin'] + $scope.operationHours['open'];
     $scope.restaurant['close_hour'] = $scope.operationHours['closeHour'] + ":" + $scope.operationHours['closeMin'] + $scope.operationHours['close'];
+
+    $scope.registerRestaurant('restaurant-new-host4');
   }
 
   //create a form_data for uploaded file

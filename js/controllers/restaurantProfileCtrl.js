@@ -4,6 +4,10 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
   $scope.restaurant = {};
   $scope.input = {};
   $scope.files = {};
+  $scope.operationHours = {
+    'openHour': null, 'openMin': null, 'open': null,
+    'closeHour': null, 'closeMin': null, 'close': null
+  };
 
   var init = function () {
     var url = $location.path().split('/');
@@ -144,6 +148,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
           $scope.files.restaurant_cert[0] = null;
           $('#collapseCert').collapse('hide');
           $('#coFile').val('');
+          init();
           growl.success(response, {title: 'Success'});
         } else {
           growl.error(response,{title: 'Error!'});
@@ -151,6 +156,23 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
       });
     }
+  }
+
+  //cancatenate time string
+  $scope.updateOperationHours = function () {
+    //if user has selected all of the operation hour selections
+    //build the operation hours and update
+    for (var element in $scope.operationHours) {
+      if ($scope.operationHours[element] == null) {
+        growl.warning('Fill in all of the operation hour selections', {title: 'Warning'});
+        return false;
+      }
+    }
+
+    $scope.restaurant['open_hour'] = $scope.operationHours['openHour'] + ":" + $scope.operationHours['openMin'] + $scope.operationHours['open'];
+    $scope.restaurant['close_hour'] = $scope.operationHours['closeHour'] + ":" + $scope.operationHours['closeMin'] + $scope.operationHours['close'];
+    growl.success('Success', {title: 'Success'});
+
   }
 
   //menu add

@@ -188,7 +188,7 @@
                       </div>
                       <div class="btn-box">
                         <button data-toggle= "collapse" data-target="#collapseHours" class="btn secondary"> Cancel </button>
-                        <button class="btn btn-primary"> Save Changes </button>
+                        <button class="btn btn-primary" ng-click="updateOperationHours()"> Save Changes </button>
                       </div>
                     </div>
                   </div>
