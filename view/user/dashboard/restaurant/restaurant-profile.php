@@ -202,7 +202,7 @@
 
                     <div class="collapse" id="collapseCategory">
                       <div class="card card-body collapse">
-                        <select id="restaurant-type" class="restaurant-hours custom-select mr-sm-2">
+                        <select id="restaurant-type" class="restaurant-hours custom-select mr-sm-2" ng-model = "input.category">
                           <option value="Casual Dining" selected>Casual Dining</option>
                           <option value="Fine Dining">Fine Dining</option>
                           <option value="Fast Casual">Fast Casual</option>
@@ -210,7 +210,7 @@
                         </select>
                         <div class="btn-box">
                           <button data-toggle= "collapse" data-target="#collapseCategory" class="btn secondary"> Cancel </button>
-                          <button ng-click= "updateAddress()" class="btn btn-primary"> Save Changes </button>
+                          <button ng-click= "updateCategory()" class="btn btn-primary"> Save Changes </button>
                         </div>
                       </div>
                     </div>
@@ -223,7 +223,7 @@
 
                     <div class="collapse" id="collapseCuisine">
                       <div class="card card-body collapse">
-                        <select id="restaurant-type" class="restaurant-hours custom-select mr-sm-2">
+                        <select id="restaurant-type" ng-model = "input.cuisine" class="restaurant-hours custom-select mr-sm-2">
                           <option value="American" selected>American</option>
                           <option value="British">British</option>
                           <option value="Caribbean">Caribbean</option>
@@ -243,7 +243,7 @@
                         </select>
                         <div class="btn-box">
                           <button data-toggle= "collapse" data-target="#collapseCuisine" class="btn secondary"> Cancel </button>
-                          <button ng-click= "updateAddress()" class="btn btn-primary"> Save Changes </button>
+                          <button ng-click= "updateCuisine()" class="btn btn-primary"> Save Changes </button>
                         </div>
                       </div>
                     </div>
@@ -274,9 +274,11 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <a href="#"><img class="menu-img" src="http://via.placeholder.com/300x200" alt=""></a>
-                        <div class="menu-img">
-                          <a href="#"> Add image </a>
+                        <img class="menu-img" id= "image-holder" src="http://via.placeholder.com/300x200" alt="">
+                        <input type="file" class ="menu-img mt-2" image-input = "restaurant_image"></input>
+                        <div class="btn-box mt-4 pull-right">
+                          <button type="button" class="btn btn-secondary">Cancel</button>
+                          <button type="button" class="btn btn-primary">Save Image</button>
                         </div>
                       </div>
                     </div>

@@ -35,3 +35,4 @@
 <script src="js/directives/UserPage.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/directives/UserDashboardViewDirective.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/directives/fileInputDirective.js<?php echo $jsTimeStamp ?>"></script>
+<script src="js/directives/imageInputDirective.js<?php echo $jsTimeStamp ?>"></script>

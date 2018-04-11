@@ -100,6 +100,11 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
   };
 
   $scope.updatePhone = function () {
+    //if use has not selected choice
+    if ($scope.input.phone == null  || $scope.input.phone == {}) {
+      growl.warning('Please input a phone number.',{title: 'Warning!'});
+    }
+
     var ajaxObj = {};
     ajaxObj['update_info'] = {'phone': $scope.input.phone};
     ajaxObj['condition'] = {'restaurant_id': restaurant_id};
@@ -171,8 +176,91 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
     $scope.restaurant['open_hour'] = $scope.operationHours['openHour'] + ":" + $scope.operationHours['openMin'] + $scope.operationHours['open'];
     $scope.restaurant['close_hour'] = $scope.operationHours['closeHour'] + ":" + $scope.operationHours['closeMin'] + $scope.operationHours['close'];
-    growl.success('Success', {title: 'Success'});
 
+    var ajaxObj = {};
+    ajaxObj['update_info'] = {
+      'open_day': $scope.restaurant.open_day, 'open_hour': $scope.restaurant.open_hour,
+    'close_day': $scope.restaurant.close_day, 'close_hour': $scope.restaurant.close_hour };
+    ajaxObj['condition'] = {'restaurant_id': restaurant_id};
+
+    restaurantService.updateRestaurant(ajaxObj).then(function(response) {
+      if (response == "SUCCESS") {
+          growl.success('Successfully updated restaurant operation hours.',{title: 'Success!'});
+
+          //clear operation hour selection + collapse operation hours editing card
+          $scope.operationHours = {
+            'openHour': null, 'openMin': null, 'open': null,
+            'closeHour': null, 'closeMin': null, 'close': null
+          };
+
+          $scope.restaurant.open_day = null;
+          $scope.restaurant.close_day = null;
+
+          $('#collapseOpen').collapse('hide');
+
+          //update page change
+          init();
+      }else {
+          growl.error('Failed to update restaurant operation hours.',{title: 'Error!'});
+      }
+    });
+  }
+
+  $scope.updateCategory = function () {
+    //if use has not selected choice
+    if ($scope.input.category == null  || $scope.input.category == {}) {
+      growl.warning('Please select a category.',{title: 'Warning!'});
+    }
+
+    var ajaxObj = {};
+    ajaxObj['update_info'] = {'category': $scope.input.category};
+    ajaxObj['condition'] = {'restaurant_id': restaurant_id};
+
+    restaurantService.updateRestaurant(ajaxObj).then(function(response) {
+      if (response == "SUCCESS") {
+          growl.success('Successfully updated restaurant category.',{title: 'Success!'});
+
+          //collapse category editing card
+          $('#collapseCategory').collapse('hide');
+          //clear category
+          $scope.input.category = null;
+
+          //update page change
+          init();
+
+      }else {
+          growl.error('Failed to update restaurant category.',{title: 'Error!'});
+      }
+    })
+  }
+
+  $scope.updateCuisine = function() {
+
+    //if use has not selected choice
+    if ($scope.input.cuisine == null || $scope.input.cuisine == {}) {
+      growl.warning('Please select a cuisine.',{title: 'Warning!'});
+    }
+
+    var ajaxObj = {};
+    ajaxObj['update_info'] = {'cuisine': $scope.input.cuisine};
+    ajaxObj['condition'] = {'restaurant_id': restaurant_id};
+
+    restaurantService.updateRestaurant(ajaxObj).then(function(response) {
+      if (response == "SUCCESS") {
+          growl.success('Successfully updated restaurant cuisine.',{title: 'Success!'});
+
+          //collapse cuisine editing card
+          $('#collapseCuisine').collapse('hide');
+          //clear category
+          $scope.input.cuisine = null;
+
+          //update page change
+          init();
+
+      }else {
+          growl.error('Failed to update restaurant cuisine.',{title: 'Error!'});
+      }
+    })
   }
 
   //menu add
