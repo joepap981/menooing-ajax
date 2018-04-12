@@ -278,7 +278,7 @@
                         <input type="file" class ="menu-img mt-2" image-input = "restaurant_image"></input>
                         <div class="btn-box mt-4 pull-right">
                           <button type="button" class="btn btn-secondary">Cancel</button>
-                          <button type="button" class="btn btn-primary">Save Image</button>
+                          <button type="button" class="btn btn-primary" ng-click="uploadImage()">Save Image</button>
                         </div>
                       </div>
                     </div>

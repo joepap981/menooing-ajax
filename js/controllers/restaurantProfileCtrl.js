@@ -263,6 +263,36 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     })
   }
 
+  $scope.uploadImage = function () {
+    if ($scope.restaurant_image == null) {
+      //console.log($scope.restaurant_image[0]);
+      growl.warning('Select an image to upload.',{title: 'Error!'});
+    } else {
+      //create form_data for ajax post
+      var form_data = new FormData();
+      form_data.append($scope.restaurant_image.file_type, $scope.restaurant_image[0]);
+      //append file type indicator
+      form_data.append('file_type', $scope.restaurant_image.file_type);
+      //append database table name
+      form_data.append('table_name', 'tb_restaurant');
+      form_data.append('restaurant_id', restaurant_id);
+
+      //does not erase original file, just add new file and new path to db
+      restaurantService.uploadFile(form_data).then(function (response) {
+        if (response == "SUCCESSFULLY UPLOADED") {
+          $scope.restaurant_image = null;
+          $('#image-holder').val('');
+          init();
+          growl.success(response, {title: 'Success'});
+        } else {
+          growl.error(response,{title: 'Error!'});
+        }
+
+      });
+    }
+  }
+
+
   //menu add
   $scope.menu = {};
   $scope.clearForm = function () {

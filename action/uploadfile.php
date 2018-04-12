@@ -34,7 +34,7 @@ if (!in_array($ext, $allowed_extension)) {
 //*location/restaurantid_filename
 //build full address path according to restaurant or user related file
 if ($table_name == 'tb_restaurant') {
-  $full_path = $upload_location.$restaurant_id . '_' . $filename;
+  $full_path = $upload_location.$restaurant_id . '/' . $file_type . '/' . $filename;
 } else if ($table_name == 'tb_user_info'){
   $full_path =  $upload_location . $filename;
 }
