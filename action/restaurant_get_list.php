@@ -10,7 +10,7 @@ if(isset($_SESSION)) {
   //connect to mysql with info from inc_signin_db
   $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
 
-  $query = "SELECT restaurant_id, restaurant_status, restaurant_name, restaurant_locality, restaurant_administrative_area_level_1, restaurant_img_ref, restaurant_entity
+  $query = "SELECT restaurant_id, restaurant_status, restaurant_name, restaurant_locality, restaurant_administrative_area_level_1, restaurant_image, restaurant_entity
             FROM $dbName.tb_restaurant WHERE user_ref = " . $user['user_id'];
 
   $result = mysqli_query($conn, $query);
