@@ -47,6 +47,7 @@ $insert_result = (mysqli_query($conn, $insert_to_restaurant_query));
 if ($insert_result != 1) {
 	$rollback_result = mysqli_query($conn, $rollback_query);
 	exit("Failed to insert Restaurant Info");
+	//else get the restaurant id
 } else {
 	$restaurant_id = mysqli_insert_id($conn);
 }
@@ -68,6 +69,18 @@ if ($update_result != 1) {
 	$rollback_result = mysqli_query($conn, $rollback_query);
 	exit("Failed to insert User Info");
 //if successful, return newly created restaurant's restaurant_id
+} else {
+	//create restaurant folder
+	//get location salt from tb_user_info
+	$select_query = "SELECT user_storage_salt FROM tb_user_info WHERE user_ref = " . $user['user_id'] . ";";
+	$select_result = mysqli_fetch_array(mysqli_query($conn, $select_query));
+
+	$new_directory = "../noexec/" . $user['user_id'] . "/" . $select_result['user_storage_salt'] . "/" . $restaurant_id . '/';
+
+	if (!file_exists($new_directory)) {
+		mkdir($new_directory.'restaurant_cert/', 0777, true);
+		mkdir($new_directory.'restaurant_image/', 0777, true);
+	}
 }
 
 //create request for admin to confirm
