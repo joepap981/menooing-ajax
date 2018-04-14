@@ -263,6 +263,24 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     })
   }
 
+  $scope.initCropper = function () {
+    var image = document.getElementById('image-holder');
+    var cropper = new Cropper(image, {
+      aspectRatio: 7 / 4,
+      minContainerWidth: 450,
+      minContainerHeight: 250,
+      crop: function(event) {
+        console.log(event.detail.x);
+        console.log(event.detail.y);
+        console.log(event.detail.width);
+        console.log(event.detail.height);
+        console.log(event.detail.rotate);
+        console.log(event.detail.scaleX);
+        console.log(event.detail.scaleY);
+      }
+    });
+  }
+
   $scope.uploadImage = function () {
     if ($scope.restaurant_image == null) {
       //console.log($scope.restaurant_image[0]);

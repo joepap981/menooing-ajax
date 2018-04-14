@@ -261,7 +261,7 @@
                   <p>Image/Logo </p>
                 </div>
                 <div class="col-input">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMenu">Add Image</button>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" ng-click = "initCropper()" data-target="#addMenu">Add Image</button>
                 </div>
                 <!-- Menu Add Modal -->
                 <div class="modal fade" id="addMenu" tabindex="-1" role="dialog" aria-labelledby="addMenu" aria-hidden="true">
@@ -274,8 +274,10 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <img class="menu-img" id= "image-holder" src="http://via.placeholder.com/300x200" alt="">
-                        <input type="file" class ="menu-img mt-2" image-input = "restaurant_image"></input>
+                        <div class="row align-items-center justify-content-center">
+                          <img class="menu-img" id="image-holder" src="/noexec/byung1.jpg" alt="">
+                        </div>
+                        <input type="file" class ="menu-img mt-2" image-input ="restaurant_image"></input>
                         <div class="btn-box mt-4 pull-right">
                           <button type="button" class="btn btn-secondary">Cancel</button>
                           <button type="button" class="btn btn-primary" ng-click="uploadImage()">Save Image</button>

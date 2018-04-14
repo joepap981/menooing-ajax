@@ -30,6 +30,8 @@ $jsTimeStamp = '?version=v-'.$timeStr;
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.js"></script>
 		<script src="/lib/angular-file-saver.bundle.js"></script>
+		<script src="/lib/cropper/cropper.js"></script>
+		<link  href="/lib/cropper/cropper.css" rel="stylesheet">
 
 	</head>
 
@@ -55,5 +57,6 @@ $jsTimeStamp = '?version=v-'.$timeStr;
 
 	?>
 	<script src="lib/growl-js/angular-growl.min.js"></script>
+
 	</body>
 </html>

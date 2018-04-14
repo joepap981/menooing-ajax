@@ -13,6 +13,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
   $scope.response = {};
   $scope.session = {};
 
+
   //check every time a page is loaded to see if session is live
   var init = function () {
     var myData = authService.checkSession();
@@ -26,6 +27,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
         return false;
       }
     });
+
   }
   init();
 

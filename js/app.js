@@ -94,10 +94,6 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl', 'ui.bootstrap
     .when('/profile', {
       templateUrl: 'view/user/dashboard/profile/'
     })
-
-    .when('/test-in', {
-      templateUrl: 'test.php'
-    })
   	.otherwise({
   		redirectTo: '/'
   	});

@@ -14,6 +14,8 @@ angular.module('menuApp').directive('imageInput', function($parse) {
         var reader = new FileReader();
         reader.onload = function (e) {
           $('#image-holder').attr('src', e.target.result);
+          $('.cropper-view-box').children('img').attr('src', e.target.result);
+          $('.cropper-canvas').children('img').attr('src', e.target.result);
         }
 
         reader.readAsDataURL($scope.restaurant_image[0]);
