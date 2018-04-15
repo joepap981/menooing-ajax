@@ -12,10 +12,29 @@ angular.module('menuApp').directive('imageInput', function($parse) {
 
         //read file to load into image-holder div
         var reader = new FileReader();
+
         reader.onload = function (e) {
-          $('#image-holder').attr('src', e.target.result);
-          $('.cropper-view-box').children('img').attr('src', e.target.result);
-          $('.cropper-canvas').children('img').attr('src', e.target.result);
+          var image = new Image();
+          image.onload = function (scope) {
+            //refresh cropper canvas with newly loaded image
+            var scaledHeight = (400 / image.width) * image.height;
+            $('#image-holder').attr('src', e.target.result);
+            $('#image-holder').width('400px');
+            $('#image-holder').height(scaledHeight);
+
+            $('.cropper-view-box').children('img').attr('src', e.target.result);
+            $('.cropper-view-box').children('img').width('400px');
+            $('.cropper-view-box').children('img').height(scaledHeight);
+
+            $('.cropper-canvas').children('img').attr('src', e.target.result);
+            $('.cropper-canvas').children('img').width('400px');
+            $('.cropper-canvas').children('img').height(scaledHeight);
+
+            $('.cropper-crop-box').children('img').attr('src', e.target.result);
+            $('.cropper-crop-box').children('img').width('400px');
+            $('.cropper-crop-box').children('img').height(scaledHeight);
+          }
+          image.src = e.target.result;
         }
 
         reader.readAsDataURL($scope.restaurant_image[0]);

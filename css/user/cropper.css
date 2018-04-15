@@ -287,3 +287,14 @@
 .cropper-disabled .cropper-point {
   cursor: not-allowed;
 }
+
+
+/**/
+
+.image-container {
+  max-width: 100%;
+}
+
+.image-container img {
+  width: 100%;
+}

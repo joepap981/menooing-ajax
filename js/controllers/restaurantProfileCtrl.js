@@ -268,7 +268,8 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     var cropper = new Cropper(image, {
       aspectRatio: 7 / 4,
       minContainerWidth: 450,
-      minContainerHeight: 250,
+      minContainerHeight: 350,
+      strict: false,
       crop: function(event) {
         console.log(event.detail.x);
         console.log(event.detail.y);
@@ -309,6 +310,8 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       });
     }
   }
+
+  
 
 
   //menu add
