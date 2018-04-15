@@ -24,23 +24,30 @@
             <div class="card-block container">
               <div class= "row">
                 <div class="col">
-                  <img id="profile-image-preview" style="max-width: 60%;" src="/noexec/square.jpg" alt="">
+                  <div id="profile-image-container">
+                    <img id="profile-image-preview" class="pointer" src="/noexec/square.jpg" alt="">
+                  </div>
                 </div>
                 <div class="col">
                   <p> Upload a profile picture.</p>
-
+                  <!-- hidden, linked to profile-image-preview -->
                   <input ng-show="null" id="profile-image-upload" type="file"></input>
+                  <button class="btn btn-primary"> Save Image </button>
                 </div>
-
               </div>
             </div>
           </div>
-          <!--//restaurant basic information end-->
+          <!--//user profile image end-->
 
-          <!-- Restaurant management information-->
+          <!-- user basic information-->
           <div class="card restaurant-profile">
-            <div id="profile" class="card-header"> Restaurant Management </div>
+            <div class="card-header"> User Basic Information </div>
             <div class="card-block container">
+              <div class="row">
+                
+              </div>
+
+
               <form>
                 <!-- Restaurant hours dropdown-->
                 <div class="form-group row">

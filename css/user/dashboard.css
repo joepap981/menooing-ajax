@@ -342,3 +342,15 @@ button#menu-category.btn {
 .cropper-view-box {
   max-width: 100%;
 }
+
+/** User profile **/
+#profile-image-container {
+  max-width: 60%;
+  height: auto;
+  border: 2px;
+}
+
+#profile-image-preview {
+  max-height: 180px;
+  max-height:auto;
+}
