@@ -17,6 +17,13 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
         $scope.user.last_name = response.user_last_name;
         $scope.user.user_id = response.user_id;
 
+        //check for profileImage
+        if ($scope.user.user_img != null) {
+          $scope.user.img_ref = $scope.user.user_img;
+        } else {
+          $scope.user.img_ref = '/noexec/square.jpg';
+        }
+
         //get file names
         //if usercert exists, slice out path information
         if($scope.user.user_cert != null) {
@@ -56,7 +63,6 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
   //when click the "Save Changes" button, uploads currently chosen photo
   $scope.uploadFile = function (file_type) {
     if ($scope.files[file_type]== null) {
-      console.log($scope.files[file_type][0]);
       growl.warning('Select a file to upload.',{title: 'Error!'});
     } else {
       //create form_data for ajax post

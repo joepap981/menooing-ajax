@@ -25,8 +25,7 @@
               <div class= "row">
                 <div class="col">
                   <div id="profile-image-container">
-                    <img id="profileImagePreview" ng-show = "user.user_id_img != null || user.user_id_img != ''" class="pointer" ng-src="{{ user.user_id_img }}" alt="">
-                    <img id="profileImagePreview" ng-show = "user.user_id_img == null" class="pointer" src="/noexec/square.jpg" alt="">
+                    <img id="profileImagePreview" class="pointer" ng-src="{{ user.img_ref }}" alt="">
                   </div>
                 </div>
                 <div class="col">
