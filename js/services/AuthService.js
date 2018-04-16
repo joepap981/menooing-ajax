@@ -39,6 +39,14 @@ angular.module('menuApp').factory('authService', function($http, FileSaver) {
       });
     },
 
+
+    uploadFile: function (form_data) {
+      return $http({ method: "POST", url: "action/uploadfile.php", data: form_data, headers: {'Content-Type': undefined},
+    }).then(function mySuccess(response) {
+        return response.data;
+      });
+    },
+
     downloadFile: function (downloadInfo) {
       return $http({ method : "POST", url: 'action/download.php', data: downloadInfo, responseType: 'blob'})
       .then(function mySuccess(response) {
