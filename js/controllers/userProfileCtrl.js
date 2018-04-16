@@ -88,8 +88,8 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
           } else if (file_type == 'user_cert'){
             $('#collapseFoodManCert').collapse('hide');
             $('#foodCertFileInput').val('');
-          } else if (file_type == 'user_id_img') {
-
+          } else if (file_type == 'user_img') {
+            $('#previewImageUpload').val('');
           }
           else {
             growl.error('Successfully uploaded but clearing process went wrong.', {title: 'Error'})

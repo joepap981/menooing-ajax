@@ -31,8 +31,8 @@
                 <div class="col">
                   <p> Upload a profile picture.</p>
                   <!-- hidden, linked to profileImagePreview -->
-                  <input ng-show="null" id="profileImageUpload" type="file"></input>
-                  <button class="btn btn-primary" ng-click="uploadFile('user_id_img')"> Save Image </button>
+                  <input ng-show="null" id="profileImageUpload" file-input="user_img" type="file"></input>
+                  <button class="btn btn-primary" ng-click="uploadFile('user_img')"> Save Image </button>
                 </div>
               </div>
             </div>
