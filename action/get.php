@@ -10,6 +10,7 @@ if(!$postdata) {
 }
 
 //decoding json into array
+//need variables - table, key: value
 $data = json_decode($postdata, true);
 
 //build sql query

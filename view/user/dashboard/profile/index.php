@@ -25,7 +25,8 @@
               <div class= "row">
                 <div class="col">
                   <div id="profile-image-container">
-                    <img id="profile-image-preview" class="pointer" src="/noexec/square.jpg" alt="">
+                    <img id="profile-image-preview" ng-show = "user.user_id_img_ref != null" class="pointer" ng-src="{{ user.user_id_img_ref }}" alt="">
+                    <img id="profile-image-preview" ng-show = "user.user_id_img_ref == null" class="pointer" src="/noexec/square.jpg" alt="">
                   </div>
                 </div>
                 <div class="col">
@@ -43,17 +44,17 @@
           <div class="card restaurant-profile">
             <div class="card-header"> User Basic Information </div>
             <div class="card-block container">
-              <div class="form-group row">
+              <div class="form-group row" ng-model = "user">
                 <label class="col-label"> First Name: </label>
-                <input class="col-input form-control"> </input>
+                <input class="col-input form-control" ng-model = "user.first_name"></input>
               </div>
               <div class="form-group row">
                 <label class="col-label"> Last Name: </label>
-                <input class="col-input form-control"> </input>
+                <input class="col-input form-control" ng-model = "user.last_name"> </input>
               </div>
               <div class="form-group row">
                 <label class="col-label"> Phone: </label>
-                <input class="col-input form-control"> </input>
+                <input class="col-input form-control" ng-model = "user.user_phone"> </input>
               </div>
 
               <button class="btn btn-primary mt-3 pull-right"> Save Changes </button>
@@ -67,14 +68,15 @@
               <div class="form-group row">
                 <label class="w-25 mr-auto"> Social Security: </label>
                 <div class="w-50 ml-3">
-                  <a href="" ng-click="downloadRestaurantCert()"> Uploaded file in database </a>
-                  <span class="ml-5 pointer" data-toggle="collapse" data-target="#collapseSSN"> Change file </span>
+                  <p ng-show = "user.user_ssn == null" class="pointer" > Upload File </p>
+                  <a href="" ng-show = "user.user_ssn != null" ng-click="downloadFile('user_ssn')" class="w-60"> Download uploaded file </a>
+                  <span ng-show = "user.user_ssn != null" class="ml-5 pointer" data-toggle="collapse" data-target="#collapseSSN"> Change file </span class="w-60">
                   <div class="collapse mt-3 mb-3" id="collapseSSN">
                     <div class="card card-body collapse">
-                      <input type="file" class="col-input" file-input ="restaurant_cert" ng-model ="files.restaurant_cert">
+                      <input type="file" class="col-input" file-input ="user_ssn" ng-model ="files.user_ssn">
                       <div class="btn-box">
-                        <button data-toggle= "collapse" data-target="#collapseCert" class="btn secondary"> Cancel </button>
-                        <button class="btn btn-primary" ng-click = "uploadFile()"> Upload </button>
+                        <button data-toggle= "collapse" data-target="#collapseSSN" class="btn secondary"> Cancel </button>
+                        <button class="btn btn-primary" ng-click = "uploadFile('user_ssn')"> Upload </button>
                       </div>
                     </div>
                   </div>
@@ -83,14 +85,15 @@
               <div class="form-group row">
                 <label class="w-26 mr-auto"> Food Manager Certificate: </label>
                 <div class="w-50 ml-3">
-                  <a href="" ng-click="downloadRestaurantCert()"> Uploaded file in database </a>
-                  <span class="ml-5 pointer" data-toggle="collapse" data-target="#collapseFoodManCert"> Change file </span>
+                  <p ng-show = "user.user_cert == null" class="pointer" > Upload File </p>
+                  <a href="" ng-show = "user.user_cert != null" ng-click="downloadFile('user_cert')" class="w-60"> Download uploaded file </a>
+                  <span ng-show = "user.user_cert != null" class="ml-5 pointer" data-toggle="collapse" data-target="#collapseFoodManCert"> Change file </span>
                   <div class="collapse mt-3 mb-3" id="collapseFoodManCert">
                     <div class="card card-body collapse">
-                      <input type="file" class="col-input" file-input ="restaurant_cert" ng-model ="files.restaurant_cert">
+                      <input type="file" class="col-input" file-input ="user_cert" ng-model ="files.user_cert">
                       <div class="btn-box">
-                        <button data-toggle= "collapse" data-target="#collapseCert" class="btn secondary"> Cancel </button>
-                        <button class="btn btn-primary" ng-click = "uploadFile()"> Upload </button>
+                        <button data-toggle= "collapse" data-target="#collapseFoodManCert" class="btn secondary"> Cancel </button>
+                        <button class="btn btn-primary" ng-click = "uploadFile('user_cert')"> Upload </button>
                       </div>
                     </div>
                   </div>

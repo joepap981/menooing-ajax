@@ -275,7 +275,7 @@
                       </div>
                       <div class="modal-body">
                         <div class=".image-container row align-items-center justify-content-center">
-                          <img id="image-holder" src="/noexec/byung1.jpg" alt="">
+                          <img id="image-holder" ng-src="/noexec/byung1.jpg" alt="">
                         </div>
                         <input id="image-input" type="file" class ="menu-img mt-2" image-input ="restaurant_image"></input>
                         <div class="btn-box mt-4 pull-right">

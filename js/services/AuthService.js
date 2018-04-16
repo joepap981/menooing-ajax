@@ -58,6 +58,13 @@ angular.module('menuApp').factory('authService', function($http, FileSaver) {
       });
     },
 
+    getInformation: function (queryObject) {
+      return $http({ method : "POST", url: 'action/get.php', data: queryObject})
+      .then(function mySuccess(response) {
+        return response.data;
+      });
+    },
+
 
   }
 });
