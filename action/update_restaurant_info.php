@@ -31,11 +31,13 @@ foreach($data['update_info'] as $key => $value) {
 
 //trim end ,
 $update_query = substr($update_query, 0, -2) . " WHERE ";
+
+//iterate through conditions to build query
 foreach($data['condition'] as $key => $value) {
   $update_query = $update_query . "$key = $value and ";
 }
 
-
+//trim end ,
 $update_query = substr($update_query, 0, -5) . ';';
 
 $result = (mysqli_query($conn, $update_query));

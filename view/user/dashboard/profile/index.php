@@ -56,7 +56,7 @@
                 <input class="col-input form-control" ng-model = "user.user_phone"> </input>
               </div>
 
-              <button class="btn btn-primary mt-3 pull-right"> Save Changes </button>
+              <button class="btn btn-primary mt-3 pull-right" ng-click="saveChanges()"> Save Changes </button>
 
             </div>
             <!--//user basic information end-->

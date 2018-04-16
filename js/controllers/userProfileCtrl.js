@@ -115,4 +115,38 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
     authService.downloadFile(downloadInfo);
   }
 
+  $scope.saveChanges = function () {
+
+    var ajaxObj= {};
+    ajaxObj['update_info'] = {
+      'phone': $scope.user.user_phone,
+    };
+    ajaxObj['condition'] = {'user_ref': $scope.user.user_id};
+    ajaxObj['table'] = 'tb_user_info';
+
+    authService.updateInformation(ajaxObj).then(function(response) {
+      if (response == "SUCCESS") {
+
+        ajaxObj['update_info'] = {
+          'first_name': $scope.user.first_name,
+          'last_name': $scope.user.last_name,
+        };
+        ajaxObj['condition'] = {'user_id': $scope.user.user_id};
+        ajaxObj['table'] = 'tb_user';
+
+        authService.updateInformation(ajaxObj).then(function(response) {
+          if (response == "SUCCESS") {
+              growl.success('Successfully updated user information.',{title: 'Success!'});
+
+              //update page change
+              init();
+          }else {
+              growl.error('Failed to update user first_name and last_name.',{title: 'Error!'});
+          }
+        });
+      }else {
+          growl.error('Failed to update user phone number.',{title: 'Error!'});
+      }
+    });
+  }
 }]);

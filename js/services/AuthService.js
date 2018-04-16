@@ -73,6 +73,13 @@ angular.module('menuApp').factory('authService', function($http, FileSaver) {
       });
     },
 
+    updateInformation: function (changes) {
+      return $http({ method: "POST", url: "action/update_info.php", data: changes })
+    .then(function mySuccess(response) {
+        return response.data;
+      });
+    },
+
 
   }
 });
