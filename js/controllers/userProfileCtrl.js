@@ -1,6 +1,6 @@
 angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '$routeParams', 'authService', 'growl', 'FileSaver', 'Blob', function ($scope, $location, $routeParams, authService, growl, FileSaver, Blob, $uibModal) {
   //when click on the profile image preview, a file upload window pops up
-  $('#profile-image-preview').click(function(){ $('#profile-image-upload').trigger('click'); });
+  $('#profileImagePreview').click(function(){ $('#profileImageUpload').trigger('click'); });
   $scope.user = {};
   $scope.input = {};
   $scope.files = {};
@@ -41,14 +41,14 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
     var reader = new FileReader();
 
     reader.onload = function(e) {
-      $('#profile-image-preview').attr('src', e.target.result);
+      $('#profileImagePreview').attr('src', e.target.result);
     }
 
     reader.readAsDataURL(input.files[0]);
     }
   }
 
-  $("#profile-image-upload").change(function() {
+  $("#profileImageUpload").change(function() {
     readURL(this);
   });
 
