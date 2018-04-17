@@ -261,10 +261,10 @@
                   <p>Image/Logo </p>
                 </div>
                 <div class="col-input">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" ng-click = "initCropper()" data-target="#addMenu">Add Image</button>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" ng-click = "initCropper()" data-target="#collapseRestaurantImage">Add Image</button>
                 </div>
                 <!-- Menu Add Modal -->
-                <div class="modal fade" id="addMenu" tabindex="-1" role="dialog" aria-labelledby="addMenu" aria-hidden="true">
+                <div class="modal fade" id="collapseRestaurantImage" tabindex="-1" role="dialog" aria-labelledby="addMenu" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -279,7 +279,7 @@
                         </div>
                         <input id="image-input" type="file" class ="menu-img mt-2" image-input ="restaurant_image"></input>
                         <div class="btn-box mt-4 pull-right">
-                          <button type="button" class="btn btn-secondary">Cancel</button>
+                          <button type="button" class="btn btn-secondary" data-toggle= "modal" data-target="#collapseRestaurantImage">Cancel</button>
                           <button type="button" class="btn btn-primary" ng-click="uploadImage()">Save Image</button>
                         </div>
                       </div>
