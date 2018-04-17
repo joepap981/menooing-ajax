@@ -94,6 +94,11 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl', 'ui.bootstrap
     .when('/profile', {
       templateUrl: 'view/user/dashboard/profile/'
     })
+
+    //restaurant search page
+    .when('/restaurant-search', {
+      templateUrl: 'view/user/restaurant-search/restaurant-search-main.php'
+    })
   	.otherwise({
   		redirectTo: '/'
   	});

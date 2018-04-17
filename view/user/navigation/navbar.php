@@ -16,7 +16,10 @@
 <nav class="navbar navbar-light bg-light static-top" ng-if="session['user_id'] != null">
   <!--logo-->
   <div ng-click ="redirect('/')" class="navbar-brand cursor-pointer"> menooing </div>
-  <div class="clear-btn nav-item ml-auto" ng-click="redirect('/home')"> Dashboard </div>
+  <div class="row ml-auto">
+    <div ng-click = "redirect('/restaurant-search')" class="clear-btn nav-item ml-auto"> Restaurants </div>
+    <div class="clear-btn nav-item ml-auto" ng-click="redirect('/home')"> Dashboard </div>
+  </div>
   <div class="nav-item dropdown">
     <!-- User ICON image -->
     <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
