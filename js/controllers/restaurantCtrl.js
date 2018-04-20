@@ -1,12 +1,17 @@
-angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'restaurantService', 'growl', '$window', function ($scope, $location, restaurantService, growl, $window) {
+angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'restaurantService', 'authService', 'growl', '$window', function ($scope, $location, restaurantService, authService, growl, $window) {
 
   $scope.userRestaurants = [];
   var init = function () {
-    //get all restaurants from user in current session (check in server)
-    var restaurantList = restaurantService.getRestaurantList();
-    restaurantList.then(function (result) {
-      $scope.userRestaurants = result;
+    authService.checkSession().then(function(response) {
+      //get all restaurants from user in current session (check in server)
+      var session_user_id = response.user_idz;
+      var restaurantList = restaurantService.getRestaurantList(session_user_id);
+      restaurantList.then(function (result) {
+        $scope.userRestaurants = result;
+      });
     });
+
+
   }
   //run initialization method
   init();
