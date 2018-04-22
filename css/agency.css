@@ -113,12 +113,12 @@ img::-moz-selection {
 }
 
 #mainNav .navbar-brand {
-  color: #FEB201;
+  color: #FECC01;
   font-family: 'Anton', 'Helvetica Neue', Helvetica, Arial, cursive;
 }
 
 #mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-  color: #FECC01;
+  color: #FED921;
 }
 
 #mainNav .navbar-nav .nav-item .nav-link {
@@ -219,6 +219,11 @@ header.masthead .intro-text .intro-heading {
     margin-bottom: 50px;
     font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
+}
+
+.service-img {
+  height: 50%;
+  width: 50%;
 }
 
 .service-heading {
