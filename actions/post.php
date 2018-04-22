@@ -19,6 +19,34 @@ if(!$postData) {
 
 //decoding json into array
 $data = json_decode($postData, true);
-$user_info = array();
 
-echo $postData;
+//required data
+$data_type = $data['type'];
+$tableName = 'tb_' . $data['type'];
+$postContent = $data['content'];
+
+//build query
+$postQuery = "INSERT INTO " . $dbName . "." . $tableName . " (";
+
+foreach($postContent as $key => $value) {
+  $postQuery = $postQuery . $data_type . "_$key, ";
+}
+
+//trim end ', '
+$postQuery = substr($postQuery, 0, -2) . ") VALUES (";
+foreach($postContent as $key => $value) {
+  $postQuery = $postQuery . '"' . $value . '", ';
+}
+//trim end ', '
+$postQuery = substr($postQuery, 0, -2) . ");";
+
+//query Database
+$postResult = (mysqli_query($conn, $postQuery));
+
+if ($postResult == 1) {
+  exit("POST SUCCESS");
+} else {
+  exit("POST FAILED");
+}
+
+?>
