@@ -65,13 +65,13 @@ section h3.section-subheading {
 }
 
 .btn-primary {
-  background-color: #fed136;
-  border-color: #fed136;
+  background-color: #FEB201;
+  border-color: #FEB201;
 }
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-  background-color: #fec810 !important;
-  border-color: #fec810 !important;
+  background-color: #FECC01 !important;
+  border-color: #FECC01 !important;
   color: white;
 }
 
@@ -179,16 +179,6 @@ header.masthead {
 
 }
 
-.overlay {
-  position: absolute;
-  background-color: #212529;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  opacity: 0.3;
-}
-
 header.masthead .intro-text {
   padding-top: 150px;
   padding-bottom: 100px;
@@ -223,7 +213,7 @@ header.masthead .intro-text .intro-heading {
     font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
   header.masthead .intro-text .intro-heading {
-    font-size: 75px;
+    font-size: 50px;
     font-weight: 700;
     line-height: 75px;
     margin-bottom: 50px;
