@@ -36,6 +36,7 @@
   </head>
 
   <body id="page-top" ng-app="eatersAndChefs">
+    <div growl></div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -338,6 +339,46 @@
     <!-- Contact -->
     <section id="contact" ng-controller = "contactFormCtrl" ng-model="form">
       <div class="container">
+
+        <!-- Success Message-->
+        <div class="modal fade" id="messageSuccessModal" tabindex="-1" role="dialog" aria-labelledby="messageSuccess" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Message Sent!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p> Your message has been successfully sent. You'll hear from us soon! </p>
+                <div class="btn-box mt-4 pull-right">
+                  <button type="button" class="btn btn-primary" data-toggle= "modal" data-target="#messageSuccessModal"> Ok </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fail Message-->
+        <div class="modal fade" id="messageFailModal" tabindex="-1" role="dialog" aria-labelledby="messageFail" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Uh-oh...</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p> Something has gone wrong... try refreshing the page and send your message again. If this problem continues, contact us at menooing.info@gmail.com! </p>
+                <div class="btn-box mt-4 pull-right">
+                  <button type="button" class="btn btn-primary" data-toggle= "modal" data-target="#messageSuccessModal"> Ok </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-heading text-uppercase">Contact Us</h2>

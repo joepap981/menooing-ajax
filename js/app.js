@@ -1,6 +1,5 @@
-angular.module('eatersAndChefs',['ngRoute', 'ngAnimate', 'angular-growl', 'ui.bootstrap', 'ngFileSaver'])
-    .config(['$routeProvider', '$locationProvider','growlProvider', function ($routeProvider, $locationProvider, growlProvider) {
-    growlProvider.globalTimeToLive(4000);
+angular.module('eatersAndChefs',['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngFileSaver'])
+    .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 
     $routeProvider

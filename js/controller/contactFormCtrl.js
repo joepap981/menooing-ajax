@@ -6,7 +6,14 @@ angular.module('eatersAndChefs').controller('contactFormCtrl',['$scope','$http',
     var packet = {};
     packet.type = "message";
     packet.content = $scope.form;
-    formService.post(packet);
+    formService.post(packet).then(function(response) {
+      if (response == "POST SUCCESS") {
+        $('#messageSuccessModal').modal('show');
+      } else {
+
+      }
+      $scope.form = {};
+    });
   }
 
 }]);

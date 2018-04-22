@@ -4,7 +4,7 @@ angular.module('eatersAndChefs').factory('formService', function($http) {
     post: function (packet) {
       return $http({ method : "POST", url: 'actions/post.php', data: packet})
       .then(function (response) {
-          console.log(response);
+          return response.data;
         }
       );
     },
