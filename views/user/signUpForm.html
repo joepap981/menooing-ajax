@@ -17,20 +17,20 @@
     <small class="form-text text-muted text-center mb-5">We'll never share your information with anyone else.</small>
     <div class="card">
       <h6 class="card-header">Signup Form </h6>
-      <div class="card-body">
+      <div class="card-body" ng-model="form">
         <div class="mb-4">
           <small class=""> Basic Information </small>
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" aria-describedby="" placeholder="Enter name">
+            <input type="text" class="form-control" id="name" aria-describedby="" placeholder="Enter name" ng-model="form.name">
           </div>
           <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" ng-model="form.email">
           </div>
           <div class="form-group">
             <label for="phone">Phone </label>
-            <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Enter phone #">
+            <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Enter phone #" ng-model="form.email">
           </div>
         </div>
 
@@ -38,7 +38,7 @@
           <small class=""> Restaurant Information </small>
           <div class="form-group">
             <span class="">Restaurant Category</span>
-            <select class="custom-select" id="restaurantCategory" ng-model="restaurant.category">
+            <select class="custom-select" id="restaurantCategory" ng-model="form.restaurant_category">
               <option value="Casual Dining" selected>Casual Dining</option>
               <option value="Fine Dining">Fine Dining</option>
               <option value="Fast Casual">Fast Casual</option>
@@ -47,7 +47,7 @@
           </div>
           <div class="form-group">
             <span class="">Restaurant Cuisine</span>
-            <select class="custom-select" id="restaurantCuisine" ng-model="restaurant.cuisine">
+            <select class="custom-select" id="restaurantCuisine" ng-model="form.restaurant_cuisine">
               <option value="American" selected>American</option>
               <option value="British">British</option>
               <option value="Caribbean">Caribbean</option>
@@ -72,15 +72,15 @@
           <small class=""> Documents </small>
           <div class="form-group row">
             <label class="col">Food Mananger/Handler Certificate</label>
-            <input class="col" id="foodHandlerCert" type="file"  required/>
+            <input class="col" id="foodHandlerCert" type="file" file-input ="food_handler_cert" required/>
           </div>
           <div class="form-group row">
             <label class="col">Identification Document</label>
-            <input class="col" id="id" type="file"  required/>
+            <input class="col" id="idImage" type="file" file-input ="id_image" required/>
           </div>
         </div>
 
-        <div class="text-center"><button class="btn btn-primary"> Submit </button></div>
+        <div class="text-center mt-5"><button class="btn btn-primary"> Submit </button></div>
 
       </div>
     </div>
