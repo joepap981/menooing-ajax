@@ -1,0 +1,10 @@
+.card {
+  margin: 0 auto;
+  float: none; /* Added */
+  margin-bottom: 150px; /* Added */
+  width: 75%;
+}
+
+* {
+  font-family: Arial;
+}

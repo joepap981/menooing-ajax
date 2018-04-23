@@ -1,13 +1,40 @@
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-  <div class="container">
-    <a class="navbar-brand js-scroll-trigger pointer" ng-click="redirect('/')"> Eaters & Chefs </a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      Menu
-      <i class="fa fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
+<link href="css/signUpForm.css" rel="stylesheet">
+<div ng-controller="signUpFormCtrl">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand pointer" ng-click="redirect('/')"> Eaters & Chefs </a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+      </div>
+    </div>
+  </nav>
 
+  <div class="container mt-100">
+    <h5 class="text-center"> Sign up for your own restaurant space now! </h5>
+    <small class="form-text text-muted text-center mb-5">We'll never share your information with anyone else.</small>
+    <div class="card">
+      <h6 class="card-header">Signup Form </h6>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" aria-describedby="" placeholder="Enter name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone </label>
+            <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Enter phone #">
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
     </div>
   </div>
-</nav>
+</div>
