@@ -12,13 +12,14 @@
     </div>
   </nav>
 
-  <div class="container mt-100">
+  <div class="container mt-150px">
     <h5 class="text-center"> Sign up for your own restaurant space now! </h5>
     <small class="form-text text-muted text-center mb-5">We'll never share your information with anyone else.</small>
     <div class="card">
       <h6 class="card-header">Signup Form </h6>
       <div class="card-body">
-        <form>
+        <div class="mb-4">
+          <small class=""> Basic Information </small>
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" aria-describedby="" placeholder="Enter name">
@@ -31,9 +32,56 @@
             <label for="phone">Phone </label>
             <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Enter phone #">
           </div>
+        </div>
 
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <div class="mb-4">
+          <small class=""> Restaurant Information </small>
+          <div class="form-group">
+            <span class="">Restaurant Category</span>
+            <select class="custom-select" id="restaurantCategory" ng-model="restaurant.category">
+              <option value="Casual Dining" selected>Casual Dining</option>
+              <option value="Fine Dining">Fine Dining</option>
+              <option value="Fast Casual">Fast Casual</option>
+              <option value="Fast Food">Fast Food</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <span class="">Restaurant Cuisine</span>
+            <select class="custom-select" id="restaurantCuisine" ng-model="restaurant.cuisine">
+              <option value="American" selected>American</option>
+              <option value="British">British</option>
+              <option value="Caribbean">Caribbean</option>
+              <option value="Chinese">Chinese</option>
+              <option value="French">French</option>
+              <option value="Greek">Greek</option>
+              <option value="Indian">Indian</option>
+              <option value="Italian">Italian</option>
+              <option value="Japanese">Japanese</option>
+              <option value="Mediterranean">Mediterranean</option>
+              <option value="Mexican">Mexican</option>
+              <option value="Moroccan">Moroccan</option>
+              <option value="Spanish">Spanish</option>
+              <option value="Thai">Thai</option>
+              <option value="Turkish">Turkish</option>
+              <option value="Korean">Korean</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <small class=""> Documents </small>
+          <div class="form-group row">
+            <label class="col">Food Mananger/Handler Certificate</label>
+            <input class="col" id="foodHandlerCert" type="file"  required/>
+          </div>
+          <div class="form-group row">
+            <label class="col">Identification Document</label>
+            <input class="col" id="id" type="file"  required/>
+          </div>
+        </div>
+
+        <div class="text-center"><button class="btn btn-primary"> Submit </button></div>
+
       </div>
     </div>
   </div>

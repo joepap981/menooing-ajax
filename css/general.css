@@ -2,6 +2,15 @@
   cursor: pointer;
 }
 
-.mt-100 {
+.mt-150px {
   margin-top: 150px;
+}
+
+.mt-75px {
+  margin-top: 75px;
+}
+
+.center-object {
+  margin: 0 auto;
+  float: none; /* Added */
 }
