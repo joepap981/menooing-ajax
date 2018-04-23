@@ -30,7 +30,7 @@
           </div>
           <div class="form-group">
             <label for="phone">Phone </label>
-            <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Enter phone #" ng-model="form.email">
+            <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Enter phone #" ng-model="form.phone">
           </div>
         </div>
 
@@ -38,7 +38,7 @@
           <small class=""> Restaurant Information </small>
           <div class="form-group">
             <span class="">Restaurant Category</span>
-            <select class="custom-select" id="restaurantCategory" ng-model="form.restaurant_category">
+            <select class="custom-select" id="restaurantCategory" ng-model="form.category">
               <option value="Casual Dining" selected>Casual Dining</option>
               <option value="Fine Dining">Fine Dining</option>
               <option value="Fast Casual">Fast Casual</option>
@@ -47,7 +47,7 @@
           </div>
           <div class="form-group">
             <span class="">Restaurant Cuisine</span>
-            <select class="custom-select" id="restaurantCuisine" ng-model="form.restaurant_cuisine">
+            <select class="custom-select" id="restaurantCuisine" ng-model="form.cuisine">
               <option value="American" selected>American</option>
               <option value="British">British</option>
               <option value="Caribbean">Caribbean</option>
@@ -80,8 +80,47 @@
           </div>
         </div>
 
-        <div class="text-center mt-5"><button class="btn btn-primary"> Submit </button></div>
+        <div class="text-center mt-5"><button class="btn btn-primary" ng-click="uploadForm()"> Submit </button></div>
 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Message-->
+<div class="modal fade" id="formSuccessModal" tabindex="-1" role="dialog" aria-labelledby="messageSuccess" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Message Sent!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p> Your message has been successfully sent. You'll hear from us soon! </p>
+        <div class="btn-box mt-4 pull-right">
+          <button type="button" class="btn btn-primary" data-toggle= "modal" data-target="#formSuccessModal"> Ok </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fail Message-->
+<div class="modal fade" id="formFailModal" tabindex="-1" role="dialog" aria-labelledby="messageFail" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Uh-oh...</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p> Something has gone wrong... try refreshing the page and send your message again. If this problem continues, contact us at menooing.info@gmail.com! </p>
+        <div class="btn-box mt-4 pull-right">
+          <button type="button" class="btn btn-primary" data-toggle= "modal" data-target="#formFailModal"> Ok </button>
+        </div>
       </div>
     </div>
   </div>

@@ -10,11 +10,11 @@ angular.module('eatersAndChefs').factory('formService', function($http) {
     },
 
     uploadFile: function (form_data) {
-      return $http({ method: "POST", url: "action/uploadfile.php", data: form_data, headers: {'Content-Type': undefined},
+      return $http({ method: "POST", url: "actions/uploadfile.php", data: form_data, headers: {'Content-Type': undefined},
     }).then(function mySuccess(response) {
         return response.data;
       });
     },
-    
+
   }
 });

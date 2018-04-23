@@ -46,7 +46,10 @@ $postResult = (mysqli_query($conn, $postQuery));
 if ($postResult == 1) {
   exit("POST SUCCESS");
 } else {
+  print $postResult;
+  print $postQuery;
   exit("POST FAILED");
+
 }
 
 ?>

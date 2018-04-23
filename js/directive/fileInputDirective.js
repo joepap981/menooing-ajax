@@ -12,6 +12,7 @@ angular.module('eatersAndChefs').directive('fileInput', function($parse) {
 
         //ex. $scope.files.restaurant_cert
         $scope.files[attrs.fileInput] = $scope[attrs.fileInput];
+        console.log($scope.files[attrs.fileInput]);
 
       })
     }
