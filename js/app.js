@@ -7,6 +7,9 @@ angular.module('eatersAndChefs',['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngFile
     .when('/admin', {
       templateUrl: 'admin_index.php'
     })
+    .when('/request-station', {
+      templateUrl: 'views/user/signUpForm.html'
+    })
   	.otherwise({
   		redirectTo: '/'
   	});
