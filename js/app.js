@@ -3,6 +3,9 @@ angular.module('eatersAndChefs',['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngFile
     $locationProvider.html5Mode(true);
 
     $routeProvider
+    .when('/', {
+      templateUrl: 'views/user/landingPage.html'
+    })
     //Admin Page
     .when('/admin', {
       templateUrl: 'admin_index.php'
