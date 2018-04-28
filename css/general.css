@@ -14,3 +14,8 @@
   margin: 0 auto;
   float: none; /* Added */
 }
+
+#logo {
+  width: 130px;
+  height: auto;
+}

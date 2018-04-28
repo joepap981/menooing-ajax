@@ -8,7 +8,7 @@ angular.module('eatersAndChefs',['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngFile
     })
     //Admin Page
     .when('/admin', {
-      templateUrl: 'admin_index.php'
+      templateUrl: 'views/admin/index.html'
     })
     .when('/request-station', {
       templateUrl: 'views/user/signUpForm.html'
