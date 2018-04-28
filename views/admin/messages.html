@@ -1,4 +1,4 @@
-<table class="table table-hover" ng-controller = "adminCtrl">
+<table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -10,18 +10,19 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="request in Requests" data-toggle="modal" data-target="#requestModal" data-whatever="{{ request }}">
-      <th scope="row">{{ request.request_id }}</th>
-      <td> {{ request.request_created }}</td>
-      <td> {{ request.request_type }} </td>
-      <td> {{ request.user_ref }}</td>
-      <td> {{ request.restaurant_ref }} </td>
+    <tr ng-repeat="message in Messages" data-toggle="modal" data-target="#messageModal" data-whatever="{{ message }}">
+      <th scope="row">{{ message.message_id }}</th>
+      <td> {{ message.message_created }}</td>
+      <td> {{ message.message_name }}</td>
+      <td> {{ message.message_email }} </td>
+      <td> {{ message.message_phone }}</td>
+      <td> {{ message.message_read }} </td>
     </tr>
   </tbody>
 
 
   <!-- Request Modal -->
-  <div class="modal fade" id="requestModal" tabindex="-1" role="dialog" aria-labelledby="requestModalLabel" aria-hidden="true" ng-controller = "adminRequestCtrl">
+  <div class="modal fade" id="requestModal" tabindex="-1" role="dialog" aria-labelledby="requestModalLabel" aria-hidden="true" ng-controller = "adminCtrl">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
