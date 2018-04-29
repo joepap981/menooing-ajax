@@ -6,51 +6,34 @@
       <th scope="col">Messenger</th>
       <th scope="col">Email</th>
       <th scope="col">Phone</th>
-      <th scope="col">Content</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="message in Messages" data-toggle="modal" data-target="#messageModal" data-whatever="{{ message }}">
+    <tr class='pointer' ng-repeat="message in Messages" data-toggle="modal" data-target="#messageModal" data-whatever="{{ message }}">
       <th scope="row">{{ message.message_id }}</th>
       <td> {{ message.message_created }}</td>
       <td> {{ message.message_name }}</td>
       <td> {{ message.message_email }} </td>
       <td> {{ message.message_phone }}</td>
-      <td> {{ message.message_read }} </td>
     </tr>
   </tbody>
 
 
   <!-- Request Modal -->
-  <div class="modal fade" id="requestModal" tabindex="-1" role="dialog" aria-labelledby="requestModalLabel" aria-hidden="true" ng-controller = "adminCtrl">
+  <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true" ng-controller = "adminCtrl">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="requestModalLabel"> Request </h5>
+          <h5 class="modal-title" id="messageModalLabel"> Message </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <a href="#" ng-click=''> View restaurant profile </a>
-
-          <!--
-          <form>
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Recipient:</label>
-              <input type="text" class="form-control" id="recipient-name">
-            </div>
-            <div class="form-group">
-              <label for="message-text" class="col-form-label">Message:</label>
-              <textarea class="form-control" id="message-text"></textarea>
-            </div>
-          </form>
-        -->
-
+          <p></p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" ng-click ="confirmRequest()"> Give Confirmation </button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

@@ -12,5 +12,19 @@ angular.module('eatersAndChefs').controller('adminMessageCtrl',['$scope','$http'
 
   init();
 
+  $('#messageModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    $scope.selectedMessage = button.data('whatever'); // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 
+
+    //get restaurant information from database
+    //
+
+    //console.log($scope.selectedRequest);
+    var modal = $(this);
+    modal.find('.modal-title').text("Message from " + $scope.selectedMessage.message_email);
+    modal.find('.modal-body p').text($scope.selectedMessage.message_content);
+  })
 }]);

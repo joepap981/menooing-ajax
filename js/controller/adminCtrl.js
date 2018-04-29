@@ -13,6 +13,7 @@ angular.module('eatersAndChefs').controller('adminCtrl',['$scope','$http','$rout
       return false;
     }
   }
+  
 
 
 }]);
