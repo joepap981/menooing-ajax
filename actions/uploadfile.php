@@ -42,10 +42,15 @@ if (move_uploaded_file($_FILES[$file_type]['tmp_name'], $full_path)) {
   if ($insert_result == 1) {
     echo "SUCCESSFULLY UPLOADED";
   } else {
+    print $full_path;
+    print $insert_query;
+    print $insert_result;
     echo "Failed to insert file location to DB. Refresh page";
   }
 } else {
   echo "Failed to upload file(s) to file system.";
+  print $full_path;
+  print $_FILES[$file_type]['tmp_name'];
 }
 
 ?>

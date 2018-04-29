@@ -1,5 +1,6 @@
 angular.module('eatersAndChefs').controller('adminFormCtrl',['$scope','$http','$route', 'adminService', function ($scope, $http, $route, adminService) {
   $scope.Forms = [];
+  $scope.selectedForm;
 
   var init = function () {
     //get all restaurants from user in current session (check in server)
@@ -22,12 +23,30 @@ angular.module('eatersAndChefs').controller('adminFormCtrl',['$scope','$http','$
     //get restaurant information from database
     //
 
-    //console.log($scope.selectedRequest);
+    console.log($scope.selectedForm);
     var modal = $(this);
     modal.find('.modal-title').text("Message from " + $scope.selectedForm.form_email);
     modal.find('p#category').text($scope.selectedForm.form_category);
     modal.find('p#cuisine').text($scope.selectedForm.form_cuisine);
-    $("#id").attr("href",$scope.selectedForm.id_image);
-    $("#certificate").attr("href",$scope.selectedForm.food_handler_cert);
   })
+
+  //file download
+ $scope.downloadCert = function () {
+   var downloadInfo = {
+     'path': $scope.selectedForm.food_handler_cert,
+   }
+
+   adminService.downloadFile(downloadInfo);
+ }
+
+
+ $scope.downloadID = function () {
+   var downloadInfo = {
+     'path': $scope.selectedForm.id_image,
+   }
+
+   adminService.downloadFile(downloadInfo);
+ }
+
+
 }]);

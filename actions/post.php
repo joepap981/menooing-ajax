@@ -23,6 +23,7 @@ $data = json_decode($postData, true);
 //required data
 $data_type = $data['type'];
 $tableName = 'tb_' . $data['type'];
+$form_id = $data['form_id'];
 $postContent = $data['content'];
 
 //build query
@@ -38,13 +39,14 @@ foreach($postContent as $key => $value) {
   $postQuery = $postQuery . '"' . $value . '", ';
 }
 //trim end ', '
-$postQuery = substr($postQuery, 0, -2) . ");";
+$postQuery = substr($postQuery, 0, -2) . ") WHERE form_id = $form_id;";
 
 //query Database
 $postResult = (mysqli_query($conn, $postQuery));
 
 if ($postResult == 1) {
-  exit("POST SUCCESS");
+  $recentInsert = mysqli_insert_id($conn);
+  exit($recentInsert);
 } else {
   print $postResult;
   print $postQuery;
