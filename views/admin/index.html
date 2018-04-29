@@ -158,7 +158,7 @@
       <div class="mt-5" ng-model="page">
         <dashboard ng-if="checkPage('dashboard')"></dashboard>
         <messages ng-controller= "adminMessageCtrl" ng-if="checkPage('messages')"></messages>
-        <applications ng-if="checkPage('applications')"></applications>
+        <applications ng-controller= "adminFormCtrl" ng-if="checkPage('applications')"></applications>
       </div>
 
       <footer class="sticky-footer">

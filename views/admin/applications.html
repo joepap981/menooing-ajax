@@ -1,1 +1,57 @@
-<p> This is the application page </p>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Form Created</th>
+      <th scope="col">Applicant Name</th>
+      <th scope="col">Applicant Email</th>
+      <th scope="col">Applicant Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='pointer' ng-repeat="form in Forms" data-toggle="modal" data-target="#formModal" data-whatever="{{ form }}">
+      <th scope="row">{{ form.form_id }}</th>
+      <td> {{ form.form_created }}</td>
+      <td> {{ form.form_name }}</td>
+      <td> {{ form.form_email }} </td>
+      <td> {{ form.form_phone }}</td>
+    </tr>
+  </tbody>
+
+
+  <!-- Request Modal -->
+  <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="formModalLabel"> Message </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row ml-3">
+            <p> Category </p>
+            <p class="ml-3" id="category"> </p>
+          </div>
+          <div class="row ml-3">
+            <p> Cuisine </p>
+            <p class="ml-3" id="cuisine"> </p>
+          </div>
+          <div class="row ml-3">
+            <p> ID </p>
+            <a href="" ng-click="downloadID()" class="ml-3" id="id"> Download </a>
+          </div>
+          <div class="row ml-3">
+            <p> Food Handler Certificate </p>
+            <a href="" ng-click="downloadCert()" class="ml-3" id="certificate"> Download </a>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</table>
