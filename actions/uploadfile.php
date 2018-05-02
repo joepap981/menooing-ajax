@@ -5,7 +5,7 @@ include_once 'include_database_info.php';
 $file_type = $_POST['file_type'];
 //database table the entry belongs in
 $table_name = $_POST['table_name'];
-
+$form_id = $_POST['form_id'];
 
 
 //connect to mysql with info from inc_signin_db
@@ -35,7 +35,7 @@ $full_path = $upload_location.$filename;
 
 
 if (move_uploaded_file($_FILES[$file_type]['tmp_name'], $full_path)) {
-  $insert_query = "UPDATE $table_name SET $file_type = '$full_path' ;";
+  $insert_query = "UPDATE $table_name SET $file_type = '$full_path' WHERE form_id = " . $form_id . ";";
 
   $insert_result = mysqli_query($conn, $insert_query);
 

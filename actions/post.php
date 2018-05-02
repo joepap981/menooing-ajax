@@ -49,7 +49,7 @@ $postResult = (mysqli_query($conn, $postQuery));
 if ($postResult == 1) {
   if($tableName == 'tb_form') {
     $recentInsert = mysqli_insert_id($conn);
-    exit($recentInsert);
+    echo $recentInsert;
   } else {
     exit("POST SUCCESS");
   }
