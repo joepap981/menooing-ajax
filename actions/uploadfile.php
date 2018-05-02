@@ -35,7 +35,7 @@ $full_path = $upload_location.$filename;
 
 
 if (move_uploaded_file($_FILES[$file_type]['tmp_name'], $full_path)) {
-  $insert_query = "UPDATE $table_name SET $file_type = '$full_path';";
+  $insert_query = "UPDATE $table_name SET $file_type = '$full_path' ;";
 
   $insert_result = mysqli_query($conn, $insert_query);
 

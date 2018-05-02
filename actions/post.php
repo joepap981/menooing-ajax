@@ -1,6 +1,8 @@
 <?php
 include_once 'include_database_info.php';
 
+//when hosting on GoDadday, mysql_connect works... and not mysqli...
+
 //connect to mysql with infor from include_database_info
 $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
 
@@ -23,7 +25,6 @@ $data = json_decode($postData, true);
 //required data
 $data_type = $data['type'];
 $tableName = 'tb_' . $data['type'];
-$form_id = $data['form_id'];
 $postContent = $data['content'];
 
 //build query
@@ -39,14 +40,19 @@ foreach($postContent as $key => $value) {
   $postQuery = $postQuery . '"' . $value . '", ';
 }
 //trim end ', '
-$postQuery = substr($postQuery, 0, -2) . ") WHERE form_id = $form_id;";
+$postQuery = substr($postQuery, 0, -2) . ");";
 
 //query Database
 $postResult = (mysqli_query($conn, $postQuery));
 
+
 if ($postResult == 1) {
-  $recentInsert = mysqli_insert_id($conn);
-  exit($recentInsert);
+  if($tableName == 'tb_form') {
+    $recentInsert = mysqli_insert_id($conn);
+    exit($recentInsert);
+  } else {
+    exit("POST SUCCESS");
+  }
 } else {
   print $postResult;
   print $postQuery;

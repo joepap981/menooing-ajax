@@ -10,7 +10,7 @@ angular.module('eatersAndChefs').controller('contactFormCtrl',['$scope','$http',
       if (response == "POST SUCCESS") {
         $('#messageSuccessModal').modal('show');
       } else {
-
+        console.log("Something went wrong.");
       }
       $scope.form = {};
     });
