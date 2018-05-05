@@ -25,9 +25,7 @@ angular.module('eatersAndChefs').factory('adminService', function($http, FileSav
       filename = filename + '.' + ext;
 
 
-      myData = new Blob([response.data], {type: response.data['type']});
-
-      FileSaver.saveAs(myData, filename);
+      FileSaver.saveAs(response.data, filename);
       });
     },
 

@@ -29,7 +29,6 @@ $data = json_decode($postdata, true);
 $file_name = $data['path'];
 
 $abs_file_name = realpath(dirname(__FILE__)).'/'.$file_name;
-print $abs_file_name;
 if(is_file($abs_file_name) && file_exists($abs_file_name)) {
 
   // required for IE
@@ -43,6 +42,7 @@ if(is_file($abs_file_name) && file_exists($abs_file_name)) {
       case 'png': $mime = 'image/png'; break;
       default: $mime = 'application/force-download';
   }
+
   header('Content-Description: File Transfer');
   header('Pragma: public');   // required
   header('Expires: 0');       // no cache
@@ -51,7 +51,7 @@ if(is_file($abs_file_name) && file_exists($abs_file_name)) {
   //header('Cache-Control: private',false);
   header('Content-Type: '.$mime);
   header('Content-Disposition: attachment; filename='.basename($abs_file_name));
-  //header('Content-Transfer-Encoding: binary');
+  header('Content-Transfer-Encoding: binary');
   header('Content-Length: '.filesize($abs_file_name));    // provide file size
   //header('Connection: close');
   readfile($abs_file_name);       // push it out
