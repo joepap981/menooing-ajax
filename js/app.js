@@ -13,6 +13,9 @@ angular.module('eatersAndChefs',['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngFile
     .when('/request-station', {
       templateUrl: 'views/user/signUpForm.html'
     })
+    .when('/stores', {
+      templateUrl: 'views/user/stores.html'
+    })
   	.otherwise({
   		redirectTo: '/'
   	});

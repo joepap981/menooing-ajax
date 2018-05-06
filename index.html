@@ -59,9 +59,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
-            <li class="nav-item mr-3 pointer">
-              <a class="nav-link js-scroll-trigger" ng-click ="redirect('request-station')">Apply Now</a>
-            </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#services">Services</a>
             </li>
@@ -71,12 +68,58 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
+            <li class="nav-item pointer ml-5">
+              <a class="nav-link" ng-click ="redirect('request-station')">Apply Now</a>
+            </li>
+            <li class="nav-item pointer">
+              <a class="nav-link" ng-click ="redirect('stores')">Stores</a>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
 
     <main ng-controller="mainCtrl" ng-view></main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <span class="copyright">Copyright &copy; Eaters&Chefs 2018</span>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-facebook"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline quicklinks">
+              <li class="list-inline-item">
+                <a href="#">Privacy Policy</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">Terms of Use</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <!-- Angular scripts -->
     <script src="js/app.js"></script>

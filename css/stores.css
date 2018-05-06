@@ -1,0 +1,14 @@
+* {
+  font-family: Arial;
+}
+
+#mainNav {
+  background-color: #212529 !important;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.navbar-brand {
+  font-size: 1.25em;
+  padding: 12px 0;
+}
