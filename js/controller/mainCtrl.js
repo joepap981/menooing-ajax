@@ -12,4 +12,13 @@ angular.module('eatersAndChefs').controller('mainCtrl',['$scope','$http','$route
     };
   }
 
+  $scope.checkAdmin = function () {
+    var check = $location.path().split('/').pop();
+    if (check == "admin") {
+      return false;
+    } else {
+      return true;
+    };
+  }
+
 }]);

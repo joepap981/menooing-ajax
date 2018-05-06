@@ -10,6 +10,9 @@ angular.module('eatersAndChefs',['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngFile
     .when('/admin', {
       templateUrl: 'views/admin/index.html'
     })
+    .when('/admin/main', {
+      templateUrl: 'views/admin/main.html'
+    })
     .when('/request-station', {
       templateUrl: 'views/user/signUpForm.html'
     })
