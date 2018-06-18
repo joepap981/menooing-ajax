@@ -4,7 +4,8 @@ angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'r
 
   var init = function () {
     //get all restaurants from user in current session (check in server)
-    var restaurantList = restaurantService.getRestaurantList();
+    var request_type = {"type": "USER"};
+    var restaurantList = restaurantService.getRestaurantList(request_type);
     restaurantList.then(function (result) {
       $scope.userRestaurants = result;
     });

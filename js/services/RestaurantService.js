@@ -24,8 +24,8 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
     },
 
     //check for user session and return restaurnt information related to user
-    getRestaurantList: function(user_id) {
-      return $http({ method: "GET", url: "action/restaurant_get_list.php"})
+    getRestaurantList: function(request_type) {
+      return $http({ method: "POST", url: "action/restaurant_get_list.php", data: request_type})
       .then(function mySuccess (response) {
         if (response.data['length'] != 0) {
           return response.data;
