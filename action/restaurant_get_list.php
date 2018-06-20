@@ -12,9 +12,10 @@ if(!$postdata) {
 //decoding json into array
 $data = json_decode($postdata, true);
 
-  //connect to mysql with info from inc_signin_db
+//connect to mysql with info from inc_signin_db
 $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
 
+//if the request asks for all restaurants of a certain session user
 if ($data['type'] == "USER") {
 
   session_start();
@@ -28,6 +29,7 @@ if ($data['type'] == "USER") {
 
     $result = mysqli_query($conn, $query);
 
+    //build return json
     $return_array = array();
     $count=0;
     while ($row = mysqli_fetch_assoc($result))
@@ -41,6 +43,7 @@ if ($data['type'] == "USER") {
   } else {
     echo 'No Session';
   }
+//return all restaurants
 }else if($data['type'] == 'ALL') {
 
   $query = "SELECT restaurant_id, restaurant_status, restaurant_name, restaurant_locality, restaurant_administrative_area_level_1, restaurant_image, restaurant_entity
@@ -51,7 +54,7 @@ if ($data['type'] == "USER") {
   $return_array = array();
   $count=0;
 
-  if($result != null)
+  if($result != null) {
     while ($row = mysqli_fetch_assoc($result))
    {
        $return_array[$count] = $row;
@@ -63,6 +66,7 @@ if ($data['type'] == "USER") {
    echo "No Restaurants";
  }
 
+//return restaurants matching certain condition
 } else {
   $request_type = $data["type"];
   $condition = $data["condition"];
