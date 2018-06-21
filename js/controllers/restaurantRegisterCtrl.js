@@ -36,7 +36,7 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
                 $location.path('restaurant-new-success');
                 growl.success('Your restaurant has successfully been created.',{title: 'Success!'});
               } else if (response2 == "UNACCEPTABLE EXTENSION"){
-                $location.path('restaurant-new-host2');
+                $location.path('restaurant-new');
                 growl.error('Unacceptable file extension for upload.',{title: 'Error!'});
               }
               else {

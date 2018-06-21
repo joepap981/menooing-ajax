@@ -4,6 +4,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
 
 	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+	<!-- Custom fonts for this template-->
+	<link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 	<!-- Navigation -->
 	<header navbar></header>

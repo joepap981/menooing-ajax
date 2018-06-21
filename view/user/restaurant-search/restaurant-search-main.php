@@ -1,7 +1,7 @@
-<div class="container mt-5">
+<div class="container mt-5" ng-controller="restaurantSearchCtrl">
   <form class="mb-5">
-    <div class="row">
-      <div class="col-2">
+    <div class="d-flex">
+      <div class="p-2">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
           <label class="btn btn-primary active" style="margin-right: 0px; box-shadow: 0 0 0 0;">
             <input type="radio" name="options" id="option1" autocomplete="off" checked> All </input>
@@ -9,31 +9,31 @@
           <label class="btn btn-primary" style="margin-right: 0px; box-shadow: 0 0 0 0;">
             <input type="radio" name="options" id="option2" autocomplete="off"> Host</input>
           </label>
-          <label class="btn btn-primary" style="margin-right: 0px; box-shadow: 0 0 0 0;">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Guest</input>
-          </label>
         </div>
       </div>
-      <div class="col-3">
+      <div class="p-2">
         <label class="mr-sm-2" for="inlineFormCustomSelect"> Search by </label>
-        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-          <option selected>All</option>
-          <option value="1"> City </option>
-          <option value="2"> Cuisine </option>
-          <option value="3">Three</option>
+        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" ng-model="search_option">
+          <option value="restaurant_name"> Name </option>
+          <option value="restaurant_locality"> City </option>
+          <option value="restaurant_cuisine"> Cuisine </option>
         </select>
       </div>
 
-      <div class="col-4">
-         <input type="text" class="form-control" placeholder="Search">
+      <div class="p-2">
+        <input ng-show="search_option != 'restaurant_locality'" type="text" class="form-control" placeholder="Search" ng-model="condition">
+        <input ng-show = "search_option ==  'restaurant_locality'" name="location" class="form-control" ng-controller= "googlePlaceCtrl" id="autocomplete" placeholder="Search for locality" ng-focus="geolocate()" type="text" required></input>
       </div>
-      <div class="col-1">
-        <button class="btn btn-primary"> Search </button>
+
+      <div class="p-2">
+        <button class="btn btn-primary" ng-click="extractAddress(); ">
+          <i class="fa fa-search"></i>
+        </button>
       </div>
     </div>
   </form>
 
-  <div id="restaurant-list" ng-controller="restaurantSearchCtrl">
+  <div id="restaurant-list" >
     <div class="row">
       <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item" ng-repeat="restaurant in userRestaurants" ng-show ="restaurant.restaurant_status == 'confirmed' && (restaurant[filter] == condition)" >
         <div class="card h-80">

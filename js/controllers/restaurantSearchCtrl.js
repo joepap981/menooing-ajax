@@ -2,6 +2,7 @@ angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$locatio
 
   $scope.userRestaurants = [];
   $scope.request_type = "ALL";
+  $scope.search_option = "All";
   $scope.filter = "restaurant_status";
   $scope.condition = "confirmed";
 
@@ -27,6 +28,37 @@ angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$locatio
   $scope.redirectToProfile = function (restaurant_id) {
     $location.path('/restaurant-profile/'+restaurant_id);
   };
+
+  //extract required address information
+  $scope.extractAddress = function () {
+    //attributes from autocomplete that needs to be saved
+    var componentForm = {
+      street_number: 'short_name',
+      route: 'long_name',
+      locality: 'long_name',
+      administrative_area_level_1: 'short_name',
+      country: 'long_name',
+      postal_code: 'short_name'
+    };
+
+    //get the address saved to RestaurantService from googlePlaceCtrl
+    var fullAddress = restaurantService.googlePlace;
+
+    //iterate through the received address and save only the ones needed to RestaurantService restaurant
+    if (fullAddress != null) {
+      for (var i = 0; i < fullAddress.length; i++) {
+        var addressType = fullAddress[i].types[0];
+
+        //if the given address attribute matches one of the componentForms
+        if (componentForm[addressType]) {
+          var val = fullAddress[i][componentForm[addressType]];
+          $scope.restaurant[addressType] = val;
+        }
+      }
+    } else {
+
+    }
+  }
 
 
 }]);
