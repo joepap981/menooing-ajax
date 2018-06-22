@@ -3,6 +3,8 @@ angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$locatio
   $scope.userRestaurants = [];
   $scope.request_type = "ALL";
   $scope.search_option = "All";
+  //two way bound to input for condition, to sever two way binding for actual condition.
+  $scope.condition_input;
   $scope.filter = "restaurant_status";
   $scope.condition = "confirmed";
 
@@ -58,6 +60,15 @@ angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$locatio
     } else {
 
     }
+  }
+
+  $scope.loadNewFilter = function () {
+    $scope.condition = $scope.condition_input;
+    if($scope.condition == null) {
+      $scope.condition = "confirmed";
+      $scope.search_option = "restaurant_status";
+    }
+    $scope.$apply();
   }
 
 

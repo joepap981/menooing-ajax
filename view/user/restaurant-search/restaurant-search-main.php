@@ -1,5 +1,5 @@
 <div class="container mt-5" ng-controller="restaurantSearchCtrl">
-  <form class="mb-5">
+  <form class="">
     <div class="d-flex">
       <div class="p-2">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -21,12 +21,12 @@
       </div>
 
       <div class="p-2">
-        <input ng-show="search_option != 'restaurant_locality'" type="text" class="form-control" placeholder="Search" ng-model="condition">
-        <input ng-show = "search_option ==  'restaurant_locality'" name="location" class="form-control" ng-controller= "googlePlaceCtrl" id="autocomplete" placeholder="Search for locality" ng-focus="geolocate()" type="text" required></input>
+        <input ng-show="search_option != 'restaurant_locality'" type="text" class="form-control" placeholder="Search" ng-model="condition_input">
+        <input ng-show = "search_option ==  'restaurant_locality'" name="location" class="form-control" ng-controller= "googlePlaceCtrl" id="autocomplete" placeholder="Search for locality" ng-focus="geolocate()" type="text"></input>
       </div>
 
       <div class="p-2">
-        <button class="btn btn-primary" ng-click="extractAddress(); ">
+        <button class="btn btn-primary" ng-click="extractAddress(); loadNewFilter()">
           <i class="fa fa-search"></i>
         </button>
       </div>
@@ -36,7 +36,7 @@
   <div id="restaurant-list" >
     <div class="row">
       <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item" ng-repeat="restaurant in userRestaurants" ng-show ="restaurant.restaurant_status == 'confirmed' && (restaurant[filter] == condition)" >
-        <div class="card h-80">
+        <div class="card h-80 mt-5 mb-t">
           <a href="#" ng-click="redirectToProfile(restaurant.restaurant_id)"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
