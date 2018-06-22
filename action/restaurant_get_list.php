@@ -17,7 +17,6 @@ $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
 
 //if the request asks for all restaurants of a certain session user
 if ($data['type'] == "USER") {
-
   session_start();
 
   //if there is a live session

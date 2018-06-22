@@ -62,36 +62,36 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
     $scope.restaurant[key] = value;
   }
 
-  //extract required address information
-  $scope.extractAddress = function () {
-    //attributes from autocomplete that needs to be saved
-    var componentForm = {
-      street_number: 'short_name',
-      route: 'long_name',
-      locality: 'long_name',
-      administrative_area_level_1: 'short_name',
-      country: 'long_name',
-      postal_code: 'short_name'
-    };
-
-    //get the address saved to RestaurantService from googlePlaceCtrl
-    var fullAddress = restaurantService.googlePlace;
-
-    //iterate through the received address and save only the ones needed to RestaurantService restaurant
-    if (fullAddress != null) {
-      for (var i = 0; i < fullAddress.length; i++) {
-        var addressType = fullAddress[i].types[0];
-
-        //if the given address attribute matches one of the componentForms
-        if (componentForm[addressType]) {
-          var val = fullAddress[i][componentForm[addressType]];
-          $scope.restaurant[addressType] = val;
-        }
-      }
-    } else {
-
-    }
-  }
+  // //extract required address information
+  // $scope.extractAddress = function () {
+  //   //attributes from autocomplete that needs to be saved
+  //   var componentForm = {
+  //     street_number: 'short_name',
+  //     route: 'long_name',
+  //     locality: 'long_name',
+  //     administrative_area_level_1: 'short_name',
+  //     country: 'long_name',
+  //     postal_code: 'short_name'
+  //   };
+  //
+  //   //get the address saved to RestaurantService from googlePlaceCtrl
+  //   var fullAddress = restaurantService.googlePlace;
+  //
+  //   //iterate through the received address and save only the ones needed to RestaurantService restaurant
+  //   if (fullAddress != null) {
+  //     for (var i = 0; i < fullAddress.length; i++) {
+  //       var addressType = fullAddress[i].types[0];
+  //
+  //       //if the given address attribute matches one of the componentForms
+  //       if (componentForm[addressType]) {
+  //         var val = fullAddress[i][componentForm[addressType]];
+  //         $scope.restaurant[addressType] = val;
+  //       }
+  //     }
+  //   } else {
+  //
+  //   }
+  // }
 
   //cancatenate time string
   $scope.buildTime = function () {

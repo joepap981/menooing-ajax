@@ -1,5 +1,5 @@
 angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$location', 'restaurantService', 'growl', '$window', function ($scope, $location, restaurantService, growl, $window) {
-
+  $scope.restaurant = {};
   $scope.userRestaurants = [];
   $scope.request_type = "ALL";
   $scope.search_option = "All";
@@ -17,7 +17,7 @@ angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$locatio
     $scope.condition =  "TX";
     */
 
-    var request = {"type": $scope.request_type, "condition": $scope.condition};
+    var request = {"type":"ALL", "condition": $scope.condition};
 
     var restaurantList = restaurantService.getRestaurantList(request);
     restaurantList.then(function (result) {
@@ -61,14 +61,20 @@ angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$locatio
 
     }
   }
-
-  $scope.loadNewFilter = function () {
+  $scope.filterRestaurantList = function () {
+    console.log("filterrestaruatnlist");
     $scope.condition = $scope.condition_input;
-    if($scope.condition == null) {
-      $scope.condition = "confirmed";
-      $scope.search_option = "restaurant_status";
+    if($scope.condition == "") {
+      var request = {"type": "ALL", "condition": $scope.condition};
+    } else {
+      var request = {"type": $scope.search_option, "condition": $scope.condition};
     }
-    $scope.$apply();
+
+    var restaurantList = restaurantService.getRestaurantList(request);
+    restaurantList.then(function (result) {
+      $scope.userRestaurants = result;
+
+    });
   }
 
 
