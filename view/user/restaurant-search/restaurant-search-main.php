@@ -26,7 +26,7 @@
 
   <div id="restaurant-list" >
     <div class="row">
-      <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item" ng-repeat="restaurant in userRestaurants">
+      <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item" ng-repeat="restaurant in userRestaurants.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
         <div class="card h-80 mt-5 mb-t">
           <a href="#" ng-click="redirectToProfile(restaurant.restaurant_id)"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
           <div class="card-body">
@@ -40,4 +40,7 @@
       </div>
     </div>
   </div>
+
+  <div uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></div>
+
 </div>

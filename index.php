@@ -19,6 +19,7 @@ $jsTimeStamp = '?version=v-'.$timeStr;
 		<link href="css/user/index.css<?php echo $jsTimeStamp ?>" rel="stylesheet">
 		<link href="lib/growl-css/angular-growl.min.css" rel="stylesheet">
 
+
 		<!-- Bootstrap core JavaScript ================================================== -->
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDubLTBc0OLjaASm2T-0el_zKEtZe-xpE&libraries=places">

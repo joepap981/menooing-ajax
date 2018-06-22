@@ -22,6 +22,7 @@ angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$locatio
     var restaurantList = restaurantService.getRestaurantList(request);
     restaurantList.then(function (result) {
       $scope.userRestaurants = result;
+      $scope.totalItems = $scope.userRestaurants.length;
     });
   }
   //run initialization method
@@ -62,7 +63,6 @@ angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$locatio
     }
   }
   $scope.filterRestaurantList = function () {
-    console.log("filterrestaruatnlist");
     $scope.condition = $scope.condition_input;
     if($scope.condition == "") {
       var request = {"type": "ALL", "condition": $scope.condition};
@@ -76,6 +76,27 @@ angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$locatio
 
     });
   }
+
+  //restaurant pagination
+  $scope.viewby = 4;
+  $scope.currentPage = 1;
+  $scope.itemsPerPage = $scope.viewby;
+  $scope.maxSize = 5; //Number of pager buttons to show
+
+  $scope.setPage = function (pageNo) {
+    $scope.currentPage = pageNo;
+  };
+
+  $scope.pageChanged = function() {
+    console.log('Page changed to: ' + $scope.currentPage);
+    console.log($scope.viewby);
+    console.log($scope.totalItems);
+  };
+
+$scope.setItemsPerPage = function(num) {
+  $scope.itemsPerPage = num;
+  $scope.currentPage = 1; //reset to first page
+}
 
 
 }]);
