@@ -24,7 +24,7 @@
       <input name="location" ng-controller= "googlePlaceCtrl" id="autocomplete" placeholder="Enter your address" ng-focus="geolocate()" type="text" required></input>
       <div id="restaurantAddButtonbar" class="btn-toolbar mt-3">
         <button ng-click="redirect('/restaurant-new')" class="btn btn-secondary"> Back </button>
-        <button ng-click="extractAddress(); registerRestaurant('/restaurant-new-host2')" class="btn btn-primary"> Continue </button>
+        <button ng-click="extractAddress(); createRestaurant()" class="btn btn-primary"> Create Restaurant </button>
       </div>
     </form>
   </div>

@@ -5,16 +5,12 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
 
 
   return {
-    //insert sessionStorage restaurant + user info to DB
-    insertRestaurantInfo: function() {
-      var post_data = {};
-      post_data['restaurant'] = $window.sessionStorage.restaurant;
-      post_data['user'] = $window.sessionStorage.user;
-
-      return $http({ method: "POST", url: "action/restaurant_create.php", data: post_data})
+    //insert user and restaurant info to db
+    insertRestaurantInfo: function(restaurant_info) {
+      return $http({ method: "POST", url: "action/restaurant_create.php", data: restaurant_info})
       .then(function mySuccess (response) {
-        if (!isNaN(parseInt(response.data))) {
-          return parseInt(response.data);
+        if (response.data != null) {
+          return response.data;
         } else if (response.data == "Failed to write to DB"){
           return 'Failed to write to DB';
         } else {

@@ -1,9 +1,14 @@
 angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$location', 'restaurantService', 'authService', 'growl', '$window', function ($scope, $location, restaurantService, authService, growl, $window) {
-
+  $scope.excessCapacity = {};
+  $scope.operationHours = {
+    'openHour': null, 'openMin': null, 'open': null,
+    'closeHour': null, 'closeMin': null, 'close': null
+  };
   $scope.restaurant = {};
   $scope.user = {};
   $scope.files = {};
 
+  //add data to sessionStorage restaurant
   $scope.registerRestaurant = function (redirectLocation) {
     restaurantService.saveToSession('restaurant', $scope.restaurant);
     restaurantService.saveToSession('user', $scope.user);
@@ -18,15 +23,33 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
 
       //if a user is in session
       if (result["user_id"] != null) {
-        $scope.restaurant.entity = $window.sessionStorage.restaurant.entity;
-
-
-        restaurantService.insertRestaurantInfo($scope.restaurant).then(function(response) {
-
+        restaurantService.insertRestaurantInfo().then(function(response) {
+          //receive inserted restaurant id number
+          if (!isNaN(response)) {
+            //upload files to file system and save location reference to DB
+            //if successfully upload both files
+            //
+            var uploadResponse = $scope.getAndUploadFile(response);
+            uploadResponse.then(function(response2) {
+              if(response2 == "SUCCESSFULLY UPLOADED") {
+                restaurantService.clearFileList();
+                $location.path('restaurant-new-success');
+                growl.success('Your restaurant has successfully been created.',{title: 'Success!'});
+              } else if (response2 == "UNACCEPTABLE EXTENSION"){
+                $location.path('restaurant-new');
+                growl.error('Unacceptable file extension for upload.',{title: 'Error!'});
+              }
+              else {
+                $location.path('restaurant-new');
+                growl.error('Something has gone terribly wrong. Try again.',{title: 'Error!'});
+              }
+            })
+          } else {
+            growl.error(response,{title: 'Error!'});
+          }
         });
-      console.log($scope.restaurant);
-      console.log($window.sessionStorage.restaurant);
       }
+
       //if there is no user in session, redirect to nosession info page
       else {
           $location.path('/nosession');
@@ -39,36 +62,36 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
     $scope.restaurant[key] = value;
   }
 
-  //extract required address information
-  $scope.extractAddress = function () {
-    //attributes from autocomplete that needs to be saved
-    var componentForm = {
-      street_number: 'short_name',
-      route: 'long_name',
-      locality: 'long_name',
-      administrative_area_level_1: 'short_name',
-      country: 'long_name',
-      postal_code: 'short_name'
-    };
-
-    //get the address saved to RestaurantService from googlePlaceCtrl
-    var fullAddress = restaurantService.googlePlace;
-
-    //iterate through the received address and save only the ones needed to RestaurantService restaurant
-    if (fullAddress != null) {
-      for (var i = 0; i < fullAddress.length; i++) {
-        var addressType = fullAddress[i].types[0];
-
-        //if the given address attribute matches one of the componentForms
-        if (componentForm[addressType]) {
-          var val = fullAddress[i][componentForm[addressType]];
-          $scope.restaurant[addressType] = val;
-        }
-      }
-    } else {
-
-    }
-  }
+  // //extract required address information
+  // $scope.extractAddress = function () {
+  //   //attributes from autocomplete that needs to be saved
+  //   var componentForm = {
+  //     street_number: 'short_name',
+  //     route: 'long_name',
+  //     locality: 'long_name',
+  //     administrative_area_level_1: 'short_name',
+  //     country: 'long_name',
+  //     postal_code: 'short_name'
+  //   };
+  //
+  //   //get the address saved to RestaurantService from googlePlaceCtrl
+  //   var fullAddress = restaurantService.googlePlace;
+  //
+  //   //iterate through the received address and save only the ones needed to RestaurantService restaurant
+  //   if (fullAddress != null) {
+  //     for (var i = 0; i < fullAddress.length; i++) {
+  //       var addressType = fullAddress[i].types[0];
+  //
+  //       //if the given address attribute matches one of the componentForms
+  //       if (componentForm[addressType]) {
+  //         var val = fullAddress[i][componentForm[addressType]];
+  //         $scope.restaurant[addressType] = val;
+  //       }
+  //     }
+  //   } else {
+  //
+  //   }
+  // }
 
   //cancatenate time string
   $scope.buildTime = function () {
