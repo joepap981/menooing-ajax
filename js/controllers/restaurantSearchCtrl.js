@@ -78,7 +78,7 @@ angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$locatio
   }
 
   //restaurant pagination
-  $scope.viewby = 4;
+  $scope.viewby = 12;
   $scope.currentPage = 1;
   $scope.itemsPerPage = $scope.viewby;
   $scope.maxSize = 5; //Number of pager buttons to show

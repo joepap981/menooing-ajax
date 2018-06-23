@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="css/user/pagination-custom.css">
+
 <div class="container mt-5" ng-controller="restaurantSearchCtrl">
   <form class="">
     <div class="d-flex">
@@ -24,7 +26,7 @@
     </div>
   </form>
 
-  <div id="restaurant-list" >
+  <div id="restaurant-list">
     <div class="row">
       <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item" ng-repeat="restaurant in userRestaurants.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
         <div class="card h-80 mt-5 mb-t">
@@ -41,6 +43,6 @@
     </div>
   </div>
 
-  <div uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></div>
+  <ul class="pagination mt-5 d-flex justify-content-center" uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage"></ul>
 
 </div>
