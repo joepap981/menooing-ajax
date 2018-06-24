@@ -7,3 +7,19 @@
   min-height: 100px;
   width: 200px;
 }
+
+/* Top left text */
+.top-left {
+    position: absolute;
+    top: 70px;
+    left: 16px;
+}
+
+.edit-button {
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  opacity: 0.5;
+
+}

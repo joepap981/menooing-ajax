@@ -1,14 +1,34 @@
 <link rel="stylesheet" href="css/user/restaurant/restaurant-profile.css">
 
-<img class="masthead-img" src="img/bg-masthead.jpg">
+<div>
+  <img class="masthead-img" src="img/bg-masthead.jpg">
+  <button class="top-left btn btn-primary" ng-click="redirect('/restaurant-list')">Go Back to Restaurant</div>
+</div>
 
-<div class="container mt-5" ng-controller= "">
+<div class="container mt-5" ng-controller= "restaurantProfileCtrl">
   <div id="restaurant-main-info" class="row">
     <div class="col-8">
       <div class="restaurant-header mb-5">
         <h5> HOST </h5>
-        <h1> Sushiyaa </h1>
-        <h4> Arlington, TX </h4>
+        <h1> {{ restaurant.restaurant_name }} </h1>
+
+        <div class="d-flex">
+          <h4 class="p-2"> {{ restaurant.restaurant_locality}}, {{ restaurant.restaurant_administrative_area_level_1}} </h4>
+          <i data-toggle="collapse" data-target="#collapseAddress" class="fa fa-edit p-3 edit-button"></i>
+        </div>
+
+        <div class="collapse" id="collapseAddress">
+          <div class="card card-body collapse w-50">
+            <div id="locationField">
+              <input class="form-control" ng-controller= "googlePlaceCtrl" id="autocomplete" placeholder="Enter your address" ng-focus="geolocate()" type="text"></input>
+            </div>
+            <div class="btn-box mt-3">
+              <button data-toggle= "collapse" data-target="#collapseAddress" class="btn secondary"> Cancel </button>
+              <button ng-click= "updateAddress()" data-target="#collapseAddress" class="btn btn-primary"> Save Changes </button>
+            </div>
+          </div>
+        </div>
+
       </div>
       <div class="restaurant-description">
         <p> This is the part wehre the description will be filled in.  This is the part wehre the description will be filled in.This is the part wehre the description will be filled in.This is the part wehre the description will be filled in.This is the part wehre the description will be filled in.This is the part wehre the description will be filled in.</p>
@@ -101,7 +121,7 @@
           <hr>
 
           <p> You restaurant is not discoverable by others yet. Go ahead and request to publish. </p>
-          <button class="btn btn-primary d-flex justify-content-center"> Publish</button>
+          <button class="btn btn-primary d-flex justify-content-center"> Request to Publish </button>
         </div>
       </div>
     </div>

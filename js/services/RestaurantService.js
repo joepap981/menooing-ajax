@@ -68,6 +68,9 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       $window.sessionStorage[type] = JSON.stringify(response);
     },
 
+    //receives restaurant info
+    //update_info - contains key and value of restaurant information
+    //conditions - the conditions that needs to be satisfied
     updateRestaurant: function (restaurant_info) {
       return $http({ method: "POST", url: "action/update_restaurant_info.php", data: restaurant_info
     }).then(function mySuccess(response) {
@@ -92,6 +95,13 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
 
     clearFileList: function () {
       file_list = [];
+    },
+
+    checkPrivilege: function (restaurant_id) {
+      return $http({ method: "POST", url: "action/check_privilege.php", data: restaurant_id
+    }).then(function mySuccess(response) {
+        return response.data;
+      });
     },
 
   }

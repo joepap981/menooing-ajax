@@ -1,49 +1,39 @@
 angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$location', '$routeParams', 'restaurantService', 'authService', 'growl', 'FileSaver', 'Blob', function ($scope, $location, $routeParams, restaurantService, authService, growl, FileSaver, Blob, $uibModal) {
-
-  var restaurant_id;
   $scope.restaurant = {};
-  $scope.input = {};
-  $scope.files = {};
-  $scope.operationHours = {
-    'openHour': null, 'openMin': null, 'open': null,
-    'closeHour': null, 'closeMin': null, 'close': null
-  };
+  var restaurant_id;
 
+
+  //initializing function
   var init = function () {
+    //get the restaurant id from the url
     var url = $location.path().split('/');
     restaurant_id = url.pop();
 
-    var getRestaurant = restaurantService.getRestaurantInfo(restaurant_id);
-    getRestaurant.then(function (result) {
-      $scope.restaurant = result[0];
-
-      //if restaurant cert exists, slice out path information
-      if($scope.restaurant.restaurant_cert != null) {
-        $scope.restaurant.cert_name = $scope.restaurant.restaurant_cert.split('/').pop();
+    //check if the restaurant belongs to current session user
+    var priviledgeCheck = restaurantService.checkPrivilege(restaurant_id);
+    priviledgeCheck.then(function (result) {
+      if(result == "ACCEPTED") {
+        //bring restaurant information based on restaurant id
+        var getRestaurant = restaurantService.getRestaurantInfo(restaurant_id);
+        getRestaurant.then(function (result) {
+          $scope.restaurant = result[0];
+        })
+      } else if (result=="DENIED") {
+        growl.error('You do not have privilege.',{title: 'Error!'});
+        $location.path('/');
+      } else if (result == "NO SESSION") {
+        growl.error('Please log in to continue.',{title: 'Error!'});
+        $location.path('/signin');
+      } else {
+        growl.error('Something has gone wrong.',{title: 'Error!'});
+        $location.path('/');
       }
+    })
+  }
 
-      //build restaurant address
-      $scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
-
-      //if open date and hours information exists, build into readable string
-      if ($scope.checkDateHours() == true) {
-        $scope.restaurant.open_time = $scope.restaurant.restaurant_open_day + "~" + $scope.restaurant.restaurant_close_day + ", " + $scope.restaurant.restaurant_open_hour + "-" + $scope.restaurant.restaurant_close_hour;
-      }
-    });
-  };
-
-  //run initialization method
+  //initialize function at loading of controller
   init();
 
-  //file download
-  $scope.downloadRestaurantCert = function () {
-    var downloadInfo = {
-      'user_id': $scope.restaurant.user_ref,
-      'path': $scope.restaurant.restaurant_cert,
-    }
-
-    authService.downloadFile(downloadInfo);
-  }
 
   //extract required address information
   $scope.updateAddress = function () {
@@ -72,251 +62,33 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
           restaurant_address[addressType] = val;
         }
       }
-    } else {
 
-    }
+      //update restaurant with given information
 
-    //create an object to update restaurant database info
-    //update_info : key and value of items that need to be changed
-    //condition: key and value of conditions that need to be satisfied in order to be updated
-    var ajaxObj = {};
-    ajaxObj['update_info'] = restaurant_address;
-    ajaxObj['condition'] = {'restaurant_id': restaurant_id};
+      var post_info = {};
+      post_info['update_info'] = restaurant_address;
+      post_info['condition'] = {'restaurant_id': restaurant_id };
 
-    restaurantService.updateRestaurant(ajaxObj).then(function(response) {
-      if (response == "SUCCESS") {
-          growl.success('Successfully updated restaurant address info.',{title: 'Success!'});
+      var addressUpdateResult = restaurantService.updateRestaurant(post_info);
+      addressUpdateResult.then(function(result) {
+        if (result == "SUCCESS") {
+          //bring restaurant information based on restaurant id
+          var getRestaurant = restaurantService.getRestaurantInfo(restaurant_id);
+          getRestaurant.then(function (result) {
+            $scope.restaurant = result[0];
+          })
 
-          //clear address input + collapse address editing card
-          document.getElementById('autocomplete').value = '';
-          $('#collapseAddress').collapse('hide');
-
-          //update page change
-          init();
-      }else {
-          growl.error('Failed to update restaurant address info.',{title: 'Error!'});
-      }
-    });
-  };
-
-  $scope.updatePhone = function () {
-    //if use has not selected choice
-    if ($scope.input.phone == null  || $scope.input.phone == {}) {
-      growl.warning('Please input a phone number.',{title: 'Warning!'});
-    }
-
-    var ajaxObj = {};
-    ajaxObj['update_info'] = {'phone': $scope.input.phone};
-    ajaxObj['condition'] = {'restaurant_id': restaurant_id};
-
-    restaurantService.updateRestaurant(ajaxObj).then(function(response) {
-      if (response == "SUCCESS") {
-          growl.success('Successfully updated restaurant phone number.',{title: 'Success!'});
-
-          //clear address input + collapse address editing card
-          $scope.input.phone = null;
-          $('#collapsePhone').collapse('hide');
-
-          //update page change
-          init();
-      }else {
-          growl.error('Failed to update restaurant phone number.',{title: 'Error!'});
-      }
-    })
-  };
-
-  $scope.checkDateHours = function () {
-    if (($scope.restaurant.restaurant_open_day && $scope.restaurant.restaurant_close_day &&
-      $scope.restaurant.restaurant_open_hour && $scope.restaurant.restaurant_close_hour) != null) {
-        return true;
-    }
-    return false;
-  }
-
-  $scope.uploadFile = function () {
-    if ($scope.files.restaurant_cert == null) {
-      console.log($scope.files.restaurant_cert[0]);
-      growl.warning('Select a file to upload.',{title: 'Error!'});
-    } else {
-      //create form_data for ajax post
-      var form_data = new FormData();
-      form_data.append($scope.files.restaurant_cert.file_type, $scope.files.restaurant_cert[0]);
-      //append file type indicator
-      form_data.append('file_type', $scope.files.restaurant_cert.file_type);
-      //append database table name
-      form_data.append('table_name', 'tb_restaurant');
-      form_data.append('restaurant_id', restaurant_id);
-
-      //does not erase original file, just add new file and new path to db
-      restaurantService.uploadFile(form_data).then(function (response) {
-        if (response == "SUCCESSFULLY UPLOADED") {
-          $scope.files.restaurant_cert[0] = null;
-          $('#collapseCert').collapse('hide');
-          $('#coFile').val('');
-          init();
-          growl.success(response, {title: 'Success'});
-        } else {
-          growl.error(response,{title: 'Error!'});
+          growl.success('Address has been successfully updated.',{title: 'Success!'});
+        } else if (result == "FAILED") {
+          growl.error('Address has failed to update. Refresh and try again.',{title: 'Error!'});
+        }else {
+          growl.error('Something has gone wrong.',{title: 'Error!'});
         }
+      })
 
-      });
-    }
-  }
-
-  //cancatenate time string
-  $scope.updateOperationHours = function () {
-    //if user has selected all of the operation hour selections
-    //build the operation hours and update
-    for (var element in $scope.operationHours) {
-      if ($scope.operationHours[element] == null) {
-        growl.warning('Fill in all of the operation hour selections', {title: 'Warning'});
-        return false;
-      }
-    }
-
-    $scope.restaurant['open_hour'] = $scope.operationHours['openHour'] + ":" + $scope.operationHours['openMin'] + $scope.operationHours['open'];
-    $scope.restaurant['close_hour'] = $scope.operationHours['closeHour'] + ":" + $scope.operationHours['closeMin'] + $scope.operationHours['close'];
-
-    var ajaxObj = {};
-    ajaxObj['update_info'] = {
-      'open_day': $scope.restaurant.open_day, 'open_hour': $scope.restaurant.open_hour,
-    'close_day': $scope.restaurant.close_day, 'close_hour': $scope.restaurant.close_hour };
-    ajaxObj['condition'] = {'restaurant_id': restaurant_id};
-
-    restaurantService.updateRestaurant(ajaxObj).then(function(response) {
-      if (response == "SUCCESS") {
-          growl.success('Successfully updated restaurant operation hours.',{title: 'Success!'});
-
-          //clear operation hour selection + collapse operation hours editing card
-          $scope.operationHours = {
-            'openHour': null, 'openMin': null, 'open': null,
-            'closeHour': null, 'closeMin': null, 'close': null
-          };
-
-          $scope.restaurant.open_day = null;
-          $scope.restaurant.close_day = null;
-
-          $('#collapseOpen').collapse('hide');
-
-          //update page change
-          init();
-      }else {
-          growl.error('Failed to update restaurant operation hours.',{title: 'Error!'});
-      }
-    });
-  }
-
-  $scope.updateCategory = function () {
-    //if use has not selected choice
-    if ($scope.input.category == null  || $scope.input.category == {}) {
-      growl.warning('Please select a category.',{title: 'Warning!'});
-    }
-
-    var ajaxObj = {};
-    ajaxObj['update_info'] = {'category': $scope.input.category};
-    ajaxObj['condition'] = {'restaurant_id': restaurant_id};
-
-    restaurantService.updateRestaurant(ajaxObj).then(function(response) {
-      if (response == "SUCCESS") {
-          growl.success('Successfully updated restaurant category.',{title: 'Success!'});
-
-          //collapse category editing card
-          $('#collapseCategory').collapse('hide');
-          //clear category
-          $scope.input.category = null;
-
-          //update page change
-          init();
-
-      }else {
-          growl.error('Failed to update restaurant category.',{title: 'Error!'});
-      }
-    })
-  }
-
-  $scope.updateCuisine = function() {
-
-    //if use has not selected choice
-    if ($scope.input.cuisine == null || $scope.input.cuisine == {}) {
-      growl.warning('Please select a cuisine.',{title: 'Warning!'});
-    }
-
-    var ajaxObj = {};
-    ajaxObj['update_info'] = {'cuisine': $scope.input.cuisine};
-    ajaxObj['condition'] = {'restaurant_id': restaurant_id};
-
-    restaurantService.updateRestaurant(ajaxObj).then(function(response) {
-      if (response == "SUCCESS") {
-          growl.success('Successfully updated restaurant cuisine.',{title: 'Success!'});
-
-          //collapse cuisine editing card
-          $('#collapseCuisine').collapse('hide');
-          //clear category
-          $scope.input.cuisine = null;
-
-          //update page change
-          init();
-
-      }else {
-          growl.error('Failed to update restaurant cuisine.',{title: 'Error!'});
-      }
-    })
-  }
-
-  $scope.initCropper = function () {
-    var image = document.getElementById('image-holder');
-    var cropper = new Cropper(image, {
-      aspectRatio: 7 / 4,
-      minContainerWidth: 450,
-      minContainerHeight: 350,
-      strict: false,
-      crop: function(event) {
-        console.log(event.detail.x);
-        console.log(event.detail.y);
-        console.log(event.detail.width);
-        console.log(event.detail.height);
-        console.log(event.detail.rotate);
-        console.log(event.detail.scaleX);
-        console.log(event.detail.scaleY);
-      }
-    });
-  }
-
-  $scope.uploadImage = function () {
-    if ($scope.restaurant_image == null) {
-      //console.log($scope.restaurant_image[0]);
-      growl.warning('Select an image to upload.',{title: 'Error!'});
     } else {
-      //create form_data for ajax post
-      var form_data = new FormData();
-      form_data.append($scope.restaurant_image.file_type, $scope.restaurant_image[0]);
-      //append file type indicator
-      form_data.append('file_type', $scope.restaurant_image.file_type);
-      //append database table name
-      form_data.append('table_name', 'tb_restaurant');
-      form_data.append('restaurant_id', restaurant_id);
-
-      //does not erase original file, just add new file and new path to db
-      restaurantService.uploadFile(form_data).then(function (response) {
-        if (response == "SUCCESSFULLY UPLOADED") {
-          $scope.restaurant_image = null;
-          $('#image-holder').val('');
-          init();
-          growl.success(response, {title: 'Success'});
-        } else {
-          growl.error(response,{title: 'Error!'});
-        }
-
-      });
+      growl.error('There was no readable address.',{title: 'Error!'});
     }
   }
 
-  
-
-
-  //menu add
-  $scope.menu = {};
-  $scope.clearForm = function () {
-    $scope.menu = {};
-  }
 }]);
