@@ -22,10 +22,12 @@ angular.module('menuApp').controller('restaurantRegisterCtrl',['$scope', '$locat
 
 
         restaurantService.insertRestaurantInfo($scope.restaurant).then(function(response) {
-
+          if (!isNaN(response)) {
+            $window.sessionStorage.created_restaurant_id = response;
+            $location.path('restaurant-new-success');
+            growl.success('Your restaurant has successfully been created.',{title: 'Success!'});
+          }
         });
-      console.log($scope.restaurant);
-      console.log($window.sessionStorage.restaurant);
       }
       //if there is no user in session, redirect to nosession info page
       else {

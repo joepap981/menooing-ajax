@@ -10,7 +10,7 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       return $http({ method: "POST", url: "action/restaurant_create.php", data: restaurant_info})
       .then(function mySuccess (response) {
         if (response.data != null) {
-          return response.data;
+          return parseInt(response.data);
         } else if (response.data == "Failed to write to DB"){
           return 'Failed to write to DB';
         } else {
