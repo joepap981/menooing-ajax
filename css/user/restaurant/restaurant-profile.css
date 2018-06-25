@@ -23,3 +23,16 @@
   opacity: 0.5;
 
 }
+.pointer {
+  cursor: pointer;
+}
+
+.description-input {
+  height: 50px!important;
+  width: 100%;
+
+  padding: 20px 50px 200px 10px;
+  word-break: break-all
+
+  overflow: scroll;
+}

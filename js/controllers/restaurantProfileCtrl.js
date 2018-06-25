@@ -17,6 +17,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
         var getRestaurant = restaurantService.getRestaurantInfo(restaurant_id);
         getRestaurant.then(function (result) {
           $scope.restaurant = result[0];
+          $scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
         })
       } else if (result=="DENIED") {
         growl.error('You do not have privilege.',{title: 'Error!'});
@@ -76,12 +77,20 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
           var getRestaurant = restaurantService.getRestaurantInfo(restaurant_id);
           getRestaurant.then(function (result) {
             $scope.restaurant = result[0];
+            $scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
           })
+          //collapse cuisine editing card
+          $('#collapseAddress').collapse('hide');
 
+          //clear input box
+          $('#autocomplete').val('');
+          //show succcess message
           growl.success('Address has been successfully updated.',{title: 'Success!'});
         } else if (result == "FAILED") {
+          //show failed message
           growl.error('Address has failed to update. Refresh and try again.',{title: 'Error!'});
         }else {
+          //show error message
           growl.error('Something has gone wrong.',{title: 'Error!'});
         }
       })
@@ -89,6 +98,12 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     } else {
       growl.error('There was no readable address.',{title: 'Error!'});
     }
+  }
+
+  //toggle the description input box from view mode <-> edit mode
+  $scope.descriptionBoxSwitch = -1;
+  $scope.toggleDescriptionBox = function () {
+    $scope.descriptionBoxSwitch = $scope.descriptionBoxSwitch * -1;
   }
 
 }]);

@@ -18,7 +18,8 @@
         </div>
 
         <div class="collapse" id="collapseAddress">
-          <div class="card card-body collapse w-50">
+          <div class="card card-body collapse w-75">
+            <p> Current Address: {{ restaurant.address }} </p>
             <div id="locationField">
               <input class="form-control" ng-controller= "googlePlaceCtrl" id="autocomplete" placeholder="Enter your address" ng-focus="geolocate()" type="text"></input>
             </div>
@@ -31,7 +32,20 @@
 
       </div>
       <div class="restaurant-description">
-        <p> This is the part wehre the description will be filled in.  This is the part wehre the description will be filled in.This is the part wehre the description will be filled in.This is the part wehre the description will be filled in.This is the part wehre the description will be filled in.This is the part wehre the description will be filled in.</p>
+        <p> This is the part wehre the description will be filled in.  This is the part wehre the description will be filled in.This is the part wehre the description will be filled in.This is the part wehre the description will be filled in.
+        This is the part wehre the description will be filled in.This is the part wehre the description will be filled in.</p>
+
+        <div class="d-flex flex-row-reverse">
+          <i class="fa fa-edit p-3 edit-button" ng-click="toggleDescriptionBox()"></i>
+        </div>
+      </div>
+
+      <div class="restaurant-description-input">
+        <textarea class="form-control description-input"></textarea>
+        <div class="btn-box mt-3 d-flex flex-row-reverse">
+          <button class="btn btn-secondary"> Cancel </button>
+          <button ng-click= "" class="btn btn-primary"> Save Changes </button>
+        </div>
       </div>
 
       <hr>
