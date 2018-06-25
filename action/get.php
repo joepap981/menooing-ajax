@@ -27,6 +27,7 @@ $result = mysqli_query($conn, $query);
 
 $return_array = array();
 $count=0;
+
 while ($row = mysqli_fetch_assoc($result))
  {
      $return_array[$count] = $row;

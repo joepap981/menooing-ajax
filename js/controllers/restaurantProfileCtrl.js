@@ -100,10 +100,36 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     }
   }
 
+
   //toggle the description input box from view mode <-> edit mode
   $scope.descriptionBoxSwitch = -1;
   $scope.toggleDescriptionBox = function () {
     $scope.descriptionBoxSwitch = $scope.descriptionBoxSwitch * -1;
+  }
+
+  $scope.updateDescription = function () {
+    var post_info = {};
+    post_info['update_info'] = {'description': $scope.restaurant.restaurant_description };
+    post_info['condition'] = {'restaurant_id': restaurant_id };
+
+    var descriptionUpdateResult = restaurantService.updateRestaurant(post_info);
+    descriptionUpdateResult.then(function(result) {
+      if (result == "SUCCESS") {
+        $scope.descriptionBoxSwitch = -1;
+
+        var getRestaurant = restaurantService.getRestaurantInfo(restaurant_id);
+        getRestaurant.then(function (result) {
+          $scope.restaurant = result[0];
+          $scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
+        })
+
+        growl.success('Description has been successfully updated.',{title: 'Success!'});
+      } else if (result == "FAILED") {
+        growl.error('Description has failed to update. Refresh and try again.',{title: 'Error!'});
+      } else {
+        growl.error('There was no readable address.',{title: 'Error!'});
+      }
+    })
   }
 
 }]);

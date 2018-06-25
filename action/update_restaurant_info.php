@@ -15,6 +15,7 @@ if(!$postdata) {
 	die('Could not read contents of POST request');
 }
 
+
 //decoding json into array
 $data = json_decode($postdata, true);
 

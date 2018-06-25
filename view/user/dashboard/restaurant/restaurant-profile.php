@@ -8,7 +8,7 @@
 <div class="container mt-5" ng-controller= "restaurantProfileCtrl">
   <div id="restaurant-main-info" class="row">
     <div class="col-8">
-      <div class="restaurant-header mb-5">
+      <div class="restaurant-header">
         <h5> HOST </h5>
         <h1> {{ restaurant.restaurant_name }} </h1>
 
@@ -31,20 +31,19 @@
         </div>
 
       </div>
-      <div class="restaurant-description">
-        <p> This is the part wehre the description will be filled in.  This is the part wehre the description will be filled in.This is the part wehre the description will be filled in.This is the part wehre the description will be filled in.
-        This is the part wehre the description will be filled in.This is the part wehre the description will be filled in.</p>
+      <div class="restaurant-description  white-space-pre" ng-show="descriptionBoxSwitch == -1">
+        <p> {{ restaurant.restaurant_description }}</p>
 
         <div class="d-flex flex-row-reverse">
           <i class="fa fa-edit p-3 edit-button" ng-click="toggleDescriptionBox()"></i>
         </div>
       </div>
 
-      <div class="restaurant-description-input">
-        <textarea class="form-control description-input"></textarea>
-        <div class="btn-box mt-3 d-flex flex-row-reverse">
-          <button class="btn btn-secondary"> Cancel </button>
-          <button ng-click= "" class="btn btn-primary"> Save Changes </button>
+      <div class="restaurant-description-input white-space-pre" ng-show="descriptionBoxSwitch == 1">
+        <textarea class="form-control description-input" ng-model="restaurant.restaurant_description"></textarea>
+        <div class="btn-box d-flex flex-row-reverse">
+          <button class="btn btn-secondary" ng-click="toggleDescriptionBox()"> Cancel </button>
+          <button ng-click= "updateDescription()" class="btn btn-primary"> Save Changes </button>
         </div>
       </div>
 
@@ -83,6 +82,11 @@
           </div>
         </div>
       </div>
+
+      <div class="mt-3 d-flex justify-content-center">
+        <p class="pointer"> Show more </p>
+      </div>
+
       <hr>
       <div class="restaurant-facility">
         <h5 class="mb-4"> Facility  </h5>
@@ -117,6 +121,10 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="mt-3 d-flex justify-content-center">
+        <p class="pointer"> Show more </p>
       </div>
 
       <hr>

@@ -11,8 +11,8 @@
 /* Top left text */
 .top-left {
     position: absolute;
-    top: 70px;
-    left: 16px;
+    top: 90px;
+    left: 110px;
 }
 
 .edit-button {
@@ -27,12 +27,22 @@
   cursor: pointer;
 }
 
+.pointer:hover {
+  opacity: 0.5;
+}
+
 .description-input {
   height: 50px!important;
   width: 100%;
 
-  padding: 20px 50px 200px 10px;
-  word-break: break-all
+  padding: 5px 50px 200px 10px;
+  word-break: break-all;
 
   overflow: scroll;
 }
+
+.white-space-pre {
+    white-space: pre-wrap;
+}
+
+/*animation*/
