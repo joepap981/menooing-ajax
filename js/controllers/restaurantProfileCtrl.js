@@ -1,6 +1,10 @@
 angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$location', '$routeParams', 'restaurantService', 'authService', 'growl', 'FileSaver', 'Blob', function ($scope, $location, $routeParams, restaurantService, authService, growl, FileSaver, Blob, $uibModal) {
   $scope.restaurant = {};
+  $scope.input = {};
   var restaurant_id;
+
+
+  $scope.input.day = "Monday";
 
 
   //initializing function
@@ -163,34 +167,58 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     })
   }
 
-  $scope.mytime = new Date();
+  $scope.beginTime = new Date();
+  $scope.beginTime.setHours( 0 );
+  $scope.beginTime.setMinutes( 0 );
+
+  $scope.endTime = new Date();
+  $scope.endTime.setHours( 0 );
+  $scope.endTime.setMinutes( 0 );
 
   $scope.hstep = 1;
   $scope.mstep = 15;
 
-  $scope.options = {
-    hstep: [1, 2, 3],
-    mstep: [1, 5, 10, 15, 25, 30]
-  };
-
-  $scope.ismeridian = true;
-  $scope.toggleMode = function() {
-    $scope.ismeridian = ! $scope.ismeridian;
-  };
-
-  $scope.update = function() {
+  $scope.addMinBegin = function () {
     var d = new Date();
-    d.setHours( 14 );
-    d.setMinutes( 0 );
-    $scope.mytime = d;
-  };
+    d.setHours( $scope.beginTime.getHours() );
+    d.setMinutes( $scope.beginTime.getMinutes() + $scope.mstep );
+    $scope.beginTime = d;
 
+  }
 
-  $scope.clear = function() {
-    $scope.mytime = null;
-  };
+  $scope.lessMinBegin = function () {
+    var d = new Date();
+    d.setHours( $scope.beginTime.getHours() );
+    d.setMinutes( $scope.beginTime.getMinutes() - $scope.mstep );
+    $scope.beginTime = d;
 
+  }
 
+  $scope.addMinEnd = function () {
+    var d = new Date();
+    d.setHours( $scope.endTime.getHours()  );
+    d.setMinutes( $scope.endTime.getMinutes() + $scope.mstep );
+    $scope.endTime = d;
+  }
 
+  $scope.lessMinEnd = function () {
+    var d = new Date();
+    d.setHours( $scope.endTime.getHours()  );
+    d.setMinutes( $scope.endTime.getMinutes() - $scope.mstep );
+    $scope.endTime = d;
+  }
+
+  $scope.addAvailableTime = function () {
+    var post_data = {};
+    post_data = {"available_day": $scope.input.day, "begin_hour": $scope.beginTime.getHours(), "begin_min": $scope.beginTime.getMinutes(),
+    "end_hour": $scope.endTime.getHours(), "end_min": $scope.endTime.getMinutes()};
+
+    if($scope.beginTime.getHours() > $scope.endTime.getHours()) {
+        growl.warning('Check the time and try again.',{title: 'Wrong time format!'});
+    } else {
+      console.log(post_data);
+    }
+
+  }
 
 }]);

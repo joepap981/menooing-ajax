@@ -71,5 +71,46 @@
     content:"\f078"
 }
 
+ .addbutton {
+  position: absolute;
+  margin-top: 10px;
+  display: inline-block;
+  color: #A1A0A0;
+  cursor:pointer;
+}
+
+.addbutton:hover {
+  color: #BBBBBB;
+}
+
+.minbutton {
+	display: inline-block;
+  margin-top: 25px;
+  color: #A1A0A0;
+  cursor:pointer;
+}
+
+.minbutton:hover {
+  color: #BBBBBB;
+}
+
+.day-picker {
+  width: 96%;
+  margin-left: 10px;
+}
+
+.time-picker {
+  margin-left: 10px;
+  margin-top: 10px;
+  height: 38px;
+}
+
+.time-picker-input {
+  width: 50px;
+  height: 38px;
+  margin-right: 5px;
+}
+
+
 
 /*animation*/

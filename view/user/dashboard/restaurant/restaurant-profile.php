@@ -173,32 +173,33 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <div uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
 
-                  <pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
+                  <select class="custom-select day-picker" ng-model = "input.day">
+                    <option value="Monday"> Monday </option>
+                    <option value="Tuesday"> Tuesday</option>
+                    <option value="Wednesday"> Wednesday </option>
+                    <option value="Thursday"> Thursday </option>
+                    <option value="Friday"> Friday </option>
+                    <option value="Saturday"> Saturday </option>
+                    <option value="Sunday"> Sunday </option>
+                  </select>
 
-                  <div class="row">
-                    <div class="col-xs-6">
-                        Hours step is:
-                      <select class="form-control" ng-model="hstep" ng-options="opt for opt in options.hstep"></select>
+                  <div class="d-flex">
+                    <div uib-timepicker class="p-2" ng-model="beginTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true" show-spinners ="false"></div>
+                    <div>
+                      <i class="glyphicon glyphicon-chevron-up addbutton" ng-click="addMinBegin()"></i> <i class="glyphicon glyphicon-chevron-down minbutton" ng-click="lessMinBegin()"></i>
                     </div>
-                    <div class="col-xs-6">
-                        Minutes step is:
-                      <select class="form-control" ng-model="mstep" ng-options="opt for opt in options.mstep"></select>
+                    <h5 class="p-3"> to </h5>
+                    <div uib-timepicker class="p-2" ng-model="endTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="true" show-spinners ="false" ></div>
+                    <div>
+                      <i class="glyphicon glyphicon-chevron-up addbutton" ng-click="addMinEnd()"></i> <i class="glyphicon glyphicon-chevron-down minbutton" ng-click="lessMinEnd()"></i>
                     </div>
                   </div>
-
-                  <hr>
-
-                  <button type="button" class="btn btn-info" ng-click="toggleMode()">12H / 24H</button>
-                  <button type="button" class="btn btn-default" ng-click="update()">Set to 14:00</button>
-                  <button type="button" class="btn btn-danger" ng-click="clear()">Clear</button>
-
 
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-primary" ng-click="addAvailableTime()">Add Available Time</button>
                 </div>
               </div>
             </div>
