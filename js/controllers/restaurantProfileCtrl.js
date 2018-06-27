@@ -127,9 +127,70 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       } else if (result == "FAILED") {
         growl.error('Description has failed to update. Refresh and try again.',{title: 'Error!'});
       } else {
-        growl.error('There was no readable address.',{title: 'Error!'});
+        growl.error('Something has gone wrong.',{title: 'Error!'});
       }
     })
   }
+
+  //toggle the description input box from view mode <-> edit mode
+  $scope.priceBoxSwitch = -1;
+  $scope.togglePriceBox = function () {
+    $scope.priceBoxSwitch = $scope.priceBoxSwitch * -1;
+  }
+
+  $scope.updatePrice = function () {
+    var post_info = {};
+    post_info['update_info'] = {'fee': $scope.restaurant.restaurant_fee, 'fee_standard':$scope.restaurant.restaurant_fee_standard };
+    post_info['condition'] = {'restaurant_id': restaurant_id };
+
+    var priceUpdateResult = restaurantService.updateRestaurant(post_info);
+    priceUpdateResult.then(function(result) {
+      if (result == "SUCCESS") {
+        $scope.priceBoxSwitch = -1;
+
+        var getRestaurant = restaurantService.getRestaurantInfo(restaurant_id);
+        getRestaurant.then(function (result) {
+          $scope.restaurant = result[0];
+          $scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
+        })
+
+        growl.success('Pricing has been successfully updated.',{title: 'Success!'});
+      } else if (result == "FAILED") {
+        growl.error('Pricing has failed to update. Refresh and try again.',{title: 'Error!'});
+      } else {
+        growl.error('Something has gone wrong.',{title: 'Error!'});
+      }
+    })
+  }
+
+  $scope.mytime = new Date();
+
+  $scope.hstep = 1;
+  $scope.mstep = 15;
+
+  $scope.options = {
+    hstep: [1, 2, 3],
+    mstep: [1, 5, 10, 15, 25, 30]
+  };
+
+  $scope.ismeridian = true;
+  $scope.toggleMode = function() {
+    $scope.ismeridian = ! $scope.ismeridian;
+  };
+
+  $scope.update = function() {
+    var d = new Date();
+    d.setHours( 14 );
+    d.setMinutes( 0 );
+    $scope.mytime = d;
+  };
+
+
+  $scope.clear = function() {
+    $scope.mytime = null;
+  };
+
+
+
 
 }]);

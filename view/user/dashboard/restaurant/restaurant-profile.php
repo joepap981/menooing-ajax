@@ -135,10 +135,75 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title"> Pricing </h5>
-          <p class="card-subtitle"> $500 per month.
+          <div class="d-flex restaurant-price" ng-show="priceBoxSwitch == -1">
+            <p class="card-subtitle p-2"> ${{ restaurant.restaurant_fee}} per {{ restaurant.restaurant_fee_standard}}. </p>
+            <i class="fa fa-edit p-2 edit-button" ng-click="togglePriceBox()"></i>
+          </div>
+
+          <div class="restaurant-price-edit" ng-show="priceBoxSwitch == 1">
+            <div class="d-flex">
+              <input class="form-control w-50 mr-2" ng-model = "restaurant.restaurant_fee"> </input>
+              <select class="custom-select" ng-model = "restaurant.restaurant_fee_standard">
+                <option value="hour"> Hour </option>
+                <option value="day"> Day</option>
+                <option value="month"> Month </option>
+              </select>
+            </div>
+
+            <div class="btn-box d-flex mt-3">
+              <button class="btn btn-secondary" ng-click="togglePriceBox()"> Cancel </button>
+              <button ng-click= "updatePrice()" class="btn btn-primary"> Save Changes </button>
+            </div>
+
+          </div>
 
           <hr>
           <h5 class="card-title"> Available Hours </h5>
+
+          <button class="btn btn-light w-100" data-toggle="modal" data-target="#timeModal"> + </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="timeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="timeModalLabel">Add Available Time</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+
+                  <pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
+
+                  <div class="row">
+                    <div class="col-xs-6">
+                        Hours step is:
+                      <select class="form-control" ng-model="hstep" ng-options="opt for opt in options.hstep"></select>
+                    </div>
+                    <div class="col-xs-6">
+                        Minutes step is:
+                      <select class="form-control" ng-model="mstep" ng-options="opt for opt in options.mstep"></select>
+                    </div>
+                  </div>
+
+                  <hr>
+
+                  <button type="button" class="btn btn-info" ng-click="toggleMode()">12H / 24H</button>
+                  <button type="button" class="btn btn-default" ng-click="update()">Set to 14:00</button>
+                  <button type="button" class="btn btn-danger" ng-click="clear()">Clear</button>
+
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
 
           <hr>
 
