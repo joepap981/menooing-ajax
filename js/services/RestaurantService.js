@@ -32,11 +32,7 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       });
     },
 
-    getRestaurantInfo: function(restaurant_id) {
-      var queryObj = {
-        "table": "tb_restaurant",
-        "key": {"restaurant_id": restaurant_id }
-      };
+    getInfo: function(queryObj) {
 
       return $http({ method: "POST", url: "action/get.php", data: queryObj})
       .then(function mySuccess (response) {
@@ -99,6 +95,14 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
 
     checkPrivilege: function (restaurant_id) {
       return $http({ method: "POST", url: "action/check_privilege.php", data: restaurant_id
+    }).then(function mySuccess(response) {
+        return response.data;
+      });
+    },
+
+    //create availability time
+    createAvailableHour: function (post_data) {
+      return $http({ method: "POST", url: "action/available_time_create.php", data: post_data
     }).then(function mySuccess(response) {
         return response.data;
       });

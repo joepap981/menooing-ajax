@@ -29,7 +29,7 @@ $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
 $query = "SELECT user_ref FROM $dbName.tb_restaurant WHERE user_ref = " . $user['user_id'] . " and restaurant_id = $restaurant_id;";
 $result = mysqli_fetch_assoc(mysqli_query($conn, $query));
 
-
+mysqli_close($conn);
 if ($user["user_id"] == $result["user_ref"]) {
   echo "ACCEPTED";
 } else {

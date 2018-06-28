@@ -1,5 +1,6 @@
 angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$location', '$routeParams', 'restaurantService', 'authService', 'growl', 'FileSaver', 'Blob', function ($scope, $location, $routeParams, restaurantService, authService, growl, FileSaver, Blob, $uibModal) {
   $scope.restaurant = {};
+  $scope.availableTime = {};
   $scope.input = {};
   var restaurant_id;
 
@@ -18,11 +19,9 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     priviledgeCheck.then(function (result) {
       if(result == "ACCEPTED") {
         //bring restaurant information based on restaurant id
-        var getRestaurant = restaurantService.getRestaurantInfo(restaurant_id);
-        getRestaurant.then(function (result) {
-          $scope.restaurant = result[0];
-          $scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
-        })
+        updateRestaurantList();
+        updateAvailableList();
+
       } else if (result=="DENIED") {
         growl.error('You do not have privilege.',{title: 'Error!'});
         $location.path('/');
@@ -38,6 +37,33 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
   //initialize function at loading of controller
   init();
+
+  var updateAvailableList = function () {
+    var queryObj = {
+      "table": "tb_restaurant_available",
+      "key": {"restaurant_ref": restaurant_id }
+    };
+
+    //bring restaurant information based on restaurant id
+    var getAvailable = restaurantService.getInfo(queryObj);
+    getAvailable.then(function (result) {
+      $scope.availableTime = result[0];
+      console.log($scope.availableTime);
+    })
+  }
+
+  var updateRestaurantList = function () {
+    var queryObj = {
+      "table": "tb_restaurant",
+      "key": {"restaurant_id": restaurant_id }
+    };
+    //bring restaurant information based on restaurant id
+    var getRestaurant = restaurantService.getInfo(queryObj);
+    getRestaurant.then(function (result) {
+      $scope.restaurant = result[0];
+      $scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
+    })
+  }
 
 
   //extract required address information
@@ -77,12 +103,10 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       var addressUpdateResult = restaurantService.updateRestaurant(post_info);
       addressUpdateResult.then(function(result) {
         if (result == "SUCCESS") {
+
           //bring restaurant information based on restaurant id
-          var getRestaurant = restaurantService.getRestaurantInfo(restaurant_id);
-          getRestaurant.then(function (result) {
-            $scope.restaurant = result[0];
-            $scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
-          })
+          updateRestaurantList();
+
           //collapse cuisine editing card
           $('#collapseAddress').collapse('hide');
 
@@ -121,11 +145,8 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       if (result == "SUCCESS") {
         $scope.descriptionBoxSwitch = -1;
 
-        var getRestaurant = restaurantService.getRestaurantInfo(restaurant_id);
-        getRestaurant.then(function (result) {
-          $scope.restaurant = result[0];
-          $scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
-        })
+        //update restaurantList
+        updateRestaurantList();
 
         growl.success('Description has been successfully updated.',{title: 'Success!'});
       } else if (result == "FAILED") {
@@ -152,11 +173,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       if (result == "SUCCESS") {
         $scope.priceBoxSwitch = -1;
 
-        var getRestaurant = restaurantService.getRestaurantInfo(restaurant_id);
-        getRestaurant.then(function (result) {
-          $scope.restaurant = result[0];
-          $scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
-        })
+        updateRestaurantList();
 
         growl.success('Pricing has been successfully updated.',{title: 'Success!'});
       } else if (result == "FAILED") {
@@ -178,6 +195,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
   $scope.hstep = 1;
   $scope.mstep = 15;
 
+  //frontend time spinner controlling functions
   $scope.addMinBegin = function () {
     var d = new Date();
     d.setHours( $scope.beginTime.getHours() );
@@ -208,15 +226,27 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     $scope.endTime = d;
   }
 
+  //send added avaiable time to DB
   $scope.addAvailableTime = function () {
     var post_data = {};
-    post_data = {"available_day": $scope.input.day, "begin_hour": $scope.beginTime.getHours(), "begin_min": $scope.beginTime.getMinutes(),
-    "end_hour": $scope.endTime.getHours(), "end_min": $scope.endTime.getMinutes()};
+    post_data = {"restaurant_ref": restaurant_id, "available_day": $scope.input.day, "available_begin_hour": $scope.beginTime.getHours(), "available_begin_min": $scope.beginTime.getMinutes(),
+    "available_end_hour": $scope.endTime.getHours(), "available_end_min": $scope.endTime.getMinutes()};
 
+    //if the beginning time is greater than the ending one try again.
     if($scope.beginTime.getHours() > $scope.endTime.getHours()) {
         growl.warning('Check the time and try again.',{title: 'Wrong time format!'});
     } else {
-      console.log(post_data);
+      var createResult = restaurantService.createAvailableHour(post_data);
+      createResult.then(function (result) {
+        if (result == "Successfully inserted information") {
+          updateAvailableList();
+          growl.success('Available time has been added!',{title: 'Success!'});
+        }else if(result == "Failed to insert information") {
+          growl.error('Failed to insert to DB.',{title: 'Error!'});
+        } else {
+          growl.error('Something has gone wrong.',{title: 'Error!'});
+        }
+      });
     }
 
   }
