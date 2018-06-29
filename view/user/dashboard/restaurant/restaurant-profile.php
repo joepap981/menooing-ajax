@@ -160,13 +160,16 @@
           <hr>
           <h5 class="card-title"> Available Hours </h5>
 
-          <button class="btn btn-light w-100" data-toggle="modal" data-target="#timeModal"> + </button>
+          <button class="btn btn-light" style="width: 98%;" data-toggle="modal" data-target="#timeModal"> + </button>
 
           <!-- available time cards -->
           <div id="available-list">
 
               <div ng-repeat="item in availableTime">
-                <button class="btn btn-light w-100 mt-1"> {{item.available_day }}, {{item.available_begin}} to {{ item.available_end }} </button>
+                <div class="d-flex">
+                  <button class="btn btn-light w-100 mt-1"> {{item.available_day }}, {{item.available_begin}} to {{ item.available_end }} </button>
+                  <p class="time-delete-button" ng-click="deleteAvailabletime(item.available_id)"> x </p>
+                </div>
               </div>
 
           </div>

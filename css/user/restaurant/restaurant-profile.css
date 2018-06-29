@@ -111,6 +111,18 @@
   margin-right: 5px;
 }
 
+.time-delete-button {
+  padding-top: 10px;
+  margin-bottom: 0;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.time-delete-button:hover {
+  color: #999999;
+}
+
 
 
 /*animation*/

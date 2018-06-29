@@ -44,6 +44,13 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       });
     },
 
+    deleteInfo: function (queryObj) {
+      return $http({ method: "POST", url: "action/delete.php", data: queryObj})
+      .then(function mySuccess (response) {
+          return response.data;
+      });
+    },
+
     //add  data to sessionStorage for temporary storage
     //type: name of sessionStorage object
     //obj: object to save into sessionStorage object
