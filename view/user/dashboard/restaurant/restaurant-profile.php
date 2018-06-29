@@ -14,7 +14,7 @@
 
         <div class="d-flex">
           <h4 class="p-2"> {{ restaurant.restaurant_locality}}, {{ restaurant.restaurant_administrative_area_level_1}} </h4>
-          <i data-toggle="collapse" data-target="#collapseAddress" class="fa fa-edit p-3 edit-button"></i>
+          <button data-toggle="collapse" data-target="#collapseAddress" class="btn btn-primary btn-sm ml-auto h-25"> Edit Address</button>
         </div>
 
         <div class="collapse" id="collapseAddress">
@@ -24,8 +24,8 @@
               <input class="form-control" ng-controller= "googlePlaceCtrl" id="autocomplete" placeholder="Enter your address" ng-focus="geolocate()" type="text"></input>
             </div>
             <div class="btn-box mt-3">
-              <button data-toggle= "collapse" data-target="#collapseAddress" class="btn secondary"> Cancel </button>
-              <button ng-click= "updateAddress()" data-target="#collapseAddress" class="btn btn-primary"> Save Changes </button>
+              <button data-toggle= "collapse" data-target="#collapseAddress" class="btn secondary btn-sm"> Cancel </button>
+              <button ng-click= "updateAddress()" data-target="#collapseAddress" class="btn btn-primary btn-sm"> Save Changes </button>
             </div>
           </div>
         </div>
@@ -35,15 +35,15 @@
         <p> {{ restaurant.restaurant_description }}</p>
 
         <div class="d-flex flex-row-reverse">
-          <i class="fa fa-edit p-3 edit-button" ng-click="toggleDescriptionBox()"></i>
+          <button class="btn btn-primary btn-sm" ng-click="toggleDescriptionBox()">Edit Description </button>
         </div>
       </div>
 
       <div class="restaurant-description-input white-space-pre" ng-show="descriptionBoxSwitch == 1">
         <textarea class="form-control description-input" ng-model="restaurant.restaurant_description"></textarea>
         <div class="btn-box d-flex flex-row-reverse">
-          <button class="btn btn-secondary" ng-click="toggleDescriptionBox()"> Cancel </button>
-          <button ng-click= "updateDescription()" class="btn btn-primary"> Save Changes </button>
+          <button class="btn btn-secondary btn-sm" ng-click="toggleDescriptionBox()"> Cancel </button>
+          <button ng-click= "updateDescription()" class="btn btn-primary btn-sm"> Save Changes </button>
         </div>
       </div>
 
@@ -137,7 +137,7 @@
           <h5 class="card-title"> Pricing </h5>
           <div class="d-flex restaurant-price" ng-show="priceBoxSwitch == -1">
             <p class="card-subtitle p-2"> ${{ restaurant.restaurant_fee}} per {{ restaurant.restaurant_fee_standard}}. </p>
-            <i class="fa fa-edit p-2 edit-button" ng-click="togglePriceBox()"></i>
+            <buton class="btn btn-primary btn-sm" ng-click="togglePriceBox()"> Edit Price </button>
           </div>
 
           <div class="restaurant-price-edit" ng-show="priceBoxSwitch == 1">
@@ -160,18 +160,16 @@
           <hr>
           <h5 class="card-title"> Available Hours </h5>
 
-          <button class="btn btn-light" style="width: 98%;" data-toggle="modal" data-target="#timeModal"> + </button>
+          <button class="btn btn-light" style="width: 97%;" data-toggle="modal" data-target="#timeModal"> + </button>
 
           <!-- available time cards -->
           <div id="available-list">
+            <div ng-repeat="item in availableTime">
+              <div class="d-flex">
+                <button class="btn btn-light w-100 mt-1"> {{item.available_day }}, {{item.available_begin}} to {{ item.available_end }} <span class="time-delete-button" ng-click="deleteAvailabletime( item.available_id )"> x </span> </button>
 
-              <div ng-repeat="item in availableTime">
-                <div class="d-flex">
-                  <button class="btn btn-light w-100 mt-1"> {{item.available_day }}, {{item.available_begin}} to {{ item.available_end }} </button>
-                  <p class="time-delete-button" ng-click="deleteAvailabletime(item.available_id)"> x </p>
-                </div>
               </div>
-
+            </div>
           </div>
 
 

@@ -262,6 +262,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
   }
 
   $scope.deleteAvailabletime = function (available_id) {
+    console.log(available_id);
     var queryObj = {};
     queryObj = {"table_name": "tb_restaurant_available", "condition": {"available_id": available_id }};
     var deleteResult = restaurantService.deleteInfo(queryObj);
@@ -271,6 +272,8 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       }
     });
   }
+
+
 
 
 }]);

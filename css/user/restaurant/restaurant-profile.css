@@ -112,10 +112,8 @@
 }
 
 .time-delete-button {
-  padding-top: 10px;
-  margin-bottom: 0;
-  margin-right: 4px;
-  margin-left: 4px;
+  position: absolute;
+  right: 13%;
   cursor: pointer;
 }
 
