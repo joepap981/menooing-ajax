@@ -22,6 +22,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
         updateRestaurantList();
         updateAvailableList();
 
+
       } else if (result=="DENIED") {
         growl.error('You do not have privilege.',{title: 'Error!'});
         $location.path('/');
@@ -47,8 +48,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     //bring restaurant information based on restaurant id
     var getAvailable = restaurantService.getInfo(queryObj);
     getAvailable.then(function (result) {
-      $scope.availableTime = result[0];
-      console.log($scope.availableTime);
+      $scope.availableTime = result;
     })
   }
 
@@ -228,9 +228,19 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
   //send added avaiable time to DB
   $scope.addAvailableTime = function () {
+    var beginTimeText = $scope.beginTime.toTimeString();
+    beginTimeText = beginTimeText.split(' ')[0];
+    beginTimeText = beginTimeText.split(':');
+    beginTimeText = beginTimeText[0] + ":" + beginTimeText[1];
+
+    var endTimeText = $scope.endTime.toTimeString();
+    endTimeText = endTimeText.split(' ')[0];
+    endTimeText = endTimeText.split(':');
+    endTimeText = endTimeText[0] + ":" + endTimeText[1];
+
     var post_data = {};
-    post_data = {"restaurant_ref": restaurant_id, "available_day": $scope.input.day, "available_begin_hour": $scope.beginTime.getHours(), "available_begin_min": $scope.beginTime.getMinutes(),
-    "available_end_hour": $scope.endTime.getHours(), "available_end_min": $scope.endTime.getMinutes()};
+
+    post_data = {"restaurant_ref": restaurant_id, "available_day": $scope.input.day, "available_begin": beginTimeText, "available_end": endTimeText};
 
     //if the beginning time is greater than the ending one try again.
     if($scope.beginTime.getHours() > $scope.endTime.getHours()) {
@@ -240,6 +250,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       createResult.then(function (result) {
         if (result == "Successfully inserted information") {
           updateAvailableList();
+          $('#timeModal').modal('hide');
           growl.success('Available time has been added!',{title: 'Success!'});
         }else if(result == "Failed to insert information") {
           growl.error('Failed to insert to DB.',{title: 'Error!'});
@@ -248,7 +259,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
         }
       });
     }
-
   }
+
 
 }]);

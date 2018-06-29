@@ -22,8 +22,6 @@ $transaction_query = "START TRANSACTION;";
 $rollback_query = "ROLLBACK";
 $commit_query = "COMMIT;";
 
-//start transaction
-mysqli_query($conn, $transaction_query);
 
 //create restaurant restaurant
 //Building query string for INSERT into database
@@ -49,6 +47,6 @@ if ($insert_result != 1) {
 	exit("Failed to insert information");
 }
 
-echo "Succesfully inserted information";
+echo "Successfully inserted information";
 
 ?>

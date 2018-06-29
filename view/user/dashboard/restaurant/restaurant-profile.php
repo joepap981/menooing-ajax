@@ -162,6 +162,16 @@
 
           <button class="btn btn-light w-100" data-toggle="modal" data-target="#timeModal"> + </button>
 
+          <!-- available time cards -->
+          <div id="available-list">
+
+              <div ng-repeat="item in availableTime">
+                <button class="btn btn-light w-100 mt-1"> {{item.available_day }}, {{item.available_begin}} to {{ item.available_end }} </button>
+              </div>
+
+          </div>
+
+
           <!-- Modal -->
           <div class="modal fade" id="timeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
