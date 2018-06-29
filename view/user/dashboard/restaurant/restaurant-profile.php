@@ -49,36 +49,31 @@
 
       <hr>
 
+      <!-- Restaurant Equipment -->
+
       <div class="restaurant-equipment">
         <h5 class="mb-4"> Equipment </h5>
         <div class="row">
           <div class="col-3" style="padding: 8px;">
-            <div class="card">
-              <div class="card-body icon-card">
-                <p> Oven </p>
-              </div>
-            </div>
+            <button class="btn btn-light equipment-button" data-toggle="modal" data-target="#equipmentModal"> + </button>
           </div>
           <div class="col-3" style="padding: 8px;">
-            <div class="card">
-              <div class="card-body icon-card">
-                <p> Oven </p>
-              </div>
-            </div>
+            <button class="btn btn-light equipment-button"> Oven </button>
           </div>
           <div class="col-3" style="padding: 8px;">
-            <div class="card">
-              <div class="card-body icon-card">
-                <p> Oven </p>
-              </div>
-            </div>
+            <button class="btn btn-light equipment-button"> Oven </button>
           </div>
           <div class="col-3" style="padding: 8px;">
-            <div class="card">
-              <div class="card-body icon-card">
-                <p> Oven </p>
-              </div>
-            </div>
+            <button class="btn btn-light equipment-button"> Oven </button>
+          </div>
+          <div class="col-3" style="padding: 8px;">
+            <button class="btn btn-light equipment-button"> Oven </button>
+          </div>
+          <div class="col-3" style="padding: 8px;">
+            <button class="btn btn-light equipment-button"> Oven </button>
+          </div>
+          <div class="col-3" style="padding: 8px;">
+            <button class="btn btn-light equipment-button"> Oven </button>
           </div>
         </div>
       </div>
@@ -86,6 +81,35 @@
       <div class="mt-3 d-flex justify-content-center">
         <p class="pointer"> Show more </p>
       </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="equipmentModal" tabindex="-1" role="dialog" aria-labelledby="equipmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="equipmentModalLabel">Add Equipment</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <label> Equipment </label>
+              <input class="form-control" ng-model=""> </input>
+              <label> Description </label>
+              <textarea class="form-control" style="height: 200px;" ng-model=""> </textarea>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" ng-click="">Add Equipment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Restaurant Facility -->
 
       <hr>
       <div class="restaurant-facility">

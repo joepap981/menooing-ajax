@@ -128,6 +128,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     }
   }
 
+  //Restaurant Description
 
   //toggle the description input box from view mode <-> edit mode
   $scope.descriptionBoxSwitch = -1;
@@ -157,6 +158,8 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     })
   }
 
+  //Restaurant Price
+
   //toggle the description input box from view mode <-> edit mode
   $scope.priceBoxSwitch = -1;
   $scope.togglePriceBox = function () {
@@ -183,6 +186,8 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       }
     })
   }
+
+  //Restaurant Available Time
 
   $scope.beginTime = new Date();
   $scope.beginTime.setHours( 0 );
@@ -272,6 +277,9 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       }
     });
   }
+
+
+  //Restaurant Equipment
 
 
 

@@ -45,6 +45,8 @@
     white-space: pre-wrap;
 }
 
+/*available time styling */
+
 .btn-light {
   border-color: #E4E4E4;
   cursor: pointer;
@@ -118,9 +120,19 @@
 }
 
 .time-delete-button:hover {
-  color: #999999;
+  color: #727272;
 }
 
+/* equipment styling */
+.equipment-button {
+  height: 50px;
+  width: 100%;
+  background-color: white!important;
+}
+
+.equipment-button:hover {
+  background-color: #F5F5F5!important;
+}
 
 
 /*animation*/
