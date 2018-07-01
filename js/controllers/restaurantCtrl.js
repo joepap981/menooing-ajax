@@ -1,4 +1,4 @@
-angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'restaurantService', 'growl', '$window', function ($scope, $location, restaurantService, growl, $window) {
+angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'restaurantService', 'authService', 'growl', '$window', function ($scope, $location, restaurantService, authService, growl, $window) {
 
   $scope.userRestaurants = [];
 

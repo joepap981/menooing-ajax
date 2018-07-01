@@ -5,8 +5,12 @@
     <!--logo-->
     <div ng-click ="redirect('/')" class="navbar-brand cursor-pointer"> menooing </div>
 
-    <div class="btn">
+    <div class="row ml-auto">
+      <div ng-click = "redirect('/restaurant-search')" class="clear-btn nav-item ml-auto"> Restaurants </div>
       <span ng-hide="isURL('/sharekitchen')" class="clear-btn larger-space" ng-click="redirect('/sharekitchen')"> Share Your Kitchen </span>
+    </div>
+    
+    <div class="btn">
       <span class="clear-btn" ng-click="redirect('/signin')"> Sign in</span>
       <span class="clear-btn" ng-click="redirect('/signup')">Sign up</span>
     </div>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <link rel="stylesheet" href="css/user/pagination-custom.css">
 
 <div class="container mt-5" ng-controller="restaurantSearchCtrl">
@@ -30,6 +31,13 @@
     <div class="row">
       <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item" ng-repeat="restaurant in userRestaurants.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
         <div class="card h-80 mt-5 mb-t">
+=======
+<div class="container mt-5">
+  <div id="restaurant-list" ng-controller="searchCtrl">
+    <div class="row">
+      <div class="col-lg-4 col-sm-6 portfolio-item" ng-repeat="restaurant in restaurants">
+        <div class="card h-100">
+>>>>>>> e71d52bb155331ca2f76004a23b9b4eaad40c48e
           <a href="#" ng-click="redirectToProfile(restaurant.restaurant_id)"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
@@ -42,7 +50,10 @@
       </div>
     </div>
   </div>
+<<<<<<< HEAD
 
   <ul class="pagination mt-5 d-flex justify-content-center" uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage"></ul>
 
+=======
+>>>>>>> e71d52bb155331ca2f76004a23b9b4eaad40c48e
 </div>
