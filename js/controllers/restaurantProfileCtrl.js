@@ -1,6 +1,7 @@
 angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$location', '$routeParams', 'restaurantService', 'authService', 'growl', 'FileSaver', 'Blob', function ($scope, $location, $routeParams, restaurantService, authService, growl, FileSaver, Blob, $uibModal) {
   $scope.restaurant = {};
   $scope.availableTime = {};
+  $scope.equipmentList = {};
   $scope.input = {};
   var restaurant_id;
 
@@ -21,6 +22,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
         //bring restaurant information based on restaurant id
         updateRestaurantList();
         updateAvailableList();
+        updateEquipmentList();
 
 
       } else if (result=="DENIED") {
@@ -38,6 +40,19 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
   //initialize function at loading of controller
   init();
+
+  var updateEquipmentList = function () {
+    var queryObj = {
+      "table": "tb_restaurant_equipment",
+      "key": {"restaurant_ref": restaurant_id }
+    };
+
+    //bring restaurant information based on restaurant id
+    var getEquipment = restaurantService.getInfo(queryObj);
+    getEquipment.then(function (result) {
+      $scope.equipmentList = result;
+    })
+  }
 
   var updateAvailableList = function () {
     var queryObj = {
@@ -233,25 +248,27 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
   //send added avaiable time to DB
   $scope.addAvailableTime = function () {
+    //build time string from Date() for beginTime
     var beginTimeText = $scope.beginTime.toTimeString();
     beginTimeText = beginTimeText.split(' ')[0];
     beginTimeText = beginTimeText.split(':');
     beginTimeText = beginTimeText[0] + ":" + beginTimeText[1];
 
+    //build time string from Date() for endTime
     var endTimeText = $scope.endTime.toTimeString();
     endTimeText = endTimeText.split(' ')[0];
     endTimeText = endTimeText.split(':');
     endTimeText = endTimeText[0] + ":" + endTimeText[1];
 
+    //post_data to send to server
     var post_data = {};
-
-    post_data = {"restaurant_ref": restaurant_id, "available_day": $scope.input.day, "available_begin": beginTimeText, "available_end": endTimeText};
+    post_data = {"table_name":"tb_restaurant_available", "condition": {"restaurant_ref": restaurant_id, "available_day": $scope.input.day, "available_begin": beginTimeText, "available_end": endTimeText}};
 
     //if the beginning time is greater than the ending one try again.
     if($scope.beginTime.getHours() > $scope.endTime.getHours()) {
         growl.warning('Check the time and try again.',{title: 'Wrong time format!'});
     } else {
-      var createResult = restaurantService.createAvailableHour(post_data);
+      var createResult = restaurantService.insertInfo(post_data);
       createResult.then(function (result) {
         if (result == "Successfully inserted information") {
           updateAvailableList();
@@ -266,8 +283,8 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     }
   }
 
+  //delete an available time information from database
   $scope.deleteAvailabletime = function (available_id) {
-    console.log(available_id);
     var queryObj = {};
     queryObj = {"table_name": "tb_restaurant_available", "condition": {"available_id": available_id }};
     var deleteResult = restaurantService.deleteInfo(queryObj);
@@ -280,7 +297,61 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
 
   //Restaurant Equipment
+  $scope.addRestaurantEquipment = function () {
+    if ($scope.input.equipment_name == "" || $scope.input.equipment_description == "" || $scope.input.equipment_name == null || $scope.input.equipment_description == null) {
+        growl.warning('Input required information',{title: 'Form not filled out!'});
+    } else {
+      var queryObj = {};
+      queryObj = {"table_name": "tb_restaurant_equipment", "condition": {"restaurant_ref": restaurant_id, "equipment_name": $scope.input.equipment_name, "equipment_description": $scope.input.equipment_description }};
+      var insertResult = restaurantService.insertInfo(queryObj);
+      insertResult.then(function (result) {
+        if (result == "Successfully inserted information") {
+          $scope.input.equipment_name = "";
+          $scope.input.equipment_description = "";
+          updateEquipmentList();
+          $('#equipmentAddModal').modal('hide');
+          growl.success('Equipment has been added!',{title: 'Success!'});
+        } else if(result == "Failed to insert information") {
+          growl.error('Failed to insert to DB.',{title: 'Error!'});
+        } else {
+          growl.error('Something has gone wrong.',{title: 'Error!'});
+        }
+      });
+    }
+  }
 
+  //ID of the equipment that is currently being edited
+  $scope.editEquipmentID;
+  $scope.editEquipment;
+
+  $scope.setEquipmentEdit = function (equipment_id) {
+    $scope.editEquipmentID = equipment_id;
+    var filterEquipment = $scope.equipmentList.filter(function( obj ) {
+      return obj.equipment_id == equipment_id;
+    })
+
+    $scope.editEquipment = filterEquipment[0];
+  }
+
+  $scope.saveEquipmentChanges = function () {
+    var post_data = {};
+    post_data = { "table_name": "tb_restaurant_equipment", "update_info": { "equipment_name": $scope.editEquipment.equipment_name, "equipment_description":  $scope.editEquipment.equipment_description}, "condition": {"equipment_id": $scope.editEquipmentID }};
+
+    var updateResult = restaurantService.updateInfo(post_data);
+    updateResult.then(function (result) {
+      if (result == "Successfully updated information") {
+        $scope.input.equipment_name = "";
+        $scope.input.equipment_description = "";
+        updateEquipmentList();
+        $('#equipmentEditModal').modal('hide');
+        growl.success('Equipment has been updated!',{title: 'Success!'});
+      } else if(result == "Failed to update information") {
+        growl.error('Failed to insert to DB.',{title: 'Error!'});
+      } else {
+        growl.error('Something has gone wrong.',{title: 'Error!'});
+      }
+    });
+  }
 
 
 

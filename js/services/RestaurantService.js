@@ -107,9 +107,19 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       });
     },
 
-    //create availability time
-    createAvailableHour: function (post_data) {
-      return $http({ method: "POST", url: "action/available_time_create.php", data: post_data
+    //insert data to database
+    //post_data contains
+    //  table_name
+    //  condition
+    insertInfo: function (post_data) {
+      return $http({ method: "POST", url: "action/insert.php", data: post_data
+    }).then(function mySuccess(response) {
+        return response.data;
+      });
+    },
+
+    updateInfo: function (post_data) {
+      return $http({ method: "POST", url: "action/update.php", data: post_data
     }).then(function mySuccess(response) {
         return response.data;
       });

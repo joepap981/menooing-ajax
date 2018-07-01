@@ -15,7 +15,9 @@ if(!$postdata) {
 }
 
 //decoding json into array
-$restaurant_info = json_decode($postdata, true);
+$data = json_decode($postdata, true);
+$table_name = $data['table_name'];
+$condition = $data['condition'];
 
 //start mysql transaction
 $transaction_query = "START TRANSACTION;";
@@ -25,14 +27,14 @@ $commit_query = "COMMIT;";
 
 //create restaurant restaurant
 //Building query string for INSERT into database
-$insert_query = "INSERT INTO " . $dbName . ".tb_restaurant_available (user_ref, ";
+$insert_query = "INSERT INTO " . $dbName . "." .  $table_name . " (user_ref, ";
 
-foreach($restaurant_info as $key => $value) {
+foreach($condition as $key => $value) {
   $insert_query = $insert_query . " " . $key . ", ";
 }
 //trim end ', '
 $insert_query = substr($insert_query, 0, -2) . ") VALUES (" . $user['user_id'] . ", ";
-foreach($restaurant_info as $key => $value) {
+foreach($condition as $key => $value) {
   $insert_query = $insert_query . '"' . $value . '", ';
 }
 //trim end ', '

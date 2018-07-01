@@ -54,26 +54,12 @@
       <div class="restaurant-equipment">
         <h5 class="mb-4"> Equipment </h5>
         <div class="row">
-          <div class="col-3" style="padding: 8px;">
-            <button class="btn btn-light equipment-button" data-toggle="modal" data-target="#equipmentModal"> + </button>
+          <div class="col-3">
+            <button class="btn btn-light equipment-button" data-toggle="modal" data-target="#equipmentAddModal"> + </button>
           </div>
-          <div class="col-3" style="padding: 8px;">
-            <button class="btn btn-light equipment-button"> Oven </button>
-          </div>
-          <div class="col-3" style="padding: 8px;">
-            <button class="btn btn-light equipment-button"> Oven </button>
-          </div>
-          <div class="col-3" style="padding: 8px;">
-            <button class="btn btn-light equipment-button"> Oven </button>
-          </div>
-          <div class="col-3" style="padding: 8px;">
-            <button class="btn btn-light equipment-button"> Oven </button>
-          </div>
-          <div class="col-3" style="padding: 8px;">
-            <button class="btn btn-light equipment-button"> Oven </button>
-          </div>
-          <div class="col-3" style="padding: 8px;">
-            <button class="btn btn-light equipment-button"> Oven </button>
+
+          <div ng-repeat="item in equipmentList" class="col-3">
+            <button class="btn btn-light equipment-button" ng-click="setEquipmentEdit(item.equipment_id)" data-toggle="modal" data-target="#equipmentEditModal"> {{ item.equipment_name }} </button>
           </div>
         </div>
       </div>
@@ -82,12 +68,12 @@
         <p class="pointer"> Show more </p>
       </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="equipmentModal" tabindex="-1" role="dialog" aria-labelledby="equipmentModalLabel" aria-hidden="true">
+      <!-- Equipment Add Modal -->
+      <div class="modal fade" id="equipmentAddModal" tabindex="-1" role="dialog" aria-labelledby="equipmentAddModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="equipmentModalLabel">Add Equipment</h5>
+              <h5 class="modal-title" id="equipmentAddModalLabel">Add Equipment</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -95,14 +81,40 @@
             <div class="modal-body">
 
               <label> Equipment </label>
-              <input class="form-control" ng-model=""> </input>
+              <input class="form-control" ng-model="input.equipment_name"> </input>
               <label> Description </label>
-              <textarea class="form-control" style="height: 200px;" ng-model=""> </textarea>
+              <textarea class="form-control" style="height: 200px;" ng-model="input.equipment_description"> </textarea>
 
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" ng-click="">Add Equipment</button>
+              <button type="button" class="btn btn-primary" ng-click="addRestaurantEquipment()">Add Equipment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Equipment Edit Modal -->
+      <div class="modal fade" id="equipmentEditModal" tabindex="-1" role="dialog" aria-labelledby="equipmentEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="equipmentEditModalLabel">Edit Equipment</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <label> Equipment </label>
+              <input class="form-control" ng-model="editEquipment.equipment_name"> </input>
+              <label> Description </label>
+              <textarea class="form-control" style="height: 200px;" ng-model="editEquipment.equipment_description"> </textarea>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" ng-click="saveEquipmentChanges()"> Save Changes </button>
             </div>
           </div>
         </div>

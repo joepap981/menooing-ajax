@@ -125,6 +125,9 @@
 
 /* equipment styling */
 .equipment-button {
+  margin-top: 5px;
+  padding-left: 8px!important;
+  padding-right: 8px!important;
   height: 50px;
   width: 100%;
   background-color: white!important;
