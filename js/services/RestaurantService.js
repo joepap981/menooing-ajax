@@ -71,16 +71,6 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       $window.sessionStorage[type] = JSON.stringify(response);
     },
 
-    //receives restaurant info
-    //update_info - contains key and value of restaurant information
-    //conditions - the conditions that needs to be satisfied
-    updateRestaurant: function (post_data) {
-      return $http({ method: "POST", url: "action/update.php", data: post_data
-    }).then(function mySuccess(response) {
-        return response.data;
-      });
-    },
-
     uploadFile: function (form_data) {
       return $http({ method: "POST", url: "action/uploadfile.php", data: form_data, headers: {'Content-Type': undefined},
     }).then(function mySuccess(response) {
@@ -118,6 +108,10 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       });
     },
 
+    //receives restaurant info
+    //table_name
+    //update_info - contains key and value of restaurant information
+    //conditions - the conditions that needs to be satisfied
     updateInfo: function (post_data) {
       return $http({ method: "POST", url: "action/update.php", data: post_data
     }).then(function mySuccess(response) {

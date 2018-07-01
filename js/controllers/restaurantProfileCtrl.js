@@ -116,7 +116,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       post_data['update_info'] = restaurant_address;
       post_data['condition'] = {'restaurant_id': restaurant_id };
 
-      var addressUpdateResult = restaurantService.updateRestaurant(post_data);
+      var addressUpdateResult = restaurantService.updateInfo(post_data);
       addressUpdateResult.then(function(result) {
         if (result == "Successfully updated information") {
 
@@ -157,7 +157,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     post_info['update_info'] = {'description': $scope.restaurant.restaurant_description };
     post_info['condition'] = {'restaurant_id': restaurant_id };
 
-    var descriptionUpdateResult = restaurantService.updateRestaurant(post_info);
+    var descriptionUpdateResult = restaurantService.updateInfo(post_info);
     descriptionUpdateResult.then(function(result) {
       if (result == "SUCCESS") {
         $scope.descriptionBoxSwitch = -1;
@@ -187,7 +187,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     post_info['update_info'] = {'fee': $scope.restaurant.restaurant_fee, 'fee_standard':$scope.restaurant.restaurant_fee_standard };
     post_info['condition'] = {'restaurant_id': restaurant_id };
 
-    var priceUpdateResult = restaurantService.updateRestaurant(post_info);
+    var priceUpdateResult = restaurantService.updateInfo(post_info);
     priceUpdateResult.then(function(result) {
       if (result == "SUCCESS") {
         $scope.priceBoxSwitch = -1;
@@ -353,6 +353,24 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       }
     });
   }
+
+  $scope.deleteEquipment = function() {
+    var queryObj = {};
+    queryObj = {"table_name": "tb_restaurant_equipment", "condition": {"equipment_id": $scope.editEquipmentID }};
+    var deleteResult = restaurantService.deleteInfo(queryObj);
+    deleteResult.then(function (result) {
+      if (result == "SUCCESS") {
+        growl.success('Equipment has been deleted!',{title: 'Success!'});
+        updateEquipmentList();
+      } else if (result == "FAILED") {
+        growl.error('Failed to delete equipment.',{title: 'Error!'});
+      } else {
+        growl.error('Something has gone terribly wrong.',{title: 'Error!'});
+      }
+    });
+  }
+
+
 
 
 
