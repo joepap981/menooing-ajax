@@ -41,6 +41,7 @@ if($condition != "") {
   $update_query = substr($update_query, 0, -5) . ';';
 }
 
+
 $result = (mysqli_query($conn, $update_query));
 
 

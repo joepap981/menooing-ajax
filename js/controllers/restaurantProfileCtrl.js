@@ -105,19 +105,20 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
         //if the given address attribute matches one of the componentForms
         if (componentForm[addressType]) {
           var val = fullAddress[i][componentForm[addressType]];
-          restaurant_address[addressType] = val;
+          restaurant_address["restaurant_" + addressType] = val;
         }
       }
 
       //update restaurant with given information
 
-      var post_info = {};
-      post_info['update_info'] = restaurant_address;
-      post_info['condition'] = {'restaurant_id': restaurant_id };
+      var post_data = {};
+      post_data['table_name'] = 'tb_restaurant';
+      post_data['update_info'] = restaurant_address;
+      post_data['condition'] = {'restaurant_id': restaurant_id };
 
-      var addressUpdateResult = restaurantService.updateRestaurant(post_info);
+      var addressUpdateResult = restaurantService.updateRestaurant(post_data);
       addressUpdateResult.then(function(result) {
-        if (result == "SUCCESS") {
+        if (result == "Successfully updated information") {
 
           //bring restaurant information based on restaurant id
           updateRestaurantList();
@@ -129,7 +130,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
           $('#autocomplete').val('');
           //show succcess message
           growl.success('Address has been successfully updated.',{title: 'Success!'});
-        } else if (result == "FAILED") {
+        } else if (result == "Failed to update information") {
           //show failed message
           growl.error('Address has failed to update. Refresh and try again.',{title: 'Error!'});
         }else {

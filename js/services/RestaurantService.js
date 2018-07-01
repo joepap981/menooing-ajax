@@ -74,8 +74,8 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
     //receives restaurant info
     //update_info - contains key and value of restaurant information
     //conditions - the conditions that needs to be satisfied
-    updateRestaurant: function (restaurant_info) {
-      return $http({ method: "POST", url: "action/update_restaurant_info.php", data: restaurant_info
+    updateRestaurant: function (post_data) {
+      return $http({ method: "POST", url: "action/update.php", data: post_data
     }).then(function mySuccess(response) {
         return response.data;
       });
