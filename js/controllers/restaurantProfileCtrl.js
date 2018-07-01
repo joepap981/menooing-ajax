@@ -2,6 +2,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
   $scope.restaurant = {};
   $scope.availableTime = {};
   $scope.equipmentList = {};
+  $scope.facilityList = {};
   $scope.input = {};
   var restaurant_id;
 
@@ -23,6 +24,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
         updateRestaurantList();
         updateAvailableList();
         updateEquipmentList();
+        updateFacilityList();
 
 
       } else if (result=="DENIED") {
@@ -40,6 +42,19 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
   //initialize function at loading of controller
   init();
+
+  var updateFacilityList = function () {
+    var queryObj = {
+      "table": "tb_restaurant_facility",
+      "key": {"restaurant_ref": restaurant_id }
+    };
+
+    //bring restaurant information based on restaurant id
+    var getFacility = restaurantService.getInfo(queryObj);
+    getFacility.then(function (result) {
+      $scope.facilityList = result;
+    })
+  }
 
   var updateEquipmentList = function () {
     var queryObj = {
@@ -341,8 +356,8 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     var updateResult = restaurantService.updateInfo(post_data);
     updateResult.then(function (result) {
       if (result == "Successfully updated information") {
-        $scope.input.equipment_name = "";
-        $scope.input.equipment_description = "";
+        $scope.editEquipment.equipment_name = "";
+        $scope.editEquipment.equipment_description = "";
         updateEquipmentList();
         $('#equipmentEditModal').modal('hide');
         growl.success('Equipment has been updated!',{title: 'Success!'});
@@ -364,6 +379,79 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
         updateEquipmentList();
       } else if (result == "FAILED") {
         growl.error('Failed to delete equipment.',{title: 'Error!'});
+      } else {
+        growl.error('Something has gone terribly wrong.',{title: 'Error!'});
+      }
+    });
+  }
+
+  //Restaurant Facility
+  $scope.addRestaurantFacility = function () {
+    if ($scope.input.facility_name == "" || $scope.input.facility_description == "" || $scope.input.facility_name == null || $scope.input.facility_description == null) {
+        growl.warning('Input required information',{title: 'Form not filled out!'});
+    } else {
+      var queryObj = {};
+      queryObj = {"table_name": "tb_restaurant_facility", "condition": {"restaurant_ref": restaurant_id, "facility_name": $scope.input.facility_name, "facility_description": $scope.input.facility_description }};
+      var insertResult = restaurantService.insertInfo(queryObj);
+      insertResult.then(function (result) {
+        if (result == "Successfully inserted information") {
+          $scope.input.facility_name = "";
+          $scope.input.facility_description = "";
+          updateFacilityList();
+          $('#facilityAddModal').modal('hide');
+          growl.success('Facility has been added!',{title: 'Success!'});
+        } else if(result == "Failed to insert information") {
+          growl.error('Failed to insert to DB.',{title: 'Error!'});
+        } else {
+          growl.error('Something has gone wrong.',{title: 'Error!'});
+        }
+      });
+    }
+  }
+
+  //ID of the equipment that is currently being edited
+  $scope.editFacilityID;
+  $scope.editFacility;
+
+  $scope.setFacilityEdit = function (facility_id) {
+    $scope.editFacilityID = facility_id;
+    var filterFacility = $scope.facilityList.filter(function( obj ) {
+      return obj.facility_id == facility_id;
+    })
+
+    $scope.editFacility = filterFacility[0];
+  }
+
+  $scope.saveFacilityChanges = function () {
+    var post_data = {};
+    post_data = { "table_name": "tb_restaurant_facility", "update_info": { "facility_name": $scope.editFacility.facility_name, "facility_description":  $scope.editFacility.facility_description}, "condition": {"facility_id": $scope.editFacilityID }};
+
+    var updateResult = restaurantService.updateInfo(post_data);
+    updateResult.then(function (result) {
+      if (result == "Successfully updated information") {
+        $scope.editFacility.facility_name = "";
+        $scope.editFacility.facility_description = "";
+        updateEquipmentList();
+        $('#equipmentEditModal').modal('hide');
+        growl.success('Equipment has been updated!',{title: 'Success!'});
+      } else if(result == "Failed to update information") {
+        growl.error('Failed to insert to DB.',{title: 'Error!'});
+      } else {
+        growl.error('Something has gone wrong.',{title: 'Error!'});
+      }
+    });
+  }
+
+  $scope.deleteFacility = function() {
+    var queryObj = {};
+    queryObj = {"table_name": "tb_restaurant_facility", "condition": {"facility_id": $scope.editFacilityID }};
+    var deleteResult = restaurantService.deleteInfo(queryObj);
+    deleteResult.then(function (result) {
+      if (result == "SUCCESS") {
+        growl.success('Facility has been deleted!',{title: 'Success!'});
+        updateEquipmentList();
+      } else if (result == "FAILED") {
+        growl.error('Failed to delete facility.',{title: 'Error!'});
       } else {
         growl.error('Something has gone terribly wrong.',{title: 'Error!'});
       }

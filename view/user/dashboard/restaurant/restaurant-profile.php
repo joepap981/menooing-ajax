@@ -64,9 +64,7 @@
         </div>
       </div>
 
-      <div class="mt-3 d-flex justify-content-center">
-        <p class="pointer"> Show more </p>
-      </div>
+
 
       <!-- Equipment Add Modal -->
       <div class="modal fade" id="equipmentAddModal" tabindex="-1" role="dialog" aria-labelledby="equipmentAddModalLabel" aria-hidden="true">
@@ -126,55 +124,97 @@
 
       <hr>
       <div class="restaurant-facility">
-        <h5 class="mb-4"> Facility  </h5>
-
+        <h5 class="mb-4"> Facility </h5>
         <div class="row">
-          <div class="col-3" style="padding: 8px;">
-            <div class="card">
-              <div class="card-body icon-card">
-                <p class="card-text"> Oven </p>
-              </div>
-            </div>
+          <div class="col-3">
+            <button class="btn btn-light equipment-button" data-toggle="modal" data-target="#facilityAddModal"> + </button>
           </div>
-          <div class="col-3" style="padding: 8px;">
-            <div class="card">
-              <div class="card-body icon-card">
-                <p class="card-text"> Oven </p>
-              </div>
-            </div>
+
+          <div ng-repeat="item in facilityList" class="col-3">
+            <button class="btn btn-light equipment-button" ng-click="setFacilityEdit(item.facility_id)" data-toggle="modal" data-target="#facilityEditModal"> {{ item.facility_name }} </button>
           </div>
-          <div class="col-3" style="padding: 8px;">
-            <div class="card">
-              <div class="card-body icon-card">
-                <p class="card-text"> Oven </p>
-              </div>
+        </div>
+      </div>
+
+
+
+      <!-- Facilty Add Modal -->
+      <div class="modal fade" id="facilityAddModal" tabindex="-1" role="dialog" aria-labelledby="facilityAddModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="facilityAddModalLabel">Add Facility</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-          </div>
-          <div class="col-3" style="padding: 8px;">
-            <div class="card">
-              <div class="card-body icon-card">
-                <p class="card-text"> Oven </p>
-              </div>
+            <div class="modal-body">
+
+              <label> Facility </label>
+              <input class="form-control" ng-model="input.facility_name"> </input>
+              <label> Description </label>
+              <textarea class="form-control" style="height: 200px;" ng-model="input.facility_description"> </textarea>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" ng-click="addRestaurantFacility()">Add Facility</button>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="mt-3 d-flex justify-content-center">
-        <p class="pointer"> Show more </p>
+      <!-- Facility Edit Modal -->
+      <div class="modal fade" id="facilityEditModal" tabindex="-1" role="dialog" aria-labelledby="facilityEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="facilityEditModalLabel">Edit Facility</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <label> Facility </label>
+              <input class="form-control" ng-model="editFacility.facility_name"> </input>
+              <label> Description </label>
+              <textarea class="form-control" style="height: 200px;" ng-model="editFacility.facility_description"> </textarea>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteFacility()">Delete Facility</button>
+              <button type="button" class="btn btn-primary" ng-click="saveFacilityChanges()"> Save Changes </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <hr>
 
     </div>
 
+    <!-- Right side card -->
+
+    <!-- Request card -->
     <div id="right-side-card" class="col-4">
+      <div class ="card mb-3">
+        <div class="card-body">
+          <p> Your restaurant is not discoverable by others yet. Go ahead and request to publish. </p>
+          <div class="text-center">
+            <button class="btn btn-primary"> Request to Publish </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Price and Available Time Card-->
       <div class="card">
         <div class="card-body">
           <h5 class="card-title"> Pricing </h5>
           <div class="d-flex restaurant-price" ng-show="priceBoxSwitch == -1">
             <p class="card-subtitle p-2"> ${{ restaurant.restaurant_fee}} per {{ restaurant.restaurant_fee_standard}}. </p>
-            <buton class="btn btn-primary btn-sm" ng-click="togglePriceBox()"> Edit Price </button>
+            <buton class="btn btn-primary btn-sm ml-auto" ng-click="togglePriceBox()"> Edit Price </button>
           </div>
 
           <div class="restaurant-price-edit" ng-show="priceBoxSwitch == 1">
@@ -210,7 +250,7 @@
           </div>
 
 
-          <!-- Modal -->
+          <!-- Available Time Add Modal -->
           <div class="modal fade" id="timeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -256,10 +296,17 @@
 
           <hr>
 
-          <p> You restaurant is not discoverable by others yet. Go ahead and request to publish. </p>
-          <button class="btn btn-primary d-flex justify-content-center"> Request to Publish </button>
         </div>
       </div>
+
+      <!-- Restaurant Certification Card -->
+      <div class="card">
+        
+      </div>
+
+
+
+
     </div>
   </div>
 </div>
