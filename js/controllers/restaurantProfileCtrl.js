@@ -1,10 +1,12 @@
 angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$location', '$routeParams', 'restaurantService', 'authService', 'growl', 'FileSaver', 'Blob', function ($scope, $location, $routeParams, restaurantService, authService, growl, FileSaver, Blob, $uibModal) {
   $scope.restaurant = {};
+  $scope.user = {};
 
   //variables holding card lists
   $scope.availableTime = {};
   $scope.equipmentList = {};
   $scope.facilityList = {};
+  $scope.fileList = {};
 
   //form input variables
   $scope.input = {};
@@ -34,6 +36,16 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
         updateEquipmentList();
         updateFacilityList();
 
+        //change certification related buttons and messages to green (file found)
+        if ($scope.restaurant['restaurant_cert'] != null || $scope.restaurant['restaurant_cert'] != ""){
+          restaurantCertGreen();
+        }
+
+        //change certification related buttons and messages to green (file found)
+        if ($scope.user['user_cert'] != null || $scope.user['user_cert'] != ""){
+          userCertGreen();
+        }
+
 
       } else if (result=="DENIED") {
         growl.error('You do not have privilege.',{title: 'Error!'});
@@ -50,6 +62,19 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
   //initialize function at loading of controller
   init();
+
+  var updateUser = function () {
+    var queryObj = {
+      "table": "tb_user_info",
+      "key": {"user_ref":  $scope.restaurant.user_ref}
+    };
+
+    //bring restaurant information based on restaurant id
+    var getUser = restaurantService.getInfo(queryObj);
+    getUser.then(function (result) {
+      $scope.user = result;
+    })
+  }
 
   var updateFacilityList = function () {
     var queryObj = {
@@ -469,48 +494,89 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
   //Certificates Card
 
   $scope.restaurantCertButton = "btn-light";
-  $scope.ownerCertButton = "btn-light";
   $scope.restaurantCertMessage = "Upload Restaurant Certificate";
-  $scope.ownerCertMessage = "Upload Owner Certificate";
+  $scope.restaurantDownloadMessage = "No File";
+  $scope.restaurantCertUploadMessage = "Upload";
 
-  $scope.changeButton = function () {
+  $scope.ownerCertButton = "btn-light";
+  $scope.ownerCertMessage = "Upload Owner Certificate";
+  $scope.ownerDownloadMessage = "No File";
+  $scope.ownerCertUploadMessage = "Upload";
+
+  //change restaurant certificate buttons to indicate file exists
+  var restaurantCertGreen = function () {
     $scope.restaurantCertButton = "btn-success";
-    $scope.ownerCertButton = "Edit Certificate"
+    $scope.restaurantCertMessage = "View Restaurant Certificate";
+    $scope.restaurantDownloadMessage = "Download File";
+    $scope.restaurantCertUploadMessage = "Change File";
+  }
+
+  //change restaurant certificate buttons to indicate file exists
+  var userCertGreen = function () {
+    $scope.ownerCertButton = "btn-success";
+    $scope.ownerCertMessage = "View User Certificate";
+    $scope.ownerDownloadMessage = "Download File";
+    $scope.ownerCertUploadMessage = "Change File";
   }
 
   $scope.uploadFile = function (file_type) {
-    //create FormData - to ajax files
-    var form_data = new FormData();
+    if ($scope.files[file_type] == null ) {
+      growl.warning('Please load a file before uploading.',{title: 'No file'});
+    } else {
+      //create FormData - to ajax files
+      var form_data = new FormData();
 
-    console.log($scope.files[file_type][0]);
-    //append file itself
-    form_data.append(file_type, $scope.files[file_type][0]);
+      console.log($scope.files[file_type][0]);
+      //append file itself
+      form_data.append(file_type, $scope.files[file_type][0]);
 
-    //append file type indicator
-    form_data.append('file_type', file_type);
-    form_data.append('restaurant_id', restaurant_id);
+      //append file type indicator
+      form_data.append('file_type', file_type);
+      form_data.append('restaurant_id', restaurant_id);
 
-    //extract table name
-    var table_name = "tb_" + (file_type).split("_")[0];
-    form_data.append('table_name', table_name);
+      //extract table name
+      var table_name = "tb_" + (file_type).split("_")[0];
+      form_data.append('table_name', table_name);
 
-    //save file to file system and save location to database
-    var uploadResult = restaurantService.uploadFile(form_data);
-    uploadResult.then(function (result) {
-      if (result == "Successfully uploaded file") {
-        growl.success('Equipment has been updated!',{title: 'Success!'});
-      } else if (result == "Failed to insert file location to DB. Refresh page") {
-        growl.error('Database error!',{title: 'Error!'});
-      } else if (result == "Failed to upload file(s) to file system.") {
-        growl.error('File system error!.',{title: 'Error!'});
-      } else {
-        growl.error('Something has gone terribly wrong.',{title: 'Error!'});
-      }
-
-    });
-
-    console.log(form_data);
+      //save file to file system and save location to database
+      var uploadResult = restaurantService.uploadFile(form_data);
+      uploadResult.then(function (result) {
+        if (result == "Successfully uploaded file") {
+          //clear file input
+          $("#coFile").val("");
+          restaurantCertGreen();
+          growl.success('Equipment has been updated!',{title: 'Success!'});
+        } else if (result == "Failed to insert file location to DB. Refresh page") {
+          growl.error('Database error!',{title: 'Error!'});
+        } else if (result == "Failed to upload file(s) to file system.") {
+          growl.error('File system error!.',{title: 'Error!'});
+        } else {
+          growl.error('Something has gone terribly wrong.',{title: 'Error!'});
+        }
+      });
+    }
   }
+
+  //download file
+  $scope.downloadFile = function (file_type) {
+    if (file_type == "restaurant_cert") {
+      var path = $scope.restaurant.restaurant_cert;
+    } else if (file_type == "user_cert") {
+      var path;
+    } else {
+      console.log(file_type + " does not exist.");
+      return;
+    }
+
+    var post_data = {
+      'user_id': $scope.restaurant.user_ref,
+      'path': path,
+    }
+
+    var downloadResult = authService.downloadFile (post_data);
+  }
+
+
 
 
 

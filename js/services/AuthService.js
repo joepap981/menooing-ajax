@@ -59,9 +59,7 @@ angular.module('menuApp').factory('authService', function($http, FileSaver) {
         filename = filename.join('_');
         filename = filename + '.' + ext;
 
-
         myData = new Blob([response.data], {type: response.data['type']});
-
         FileSaver.saveAs(myData, filename);
       });
     },

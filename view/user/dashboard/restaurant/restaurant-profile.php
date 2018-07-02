@@ -327,15 +327,52 @@
               <div class="form-group">
                 <div class="d-flex mb-3">
                   <p> Certificate of Occupancy </p>
-                  <button class="btn ml-auto btn-sm" ng-class="" ng-click="downloadRestaurantCert()"> Download Certificate </a>
+                  <button class="btn ml-auto btn-sm" ng-class="restaurantCertButton" ng-click="downloadFile('restaurant_cert')"> {{ restaurantDownloadMessage }} </a>
                 </div>
-
-
 
                   <div class="card card-body d-flex">
                     <input type="file" file-input ="restaurant_cert" id="coFile" ng-model ="files.restaurant_cert">
                     <div class="btn-box mt-2 ml-auto">
-                      <button class="btn btn-primary btn-sm" ng-click = "uploadFile('restaurant_cert')"> Upload </button>
+                      <button class="btn btn-primary btn-sm" ng-click = "uploadFile('restaurant_cert')"> {{ restaurantCertUploadMessage}} </button>
+                    </div>
+                  </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Cert Modal -->
+      <div class="modal fade" id="userCertModal" tabindex="-1" role="dialog" aria-labelledby="userCertModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="userCertModalLabel">User Authentication</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p> We require the owner to provide a document to identify themselves.
+                Your document will be safe with us :). </p>
+
+              <hr>
+              <div class="form-group">
+                <div class="d-flex mb-3">
+                  <p> Social Security or Driver License </p>
+                  <button class="btn ml-auto btn-sm" ng-class="userCertButton" ng-click="downloadFile('user_cert')"> {{ userDownloadMessage }} </a>
+                </div>
+
+                  <div class="card card-body d-flex">
+                    <input type="file" file-input ="user_cert" id="userCert" ng-model ="files.user_cert">
+                    <div class="btn-box mt-2 ml-auto">
+                      <button class="btn btn-primary btn-sm" ng-click = "uploadFile('user_cert')"> {{ userCertUploadMessage}} </button>
                     </div>
                   </div>
 
