@@ -58,8 +58,8 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
   $scope.signIn = function (signin) {
     var myData = authService.get(signin);
     myData.then(function (result) {
-      $scope.response = result;
-      if($scope.response["result"] == "Success") {
+
+      if(result == "Login Verified") {
         $scope.user_no_match = false;
         $scope.signin = {};
 

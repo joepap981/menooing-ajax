@@ -37,12 +37,14 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
         updateFacilityList();
 
         //change certification related buttons and messages to green (file found)
-        if ($scope.restaurant['restaurant_cert'] != null || $scope.restaurant['restaurant_cert'] != ""){
+        if ($scope.restaurant['restaurant_cert'] != null){
+          console.log($scope.restaurant['restaurant_cert'])
           restaurantCertGreen();
         }
 
         //change certification related buttons and messages to green (file found)
-        if ($scope.user['user_cert'] != null || $scope.user['user_cert'] != ""){
+        if ($scope.user['user_cert'] != null){
+          console.log($scope.user['user_cert']);
           userCertGreen();
         }
 
@@ -202,19 +204,20 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
   $scope.updateDescription = function () {
     var post_info = {};
-    post_info['update_info'] = {'description': $scope.restaurant.restaurant_description };
+    post_info['table_name'] = 'tb_restaurant';
+    post_info['update_info'] = {'restaurant_name': $scope.restaurant.restaurant_name, 'restaurant_description': $scope.restaurant.restaurant_description };
     post_info['condition'] = {'restaurant_id': restaurant_id };
 
     var descriptionUpdateResult = restaurantService.updateInfo(post_info);
     descriptionUpdateResult.then(function(result) {
-      if (result == "SUCCESS") {
+      if (result == "Successfully updated information") {
         $scope.descriptionBoxSwitch = -1;
 
         //update restaurantList
         updateRestaurantList();
 
         growl.success('Description has been successfully updated.',{title: 'Success!'});
-      } else if (result == "FAILED") {
+      } else if (result == "Failed to update information") {
         growl.error('Description has failed to update. Refresh and try again.',{title: 'Error!'});
       } else {
         growl.error('Something has gone wrong.',{title: 'Error!'});
@@ -232,18 +235,19 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
   $scope.updatePrice = function () {
     var post_info = {};
-    post_info['update_info'] = {'fee': $scope.restaurant.restaurant_fee, 'fee_standard':$scope.restaurant.restaurant_fee_standard };
+    post_info['table_name'] = 'tb_restaurant';
+    post_info['update_info'] = {'restaurant_fee': $scope.restaurant.restaurant_fee, 'restaurant_fee_standard':$scope.restaurant.restaurant_fee_standard };
     post_info['condition'] = {'restaurant_id': restaurant_id };
 
     var priceUpdateResult = restaurantService.updateInfo(post_info);
     priceUpdateResult.then(function(result) {
-      if (result == "SUCCESS") {
+      if (result == "Successfully updated information") {
         $scope.priceBoxSwitch = -1;
 
         updateRestaurantList();
 
         growl.success('Pricing has been successfully updated.',{title: 'Success!'});
-      } else if (result == "FAILED") {
+      } else if (result == "Failed to update information") {
         growl.error('Pricing has failed to update. Refresh and try again.',{title: 'Error!'});
       } else {
         growl.error('Something has gone wrong.',{title: 'Error!'});

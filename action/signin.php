@@ -32,12 +32,10 @@ while($listItem = mysqli_fetch_array($result)) {
 
 
 if ($cnt == 0) {
-	$pass_array["result"] = "User Not found";
-  echo json_encode($pass_array);
+  echo "User Not found";
 }
 else if ($cnt > 1) {
-	$pass_array["result"] = "More than one";
-  echo json_encode($pass_array);
+  echo "More than one";
 } else {
 	if (password_verify($data["user_password"], $fetched_password)) {
 		//Session data store
@@ -47,13 +45,10 @@ else if ($cnt > 1) {
 
 		$_SESSION['user'] = $pass_array;
 
-		$pass_array["result"] = "Success";
-
-		echo json_encode($pass_array);
+		echo "Login Verified";
 
 	} else {
-		$pass_array["result"] = "Incorrect";
-	  echo json_encode($pass_array);
+	  echo "Login Failed";
 	}
 }
 
