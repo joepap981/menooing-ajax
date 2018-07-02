@@ -74,8 +74,9 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl', 'ui.bootstrap
       templateUrl: 'view/user/dashboard/restaurant/restaurant-profile.php',
       controller: 'restaurantProfileCtrl'
     })
-    .when('/restaurant-profile-guest', {
+    .when('/restaurant-profile-guest/:restaurant_id', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-profile-guest.php',
+      controller: 'restaurantGuestProfileCtrl'
     })
     .when('/restaurant-host', {
       templateUrl: 'view/user/dashboard/restaurant/restaurant-host.php'

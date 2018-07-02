@@ -29,6 +29,7 @@
 <script src="js/controllers/restaurantCtrl.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/restaurantRegisterCtrl.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/restaurantProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
+<script src="js/controllers/restaurantGuestProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/googlePlaceCtrl.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/userProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/restaurantSearchCtrl.js<?php echo $jsTimeStamp ?>"></script>

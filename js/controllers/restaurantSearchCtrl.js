@@ -29,7 +29,7 @@ angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$locatio
   init();
 
   $scope.redirectToProfile = function (restaurant_id) {
-    $location.path('/restaurant-profile/'+restaurant_id);
+    $location.path('/restaurant-profile-guest/'+restaurant_id);
   };
 
   //extract required address information
