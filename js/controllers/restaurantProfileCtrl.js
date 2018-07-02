@@ -1,9 +1,17 @@
 angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$location', '$routeParams', 'restaurantService', 'authService', 'growl', 'FileSaver', 'Blob', function ($scope, $location, $routeParams, restaurantService, authService, growl, FileSaver, Blob, $uibModal) {
   $scope.restaurant = {};
+
+  //variables holding card lists
   $scope.availableTime = {};
   $scope.equipmentList = {};
   $scope.facilityList = {};
+
+  //form input variables
   $scope.input = {};
+
+  //variables for file uploads
+  $scope.files = {};
+
   var restaurant_id;
 
 
@@ -458,6 +466,51 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     });
   }
 
+  //Certificates Card
+
+  $scope.restaurantCertButton = "btn-light";
+  $scope.ownerCertButton = "btn-light";
+  $scope.restaurantCertMessage = "Upload Restaurant Certificate";
+  $scope.ownerCertMessage = "Upload Owner Certificate";
+
+  $scope.changeButton = function () {
+    $scope.restaurantCertButton = "btn-success";
+    $scope.ownerCertButton = "Edit Certificate"
+  }
+
+  $scope.uploadFile = function (file_type) {
+    //create FormData - to ajax files
+    var form_data = new FormData();
+
+    console.log($scope.files[file_type][0]);
+    //append file itself
+    form_data.append(file_type, $scope.files[file_type][0]);
+
+    //append file type indicator
+    form_data.append('file_type', file_type);
+    form_data.append('restaurant_id', restaurant_id);
+
+    //extract table name
+    var table_name = "tb_" + (file_type).split("_")[0];
+    form_data.append('table_name', table_name);
+
+    //save file to file system and save location to database
+    var uploadResult = restaurantService.uploadFile(form_data);
+    uploadResult.then(function (result) {
+      if (result == "Successfully uploaded file") {
+        growl.success('Equipment has been updated!',{title: 'Success!'});
+      } else if (result == "Failed to insert file location to DB. Refresh page") {
+        growl.error('Database error!',{title: 'Error!'});
+      } else if (result == "Failed to upload file(s) to file system.") {
+        growl.error('File system error!.',{title: 'Error!'});
+      } else {
+        growl.error('Something has gone terribly wrong.',{title: 'Error!'});
+      }
+
+    });
+
+    console.log(form_data);
+  }
 
 
 

@@ -198,7 +198,7 @@
     <!-- Right side card -->
 
     <!-- Request card -->
-    <div id="right-side-card" class="col-4">
+    <div id="right-side-card" class="col-4 mb-3">
       <div class ="card mb-3">
         <div class="card-body">
           <p> Your restaurant is not discoverable by others yet. Go ahead and request to publish. </p>
@@ -209,12 +209,12 @@
       </div>
 
       <!-- Price and Available Time Card-->
-      <div class="card">
+      <div class="card mb-3">
         <div class="card-body">
           <h5 class="card-title"> Pricing </h5>
           <div class="d-flex restaurant-price" ng-show="priceBoxSwitch == -1">
             <p class="card-subtitle p-2"> ${{ restaurant.restaurant_fee}} per {{ restaurant.restaurant_fee_standard}}. </p>
-            <buton class="btn btn-primary btn-sm ml-auto" ng-click="togglePriceBox()"> Edit Price </button>
+            <button class="btn btn-primary btn-sm ml-auto" ng-click="togglePriceBox()"> Edit Price </button>
           </div>
 
           <div class="restaurant-price-edit" ng-show="priceBoxSwitch == 1">
@@ -301,7 +301,53 @@
 
       <!-- Restaurant Certification Card -->
       <div class="card">
-        
+        <div class="card-body">
+          <h5 class="card-title"> Documents </h5>
+          <button class="btn w-100 mb-2" ng-class="restaurantCertButton" ng-click="changeButton()" data-toggle="modal" data-target="#restaurantCertModal"> {{ restaurantCertMessage }} </button>
+          <button class="btn w-100" ng-class="ownerCertButton" ng-click="changeButton()"> {{ ownerCertMessage }} </button>
+        </div>
+      </div>
+
+
+      <!-- Restaurant Cert Modal -->
+      <div class="modal fade" id="restaurantCertModal" tabindex="-1" role="dialog" aria-labelledby="restaurantCertModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="restaurantCertModalLabel">Restaurant Certificate</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p> We require the owner to provide a certificate of occupancy for the restaurant they are trying to publish.
+                Your document will be safe with us :). </p>
+
+              <hr>
+              <div class="form-group">
+                <div class="d-flex mb-3">
+                  <p> Certificate of Occupancy </p>
+                  <button class="btn ml-auto btn-sm" ng-class="" ng-click="downloadRestaurantCert()"> Download Certificate </a>
+                </div>
+
+
+
+                  <div class="card card-body d-flex">
+                    <input type="file" file-input ="restaurant_cert" id="coFile" ng-model ="files.restaurant_cert">
+                    <div class="btn-box mt-2 ml-auto">
+                      <button class="btn btn-primary btn-sm" ng-click = "uploadFile('restaurant_cert')"> Upload </button>
+                    </div>
+                  </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
 
 

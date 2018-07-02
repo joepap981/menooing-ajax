@@ -31,11 +31,7 @@
 <script src="js/controllers/restaurantProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/googlePlaceCtrl.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/userProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
-<<<<<<< HEAD
 <script src="js/controllers/restaurantSearchCtrl.js<?php echo $jsTimeStamp ?>"></script>
-=======
-<script src="js/controllers/searchCtrl.js<?php echo $jsTimeStamp ?>"></script>
->>>>>>> e71d52bb155331ca2f76004a23b9b4eaad40c48e
 
 <script src="js/services/AuthService.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/services/restaurantService.js<?php echo $jsTimeStamp ?>"></script>

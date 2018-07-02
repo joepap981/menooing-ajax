@@ -160,9 +160,7 @@ form[name='restaurantRegistration'] {
 }
 
 input[type='file'].to-right {
-  color: transparent;
-  width:25%;
-  margin-left: auto;
+
 }
 
 #small-left-margin {
