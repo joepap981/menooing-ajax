@@ -304,7 +304,7 @@
         <div class="card-body">
           <h5 class="card-title"> Documents </h5>
           <button class="btn w-100 mb-2" ng-class="restaurantCertButton" ng-click="changeButton()" data-toggle="modal" data-target="#restaurantCertModal"> {{ restaurantCertMessage }} </button>
-          <button class="btn w-100" ng-class="ownerCertButton" ng-click="changeButton()"> {{ ownerCertMessage }} </button>
+          <button class="btn w-100" ng-class="ownerCertButton" ng-click="changeButton()" data-toggle="modal" data-target="#userCertModal"> {{ ownerCertMessage }} </button>
         </div>
       </div>
 
@@ -353,7 +353,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="userCertModalLabel">User Authentication</h5>
+              <h5 class="modal-title" id="userCertModalLabel">Owner Authentication</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -366,13 +366,13 @@
               <div class="form-group">
                 <div class="d-flex mb-3">
                   <p> Social Security or Driver License </p>
-                  <button class="btn ml-auto btn-sm" ng-class="userCertButton" ng-click="downloadFile('user_cert')"> {{ userDownloadMessage }} </a>
+                  <button class="btn ml-auto btn-sm" ng-class="ownerCertButton" ng-click="downloadFile('user_cert')"> {{ ownerDownloadMessage }} </a>
                 </div>
 
                   <div class="card card-body d-flex">
-                    <input type="file" file-input ="user_cert" id="userCert" ng-model ="files.user_cert">
+                    <input type="file" file-input ="user_cert" id="coFile" ng-model ="files.user_cert">
                     <div class="btn-box mt-2 ml-auto">
-                      <button class="btn btn-primary btn-sm" ng-click = "uploadFile('user_cert')"> {{ userCertUploadMessage}} </button>
+                      <button class="btn btn-primary btn-sm" ng-click = "uploadFile('user_cert')"> {{ ownerCertUploadMessage}} </button>
                     </div>
                   </div>
 
