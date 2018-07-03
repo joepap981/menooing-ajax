@@ -58,8 +58,13 @@ if (move_uploaded_file($_FILES[$file_type]['tmp_name'], $full_path)) {
 
   if ($insert_result == 1) {
     //delete original file
-    unlink($archive_file_location);
-    echo "Successfully uploaded file";
+    if ($archive_file_location == null || $archive_file_location == "") {
+      echo "Successfully uploaded file";
+    }else {
+      unlink($archive_file_location);
+      echo "Successfully uploaded file";
+    }
+  
   } else {
     echo "Failed to insert file location to DB. Refresh page";
   }

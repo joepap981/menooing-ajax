@@ -40,14 +40,27 @@ $insert_to_restaurant_query = substr($insert_to_restaurant_query, 0, -2) . ");";
 
 //result of insert
 $insert_result = (mysqli_query($conn, $insert_to_restaurant_query));
+$restaurant_id = mysqli_insert_id($conn);
 
-//if failed to insert, rollback and exit
-if ($insert_result != 1) {
-	$rollback_result = mysqli_query($conn, $rollback_query);
-	exit("Failed to insert Restaurant Info");
-	//else get the restaurant id
-} else {
-	$restaurant_id = mysqli_insert_id($conn);
-	echo $restaurant_id;
+//make directory to store documents
+
+//get location salt from tb_user_info
+$select_query = "SELECT user_storage_salt FROM tb_user_info WHERE user_ref = " . $user['user_id'] . ";";
+$storage_salt = mysqli_fetch_array(mysqli_query($conn, $select_query));
+$storage_salt = $storage_salt[0];
+
+
+if ($insert_result == 1) {
+	$path = "../noexec/" . $user['user_id'] . "/$storage_salt/$restaurant_id";
+	if(mkdir($path)) {
+		echo $restaurant_id;
+	} else {
+		$delete_query = "DELETE FROM $dbName.tb_restaurant WHERE restaurant_id = $restaurant_id";
+		$delete_result = mysqli_query($conn, $delete_query);
+		exit("Failed to insert Restaurant Info");
+	}
+
 }
+
+
 ?>
