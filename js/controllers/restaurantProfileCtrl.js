@@ -36,18 +36,6 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
         updateEquipmentList();
         updateFacilityList();
 
-        //change certification related buttons and messages to green (file found)
-        if ($scope.restaurant['restaurant_cert'] != null){
-          console.log($scope.restaurant['restaurant_cert'])
-          restaurantCertGreen();
-        }
-
-        //change certification related buttons and messages to green (file found)
-        if ($scope.user['user_cert'] != null){
-          console.log($scope.user['user_cert']);
-          userCertGreen();
-        }
-
 
       } else if (result=="DENIED") {
         growl.error('You do not have privilege.',{title: 'Error!'});
@@ -75,6 +63,11 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     var getUser = restaurantService.getInfo(queryObj);
     getUser.then(function (result) {
       $scope.user = result;
+      //change certification related buttons and messages to green (file found)
+      if ($scope.user['user_cert'] != null){
+        console.log($scope.user['user_cert']);
+        userCertGreen();
+      }
     })
   }
 
@@ -126,6 +119,11 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     var getRestaurant = restaurantService.getInfo(queryObj);
     getRestaurant.then(function (result) {
       $scope.restaurant = result[0];
+      //change certification related buttons and messages to green (file found)
+      if ($scope.restaurant['restaurant_cert'] != null){
+        console.log($scope.restaurant['restaurant_cert'])
+        restaurantCertGreen();
+      }
       $scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
     })
   }
@@ -566,7 +564,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     if (file_type == "restaurant_cert") {
       var path = $scope.restaurant.restaurant_cert;
     } else if (file_type == "user_cert") {
-      var path;
+      var path = $scope.user.user_cert;
     } else {
       console.log(file_type + " does not exist.");
       return;
