@@ -9,7 +9,7 @@ if(isset($_SESSION)) {
   //connect to mysql with info from inc_signin_db
   $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
 
-  $query = "SELECT * FROM $dbName.tb_request";
+  $query = "SELECT * FROM $dbName.tb_request ORDER BY request_created DESC";
 
   $result = mysqli_query($conn, $query);
 

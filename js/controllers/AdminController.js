@@ -1,4 +1,4 @@
-angular.module('menuApp').controller('AdminController',['$scope', '$http','$route', 'authService', function ($scope, $http, $route, authService) {
+angular.module('menuApp').controller('AdminController',['$scope', '$http','$route', 'growl', 'authService', function ($scope, $http, $route, growl, authService) {
   $scope.pageNum = 1;
 
   $scope.changePage = function (num) {
@@ -50,8 +50,14 @@ angular.module('menuApp').controller('AdminController',['$scope', '$http','$rout
         myData.then(function (result) {
           if (result["user_id"] != null) {
             $scope.session = result;
-            growl.success('Signed in!',{title: 'Success'});
-            $location.path('/home');
+            if ($scope.session['user_id'] != 1) {
+              $scope.sessionLive = false;
+              growl.error('Wrong user',{title: 'Failed'});
+            } else {
+              $scope.sessionLive = true;
+              growl.success('Signed in!',{title: 'Success'});
+            }
+
           } else {
             $scope.session = {};
             growl.error('There is no session...', {title: "Error!"});
@@ -82,10 +88,20 @@ angular.module('menuApp').controller('AdminController',['$scope', '$http','$rout
   //logout of user account and end session
   $scope.logout = function () {
     authService.endSession().then(function(response) {
+      //remove modal backdrop
+      $('#logoutModal').modal('hide');
+      $('body').removeClass('modal-open');
+      $('.modal-backdrop').remove();
+
+      //set session to null
       $scope.session = response;
-      $location.path('/');
+
+      //set session indicator to false
+      $scope.sessionLive = false;
     })
   }
+
+
 
 
 }]);

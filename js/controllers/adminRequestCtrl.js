@@ -7,6 +7,8 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', 'adminService
     var requestList = adminService.getRequestList();
     requestList.then (function (result) {
       $scope.Requests = result;
+      $scope.totalItems = $scope.Requests.length;
+      console.log(  $scope.totalItems);
     });
   }
 
@@ -45,6 +47,23 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', 'adminService
       }
     });
   }
+
+  //request pagination
+  $scope.viewby = 10;
+  $scope.currentPage = 1;
+  $scope.itemsPerPage = 10;
+  $scope.maxSize = 5; //Number of pager buttons to show
+  $scope.totalItems;
+
+  $scope.setPage = function (pageNo) {
+    $scope.currentPage = pageNo;
+  };
+
+  $scope.pageChanged = function() {
+    console.log('Page changed to: ' + $scope.currentPage);
+    console.log($scope.viewby);
+    console.log($scope.totalItems);
+  };
 
 
 

@@ -93,10 +93,10 @@ angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$locatio
     console.log($scope.totalItems);
   };
 
-$scope.setItemsPerPage = function(num) {
-  $scope.itemsPerPage = num;
-  $scope.currentPage = 1; //reset to first page
-}
+  $scope.setItemsPerPage = function(num) {
+    $scope.itemsPerPage = num;
+    $scope.currentPage = 1; //reset to first page
+  }
 
 
 }]);

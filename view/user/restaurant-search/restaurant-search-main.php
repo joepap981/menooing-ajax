@@ -43,6 +43,6 @@
     </div>
   </div>
 
-  <ul class="pagination mt-5 d-flex justify-content-center" uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage"></ul>
-
 </div>
+
+<ul class="pagination mt-5 d-flex justify-content-center" uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage"></ul>
