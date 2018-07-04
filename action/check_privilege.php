@@ -30,7 +30,7 @@ $query = "SELECT user_ref FROM $dbName.tb_restaurant WHERE user_ref = " . $user[
 $result = mysqli_fetch_assoc(mysqli_query($conn, $query));
 
 mysqli_close($conn);
-if ($user["user_id"] == $result["user_ref"]) {
+if ($user["user_id"] == $result["user_ref"] || $user["user_id"] == 1) {
   echo "ACCEPTED";
 } else {
   echo "DENIED";

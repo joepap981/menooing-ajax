@@ -18,6 +18,9 @@
   <script src="js/services/adminService.js<?php echo $jsTimeStamp ?>"></script>
   <script src="js/services/authService.js<?php echo $jsTimeStamp ?>"></script>
   <script src="js/directives/AdminViewDirective.js<?php echo $jsTimeStamp ?>"></script>
+  
+  <script src="js/controllers/restaurantProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
+  <script src="js/services/restaurantService.js<?php echo $jsTimeStamp ?>"></script>
 
   <div ng-controller="AdminController">
     <div class="container" ng-if="sessionLive == false">
@@ -94,8 +97,8 @@
           </ul>
 
           <!-- Top nav bar -->
-          <div class="top-nav">
-          <ul class="navbar-nav ml-auto">
+          <div class="top-nav ml-auto">
+          <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-fw fa-envelope"></i>
@@ -174,18 +177,6 @@
               </div>
             </li>
             <li class="nav-item">
-              <form class="form-inline my-2 my-lg-0 mr-lg-2">
-                <div class="input-group">
-                  <input class="form-control" type="text" placeholder="Search for...">
-                  <span class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                      <i class="fa fa-search"></i>
-                    </button>
-                  </span>
-                </div>
-              </form>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" data-toggle="modal" data-target="#logoutModal">
                 <i class="fa fa-fw fa-sign-out"></i>Logout</a>
             </li>
@@ -207,7 +198,7 @@
 
         <!-- /.container-fluid-->
         <!-- /.content-wrapper-->
-  
+
         <!-- Scroll to Top Button-->
         <a class="scroll-to-top rounded" href="#page-top">
           <i class="fa fa-angle-up"></i>

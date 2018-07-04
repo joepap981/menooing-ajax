@@ -1,5 +1,6 @@
-angular.module('menuApp').controller('adminRequestCtrl',['$scope', 'adminService', 'growl', function ($scope, adminService, growl) {
+angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 'authService', 'adminService', 'restaurantService', 'growl', function ($scope, $location, authService, adminService, restaurantService, growl) {
   $scope.selectedRequest;
+  $scope.selectedRestaurant;
 
   $scope.Requests = [];
   var init = function () {
@@ -8,28 +9,10 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', 'adminService
     requestList.then (function (result) {
       $scope.Requests = result;
       $scope.totalItems = $scope.Requests.length;
-      console.log(  $scope.totalItems);
     });
   }
 
   init();
-
-
-  $('#requestModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); // Button that triggered the modal
-    $scope.selectedRequest = button.data('whatever'); // Extract info from data-* attributes
-    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-
-
-    //get restaurant information from database
-    //
-
-    console.log($scope.selectedRequest);
-    var modal = $(this);
-    modal.find('.modal-title').text($scope.selectedRequest.request_type + ' request from ' + $scope.selectedRequest.restaurant_ref);
-    modal.find('.modal-body input').val($scope.selectedRequest.request_type);
-  })
 
   //confirm request
   $scope.confirmRequest = function () {
@@ -46,6 +29,11 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', 'adminService
         growl.error(response,{title: 'Error!'});
       }
     });
+  }
+
+  $scope.loadRequest = function (request) {
+    $scope.selectedRequest = request;
+    getRestaurant($scope.selectedRequest.restaurant_ref);
   }
 
   //request pagination
@@ -65,6 +53,54 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', 'adminService
     console.log($scope.totalItems);
   };
 
+  var getRestaurant = function (restaurant_id) {
+    var queryObj = {
+      "table": "tb_restaurant",
+      "key": {"restaurant_id": restaurant_id }
+    };
+    //bring restaurant information based on restaurant id
+    var getRestaurant = restaurantService.getInfo(queryObj);
+    getRestaurant.then(function (result) {
+      $scope.selectedRestaurant = result[0];
+      console.log($scope.selectedRestaurant);
+      //$scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
+    })
+  }
 
+  $scope.restaurantCertButton = "btn-danger";
+  $scope.userCertButton = "btn-danger";
+  $scope.restaurantCertMessage = "No file";
+  $scope.userCertMessage = "No file";
+
+  //change restaurant certificate buttons to indicate file exists
+  var restaurantCertGreen = function () {
+    $scope.restaurantCertButton = "btn-success";
+    $scope.restaurantCertMessage = "View Restaurant Certificate";
+  }
+
+  //change restaurant certificate buttons to indicate file exists
+  var userCertGreen = function () {
+    $scope.ownerCertButton = "btn-success";
+    $scope.ownerCertMessage = "View User Certificate";
+  }
+
+  //download file
+  $scope.downloadFile = function (file_type) {
+    if (file_type == "restaurant_cert") {
+      var path = $scope.selectedRestaurant.restaurant_cert;
+    } else if (file_type == "user_cert") {
+      var path;
+    } else {
+      console.log(file_type + " does not exist.");
+      return;
+    }
+
+    var post_data = {
+      'user_id': $scope.restaurant.user_ref,
+      'path': path,
+    }
+
+    var downloadResult = authService.downloadFile (post_data);
+  }
 
 }]);

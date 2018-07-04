@@ -24,6 +24,7 @@
 <!-- Javascript links -->
 <script src="js/app.js<?php echo $jsTimeStamp ?>"></script>
 
+<script src="js/controllers/AdminController.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/AuthController.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/UserDashboardController.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/restaurantCtrl.js<?php echo $jsTimeStamp ?>"></script>
