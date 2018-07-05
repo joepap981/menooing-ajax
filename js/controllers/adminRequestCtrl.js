@@ -1,6 +1,7 @@
 angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 'authService', 'adminService', 'restaurantService', 'growl', function ($scope, $location, authService, adminService, restaurantService, growl) {
   $scope.selectedRequest;
   $scope.selectedRestaurant;
+  $scope.selectedUser;
 
   $scope.Requests = [];
   var init = function () {
@@ -62,9 +63,41 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     var getRestaurant = restaurantService.getInfo(queryObj);
     getRestaurant.then(function (result) {
       $scope.selectedRestaurant = result[0];
-      console.log($scope.selectedRestaurant);
-      //$scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
+      getUser();
+      //change certification related buttons and messages to green (file found)
+      if ($scope.selectedRestaurant['restaurant_cert'] != null){
+        restaurantCertGreen();
+      }
+      $scope.selectedRestaurant.address = $scope.selectedRestaurant.restaurant_street_number + " " + $scope.selectedRestaurant.restaurant_route + " " + $scope.selectedRestaurant.restaurant_locality + ", " + $scope.selectedRestaurant.restaurant_administrative_area_level_1;
     })
+  }
+
+  var getUser = function () {
+    var queryObj = {
+      "table": "tb_user_info",
+      "key": {"user_ref":  $scope.selectedRestaurant.user_ref}
+    };
+
+    //bring restaurant information based on restaurant id
+    var getUser = restaurantService.getInfo(queryObj);
+    getUser.then(function (result) {
+      $scope.selectedUser = result[0];
+      console.log($scope.selectedUser);
+      //change certification related buttons and messages to green (file found)
+      if ($scope.selectedUser['user_cert'] != null){
+        userCertGreen();
+      }
+    });
+
+    var queryObj = {
+      "table": "tb_user",
+      "key": {"user_id":  $scope.selectedRestaurant.user_ref}
+    };
+
+    var getUser = restaurantService.getInfo(queryObj);
+    getUser.then(function (result) {
+      $scope.selectedUser2 = result[0];
+    });
   }
 
   $scope.restaurantCertButton = "btn-danger";
@@ -80,8 +113,8 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
 
   //change restaurant certificate buttons to indicate file exists
   var userCertGreen = function () {
-    $scope.ownerCertButton = "btn-success";
-    $scope.ownerCertMessage = "View User Certificate";
+    $scope.userCertButton = "btn-success";
+    $scope.userCertMessage = "View User Certificate";
   }
 
   //download file
@@ -101,6 +134,41 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     }
 
     var downloadResult = authService.downloadFile (post_data);
+  }
+
+  $scope.changeRestaurantStatus = function (status) {
+    var post_info = {};
+    post_info['table_name'] = 'tb_restaurant';
+    post_info['update_info'] = {'restaurant_status': status};
+    post_info['condition'] = {'restaurant_id': $scope.selectedRestaurant.restaurant_id };
+
+    var statusUpdateResult = restaurantService.updateInfo(post_info);
+    statusUpdateResult.then(function(result) {
+      if (result == "Successfully updated information") {
+        //update restaurantList
+        getRestaurant();
+
+        var post_info = {};
+        post_info['table_name'] = 'tb_request';
+        post_info['update_info'] = {'request_status': 'HANDLED'};
+        post_info['condition'] = {'request': $scope.selectedRequest.request_id };
+
+        var statusUpdateResult = restaurantService.updateInfo(post_info);
+        statusUpdateResult.then(function(result) {
+          var requestList = adminService.getRequestList();
+          requestList.then (function (result) {
+            $scope.Requests = result;
+            $scope.totalItems = $scope.Requests.length;
+          });
+        });
+
+        growl.success('Status has been successfully updated.',{title: 'Success!'});
+      } else if (result == "Failed to update information") {
+        growl.error('Status has failed to update.',{title: 'Error!'});
+      } else {
+        growl.error('Something has gone wrong.',{title: 'Error!'});
+      }
+    })
   }
 
 }]);

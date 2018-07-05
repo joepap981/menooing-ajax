@@ -33,19 +33,21 @@
             </button>
           </div>
           <div class="modal-body">
-            <label> Status : </label>
-            <button ng-show="selectedRequest['request_status'] == 'Handled'" class="btn btn-success"> Comfirmed </button>
-            <button ng-show="selectedRequest['request_status'] == 'Unhandled'" class="btn btn-warning"> Unconfirmed </button>
-
+            <label> Status : {{ selectedRestaurant.restaurant_status }} </label>
             <p> Restaurant Name : {{ selectedRestaurant.restaurant_name }} </p>
-            <p> Address : </p>
-            <p> Owner Name : </p>
-            <p> Contact </p>
-            <div class="btn-box">
-              <button class="btn" ng-class = "restaurantCertButtonColor" ng-click ="downloadFile('restaurant_cert')"> {{ restaurantCertMessage }} </button>
-              <button class="btn" ng-class = "userCertButtonColor" ng-click ="downloadFile('user_cert')"> {{ userCertMessage }} </button>
-            </div>
+            <p> Address : {{ selectedRestaurant.address}}</p>
+            <p> Owner Name : {{ selectedUser2.user_first_name }} {{ selectedUser2.user_last_name }}</p>
+            <p> Contact: {{ selectedUser.user_phone }}</p>
+            <label> Certificate of Occupancy </label>
+            <button class="btn btn-sm" ng-class = "restaurantCertButton" ng-click ="downloadFile('restaurant_cert')"> {{ restaurantCertMessage }} </button>
+            <label> User Identification Document </label>
+            <button class="btn btn-sm" ng-class = "userCertButton" ng-click ="downloadFile('user_cert')"> {{ userCertMessage }} </button>
+            <button class="btn btn-sm btn-info"> Edit Restaurant </button>
 
+            <div class="btn-box mt-5">
+              <button class="btn btn-primary btn-sm" ng-click="changeRestaurantStatus('CONFIRMED')"> Give Confirmation </button>
+              <button class="btn btn-danger btn-sm" ng-click="changeRestaurantStatus('UNCONFIRMED')"> Unpublish </button>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
