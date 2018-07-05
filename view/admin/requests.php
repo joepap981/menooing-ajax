@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr style="cursor:pointer;" ng-repeat="request in Requests.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))" data-toggle="modal" data-target="#requestModal" data-whatever="{{ request }}" ng-click="loadRequest(request)">
+      <tr style="cursor:pointer;" ng-repeat="request in Requests.slice(((requestCurrentPage-1)*requestItemsPerPage), ((requestCurrentPage)*requestItemsPerPage))" data-toggle="modal" data-target="#requestModal" data-whatever="{{ request }}" ng-click="loadRequest(request)">
         <th >{{ request.request_id }}</th>
         <td> {{ request.request_created }}</td>
         <td> {{ request.request_type }} </td>
@@ -60,5 +60,5 @@
 
   </table>
 
-  <ul class="pagination mt-5 d-flex justify-content-center" uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage"></ul>
+  <ul class="pagination mt-5 d-flex justify-content-center" uib-pagination total-items="requestTotalItems" ng-model="requestCurrentPage" ng-change="pageChanged()" items-per-page="requestItemsPerPage"></ul>
 </div>

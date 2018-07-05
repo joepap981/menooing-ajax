@@ -38,20 +38,20 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
   }
 
   //request pagination
-  $scope.viewby = 10;
-  $scope.currentPage = 1;
-  $scope.itemsPerPage = 10;
-  $scope.maxSize = 5; //Number of pager buttons to show
-  $scope.totalItems;
+  $scope.requestViewby = 10;
+  $scope.requestCurrentPage = 1;
+  $scope.requestItemsPerPage = 10;
+  $scope.requestMaxSize = 5; //Number of pager buttons to show
+  $scope.requestTotalItems;
 
   $scope.setPage = function (pageNo) {
-    $scope.currentPage = pageNo;
+    $scope.requestCurrentPage = pageNo;
   };
 
   $scope.pageChanged = function() {
-    console.log('Page changed to: ' + $scope.currentPage);
-    console.log($scope.viewby);
-    console.log($scope.totalItems);
+    console.log('Page changed to: ' + $scope.requestCurrentPage);
+    console.log($scope.requestViewby);
+    console.log($scope.requestTotalItems);
   };
 
   var getRestaurant = function (restaurant_id) {
