@@ -23,7 +23,7 @@ if ($data['type'] == "USER") {
   if(isset($_SESSION)) {
     $user = $_SESSION['user'];
 
-    $query = "SELECT restaurant_id, restaurant_status, restaurant_name, restaurant_locality, restaurant_administrative_area_level_1, restaurant_image, restaurant_entity
+    $query = "SELECT restaurant_id, restaurant_status, restaurant_name, restaurant_locality, restaurant_administrative_area_level_1, restaurant_image
               FROM $dbName.tb_restaurant WHERE user_ref = " . $user['user_id'];
 
     $result = mysqli_query($conn, $query);
@@ -45,8 +45,7 @@ if ($data['type'] == "USER") {
 //return all restaurants
 }else if($data['type'] == 'ALL') {
 
-  $query = "SELECT restaurant_id, restaurant_status, restaurant_name, restaurant_locality, restaurant_administrative_area_level_1, restaurant_image, restaurant_entity
-            FROM $dbName.tb_restaurant";
+  $query = "SELECT restaurant_id, restaurant_status, restaurant_name, restaurant_locality, restaurant_administrative_area_level_1, restaurant_image FROM $dbName.tb_restaurant";
 
   $result = mysqli_query($conn, $query);
 
