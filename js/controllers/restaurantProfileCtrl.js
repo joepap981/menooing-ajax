@@ -578,7 +578,9 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     var downloadResult = authService.downloadFile (post_data);
   }
 
-  $scope.sendConfirmationRequest = function () {
+
+  //check if all the requirements are met before sending restaurant publication request to admin
+  $scope.verifyConfirmationRequest = function () {
     //flag to see if all information has been given.
     var informationCheck = true;
     if ($scope.restaurant.restaurant_cert == null || $scope.user.user_cert == null ) {
@@ -587,7 +589,6 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     }
 
     for (var key in $scope.restaurant ) {
-      console.log($scope.restaurant[key]);
       if ($scope.restaurant[key] == null || $scope.restaurant[key] == "" ) {
         informationCheck = false;
         break;
@@ -596,12 +597,44 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
     if (informationCheck == false) {
       $('#requestContinueModal').modal('show');
+    } else {
+
     }
   }
 
+  //finalize confirm request
+  $scope.confirmRequest = function () {
+    var post_data = {};
+    post_data = {"table_name": "tb_request", "condition": {'request_type': 'restaurant_confirmation', 'user_ref': $scope.user['user_id'], 'restaurant_ref': restaurant_id }};
 
+    //save file to file system and save location to database
+    var requestResult = restaurantService.insertInfo(post_data);
+    requestResult.then(function (result) {
+      if (result == "Successfully inserted information") {
 
+        var post_data = {};
+        post_data['table_name'] = 'tb_restaurant';
+        post_data['update_info'] = {'restaurant_status': 'PENDING'};
+        post_data['condition'] = {'restaurant_id': restaurant_id };
 
+        //update restaurant from confirmed to pending
+        var statusUpdateResult = restaurantService.updateInfo(post_data);
+        statusUpdateResult.then(function(result) {
+          if (result == 'Successfully updated information') {
+            updateRestaurantList();
+            growl.success('Request Sent!',{title: 'Success!'});
+          } else if ( result == 'Failed to update information') {
+            growl.error('Failed to update restaurant status.',{title: 'Error!'});
+          } else {
+            growl.error('Something has gone terribly wrong while updating restaurant status.',{title: 'Error!'});
+          }
+        });
 
-
+      } else if (result == "Failed to insert information") {
+        growl.error('Failed to send request!',{title: 'Error!'});
+      } else {
+        growl.error('Something has gone terribly wrong while sending the request.',{title: 'Error!'});
+      }
+    });
+  }
 }]);

@@ -204,7 +204,7 @@
           <div ng-if="restaurant.restaurant_status == 'UNCONFIRMED'">
             <p> Your restaurant is not discoverable by others yet. Go ahead and request to publish. </p>
             <div class="text-center">
-              <button class="btn btn-primary" ng-click="sendConfirmationRequest()"> Request to Publish </button>
+              <button class="btn btn-primary" ng-click="verifyConfirmationRequest()"> Request to Publish </button>
             </div>
           </div>
           <div ng-if="restaurant.restaurant_status == 'PENDING'">
@@ -234,7 +234,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
-              <button type="button" class="btn btn-warning" > Send Request </button>
+              <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click = "confirmRequest()"> Send Request </button>
             </div>
           </div>
         </div>
