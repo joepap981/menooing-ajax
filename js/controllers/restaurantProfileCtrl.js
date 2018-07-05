@@ -62,7 +62,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     //bring restaurant information based on restaurant id
     var getUser = restaurantService.getInfo(queryObj);
     getUser.then(function (result) {
-      $scope.user = result;
+      $scope.user = result[0];
       //change certification related buttons and messages to green (file found)
       if ($scope.user['user_cert'] != null){
         console.log($scope.user['user_cert']);
@@ -119,9 +119,9 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     var getRestaurant = restaurantService.getInfo(queryObj);
     getRestaurant.then(function (result) {
       $scope.restaurant = result[0];
+      updateUser();
       //change certification related buttons and messages to green (file found)
       if ($scope.restaurant['restaurant_cert'] != null){
-        console.log($scope.restaurant['restaurant_cert'])
         restaurantCertGreen();
       }
       $scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
@@ -576,6 +576,27 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     }
 
     var downloadResult = authService.downloadFile (post_data);
+  }
+
+  $scope.sendConfirmationRequest = function () {
+    //flag to see if all information has been given.
+    var informationCheck = true;
+    if ($scope.restaurant.restaurant_cert == null || $scope.user.user_cert == null ) {
+      growl.error('Required documents have not been uploaded. Please upload both restaurant certificate and user authenticaton.',{title: 'Warning!'});
+      return;
+    }
+
+    for (var key in $scope.restaurant ) {
+      console.log($scope.restaurant[key]);
+      if ($scope.restaurant[key] == null || $scope.restaurant[key] == "" ) {
+        informationCheck = false;
+        break;
+      }
+    }
+
+    if (informationCheck == false) {
+      $('#requestContinueModal').modal('show');
+    }
   }
 
 

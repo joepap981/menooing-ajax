@@ -201,9 +201,41 @@
     <div id="right-side-card" class="col-4 mb-3">
       <div class ="card mb-3">
         <div class="card-body">
-          <p> Your restaurant is not discoverable by others yet. Go ahead and request to publish. </p>
-          <div class="text-center">
-            <button class="btn btn-primary"> Request to Publish </button>
+          <div ng-if="restaurant.restaurant_status == 'UNCONFIRMED'">
+            <p> Your restaurant is not discoverable by others yet. Go ahead and request to publish. </p>
+            <div class="text-center">
+              <button class="btn btn-primary" ng-click="sendConfirmationRequest()"> Request to Publish </button>
+            </div>
+          </div>
+          <div ng-if="restaurant.restaurant_status == 'PENDING'">
+            <p> Your request has been send and is being reviewed by the admin </p>
+          </div>
+          <div ng-if="restaurant.restaurant_status == 'CONFIRMED'">
+            <p> Your restaurant has been confirmed. The changes you make to your restaurant will be public.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- restaurant confirmation information check modal -->
+      <div class="modal fade" id="requestContinueModal" tabindex="-1" role="dialog" aria-labelledby="requestContinueModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="requestContinueModalLabel">Add Available Time</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <p> You forgot to give us some information about your restaurant. Your request may be rejected if your restaurant lacks
+                too much information. Do you want to continue? </p>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+              <button type="button" class="btn btn-warning" > Send Request </button>
+            </div>
           </div>
         </div>
       </div>
