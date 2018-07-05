@@ -67,9 +67,10 @@
               <div class="form-group row">
                 <label class="w-25"> Social Security: </label>
                 <div class="w-74 ml-3 ml-auto">
-                  <span ng-show = "user.user_ssn == null" class="pointer" data-toggle="collapse" data-target="#collapseSSN"> Upload File </span>
-                  <a href="" ng-show = "user.user_ssn != null" ng-click="downloadFile('user_ssn')"> {{ user.ssn_name }} </a>
-                  <span ng-show = "user.user_ssn != null" class="ml-5 pointer" data-toggle="collapse" data-target="#collapseSSN"> Change file </span>
+                  <button class="btn btn-primary btn-sm" ng-show = "user.user_ssn == null" class="pointer" data-toggle="collapse" data-target="#collapseSSN"> Upload File </button>
+                  <button class="btn btn-success btn-sm" ng-show = "user.user_ssn != null" ng-click="downloadFile('user_ssn')"> Download File </button>
+                  <button class="btn btn-info btn-sm" ng-show = "user.user_ssn != null" class="ml-5 pointer" data-toggle="collapse" data-target="#collapseSSN"> Change file </button>
+
                   <div class="collapse mt-3 mb-3" id="collapseSSN">
                     <div class="card card-body collapse">
                       <input type="file" id="ssnFileInput" class="col-input" file-input ="user_ssn" ng-model ="files.user_ssn">
@@ -79,14 +80,15 @@
                       </div>
                     </div>
                   </div>
+
                 </div>
               </div>
               <div class="form-group row">
                 <label class="w-26"> Food Manager Certificate: </label>
                 <div class="w-74 ml-3 ml-auto">
-                  <p ng-show = "user.user_cert == null" class="pointer" data-toggle="collapse" data-target="#collapseFoodManCert"> Upload File </p>
-                  <a href="" ng-show = "user.user_cert != null" ng-click="downloadFile('user_cert')"> {{ user.cert_name }} </a>
-                  <span ng-show = "user.user_cert != null" class="ml-5 pointer" data-toggle="collapse" data-target="#collapseFoodManCert"> Change file </span>
+                  <button class="btn btn-primary btn-sm" ng-show = "user.user_cert == null" class="pointer" data-toggle="collapse" data-target="#collapseFoodManCert"> Upload File </button>
+                  <button class="btn btn-success btn-sm" ng-show = "user.user_cert != null" ng-click="downloadFile('user_cert')">  Download File </button>
+                  <button class="btn btn-info btn-sm" ng-show = "user.user_cert != null" class="ml-5 pointer" data-toggle="collapse" data-target="#collapseFoodManCert"> Change file </button>
                   <div class="collapse mt-3 mb-3" id="collapseFoodManCert">
                     <div class="card card-body collapse">
                       <input type="file" id="foodCertFileInput" class="col-input" file-input ="user_cert" ng-model ="files.user_cert">

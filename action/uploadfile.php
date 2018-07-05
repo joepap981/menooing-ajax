@@ -18,10 +18,10 @@ $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
 //check if there is an existing file already, get the file location
 if($table_name == 'tb_restaurant') {
   $location_query = "SELECT restaurant_cert from $dbName.tb_restaurant WHERE restaurant_id = $restaurant_id";
-} else if ($table_name == 'tb_user') {
-  $location_query = "SELECT user_cert from $dbName.tb_user_info WHERE user_ref = " . $user['user_id'];
+} else if ($table_name == 'tb_user' || $table_name == 'tb_user_info') {
+  $location_query = "SELECT $file_type from $dbName.tb_user_info WHERE user_ref = " . $user['user_id'];
 } else {
-  exit('Soemething has gone wrong');
+  exit('Something has gone wrong');
 }
 $location_result = mysqli_fetch_array(mysqli_query($conn, $location_query));
 $archive_file_location = $location_result[0];
@@ -48,7 +48,7 @@ if (!in_array($ext, $allowed_extension)) {
 //build full address path according to restaurant or user related file
 if ($table_name == 'tb_restaurant') {
   $full_path = $upload_location.$restaurant_id . '/' . $filename;
-} else if ($table_name == 'tb_user'){
+} else if ($table_name == 'tb_user' || $table_name == 'tb_user_info'){
   $full_path =  $upload_location . $filename;
 }
 
@@ -56,7 +56,7 @@ if ($table_name == 'tb_restaurant') {
 if (move_uploaded_file($_FILES[$file_type]['tmp_name'], $full_path)) {
   if ($table_name == 'tb_restaurant') {
     $insert_query = "UPDATE $table_name SET $file_type = '$full_path' WHERE restaurant_id = $restaurant_id;";
-  } else if($table_name == 'tb_user') {
+  } else if($table_name == 'tb_user' || $table_name == 'tb_user_info') {
     $insert_query = "UPDATE tb_user_info SET $file_type = '$full_path' WHERE user_ref = " . $user['user_id'] .";";
   } else {}
 

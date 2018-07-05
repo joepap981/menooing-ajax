@@ -78,7 +78,7 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
 
       //does not erase original file, just add new file and new path to db
       authService.uploadFile(form_data).then(function (response) {
-        if (response == "SUCCESSFULLY UPLOADED") {
+        if (response == "Successfully uploaded file") {
           $scope.files[file_type] = null;
 
           //clear file input forms

@@ -65,7 +65,6 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       $scope.user = result[0];
       //change certification related buttons and messages to green (file found)
       if ($scope.user['user_cert'] != null){
-        console.log($scope.user['user_cert']);
         userCertGreen();
       }
     })
