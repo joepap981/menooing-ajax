@@ -9,7 +9,7 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     var requestList = adminService.getRequestList();
     requestList.then (function (result) {
       $scope.Requests = result;
-      $scope.totalItems = $scope.Requests.length;
+      $scope.requestTotalItems = $scope.Requests.length;
     });
   }
 

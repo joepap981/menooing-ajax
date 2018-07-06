@@ -34,6 +34,7 @@
 <script src="js/controllers/googlePlaceCtrl.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/userProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/controllers/restaurantSearchCtrl.js<?php echo $jsTimeStamp ?>"></script>
+<script src="js/controllers/restaurantGuestRequestCtrl.js<?php echo $jsTimeStamp ?>"></script>
 
 <script src="js/services/AuthService.js<?php echo $jsTimeStamp ?>"></script>
 <script src="js/services/restaurantService.js<?php echo $jsTimeStamp ?>"></script>

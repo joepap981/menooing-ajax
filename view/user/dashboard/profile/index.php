@@ -106,23 +106,85 @@
         </div>
         <!--//content-box end-->
       </div>
-      <div class="col-md-3 mt-3 text-center">
-        <div class="card">
-          <div class="card-body">
+      <div class="col-md-3 mt-3">
+        <div class="card mb-3">
+          <p id="profile" class="card-header"> Restaurant Verification </p>
+          <div class="card-body text-center">
+
             <div ng-if="user.user_status == 'UNVERIFIED'">
-              <p> Your user account has not been verified by the admin yet. You need verification in order to publish or rent a restaurant. </p>
-              <button class="btn btn-primary pointer"> Request Verification </button>
+              <button class="btn btn-danger w-100"> Unverified </button>
             </div>
             <div ng-if="user.user_status == 'VERIFIED'">
-              <button class="btn btn-success pointer"> Your account is verified! </button>
+              <button class="btn btn-success w-100"> Verified </button>
             </div>
             <div ng-if="user.user_status == 'PENDING'">
-              <p> Your verification request has been sent. To cancel your request, click the button below. </p>
-              <button class="btn btn-warning pointer"> Cancel Request </button>
+              <button class="btn btn-warning w-100"> Pending </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body text-center">
+
+            <div ng-if="user.user_status == 'UNVERIFIED'">
+              <p> Your user account has not been verified by the admin yet. You need verification in order to publish or rent a restaurant. </p>
+              <button class="btn btn-primary pointer" ng-click ="verifyVerificationRequest()"> Request Verification </button>
+            </div>
+            <div ng-if="user.user_status == 'PENDING'">
+              <p> Your verification request has been sent. Please wait for the admin to confirm. </p>
+              <!-- <button class="btn btn-warning pointer" data-toggle="modal" data-target="#requestCancelModal"> Cancel Request </button> -->
             </div>
           </div>
         </div>
       </div>
+
+      <!-- user verification information check modal -->
+      <div class="modal fade" id="requestContinueModal" tabindex="-1" role="dialog" aria-labelledby="requestContinueModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="requestContinueModalLabel"> Continue Request?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <p> You forgot to give us some information about your user. Your request may be rejected if your restaurant lacks
+                too much information. Do you want to continue? </p>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+              <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click = "confirmVerificationRequest()"> Send Request </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- user verification cancel modal -->
+      <!-- <div class="modal fade" id="requestCancelModal" tabindex="-1" role="dialog" aria-labelledby="requestCancelModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="requestContinueModalLabel"> Cancel Request?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <p> Are you sure you want to cancel your user verification request? </p>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+              <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click = "cancelVerificationRequest()"> Cancel Request </button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
     </div>
   </div>
 </div>

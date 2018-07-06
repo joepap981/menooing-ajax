@@ -63,10 +63,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     var getUser = authService.getInfo(queryObj);
     getUser.then(function (result) {
       $scope.user = result[0];
-      //change certification related buttons and messages to green (file found)
-      if ($scope.user['user_cert'] != null){
-        userCertGreen();
-      }
+      console.log($scope.user.user_status);
     })
   }
 
@@ -120,7 +117,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       $scope.restaurant = result[0];
       updateUser();
       //change certification related buttons and messages to green (file found)
-      if ($scope.restaurant['restaurant_cert'] != null){
+      if ($scope.restaurant['restaurant_cert'] != null && $scope.restaurant['restaurant_cert'] != ""){
         restaurantCertGreen();
       }
       $scope.restaurant.address = $scope.restaurant.restaurant_street_number + " " + $scope.restaurant.restaurant_route + " " + $scope.restaurant.restaurant_locality + ", " + $scope.restaurant.restaurant_administrative_area_level_1;
@@ -163,7 +160,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       post_data['update_info'] = restaurant_address;
       post_data['condition'] = {'restaurant_id': restaurant_id };
 
-      var addressUpdateResult = restaurantService.updateInfo(post_data);
+      var addressUpdateResult = authService.updateInfo(post_data);
       addressUpdateResult.then(function(result) {
         if (result == "Successfully updated information") {
 
@@ -205,7 +202,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     post_info['update_info'] = {'restaurant_name': $scope.restaurant.restaurant_name, 'restaurant_description': $scope.restaurant.restaurant_description };
     post_info['condition'] = {'restaurant_id': restaurant_id };
 
-    var descriptionUpdateResult = restaurantService.updateInfo(post_info);
+    var descriptionUpdateResult = authService.updateInfo(post_info);
     descriptionUpdateResult.then(function(result) {
       if (result == "Successfully updated information") {
         $scope.descriptionBoxSwitch = -1;
@@ -236,7 +233,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     post_info['update_info'] = {'restaurant_fee': $scope.restaurant.restaurant_fee, 'restaurant_fee_standard':$scope.restaurant.restaurant_fee_standard };
     post_info['condition'] = {'restaurant_id': restaurant_id };
 
-    var priceUpdateResult = restaurantService.updateInfo(post_info);
+    var priceUpdateResult = authService.updateInfo(post_info);
     priceUpdateResult.then(function(result) {
       if (result == "Successfully updated information") {
         $scope.priceBoxSwitch = -1;
@@ -318,7 +315,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     if($scope.beginTime.getHours() > $scope.endTime.getHours()) {
         growl.warning('Check the time and try again.',{title: 'Wrong time format!'});
     } else {
-      var createResult = restaurantService.insertInfo(post_data);
+      var createResult = authService.insertInfo(post_data);
       createResult.then(function (result) {
         if (result == "Successfully inserted information") {
           updateAvailableList();
@@ -337,7 +334,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
   $scope.deleteAvailabletime = function (available_id) {
     var queryObj = {};
     queryObj = {"table_name": "tb_restaurant_available", "condition": {"available_id": available_id }};
-    var deleteResult = restaurantService.deleteInfo(queryObj);
+    var deleteResult = authService.deleteInfo(queryObj);
     deleteResult.then(function (result) {
       if (result == "SUCCESS") {
         updateAvailableList();
@@ -353,7 +350,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     } else {
       var queryObj = {};
       queryObj = {"table_name": "tb_restaurant_equipment", "condition": {"restaurant_ref": restaurant_id, "equipment_name": $scope.input.equipment_name, "equipment_description": $scope.input.equipment_description }};
-      var insertResult = restaurantService.insertInfo(queryObj);
+      var insertResult = authService.insertInfo(queryObj);
       insertResult.then(function (result) {
         if (result == "Successfully inserted information") {
           $scope.input.equipment_name = "";
@@ -387,7 +384,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     var post_data = {};
     post_data = { "table_name": "tb_restaurant_equipment", "update_info": { "equipment_name": $scope.editEquipment.equipment_name, "equipment_description":  $scope.editEquipment.equipment_description}, "condition": {"equipment_id": $scope.editEquipmentID }};
 
-    var updateResult = restaurantService.updateInfo(post_data);
+    var updateResult = authService.updateInfo(post_data);
     updateResult.then(function (result) {
       if (result == "Successfully updated information") {
         $scope.editEquipment.equipment_name = "";
@@ -406,7 +403,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
   $scope.deleteEquipment = function() {
     var queryObj = {};
     queryObj = {"table_name": "tb_restaurant_equipment", "condition": {"equipment_id": $scope.editEquipmentID }};
-    var deleteResult = restaurantService.deleteInfo(queryObj);
+    var deleteResult = authService.deleteInfo(queryObj);
     deleteResult.then(function (result) {
       if (result == "SUCCESS") {
         growl.success('Equipment has been deleted!',{title: 'Success!'});
@@ -426,7 +423,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     } else {
       var queryObj = {};
       queryObj = {"table_name": "tb_restaurant_facility", "condition": {"restaurant_ref": restaurant_id, "facility_name": $scope.input.facility_name, "facility_description": $scope.input.facility_description }};
-      var insertResult = restaurantService.insertInfo(queryObj);
+      var insertResult = authService.insertInfo(queryObj);
       insertResult.then(function (result) {
         if (result == "Successfully inserted information") {
           $scope.input.facility_name = "";
@@ -460,7 +457,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     var post_data = {};
     post_data = { "table_name": "tb_restaurant_facility", "update_info": { "facility_name": $scope.editFacility.facility_name, "facility_description":  $scope.editFacility.facility_description}, "condition": {"facility_id": $scope.editFacilityID }};
 
-    var updateResult = restaurantService.updateInfo(post_data);
+    var updateResult = authService.updateInfo(post_data);
     updateResult.then(function (result) {
       if (result == "Successfully updated information") {
         $scope.editFacility.facility_name = "";
@@ -479,7 +476,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
   $scope.deleteFacility = function() {
     var queryObj = {};
     queryObj = {"table_name": "tb_restaurant_facility", "condition": {"facility_id": $scope.editFacilityID }};
-    var deleteResult = restaurantService.deleteInfo(queryObj);
+    var deleteResult = authService.deleteInfo(queryObj);
     deleteResult.then(function (result) {
       if (result == "SUCCESS") {
         growl.success('Facility has been deleted!',{title: 'Success!'});
@@ -499,25 +496,12 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
   $scope.restaurantDownloadMessage = "No File";
   $scope.restaurantCertUploadMessage = "Upload";
 
-  $scope.ownerCertButton = "btn-light";
-  $scope.ownerCertMessage = "Upload Owner Certificate";
-  $scope.ownerDownloadMessage = "No File";
-  $scope.ownerCertUploadMessage = "Upload";
-
   //change restaurant certificate buttons to indicate file exists
   var restaurantCertGreen = function () {
     $scope.restaurantCertButton = "btn-success";
     $scope.restaurantCertMessage = "View Restaurant Certificate";
     $scope.restaurantDownloadMessage = "Download File";
     $scope.restaurantCertUploadMessage = "Change File";
-  }
-
-  //change restaurant certificate buttons to indicate file exists
-  var userCertGreen = function () {
-    $scope.ownerCertButton = "btn-success";
-    $scope.ownerCertMessage = "View User Certificate";
-    $scope.ownerDownloadMessage = "Download File";
-    $scope.ownerCertUploadMessage = "Change File";
   }
 
   $scope.uploadFile = function (file_type) {
@@ -540,7 +524,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
       form_data.append('table_name', table_name);
 
       //save file to file system and save location to database
-      var uploadResult = restaurantService.uploadFile(form_data);
+      var uploadResult = authService.uploadFile(form_data);
       uploadResult.then(function (result) {
         if (result == "Successfully uploaded file") {
           //clear file input
@@ -582,13 +566,17 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
   $scope.verifyConfirmationRequest = function () {
     //flag to see if all information has been given.
     var informationCheck = true;
-    if ($scope.restaurant.restaurant_cert == null || $scope.user.user_cert == null ) {
-      growl.error('Required documents have not been uploaded. Please upload both restaurant certificate and user authenticaton.',{title: 'Warning!'});
+    if ($scope.user.user_status =! "VERIFIED") {
+
+    }
+    if ($scope.restaurant.restaurant_cert == null) {
+      growl.error('Required document have not been uploaded. Please upload certificate of occupancy.',{title: 'Warning!'});
       return;
     }
 
     for (var key in $scope.restaurant ) {
       if ($scope.restaurant[key] == null || $scope.restaurant[key] == "" ) {
+        console.log(key);
         informationCheck = false;
         break;
       }
@@ -597,7 +585,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     if (informationCheck == false) {
       $('#requestContinueModal').modal('show');
     } else {
-
+      $scope.confirmRequest();
     }
   }
 
@@ -607,7 +595,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     post_data = {"table_name": "tb_request", "condition": {'request_type': 'restaurant_confirmation', 'user_ref': $scope.user['user_id'], 'restaurant_ref': restaurant_id }};
 
     //save file to file system and save location to database
-    var requestResult = restaurantService.insertInfo(post_data);
+    var requestResult = authService.insertInfo(post_data);
     requestResult.then(function (result) {
       if (result == "Successfully inserted information") {
 
@@ -617,7 +605,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
         post_data['condition'] = {'restaurant_id': restaurant_id };
 
         //update restaurant from confirmed to pending
-        var statusUpdateResult = restaurantService.updateInfo(post_data);
+        var statusUpdateResult = authService.updateInfo(post_data);
         statusUpdateResult.then(function(result) {
           if (result == 'Successfully updated information') {
             updateRestaurantList();

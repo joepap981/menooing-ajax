@@ -199,7 +199,23 @@
 
     <!-- Request card -->
     <div id="right-side-card" class="col-4 mb-3">
-      <div class ="card mb-3">
+      <div ng-if="user.user_status == 'UNVERIFIED'" class ="card mb-3">
+        <div class="card-body">
+          <p > User has not been verified yet. Your user account must be verified in order to publish your restaurant. </p>
+          <div class="text-center">
+            <button class="btn btn-warning w-100" style="cursor: pointer;" ng-click="redirect('/profile')"> Go to User Profile </button>
+          </div>
+        </div>
+      </div>
+
+      <div ng-if="user.user_status == 'PENDING'" class ="card mb-3">
+        <div class="card-body">
+          <p> Your user request is pending admin confirmation. Your user account must be verified in order to publish your restaurant. </p>
+        </div>
+      </div>
+
+
+      <div ng-if= "user.user_status == 'VERIFIED'" class ="card mb-3">
         <div class="card-body">
           <div ng-if="restaurant.restaurant_status == 'UNCONFIRMED'">
             <p> Your restaurant is not discoverable by others yet. Go ahead and request to publish. </p>
@@ -207,10 +223,12 @@
               <button class="btn btn-primary" ng-click="verifyConfirmationRequest()"> Request to Publish </button>
             </div>
           </div>
-          <div ng-if="restaurant.restaurant_status == 'PENDING'">
-            <p> Your request has been send and is being reviewed by the admin </p>
+          <div ng-if="restaurant.restaurant_status == 'PENDING'" class="text-center">
+            <p> Your request has been sent and is being reviewed by the admin </p>
+            <button class="btn btn-warning mt-3"> Cancel Request </button>
           </div>
-          <div ng-if="restaurant.restaurant_status == 'CONFIRMED'">
+          <div ng-if="restaurant.restaurant_status == 'CONFIRMED'" class="text-center">
+            <button class="btn btn-success mb-2 w-100"> Confirmed </button>
             <p> Your restaurant has been confirmed. The changes you make to your restaurant will be public.</p>
           </div>
         </div>
@@ -221,7 +239,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="requestContinueModalLabel">Add Available Time</h5>
+              <h5 class="modal-title" id="requestContinueModalLabel"> Continue Request? </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -269,14 +287,13 @@
           <hr>
           <h5 class="card-title"> Available Hours </h5>
 
-          <button class="btn btn-light" style="width: 97%;" data-toggle="modal" data-target="#timeModal"> + </button>
+          <button class="btn btn-light" style="width: 97%;"> + </button>
 
           <!-- available time cards -->
           <div id="available-list">
             <div ng-repeat="item in availableTime">
               <div class="d-flex">
                 <button class="btn btn-light w-100 mt-1"> {{item.available_day }}, {{item.available_begin}} to {{ item.available_end }} <span class="time-delete-button" ng-click="deleteAvailabletime( item.available_id )"> x </span> </button>
-
               </div>
             </div>
           </div>
@@ -336,7 +353,6 @@
         <div class="card-body">
           <h5 class="card-title"> Documents </h5>
           <button class="btn w-100 mb-2" ng-class="restaurantCertButton" ng-click="changeButton()" data-toggle="modal" data-target="#restaurantCertModal"> {{ restaurantCertMessage }} </button>
-          <button class="btn w-100" ng-class="ownerCertButton" ng-click="changeButton()" data-toggle="modal" data-target="#userCertModal"> {{ ownerCertMessage }} </button>
         </div>
       </div>
 
@@ -379,48 +395,6 @@
           </div>
         </div>
       </div>
-
-      <!-- User Cert Modal -->
-      <div class="modal fade" id="userCertModal" tabindex="-1" role="dialog" aria-labelledby="userCertModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="userCertModalLabel">Owner Authentication</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p> We require the owner to provide a document to identify themselves.
-                Your document will be safe with us :). </p>
-
-              <hr>
-              <div class="form-group">
-                <div class="d-flex mb-3">
-                  <p> Social Security or Driver License </p>
-                  <button class="btn ml-auto btn-sm" ng-class="ownerCertButton" ng-click="downloadFile('user_cert')"> {{ ownerDownloadMessage }} </a>
-                </div>
-
-                  <div class="card card-body d-flex">
-                    <input type="file" file-input ="user_cert" id="coFile" ng-model ="files.user_cert">
-                    <div class="btn-box mt-2 ml-auto">
-                      <button class="btn btn-primary btn-sm" ng-click = "uploadFile('user_cert')"> {{ ownerCertUploadMessage}} </button>
-                    </div>
-                  </div>
-
-                </div>
-
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
 
     </div>
   </div>

@@ -103,6 +103,10 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'angular-growl', 'ui.bootstrap
     .when('/restaurant-search', {
       templateUrl: 'view/user/restaurant-search/restaurant-search-main.php'
     })
+    .when('/restaurant-guest-request/:restaurant_id', {
+      templateUrl: 'view/user/dashboard/restaurant/restaurant-guest-request.php',
+      controller: 'restaurantGuestRequestCtrl'
+    })
   	.otherwise({
   		redirectTo: '/'
   	});

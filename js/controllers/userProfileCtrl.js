@@ -5,29 +5,36 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
   $scope.input = {};
   $scope.files = {};
 
+  $scope.sessionResponse;
+
   var init = function () {
     authService.checkSession().then(function (response) {
-      var post_data = {};
-      post_data.table_name = 'tb_user_info';
-      post_data.condition = {'user_ref': response.user_id};
-
-      authService.getInfo(post_data).then(function (result) {
-        $scope.user = result[0];
-        $scope.user.first_name = response.user_first_name;
-        $scope.user.last_name = response.user_last_name;
-        $scope.user.user_id = response.user_id;
-
-        //check for profileImage
-        if ($scope.user.user_img != null) {
-          $scope.user.img_ref = $scope.user.user_img;
-        } else {
-          $scope.user.img_ref = '/noexec/square.jpg';
-        }
-      });
+      $scope.sessionResponse = response;
+      updateUser();
     });
   }
 
   init();
+
+  var updateUser = function () {
+    var post_data = {};
+    post_data.table_name = 'tb_user_info';
+    post_data.condition = {'user_ref': $scope.sessionResponse.user_id};
+
+    authService.getInfo(post_data).then(function (result) {
+      $scope.user = result[0];
+      $scope.user.first_name = $scope.sessionResponse.user_first_name;
+      $scope.user.last_name = $scope.sessionResponse.user_last_name;
+      $scope.user.user_id = $scope.sessionResponse.user_id;
+
+      //check for profileImage
+      if ($scope.user.user_img != null) {
+        $scope.user.img_ref = $scope.user.user_img;
+      } else {
+        $scope.user.img_ref = '/noexec/square.jpg';
+      }
+    });
+  }
 
 
   //show image preview
@@ -139,4 +146,68 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
       }
     });
   }
+
+  $scope.verifyVerificationRequest = function () {
+    //flag to see if all information has been given.
+    var informationCheck = true;
+    if (($scope.user.user_cert == null || $scope.user.user_cert == "") || ( $scope.user.user_ssn == null | $scope.user.user_ssn =="")) {
+      growl.error('Required documents have not been uploaded. Please upload certificate of occupancy.',{title: 'Warning!'});
+      return;
+    }
+
+    for (var key in $scope.user ) {
+      if ($scope.user[key] == null || $scope.user[key] == "" ) {
+        informationCheck = false;
+        break;
+      }
+    }
+
+    if (informationCheck == false) {
+      $('#requestContinueModal').modal('show');
+    } else {
+      $scope.confirmVerifcationRequest();
+    }
+  }
+
+  //finalize confirm request
+  $scope.confirmVerifcationRequest = function () {
+    var post_data = {};
+    post_data = {
+      "table_name": "tb_request",
+      "condition": {
+        'request_type': 'user_verification'
+      }
+    };
+
+    //save file to file system and save location to database
+    var requestResult = authService.insertInfo(post_data);
+    requestResult.then(function (result) {
+      if (result == "Successfully inserted information") {
+
+        var post_data = {};
+        post_data['table_name'] = 'tb_user_info';
+        post_data['update_info'] = {'user_status': 'PENDING'};
+        post_data['condition'] = {'user_ref':   $scope.user.user_id };
+
+        //update restaurant from confirmed to pending
+        var statusUpdateResult = authService.updateInfo(post_data);
+        statusUpdateResult.then(function(result) {
+          if (result == 'Successfully updated information') {
+            updateUser();
+            growl.success('Request Sent!',{title: 'Success!'});
+          } else if ( result == 'Failed to update information') {
+            growl.error('Failed to update restaurant status.',{title: 'Error!'});
+          } else {
+            growl.error('Something has gone terribly wrong while updating restaurant status.',{title: 'Error!'});
+          }
+        });
+
+      } else if (result == "Failed to insert information") {
+        growl.error('Failed to send request!',{title: 'Error!'});
+      } else {
+        growl.error('Something has gone terribly wrong while sending the request.',{title: 'Error!'});
+      }
+    });
+  }
+
 }]);
