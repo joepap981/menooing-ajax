@@ -32,23 +32,6 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       });
     },
 
-    getInfo: function(queryObj) {
-      return $http({ method: "POST", url: "action/get.php", data: queryObj})
-      .then(function mySuccess (response) {
-        if (response.data != null) {
-          return response.data;
-        } else {
-          return null;
-        }
-      });
-    },
-
-    deleteInfo: function (queryObj) {
-      return $http({ method: "POST", url: "action/delete.php", data: queryObj})
-      .then(function mySuccess (response) {
-          return response.data;
-      });
-    },
 
     //add  data to sessionStorage for temporary storage
     //type: name of sessionStorage object
@@ -70,49 +53,8 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
       $window.sessionStorage[type] = JSON.stringify(response);
     },
 
-    uploadFile: function (form_data) {
-      return $http({ method: "POST", url: "action/uploadfile.php", data: form_data, headers: {'Content-Type': undefined},
-    }).then(function mySuccess(response) {
-        return response.data;
-      });
-    },
-
-    pushToFileList: function (form_data) {
-      file_list.push(form_data);
-    },
-
-    getFileList: function () {
-      return file_list;
-    },
-
-    clearFileList: function () {
-      file_list = [];
-    },
-
     checkPrivilege: function (restaurant_id) {
       return $http({ method: "POST", url: "action/check_privilege.php", data: restaurant_id
-    }).then(function mySuccess(response) {
-        return response.data;
-      });
-    },
-
-    //insert data to database
-    //post_data contains
-    //  table_name
-    //  condition
-    insertInfo: function (post_data) {
-      return $http({ method: "POST", url: "action/insert.php", data: post_data
-    }).then(function mySuccess(response) {
-        return response.data;
-      });
-    },
-
-    //receives restaurant info
-    //table_name
-    //update_info - contains key and value of restaurant information
-    //conditions - the conditions that needs to be satisfied
-    updateInfo: function (post_data) {
-      return $http({ method: "POST", url: "action/update.php", data: post_data
     }).then(function mySuccess(response) {
         return response.data;
       });

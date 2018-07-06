@@ -56,7 +56,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
   //if match, begin session saving user_first_name, user_last_name, user_id
   //redirect to home
   $scope.signIn = function (signin) {
-    var myData = authService.get(signin);
+    var myData = authService.signin(signin);
     myData.then(function (result) {
 
       if(result == "Login Verified") {
@@ -85,7 +85,7 @@ angular.module('menuApp').controller('AuthController',['$scope', '$location', 'a
   //sign up and record user info to db
   $scope.signUp = function () {
     if($scope.checkPassword()) {
-      authService.set($scope.signup).then(function(response) {
+      authService.signup($scope.signup).then(function(response) {
         //successfully wrote into DB
         if (response == 'Available') {
           $scope.email_exists = false;

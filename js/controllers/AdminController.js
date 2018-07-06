@@ -39,7 +39,7 @@ angular.module('menuApp').controller('AdminController',['$scope', '$http','$rout
   //if match, begin session saving user_first_name, user_last_name, user_id
   //redirect to home
   $scope.signIn = function () {
-    var myData = authService.get($scope.signin);
+    var myData = authService.signin($scope.signin);
     myData.then(function (result) {
       if(result== "Login Verified") {
         $scope.user_no_match = false;

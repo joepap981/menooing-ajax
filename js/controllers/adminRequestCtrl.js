@@ -1,4 +1,4 @@
-angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 'authService', 'adminService', 'restaurantService', 'growl', function ($scope, $location, authService, adminService, restaurantService, growl) {
+angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 'authService', 'adminService', 'growl', function ($scope, $location, authService, adminService, growl) {
   $scope.selectedRequest;
   $scope.selectedRestaurant;
   $scope.selectedUser;
@@ -56,11 +56,11 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
 
   var getRestaurant = function (restaurant_id) {
     var queryObj = {
-      "table": "tb_restaurant",
-      "key": {"restaurant_id": restaurant_id }
+      "table_name": "tb_restaurant",
+      "condition": {"restaurant_id": restaurant_id }
     };
     //bring restaurant information based on restaurant id
-    var getRestaurant = restaurantService.getInfo(queryObj);
+    var getRestaurant = authService.getInfo(queryObj);
     getRestaurant.then(function (result) {
       $scope.selectedRestaurant = result[0];
       getUser();
@@ -74,15 +74,15 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
 
   var getUser = function () {
     var queryObj = {
-      "table": "tb_user_info",
-      "key": {"user_ref":  $scope.selectedRestaurant.user_ref}
+      "table_name": "tb_user_info",
+      "condition": {"user_ref":  $scope.selectedRestaurant.user_ref}
     };
 
     //bring restaurant information based on restaurant id
-    var getUser = restaurantService.getInfo(queryObj);
+    var getUser = authService.getInfo(queryObj);
     getUser.then(function (result) {
       $scope.selectedUser = result[0];
-      console.log($scope.selectedUser);
+
       //change certification related buttons and messages to green (file found)
       if ($scope.selectedUser['user_cert'] != null){
         userCertGreen();
@@ -90,11 +90,11 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     });
 
     var queryObj = {
-      "table": "tb_user",
-      "key": {"user_id":  $scope.selectedRestaurant.user_ref}
+      "table_name": "tb_user",
+      "condition": {"user_id":  $scope.selectedRestaurant.user_ref}
     };
 
-    var getUser = restaurantService.getInfo(queryObj);
+    var getUser = authService.getInfo(queryObj);
     getUser.then(function (result) {
       $scope.selectedUser2 = result[0];
     });
@@ -142,7 +142,7 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     post_info['update_info'] = {'restaurant_status': status};
     post_info['condition'] = {'restaurant_id': $scope.selectedRestaurant.restaurant_id };
 
-    var statusUpdateResult = restaurantService.updateInfo(post_info);
+    var statusUpdateResult = authService.updateInfo(post_info);
     statusUpdateResult.then(function(result) {
       if (result == "Successfully updated information") {
         //update restaurantList
@@ -153,7 +153,7 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
         post_info['update_info'] = {'request_status': 'HANDLED'};
         post_info['condition'] = {'request': $scope.selectedRequest.request_id };
 
-        var statusUpdateResult = restaurantService.updateInfo(post_info);
+        var statusUpdateResult = authService.updateInfo(post_info);
         statusUpdateResult.then(function(result) {
           var requestList = adminService.getRequestList();
           requestList.then (function (result) {

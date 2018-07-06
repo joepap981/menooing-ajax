@@ -55,12 +55,12 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
   var updateUser = function () {
     var queryObj = {
-      "table": "tb_user_info",
-      "key": {"user_ref":  $scope.restaurant.user_ref}
+      "table_name": "tb_user_info",
+      "condition": {"user_ref":  $scope.restaurant.user_ref}
     };
 
     //bring restaurant information based on restaurant id
-    var getUser = restaurantService.getInfo(queryObj);
+    var getUser = authService.getInfo(queryObj);
     getUser.then(function (result) {
       $scope.user = result[0];
       //change certification related buttons and messages to green (file found)
@@ -72,12 +72,12 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
   var updateFacilityList = function () {
     var queryObj = {
-      "table": "tb_restaurant_facility",
-      "key": {"restaurant_ref": restaurant_id }
+      "table_name": "tb_restaurant_facility",
+      "condition": {"restaurant_ref": restaurant_id }
     };
 
     //bring restaurant information based on restaurant id
-    var getFacility = restaurantService.getInfo(queryObj);
+    var getFacility = authService.getInfo(queryObj);
     getFacility.then(function (result) {
       $scope.facilityList = result;
     })
@@ -85,12 +85,12 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
   var updateEquipmentList = function () {
     var queryObj = {
-      "table": "tb_restaurant_equipment",
-      "key": {"restaurant_ref": restaurant_id }
+      "table_name": "tb_restaurant_equipment",
+      "condition": {"restaurant_ref": restaurant_id }
     };
 
     //bring restaurant information based on restaurant id
-    var getEquipment = restaurantService.getInfo(queryObj);
+    var getEquipment = authService.getInfo(queryObj);
     getEquipment.then(function (result) {
       $scope.equipmentList = result;
     })
@@ -98,12 +98,12 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
   var updateAvailableList = function () {
     var queryObj = {
-      "table": "tb_restaurant_available",
-      "key": {"restaurant_ref": restaurant_id }
+      "table_name": "tb_restaurant_available",
+      "condition": {"restaurant_ref": restaurant_id }
     };
 
     //bring restaurant information based on restaurant id
-    var getAvailable = restaurantService.getInfo(queryObj);
+    var getAvailable = authService.getInfo(queryObj);
     getAvailable.then(function (result) {
       $scope.availableTime = result;
     })
@@ -111,11 +111,11 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
   var updateRestaurantList = function () {
     var queryObj = {
-      "table": "tb_restaurant",
-      "key": {"restaurant_id": restaurant_id }
+      "table_name": "tb_restaurant",
+      "condition": {"restaurant_id": restaurant_id }
     };
     //bring restaurant information based on restaurant id
-    var getRestaurant = restaurantService.getInfo(queryObj);
+    var getRestaurant = authService.getInfo(queryObj);
     getRestaurant.then(function (result) {
       $scope.restaurant = result[0];
       updateUser();

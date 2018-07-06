@@ -1,7 +1,7 @@
 angular.module('menuApp').factory('authService', function($http, FileSaver) {
   var data = {};
   return {
-    get: function(signin) {
+    signin: function(signin) {
       return $http({method : "POST", url: 'action/signin.php', data: signin})
       .then(function mySuccess(response) {
         data = response.data;
@@ -9,7 +9,7 @@ angular.module('menuApp').factory('authService', function($http, FileSaver) {
       });
     },
 
-    set: function(signup) {
+    signup: function(signup) {
       return $http({ method : "POST", url: 'action/signup.php', data: signup})
       .then(function mySuccess(response) {
         //*** need to implement case where db read or write fail!! ***
@@ -105,20 +105,6 @@ angular.module('menuApp').factory('authService', function($http, FileSaver) {
 
         myData = new Blob([response.data], {type: response.data['type']});
         FileSaver.saveAs(myData, filename);
-      });
-    },
-
-    getInformation: function (queryObject) {
-      return $http({ method : "POST", url: 'action/get.php', data: queryObject})
-      .then(function mySuccess(response) {
-        return response.data;
-      });
-    },
-
-    updateInformation: function (changes) {
-      return $http({ method: "POST", url: "action/update_info.php", data: changes })
-    .then(function mySuccess(response) {
-        return response.data;
       });
     },
 

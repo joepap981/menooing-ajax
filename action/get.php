@@ -12,11 +12,13 @@ if(!$postdata) {
 //decoding json into array
 //need variables - table, key: value
 $data = json_decode($postdata, true);
+$table_name = $data['table_name'];
+$condition = $data['condition'];
 
 //build sql query
-$query = "SELECT * FROM $dbName." . $data['table'] . " WHERE ";
+$query = "SELECT * FROM $dbName.$table_name WHERE ";
 
-foreach($data['key'] as $key => $value) {
+foreach($condition as $key => $value) {
   $query = $query . "$key = $value and ";
 }
 

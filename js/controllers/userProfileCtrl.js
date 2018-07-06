@@ -7,12 +7,12 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
 
   var init = function () {
     authService.checkSession().then(function (response) {
-      var queryObject = {};
-      queryObject.table = 'tb_user_info';
-      queryObject.key = {'user_ref': response.user_id};
+      var post_data = {};
+      post_data.table_name = 'tb_user_info';
+      post_data.condition = {'user_ref': response.user_id};
 
-      authService.getInformation(queryObject).then(function (queryResponse) {
-        $scope.user = queryResponse[0];
+      authService.getInfo(post_data).then(function (result) {
+        $scope.user = result[0];
         $scope.user.first_name = response.user_first_name;
         $scope.user.last_name = response.user_last_name;
         $scope.user.user_id = response.user_id;
