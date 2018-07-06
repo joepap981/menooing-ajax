@@ -33,7 +33,6 @@ angular.module('menuApp').factory('restaurantService', function($http, $window) 
     },
 
     getInfo: function(queryObj) {
-
       return $http({ method: "POST", url: "action/get.php", data: queryObj})
       .then(function mySuccess (response) {
         if (response.data != null) {

@@ -8,18 +8,18 @@
 </div>
 
 <!-- show content when user session is in progress -->
-<div id="session" ng-if="session['user_id'] != null" >
+<div id="session" ng-if="session['user_id'] != null" ng-controller="userProfileCtrl">
   <div class="container">
 
-    <div class="row" ng-if="session['user_id'] != null">
-      <div class="col-md-3">
+    <div class="row mt-5" ng-if="session['user_id'] != null">
+      <div class="col-md-2 mt-3">
         <side-nav></side-nav>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-7">
 
-        <div class="content-box" ng-controller="userProfileCtrl">
+        <div class="content-box">
           <!--User Profile Image -->
-          <div class="card restaurant-profile">
+          <div class="card mt-3">
             <div id="profile" class="card-header"> User Profile Image </div>
             <div class="card-block container">
               <div class= "row">
@@ -32,7 +32,7 @@
                   <p> Upload a profile picture.</p>
                   <!-- hidden, linked to profileImagePreview -->
                   <input ng-show="null" id="profileImageUpload" file-input="user_img" type="file"></input>
-                  <button class="btn btn-primary" ng-click="uploadFile('user_img')"> Save Image </button>
+                  <button class="btn btn-primary pointer" ng-click="uploadFile('user_img')"> Save Image </button>
                 </div>
               </div>
             </div>
@@ -40,8 +40,8 @@
           <!--//user profile image end-->
 
           <!-- user basic information-->
-          <div class="card restaurant-profile">
-            <div class="card-header"> User Basic Information </div>
+          <div class="card mt-3">
+            <div id="profile" class="card-header"> User Basic Information </div>
             <div class="card-block container">
               <div class="form-group row" ng-model = "user">
                 <label class="col-label"> First Name: </label>
@@ -56,27 +56,27 @@
                 <input class="col-input form-control" ng-model = "user.user_phone"> </input>
               </div>
 
-              <button class="btn btn-primary mt-3 pull-right" ng-click="saveChanges()"> Save Changes </button>
+              <button class="btn btn-primary mt-3 pull-right pointer" ng-click="saveChanges()"> Save Changes </button>
 
             </div>
             <!--//user basic information end-->
           </div>
-          <div class="card restaurant-profile">
-            <div class="card-header"> User Documents </div>
+          <div class="card mt-3">
+            <div id="profile" class="card-header"> User Documents </div>
             <div class="card-block container">
               <div class="form-group row">
                 <label class="w-25"> Social Security: </label>
                 <div class="w-74 ml-3 ml-auto">
-                  <button class="btn btn-primary btn-sm" ng-show = "user.user_ssn == null" class="pointer" data-toggle="collapse" data-target="#collapseSSN"> Upload File </button>
-                  <button class="btn btn-success btn-sm" ng-show = "user.user_ssn != null" ng-click="downloadFile('user_ssn')"> Download File </button>
-                  <button class="btn btn-info btn-sm" ng-show = "user.user_ssn != null" class="ml-5 pointer" data-toggle="collapse" data-target="#collapseSSN"> Change file </button>
+                  <button class="btn btn-primary btn-sm pointer" ng-show = "user.user_ssn == null" class="pointer" data-toggle="collapse" data-target="#collapseSSN"> Upload File </button>
+                  <button class="btn btn-success btn-sm pointer" ng-show = "user.user_ssn != null" ng-click="downloadFile('user_ssn')"> Download File </button>
+                  <button class="btn btn-info btn-sm pointer" ng-show = "user.user_ssn != null" class="ml-5 pointer" data-toggle="collapse" data-target="#collapseSSN"> Change file </button>
 
                   <div class="collapse mt-3 mb-3" id="collapseSSN">
                     <div class="card card-body collapse">
                       <input type="file" id="ssnFileInput" class="col-input" file-input ="user_ssn" ng-model ="files.user_ssn">
                       <div class="btn-box">
-                        <button data-toggle= "collapse" data-target="#collapseSSN" class="btn secondary"> Cancel </button>
-                        <button class="btn btn-primary" ng-click = "uploadFile('user_ssn')"> Upload </button>
+                        <button data-toggle= "collapse pointer" data-target="#collapseSSN" class="btn secondary"> Cancel </button>
+                        <button class="btn btn-primary pointer" ng-click = "uploadFile('user_ssn')"> Upload </button>
                       </div>
                     </div>
                   </div>
@@ -86,15 +86,15 @@
               <div class="form-group row">
                 <label class="w-26"> Food Manager Certificate: </label>
                 <div class="w-74 ml-3 ml-auto">
-                  <button class="btn btn-primary btn-sm" ng-show = "user.user_cert == null" class="pointer" data-toggle="collapse" data-target="#collapseFoodManCert"> Upload File </button>
-                  <button class="btn btn-success btn-sm" ng-show = "user.user_cert != null" ng-click="downloadFile('user_cert')">  Download File </button>
-                  <button class="btn btn-info btn-sm" ng-show = "user.user_cert != null" class="ml-5 pointer" data-toggle="collapse" data-target="#collapseFoodManCert"> Change file </button>
+                  <button class="btn btn-primary btn-sm pointer" ng-show = "user.user_cert == null" class="pointer" data-toggle="collapse" data-target="#collapseFoodManCert"> Upload File </button>
+                  <button class="btn btn-success btn-sm pointer" ng-show = "user.user_cert != null" ng-click="downloadFile('user_cert')">  Download File </button>
+                  <button class="btn btn-info btn-sm pointer" ng-show = "user.user_cert != null" class="ml-5 pointer" data-toggle="collapse" data-target="#collapseFoodManCert"> Change file </button>
                   <div class="collapse mt-3 mb-3" id="collapseFoodManCert">
                     <div class="card card-body collapse">
                       <input type="file" id="foodCertFileInput" class="col-input" file-input ="user_cert" ng-model ="files.user_cert">
                       <div class="btn-box">
-                        <button data-toggle= "collapse" data-target="#collapseFoodManCert" class="btn secondary"> Cancel </button>
-                        <button class="btn btn-primary" ng-click = "uploadFile('user_cert')"> Upload </button>
+                        <button data-toggle= "collapse" data-target="#collapseFoodManCert" class="btn secondary pointer"> Cancel </button>
+                        <button class="btn btn-primary pointer" ng-click = "uploadFile('user_cert')"> Upload </button>
                       </div>
                     </div>
                   </div>
@@ -105,6 +105,23 @@
 
         </div>
         <!--//content-box end-->
+      </div>
+      <div class="col-md-3 mt-3 text-center">
+        <div class="card">
+          <div class="card-body">
+            <div ng-if="user.user_status == 'UNVERIFIED'">
+              <p> Your user account has not been verified by the admin yet. You need verification in order to publish or rent a restaurant. </p>
+              <button class="btn btn-primary pointer"> Request Verification </button>
+            </div>
+            <div ng-if="user.user_status == 'VERIFIED'">
+              <button class="btn btn-success pointer"> Your account is verified! </button>
+            </div>
+            <div ng-if="user.user_status == 'PENDING'">
+              <p> Your verification request has been sent. To cancel your request, click the button below. </p>
+              <button class="btn btn-warning pointer"> Cancel Request </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

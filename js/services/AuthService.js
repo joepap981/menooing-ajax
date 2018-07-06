@@ -27,6 +27,49 @@ angular.module('menuApp').factory('authService', function($http, FileSaver) {
         });
     },
 
+    //CRUD Functions
+    //table_name
+    //update_info - contains key and value of restaurant information
+    //conditions - the conditions that needs to be satisfied
+
+    //create
+    insertInfo: function (post_data) {
+      return $http({ method: "POST", url: "action/insert.php", data: post_data
+    }).then(function mySuccess(response) {
+        return response.data;
+      });
+    },
+
+    //read
+    getInfo: function(queryObj) {
+      return $http({ method: "POST", url: "action/get.php", data: queryObj})
+      .then(function mySuccess (response) {
+        if (response.data != null) {
+          return response.data;
+        } else {
+          return null;
+        }
+      });
+    },
+
+    //update
+    updateInfo: function (post_data) {
+      return $http({ method: "POST", url: "action/update.php", data: post_data
+    }).then(function mySuccess(response) {
+        return response.data;
+      });
+    },
+
+    //delete
+    deleteInfo: function (queryObj) {
+      return $http({ method: "POST", url: "action/delete.php", data: queryObj})
+      .then(function mySuccess (response) {
+          return response.data;
+      });
+    },
+
+
+    //Session Functions
     endSession: function() {
       return $http.get('action/endsession.php').then(function(result) {
         return result.data;
@@ -40,6 +83,7 @@ angular.module('menuApp').factory('authService', function($http, FileSaver) {
     },
 
 
+    //File upload download functions
     uploadFile: function (form_data) {
       return $http({ method: "POST", url: "action/uploadfile.php", data: form_data, headers: {'Content-Type': undefined},
     }).then(function mySuccess(response) {

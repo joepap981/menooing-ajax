@@ -23,16 +23,6 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
         } else {
           $scope.user.img_ref = '/noexec/square.jpg';
         }
-
-        //get file names
-        //if usercert exists, slice out path information
-        if($scope.user.user_cert != null) {
-          $scope.user.cert_name = $scope.user.user_cert.split('/').pop();
-        }
-
-        if($scope.user.user_ssn != null) {
-          $scope.user.ssn_name = $scope.user.user_ssn.split('/').pop();
-        }
       });
     });
   }
