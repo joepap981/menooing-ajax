@@ -74,3 +74,13 @@ fieldset[disabled] .btn-default.focus {
   color: #fff;
   background-color: #333;
 }
+
+.time-delete-button {
+  position: absolute;
+  right: 13%;
+  cursor: pointer;
+}
+
+.time-delete-button:hover {
+  color: #727272;
+}

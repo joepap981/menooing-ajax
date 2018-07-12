@@ -8,18 +8,14 @@
         <div class="card-body">
           <h5> Restaurant Rent Request </h5>
           </hr>
-          <div class="dropdown mt-3 d-flex text-center">
-            <p class=""> Rent by </p>
-            <select class="form-control form-control-sm w-50 ml-5" ng-model ="rentBy">
-              <option value="month" class="dropdown-item">Month</option>
-              <option value="day" class="dropdown-item">Day</option>
-              <option value="hour" class="dropdown-item">Hour</option>
-            </select>
+          <div class="dropdown mt-3">
+            <span> Rent by </span>
+            <button class="btn btn-default btn-sm"> {{ rentBy }} </button>
           </div>
 
           <div class="mt-4">
             <div style="display:inline-block; min-height:290px;">
-              <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>
+              <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options" date-disabled="disabled(date, mode)" ></div>
             </div>
 
             <div class="d-flex" ng-show="rentBy == 'hour'">
@@ -53,7 +49,9 @@
           <div id="available-list">
             <div ng-repeat="item in requestTimeList">
               <div class="d-flex">
-                <button class="btn btn-default w-100 mt-1"> {{item | date: 'fullDate' }} </button>
+                <button ng-if="rentBy == 'month'" class="btn btn-default w-100 mt-1"> {{item.beginTime | date: 'MMM dd' }} to {{ item.endTime | date: 'MMM dd'}} <span class="time-delete-button" ng-click="deleteRequestedTime(item.id)"> x </span> </button>
+                <button ng-if="rentBy == 'day'" class="btn btn-default w-100 mt-1"> {{item.beginTime | date: 'MMM dd, EEE' }} <span class="time-delete-button" ng-click="deleteRequestedTime(item.id)"> x </span> </button>
+                <button ng-if="rentBy == 'hour'" class="btn btn-default w-100 mt-1"> {{item.beginTime | date: 'MMM dd, HH:mm' }} - {{ item.endTime | date: 'HH:mm'}} <span class="time-delete-button" ng-click="deleteRequestedTime(item.id)"> x </span> </button>
               </div>
             </div>
           </div>

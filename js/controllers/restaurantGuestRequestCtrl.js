@@ -34,15 +34,16 @@ angular.module('menuApp').controller('restaurantGuestRequestCtrl',['$scope', '$l
   var getPrice = function () {
     var queryObj = {
       "table_name": "tb_restaurant",
-      "condition": {"restaurant_ref": restaurant_id },
+      "condition": {"restaurant_id": restaurant_id },
       "field": ["restaurant_fee", "restaurant_fee_standard"]
     };
 
     //bring restaurant information based on restaurant id
     var getPricing = authService.getInfo(queryObj);
     getPricing.then(function (result) {
-      $scope.pricing = result;
-      console.log()
+      $scope.pricing = result[0];
+      $scope.rentBy = $scope.pricing.restaurant_fee_standard;
+
     })
   }
 
@@ -121,45 +122,89 @@ angular.module('menuApp').controller('restaurantGuestRequestCtrl',['$scope', '$l
 
 
   $scope.requestTimeList = [];
+  $scope.rentBy = 'month';
+  var array_iterator = 1;
 
+  //add requested time slot
   $scope.addRequestTime = function () {
     var timeSlot = {};
 
     if($scope.rentBy == 'month') {
-      if ($scope.requestTimeList.length > 1) {
+      if ($scope.requestTimeList.length >= 1) {
         growl.warning('You only need one beginning date to rent the restaurant for a month');
       } else {
-        timeSlot = $scope.dt;
-        $scope.requestTimeList.push(timeSlot);
-        $scope.clear();
-      }
-    } else if ($scope.rentBy == 'day') {
-      if ($scope.requestTimeList.length > 10) {
-        growl.warning('You can only schedule 10 days at a time.', {title: 'Warning!'});
-      } else {
-        timeSlot = $scope.dt;
-        $scope.requestTimeList.push(timeSlot);
-        $scope.clear();
-      }
-    } else if ($scope.rentBy == 'hour') {
-      if ($scope.requestTimeList.length > 10) {
-        growl.warning('You can only schedule 10 slots at a time.', {title: 'Warning!'});
-      } else {
-        timeSlot.beginTime = $scope.dt;
-        timeSlot.beginTime.setHours($scope.beginTime.getHours());
-        timeSlot.beginTime.setMinutes($scope.beginTime.getMinutes());
-        timeSlot.endTime = $scope.dt;
-        timeSlot.endTime.setHours($scope.endTime.getHours());
-        timeSlot.endTime.setMinutes($scope.endTime.getMinutes());
+        timeSlot.id = array_iterator;
+        array_iterator++;
+        timeSlot.beginTime = new Date($scope.dt.getTime());
+        timeSlot.beginTime.setHours(0);
+        timeSlot.beginTime.setMinutes(0);
+
+        timeSlot.endTime = new Date($scope.dt.getTime());
+        timeSlot.endTime.setDate(timeSlot.beginTime.getDate() + 30);
+        timeSlot.endTime.setHours(0);
+        timeSlot.endTime.setMinutes(0);
 
         $scope.requestTimeList.push(timeSlot);
         console.log($scope.requestTimeList);
         $scope.clear();
       }
+    } else if ($scope.rentBy == 'day') {
+      if ($scope.requestTimeList.length >= 10) {
+        growl.warning('You can only schedule 10 days at a time.', {title: 'Warning!'});
+      } else {
+        timeSlot.id = array_iterator;
+        array_iterator++;
+        timeSlot.beginTime = new Date($scope.dt.getTime());
+        timeSlot.beginTime.setHours(0);
+        timeSlot.beginTime.setMinutes(0);
+
+        timeSlot.endTime = new Date($scope.dt.getTime());
+        timeSlot.endTime.setHours(0);
+        timeSlot.endTime.setMinutes(0);
+
+        $scope.requestTimeList.push(timeSlot);
+        $scope.clear();
+      }
+    } else if ($scope.rentBy == 'hour') {
+      if ($scope.requestTimeList.length >= 10) {
+        growl.warning('You can only schedule 10 slots at a time.', {title: 'Warning!'});
+      } else {
+
+        //check time format
+        if($scope.beginTime.getHours() > $scope.endTime.getHours()) {
+            growl.warning('Check the time and try again.',{title: 'Wrong time format!'});
+            return;
+        }
+        timeSlot.id = array_iterator;
+        array_iterator++;
+        timeSlot.beginTime = new Date($scope.dt.getTime());
+        timeSlot.beginTime.setHours($scope.beginTime.getHours());
+        timeSlot.beginTime.setMinutes($scope.beginTime.getMinutes());
+
+        timeSlot.endTime = new Date($scope.dt.getTime());
+        timeSlot.endTime.setHours($scope.endTime.getHours());
+        timeSlot.endTime.setMinutes($scope.endTime.getMinutes());
+
+        $scope.requestTimeList.push(timeSlot);
+        console.log($scope.requestTimeList);
+        console.log($scope.dt);
+        $scope.clear();
+      }
     } else {
-      growl.danger('Something went wrong. Refresh the page and try again.', {title: 'Error!'});
+      console.log($scope.rentBy);
+      growl.error('Something went wrong. Refresh the page and try again.', {title: 'Error!'});
     }
   }
+
+  //delete selected time slot
+  $scope.deleteRequestedTime = function (request_id) {
+    $scope.requestTimeList = $scope.requestTimeList.filter(slot => slot.id != request_id);
+  }
+
+  //disable reserved dates
+  $scope.disabled = function (date, mode) {
+    return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
+  };
 
   //timepicker functions
   $scope.beginTime = new Date();
@@ -194,5 +239,9 @@ angular.module('menuApp').controller('restaurantGuestRequestCtrl',['$scope', '$l
   $scope.clear = function() {
     $scope.mytime = null;
   };
+
+  //send rent request
+
+  $scope.sendRequest
 
 }]);

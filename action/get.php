@@ -23,7 +23,7 @@ if (isset($data['field'])) {
 	foreach ($field as $word) {
 	  $query = $query . "$word, ";
 	}
-	$query = substr($query, 0, -5) . " ";
+	$query = substr($query, 0, -2) . " ";
 	$query = $query . "FROM $dbName.$table_name WHERE ";
 
 } else {
