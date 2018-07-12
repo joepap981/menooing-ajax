@@ -15,8 +15,23 @@ $data = json_decode($postdata, true);
 $table_name = $data['table_name'];
 $condition = $data['condition'];
 
+
 //build sql query
-$query = "SELECT * FROM $dbName.$table_name WHERE ";
+if (isset($data['field'])) {
+	$field = $data['field'];
+	$query = "SELECT ";
+	foreach ($field as $word) {
+	  $query = $query . "$word, ";
+	}
+	$query = substr($query, 0, -5) . " ";
+	$query = $query . "FROM $dbName.$table_name WHERE ";
+
+} else {
+
+	$query = "SELECT * FROM $dbName.$table_name WHERE ";
+}
+
+
 
 foreach($condition as $key => $value) {
   $query = $query . "$key = $value and ";

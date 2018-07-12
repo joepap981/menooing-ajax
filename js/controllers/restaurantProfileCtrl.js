@@ -63,7 +63,6 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     var getUser = authService.getInfo(queryObj);
     getUser.then(function (result) {
       $scope.user = result[0];
-      console.log($scope.user.user_status);
     })
   }
 

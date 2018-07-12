@@ -119,7 +119,7 @@
         <div class="card-body text-center">
           <p> Interested in renting out this kitchen? </p>
           <div class="text-center">
-            <button class="btn btn-primary"> Send Request </button>
+            <button class="btn btn-primary" ng-click="redirectToRequest()"> Send Request </button>
           </div>
         </div>
       </div>
