@@ -218,4 +218,8 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     })
   }
 
+  $scope.redirectToRestaurantProfile = function (restaurant_id) {
+    $location.path('/restaurant-profile-admin');
+  }
+
 }]);

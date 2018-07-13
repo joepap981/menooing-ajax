@@ -11,6 +11,9 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'ngSanitize', 'angular-growl',
     .when('/sample', {
       templateUrl: 'view/admin/sample.php'
     })
+    .when('/restaurant-profile-admin', {
+      templateUrl: 'view/admin/restaurant-profile-admin.php'
+    })
     //Userside
   	.when('/', {
   		templateUrl: 'view/user/navigation/landing-page.php'

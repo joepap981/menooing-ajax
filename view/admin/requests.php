@@ -52,14 +52,21 @@
             </div>
 
             <div ng-if="selectedRequest.request_type = 'rent_request'">
-              <p> {{ selectedUser.user_ref }} </p>
+              <h5> Guest </h5>
+              <p> Request Sender User ID:  {{ selectedUser.user_ref }} </p>
+              <p> User status: <button class="btn btn-sm btn-default">{{ selectedUser.user_status}}</button> <p>
               <label> Food Handler Certificate </label>
               <button class="btn btn-sm" ng-class = "userCertButton" ng-click ="downloadFile('user_cert')"> {{ userCertMessage }} </button>
               <label> User Identification Document </label>
               <button class="btn btn-sm" ng-class = "userSSNButton" ng-click ="downloadFile('user_ssn')"> {{ userSSNMessage }} </button>
 
+            <hr>
+              <h5> Host </h5>
+              <button class="btn btn-primary btn-sm" ng-click="redirectToRestaurantProfile(88)"> View Profile </button>
+
+
               <div class="btn-box mt-5">
-                <button class="btn btn-primary btn-sm" ng-click="changeRestaurantStatus('CONFIRMED')"> Give Confirmation </button>
+                <button class="btn btn-primary btn-sm" ng-click="changeRestaurantStatus('CONFIRMED')"> Confirm Request </button>
                 <button class="btn btn-danger btn-sm" ng-click="changeRestaurantStatus('UNCONFIRMED')"> Unpublish </button>
               </div>
             </div>
@@ -75,6 +82,6 @@
     </div>
 
   </table>
-
+<button class="btn btn-primary btn-sm" ng-click="redirectToRestaurantProfile(88)"> View Profile </button>
   <ul class="pagination mt-5 d-flex justify-content-center" uib-pagination total-items="requestTotalItems" ng-model="requestCurrentPage" ng-change="pageChanged()" items-per-page="requestItemsPerPage"></ul>
 </div>
