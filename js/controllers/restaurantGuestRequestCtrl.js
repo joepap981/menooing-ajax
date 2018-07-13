@@ -242,6 +242,18 @@ angular.module('menuApp').controller('restaurantGuestRequestCtrl',['$scope', '$l
 
   //send rent request
 
-  $scope.sendRequest
+  $scope.sendRequest = function () {
+    //post_data to send to server
+    var post_data = {};
+    post_data = {
+      "table_name":"tb_request",
+      "condition": $scope.requestTimeList
+    }
+
+    var sendResult = authService.insertMultiple(post_data);
+    sendResult.then(function (result) {
+      console.log(result);
+    })
+  }
 
 }]);

@@ -15,7 +15,7 @@
 
           <div class="mt-4">
             <div style="display:inline-block; min-height:290px;">
-              <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options" date-disabled="disabled(date, mode)" ></div>
+              <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options" date-disabled="disabled('06', mode)" ></div>
             </div>
 
             <div class="d-flex" ng-show="rentBy == 'hour'">
@@ -64,7 +64,7 @@
       <div class="card text-center mb-3">
         <div class="card-body">
           <p> Send the owner rent request</p>
-          <button class="btn btn-primary w-100"> Send Request </button>
+          <button class="btn btn-primary w-100" ng-click="sendRequest()"> Send Request </button>
         </div>
       </div>
 
