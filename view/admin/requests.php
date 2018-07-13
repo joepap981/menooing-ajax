@@ -33,21 +33,37 @@
             </button>
           </div>
           <div class="modal-body">
-            <label> Status : {{ selectedRestaurant.restaurant_status }} </label>
-            <p> Restaurant Name : {{ selectedRestaurant.restaurant_name }} </p>
-            <p> Address : {{ selectedRestaurant.address}}</p>
-            <p> Owner Name : {{ selectedUser2.user_first_name }} {{ selectedUser2.user_last_name }}</p>
-            <p> Contact: {{ selectedUser.user_phone }}</p>
-            <label> Certificate of Occupancy </label>
-            <button class="btn btn-sm" ng-class = "restaurantCertButton" ng-click ="downloadFile('restaurant_cert')"> {{ restaurantCertMessage }} </button>
-            <label> User Identification Document </label>
-            <button class="btn btn-sm" ng-class = "userCertButton" ng-click ="downloadFile('user_cert')"> {{ userCertMessage }} </button>
-            <button class="btn btn-sm btn-info"> Edit Restaurant </button>
+            <div ng-if="selectedRequest.request_type == 'restaurant_confirmation'">
+              <label> Status : {{ selectedRestaurant.restaurant_status }} </label>
+              <p> Restaurant Name : {{ selectedRestaurant.restaurant_name }} </p>
+              <p> Address : {{ selectedRestaurant.address}}</p>
+              <p> Owner Name : {{ selectedUser2.user_first_name }} {{ selectedUser2.user_last_name }}</p>
+              <p> Contact: {{ selectedUser.user_phone }}</p>
+              <label> Certificate of Occupancy </label>
+              <button class="btn btn-sm" ng-class = "restaurantCertButton" ng-click ="downloadFile('restaurant_cert')"> {{ restaurantCertMessage }} </button>
+              <label> User Identification Document </label>
+              <button class="btn btn-sm" ng-class = "userSSNButton" ng-click ="downloadFile('user_snn')"> {{ userSSNMessage }} </button>
+              <button class="btn btn-sm btn-info"> Edit Restaurant </button>
 
-            <div class="btn-box mt-5">
-              <button class="btn btn-primary btn-sm" ng-click="changeRestaurantStatus('CONFIRMED')"> Give Confirmation </button>
-              <button class="btn btn-danger btn-sm" ng-click="changeRestaurantStatus('UNCONFIRMED')"> Unpublish </button>
+              <div class="btn-box mt-5">
+                <button class="btn btn-primary btn-sm" ng-click="changeRestaurantStatus('CONFIRMED')"> Give Confirmation </button>
+                <button class="btn btn-danger btn-sm" ng-click="changeRestaurantStatus('UNCONFIRMED')"> Unpublish </button>
+              </div>
             </div>
+
+            <div ng-if="selectedRequest.request_type = 'rent_request'">
+              <p> {{ selectedUser.user_ref }} </p>
+              <label> Food Handler Certificate </label>
+              <button class="btn btn-sm" ng-class = "userCertButton" ng-click ="downloadFile('user_cert')"> {{ userCertMessage }} </button>
+              <label> User Identification Document </label>
+              <button class="btn btn-sm" ng-class = "userSSNButton" ng-click ="downloadFile('user_ssn')"> {{ userSSNMessage }} </button>
+
+              <div class="btn-box mt-5">
+                <button class="btn btn-primary btn-sm" ng-click="changeRestaurantStatus('CONFIRMED')"> Give Confirmation </button>
+                <button class="btn btn-danger btn-sm" ng-click="changeRestaurantStatus('UNCONFIRMED')"> Unpublish </button>
+              </div>
+            </div>
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

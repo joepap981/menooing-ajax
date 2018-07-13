@@ -34,7 +34,12 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
 
   $scope.loadRequest = function (request) {
     $scope.selectedRequest = request;
-    getRestaurant($scope.selectedRequest.restaurant_ref);
+    if($scope.selectedRequest.request_type == "restaurant_confirmation") {
+      getRestaurant($scope.selectedRequest.restaurant_ref);
+    } else if ($scope.selectedRequest.request_type == "rent_request") {
+      getGuestUser();
+    }
+
   }
 
   //request pagination
@@ -84,9 +89,10 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
       $scope.selectedUser = result[0];
 
       //change certification related buttons and messages to green (file found)
-      if ($scope.selectedUser['user_cert'] != null){
-        userCertGreen();
+      if ($scope.selectedUser['user_ssn'] != null){
+        userSSNGreen();
       }
+
     });
 
     var queryObj = {
@@ -100,15 +106,53 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     });
   }
 
+  var getGuestUser = function () {
+    var queryObj = {
+      "table_name": "tb_user_info",
+      "condition": {"user_ref":  $scope.selectedRequest.user_ref}
+    };
+
+    //bring restaurant information based on restaurant id
+    var getUser = authService.getInfo(queryObj);
+    getUser.then(function (result) {
+      $scope.selectedUser = result[0];
+
+      //change certification related buttons and messages to green (file found)
+      if ($scope.selectedUser['user_cert'] != null){
+        userCertGreen();
+      }
+      if ($scope.selectedUser['user_ssn'] != null){
+        userSSNGreen();
+      }
+    });
+
+    var queryObj = {
+      "table_name": "tb_user",
+      "condition": {"user_id":  $scope.selectedRequest.user_ref}
+    };
+
+    var getUser = authService.getInfo(queryObj);
+    getUser.then(function (result) {
+      $scope.selectedUser2 = result[0];
+    });
+  }
+
   $scope.restaurantCertButton = "btn-danger";
   $scope.userCertButton = "btn-danger";
   $scope.restaurantCertMessage = "No file";
   $scope.userCertMessage = "No file";
+  $scope.userSSNButton = "btn-danger";
+  $scope.userSSNMessage = "No file";
 
   //change restaurant certificate buttons to indicate file exists
   var restaurantCertGreen = function () {
     $scope.restaurantCertButton = "btn-success";
     $scope.restaurantCertMessage = "View Restaurant Certificate";
+  }
+
+  var userSSNGreen = function () {
+    $scope.userSSNButton = "btn-success";
+    $scope.userSSNMessage = "View User Identification";
   }
 
   //change restaurant certificate buttons to indicate file exists
@@ -119,11 +163,14 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
 
   //download file
   $scope.downloadFile = function (file_type) {
-    if (file_type == "restaurant_cert") {
-      var path = $scope.selectedRestaurant.restaurant_cert;
+    if (file_type == "user_ssn") {
+      var path = $scope.selectedUser.user_ssn;
     } else if (file_type == "user_cert") {
-      var path;
-    } else {
+      var path = $scope.selectedUser.user_cert;
+    } else if (file_type == "restaurant_cert") {
+      var path = $scope.selectedRestaurant.restaurant_cert;
+    }
+    else {
       console.log(file_type + " does not exist.");
       return;
     }
