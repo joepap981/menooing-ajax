@@ -3,6 +3,10 @@ angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'r
   $scope.userRestaurants = [];
 
   var init = function () {
+    //extract url info if exists
+    var url = $location.path().split('/');
+    id = url.pop();
+
     //get all restaurants from user in current session (check in server)
     var request_type = {"type": "USER"};
     var restaurantList = restaurantService.getRestaurantList(request_type);
@@ -18,5 +22,8 @@ angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'r
     $location.path('/restaurant-profile/'+restaurant_id);
   };
 
+  $scope.redirect = function (url) {
+    $location.path(url +'/' + id);
+  };
 
 }]);

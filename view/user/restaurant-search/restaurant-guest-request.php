@@ -3,14 +3,19 @@
 <div class="container mt-5" style="min-height: 700px;">
   <button class="btn btn-primary mb-4"> Go back to restaurant </button>
   <div class="row">
-    <div class="col-5 text-center">
+    <div class="col-md-6 col-lg-6 text-center" style="min-width: 450px;">
       <div class="card">
         <div class="card-body">
           <h5> Restaurant Rent Request </h5>
           </hr>
           <div class="dropdown mt-3">
             <span> Rent by </span>
-            <button class="btn btn-default btn-sm"> {{ rentBy }} </button>
+            <!-- <button class="btn btn-default btn-sm"> {{ rentBy }} </button> -->
+            <select class="form-control form-control-sm w-50 ml-5" ng-model ="rentBy">
+              <option value="month" class="dropdown-item">Month</option>
+              <option value="day" class="dropdown-item">Day</option>
+              <option value="hour" class="dropdown-item">Hour</option>
+            </select>
           </div>
 
           <div class="mt-4">
@@ -40,8 +45,8 @@
       </div>
     </div>
 
-    <div class="col-3">
-      <div class="card" style="min-height: 580px;">
+    <div class="col-md-3 col-lg-3">
+      <div class="card" style="min-height: 580px; min-width: 200px;">
         <div class="card-body text-center">
           <h5> Requested Times </h5>
 
@@ -49,9 +54,9 @@
           <div id="available-list">
             <div ng-repeat="item in requestTimeList">
               <div class="d-flex">
-                <button ng-if="rentBy == 'month'" class="btn btn-default w-100 mt-1"> {{item.beginTime | date: 'MMM dd' }} to {{ item.endTime | date: 'MMM dd'}} <span class="time-delete-button" ng-click="deleteRequestedTime(item.id)"> x </span> </button>
-                <button ng-if="rentBy == 'day'" class="btn btn-default w-100 mt-1"> {{item.beginTime | date: 'MMM dd, EEE' }} <span class="time-delete-button" ng-click="deleteRequestedTime(item.id)"> x </span> </button>
-                <button ng-if="rentBy == 'hour'" class="btn btn-default w-100 mt-1"> {{item.beginTime | date: 'MMM dd, HH:mm' }} - {{ item.endTime | date: 'HH:mm'}} <span class="time-delete-button" ng-click="deleteRequestedTime(item.id)"> x </span> </button>
+                <button ng-if="rentBy == 'month'" class="btn btn-default w-100 mt-1"> {{item.beginTime | date: 'MMM dd' }} to {{ item.endTime | date: 'MMM dd'}} <span class="time-delete-button" ng-click="deleteRequestedTime(item.$$hashKey)"> x </span> </button>
+                <button ng-if="rentBy == 'day'" class="btn btn-default w-100 mt-1"> {{item.beginTime | date: 'MMM dd, EEE' }} <span class="time-delete-button" ng-click="deleteRequestedTime(item.$$hashKey)"> x </span> </button>
+                <button ng-if="rentBy == 'hour'" class="btn btn-default w-100 mt-1"> {{item.beginTime | date: 'MMM dd, HH:mm' }} - {{ item.endTime | date: 'HH:mm'}} <span class="time-delete-button" ng-click="deleteRequestedTime(item.$$hashKey)"> x </span> </button>
               </div>
             </div>
           </div>
@@ -60,7 +65,7 @@
       </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-md-3 col-lg-3" style="min-width: 200px;">
       <div class="card text-center mb-3">
         <div class="card-body">
           <p> Send the owner rent request</p>

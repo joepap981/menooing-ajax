@@ -103,6 +103,10 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'ngSanitize', 'angular-growl',
     .when('/restaurant-search', {
       templateUrl: 'view/user/restaurant-search/restaurant-search-main.php'
     })
+    .when('/request-success/:restaurant_id', {
+      templateUrl: 'view/user/restaurant-search/request-success.php',
+      controller: 'restaurantGuestRequestCtrl'
+    })
     .when('/restaurant-guest-request/:restaurant_id', {
       templateUrl: 'view/user/restaurant-search/restaurant-guest-request.php',
       controller: 'restaurantGuestRequestCtrl'

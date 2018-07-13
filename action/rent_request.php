@@ -16,7 +16,7 @@ if(!$postdata) {
 
 //decoding json into array
 $data = json_decode($postdata, true);
-$table_name = $data['table_name'];
+$restaurant_ref = $data['restaurant_ref'];
 $info = $data['condition'];
 
 //start mysql transaction
@@ -27,17 +27,27 @@ $commit_query = "COMMIT;";
 //start transaction
 mysqli_query($conn, $transaction_query);
 
+//create request
+$create_request_query = "INSERT INTO $dbName.tb_request (user_ref, request_type, request_host_restaurant_ref) VALUES (" . $user['user_id'] . ", 'rent_request', $restaurant_ref);";
+$create_request_result = (mysqli_query($conn, $create_request_query));
+
+if($create_request_result != 1) {
+  exit('Failed to create request');
+} else {
+  $request_id = mysqli_insert_id($conn);
+}
+
 foreach($info as $condition) {
 
   //create restaurant restaurant
   //Building query string for INSERT into database
-  $insert_query = "INSERT INTO " . $dbName . "." .  $table_name . " (user_ref, ";
+  $insert_query = "INSERT INTO $dbName.tb_rent_time (request_ref, ";
 
   foreach($condition as $key => $value) {
     $insert_query = $insert_query . " " . $key . ", ";
   }
   //trim end ', '
-  $insert_query = substr($insert_query, 0, -2) . ") VALUES (" . $user['user_id'] . ", ";
+  $insert_query = substr($insert_query, 0, -2) . ") VALUES ($request_id, ";
   foreach($condition as $key => $value) {
     $insert_query = $insert_query . '"' . $value . '", ';
   }
@@ -52,8 +62,6 @@ foreach($info as $condition) {
   	$rollback_result = mysqli_query($conn, $rollback_query);
   	exit("Failed to insert information");
   }
-
-
 }
 
 mysqli_query($conn, $commit_query);

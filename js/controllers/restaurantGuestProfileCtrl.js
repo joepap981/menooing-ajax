@@ -26,32 +26,14 @@ angular.module('menuApp').controller('restaurantGuestProfileCtrl',['$scope', '$l
     var url = $location.path().split('/');
     restaurant_id = url.pop();
 
-    //check if the restaurant belongs to current session user
-    var priviledgeCheck = restaurantService.checkPrivilege(restaurant_id);
-    priviledgeCheck.then(function (result) {
-      if(result == "ACCEPTED") {
-        //bring restaurant information based on restaurant id
-        updateRestaurantList();
-        updateAvailableList();
-        updateEquipmentList();
-        updateFacilityList();
-
-
-      } else if (result=="DENIED") {
-        growl.error('You do not have privilege.',{title: 'Error!'});
-        $location.path('/');
-      } else if (result == "NO SESSION") {
-        growl.error('Please log in to continue.',{title: 'Error!'});
-        $location.path('/signin');
-      } else {
-        growl.error('Something has gone wrong.',{title: 'Error!'});
-        $location.path('/');
-      }
-    })
+    //bring restaurant information based on restaurant id
+    updateRestaurantList();
+    updateAvailableList();
+    updateEquipmentList();
+    updateFacilityList();
   }
 
   //initialize function at loading of controller
-  init();
 
   $scope.redirectToRequest = function () {
     $location.path('/restaurant-guest-request/'+$scope.restaurant.restaurant_id);
@@ -211,5 +193,5 @@ angular.module('menuApp').controller('restaurantGuestProfileCtrl',['$scope', '$l
   $scope.editFacilityID;
   $scope.editFacility;
 
-
+  init();
 }]);

@@ -22,6 +22,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
 
   //initializing function
   var init = function () {
+    console.log('this is the restaurant profile');
     //get the restaurant id from the url
     var url = $location.path().split('/');
     restaurant_id = url.pop();

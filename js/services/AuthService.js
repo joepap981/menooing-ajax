@@ -68,9 +68,9 @@ angular.module('menuApp').factory('authService', function($http, FileSaver) {
       });
     },
 
-    //insert multiple
-    insertMultiple: function (post_data) {
-      return $http({ method: "POST", url: "action/insert_multiple.php", data: post_data
+    //rent request
+    rentRequest: function (post_data) {
+      return $http({ method: "POST", url: "action/rent_request.php", data: post_data
     }).then(function mySuccess(response) {
         return response.data;
       });

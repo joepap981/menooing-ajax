@@ -4,7 +4,7 @@
   <img class="masthead-img" src="img/bg-masthead.jpg">
 </div>
 
-<div class="container mt-5" ng-controller= "restaurantProfileCtrl">
+<div class="container mt-5" ng-controller= "restaurantGuestProfileCtrl">
   <div id="restaurant-main-info" class="row">
     <div class="col-8">
       <div class="restaurant-header">
