@@ -1,8 +1,8 @@
-angular.module('menuApp').controller('AdminController',['$scope', '$http','$route', 'growl', 'authService', function ($scope, $http, $route, growl, authService) {
+angular.module('menuApp').controller('AdminController',['$scope', '$http','$route', '$location', 'growl', 'authService', function ($scope, $http, $route, $location, growl, authService) {
   $scope.pageNum = 1;
 
-  $scope.changePage = function (num) {
-      $scope.pageNum = num;
+  $scope.redirect = function (url) {
+      $location.path(url);
   }
 
   $scope.signin = {};

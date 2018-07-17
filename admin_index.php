@@ -56,28 +56,28 @@
           <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
             <!--Dashboad-->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-              <a class="nav-link" ng-click ="changePage(1)">
+              <a class="nav-link" ng-click ="redirect('/admin')">
                 <i class="fa fa-fw fa-dashboard"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
             <!--Users-->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
-              <a class="nav-link" ng-click ="changePage(2)">
+              <a class="nav-link" ng-click ="redirect('/admin/user-list')">
                 <i class="fa fa-fw fa-user"></i>
                 <span class="nav-link-text">Users</span>
               </a>
             </li>
             <!--Requests-->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Requests">
-              <a class="nav-link" ng-click ="changePage(3)">
+              <a class="nav-link" ng-click ="redirect('/admin/requests')">
                 <i class="fa fa-fw fa-user"></i>
                 <span class="nav-link-text">Requests</span>
               </a>
             </li>
             <!--Restaurant Profile -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Requests">
-              <a class="nav-link" ng-click ="changePage(4)">
+              <a class="nav-link" ng-click ="redirect('/admin/restaurant-profile/111')">
                 <i class="fa fa-fw fa-user"></i>
                 <span class="nav-link-text">Restaurant Profile</span>
               </a>
@@ -188,12 +188,12 @@
         <div class="container-fluid" >
 
         <!--Main view container-->
-        <div class="main-container">
-          <div ng-if="pageNum == 1" landing-page-view></div>
+        <main class="main-container" ng-view>
+          <!-- <div ng-if="pageNum == 1" landing-page-view></div>
           <div ng-if="pageNum == 2" user-list-view></div>
           <div ng-if="pageNum == 3" requests-view></div>
-          <div ng-if="pageNum == 4" restaurant-profile-view></div>
-        </div>
+          <div ng-if="pageNum == 4" restaurant-profile-view></div> -->
+        </main>
 
         <!-- /.container-fluid-->
         <!-- /.content-wrapper-->

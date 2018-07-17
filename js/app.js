@@ -6,16 +6,20 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'ngSanitize', 'angular-growl',
     $routeProvider
     //Admin Page
     .when('/admin', {
-      templateUrl: 'admin_index.php'
+      templateUrl: 'view/admin/landing-page.php'
     })
-    .when('/sample', {
-      templateUrl: 'view/admin/sample.php'
-    })
-    .when('/requests', {
+    .when('/admin/requests', {
       templateUrl: 'view/admin/requests.php'
     })
-    .when('/restaurant-profile-admin', {
-      templateUrl: 'view/admin/restaurant-profile-admin.php'
+    .when('/admin/user-list', {
+      templateUrl: 'view/admin/user-list.php'
+    })
+    .when('/admin/sample', {
+      templateUrl: 'view/admin/sample.php'
+    })
+    .when('/admin/restaurant-profile/:restaurant_id', {
+      templateUrl: 'view/admin/restaurant-profile-admin.php',
+      controller: 'adminRestaurantProfileCtrl'
     })
     //Userside
   	.when('/', {
