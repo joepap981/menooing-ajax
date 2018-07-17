@@ -199,11 +199,6 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
         //update restaurantList
         getRestaurant();
 
-        var post_info = {};
-        post_info['table_name'] = 'tb_request';
-        post_info['update_info'] = {'request_status': 'HANDLED'};
-        post_info['condition'] = {'request': $scope.selectedRequest.request_id };
-
         var request_status;
         if (status == 'CONFIRMED') {
           request_status = 'AUTHORIZED';
@@ -230,6 +225,7 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
 
     var statusUpdateResult = authService.updateInfo(post_info);
     statusUpdateResult.then(function(result) {
+      //update request list
       var requestList = adminService.getRequestList();
       requestList.then (function (result) {
         $scope.Requests = result;

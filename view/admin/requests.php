@@ -1,5 +1,11 @@
 <link rel="stylesheet" href="css/user/pagination-custom.css">
 <div class="admin-container" ng-controller = "adminRequestCtrl">
+  <select class="form-control">
+    <option value="rent_request">One</option>
+    <option value="restaurant_confirmation">Two</option>
+    <option value="user_">Three</option>
+  </select>
+
   <table class="table table-hover">
     <thead>
       <tr>

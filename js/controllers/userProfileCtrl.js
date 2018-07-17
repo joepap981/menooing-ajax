@@ -23,8 +23,8 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
 
     authService.getInfo(post_data).then(function (result) {
       $scope.user = result[0];
-      $scope.user.first_name = $scope.sessionResponse.user_first_name;
-      $scope.user.last_name = $scope.sessionResponse.user_last_name;
+      $scope.user.user_first_name = $scope.sessionResponse.user_first_name;
+      $scope.user.user_last_name = $scope.sessionResponse.user_last_name;
       $scope.user.user_id = $scope.sessionResponse.user_id;
 
       //check for profileImage
@@ -116,33 +116,40 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
 
     var ajaxObj= {};
     ajaxObj['update_info'] = {
-      'phone': $scope.user.user_phone,
+      'user_phone': $scope.user.user_phone,
     };
     ajaxObj['condition'] = {'user_ref': $scope.user.user_id};
-    ajaxObj['table'] = 'tb_user_info';
+    ajaxObj['table_name'] = 'tb_user_info';
 
-    authService.updateInformation(ajaxObj).then(function(response) {
-      if (response == "SUCCESS") {
-
-        ajaxObj['update_info'] = {
-          'first_name': $scope.user.first_name,
-          'last_name': $scope.user.last_name,
-        };
-        ajaxObj['condition'] = {'user_id': $scope.user.user_id};
-        ajaxObj['table'] = 'tb_user';
-
-        authService.updateInformation(ajaxObj).then(function(response) {
-          if (response == "SUCCESS") {
-              growl.success('Successfully updated user information.',{title: 'Success!'});
-
-              //update page change
-              init();
-          }else {
-              growl.error('Failed to update user first_name and last_name.',{title: 'Error!'});
-          }
-        });
+    authService.updateInfo(ajaxObj).then(function(response) {
+      if (response == "Successfully updated information") {
+        growl.success('Successfully updated user information.',{title: 'Success!'});
+        //update page change
+        init();
+      }else if (response == "Failed to update information") {
+        growl.error('Failed to update info',{title: 'Error!'});
       }else {
-          growl.error('Failed to update user phone number.',{title: 'Error!'});
+        growl.error('Something has gone very wrong.',{title: 'Error!'});
+      }
+    });
+
+    var ajaxObj= {};
+    ajaxObj['update_info'] = {
+      'user_first_name': $scope.user.user_first_name,
+      'user_last_name': $scope.user.user_last_name,
+    };
+    ajaxObj['condition'] = {'user_id': $scope.user.user_id};
+    ajaxObj['table_name'] = 'tb_user';
+
+    authService.updateInfo(ajaxObj).then(function(response) {
+      if (response == "Successfully updated information") {
+        growl.success('Successfully updated user information.',{title: 'Success!'});
+        //update page change
+        init();
+      }else if (response == "Failed to update information") {
+        growl.error('Failed to update info',{title: 'Error!'});
+      }else {
+        growl.error('Something has gone very wrong.',{title: 'Error!'});
       }
     });
   }

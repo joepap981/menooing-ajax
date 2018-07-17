@@ -45,11 +45,11 @@
             <div class="card-block container">
               <div class="form-group row" ng-model = "user">
                 <label class="col-label"> First Name: </label>
-                <input class="col-input form-control" ng-model = "user.first_name"></input>
+                <input class="col-input form-control" ng-model = "user.user_first_name"></input>
               </div>
               <div class="form-group row">
                 <label class="col-label"> Last Name: </label>
-                <input class="col-input form-control" ng-model = "user.last_name"> </input>
+                <input class="col-input form-control" ng-model = "user.user_last_name"> </input>
               </div>
               <div class="form-group row">
                 <label class="col-label"> Phone: </label>
