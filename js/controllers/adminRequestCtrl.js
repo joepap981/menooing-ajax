@@ -197,21 +197,20 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     statusUpdateResult.then(function(result) {
       if (result == "Successfully updated information") {
         //update restaurantList
-        taurant();
+        getRestaurant();
 
         var post_info = {};
         post_info['table_name'] = 'tb_request';
         post_info['update_info'] = {'request_status': 'HANDLED'};
         post_info['condition'] = {'request': $scope.selectedRequest.request_id };
 
-        var statusUpdateResult = authService.updateInfo(post_info);
-        statusUpdateResult.then(function(result) {
-          var requestList = adminService.getRequestList();
-          requestList.then (function (result) {
-            $scope.Requests = result;
-            $scope.totalItems = $scope.Requests.length;
-          });
-        });
+        var request_status;
+        if (status == 'CONFIRMED') {
+          request_status = 'AUTHORIZED';
+        } else if (status = 'UNCONFIRMED') {
+          request_status = 'DENIED';
+        }
+        $scope.changeRequestStatus(request_status);
 
         growl.success('Status has been successfully updated.',{title: 'Success!'});
       } else if (result == "Failed to update information") {
@@ -220,6 +219,23 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
         growl.error('Something has gone wrong.',{title: 'Error!'});
       }
     })
+  }
+
+  //change restaurant rent request
+  $scope.changeRequestStatus = function(request_update) {
+    var post_info = {};
+    post_info['table_name'] = 'tb_request';
+    post_info['update_info'] = {'request_status': request_update};
+    post_info['condition'] = {'request_id': $scope.selectedRequest.request_id };
+
+    var statusUpdateResult = authService.updateInfo(post_info);
+    statusUpdateResult.then(function(result) {
+      var requestList = adminService.getRequestList();
+      requestList.then (function (result) {
+        $scope.Requests = result;
+        $scope.totalItems = $scope.Requests.length;
+      });
+    });
   }
 
   $scope.redirectToRestaurantProfile = function () {

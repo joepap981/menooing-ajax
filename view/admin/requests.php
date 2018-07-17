@@ -33,6 +33,8 @@
             </button>
           </div>
           <div class="modal-body">
+
+            <!-- Modal for restaurant confirmation requests-->
             <div ng-if="selectedRequest.request_type == 'restaurant_confirmation'">
               <label> Status : {{ selectedRestaurant.restaurant_status }} </label>
               <p> Restaurant Name : {{ selectedRestaurant.restaurant_name }} </p>
@@ -43,7 +45,7 @@
               <button class="btn btn-sm" ng-class = "restaurantCertButton" ng-click ="downloadFile('restaurant_cert')"> {{ restaurantCertMessage }} </button>
               <label> User Identification Document </label>
               <button class="btn btn-sm" ng-class = "userSSNButton" ng-click ="downloadFile('user_snn')"> {{ userSSNMessage }} </button>
-              <button class="btn btn-sm btn-info"> Edit Restaurant </button>
+              <button class="btn btn-sm btn-info" ng-click="redirectToRestaurantProfile()"> Edit Restaurant </button>
 
               <div class="btn-box mt-5">
                 <button class="btn btn-primary btn-sm" ng-click="changeRestaurantStatus('CONFIRMED')"> Give Confirmation </button>
@@ -51,6 +53,7 @@
               </div>
             </div>
 
+            <!-- Modal for rent requests-->
             <div ng-if="selectedRequest.request_type = 'rent_request'">
               <h5> Guest </h5>
               <p> Request Sender User ID:  {{ selectedUser.user_ref }} </p>
@@ -62,12 +65,12 @@
 
             <hr>
               <h5> Host </h5>
-              <button class="btn btn-primary btn-sm" ng-click="redirectToRestaurantProfile(88)"> View Profile </button>
+              <button class="btn btn-primary btn-sm" ng-click="redirectToRestaurantProfile()"> View Profile </button>
 
 
               <div class="btn-box mt-5">
-                <button class="btn btn-primary btn-sm" ng-click="changeRestaurantStatus('CONFIRMED')"> Confirm Request </button>
-                <button class="btn btn-danger btn-sm" ng-click="changeRestaurantStatus('UNCONFIRMED')"> Unpublish </button>
+                <button class="btn btn-primary btn-sm" ng-click="changeRequestStatus('ALLOWED')"> Confirm Request </button>
+                <button class="btn btn-danger btn-sm" ng-click="changeRequestStatus('DENIED')"> Deny Request </button>
               </div>
             </div>
 
