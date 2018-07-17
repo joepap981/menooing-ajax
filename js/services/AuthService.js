@@ -90,6 +90,13 @@ angular.module('menuApp').factory('authService', function($http, FileSaver) {
       });
     },
 
+    updateSession: function (post_data) {
+      return $http({method : "POST", url: 'action/update_session.php', data: post_data}).
+      then(function mySuccess(response) {
+        return response.data;
+      });
+    },
+
 
     //File upload download functions
     uploadFile: function (form_data) {

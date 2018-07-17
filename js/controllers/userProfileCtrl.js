@@ -23,8 +23,6 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
 
     authService.getInfo(post_data).then(function (result) {
       $scope.user = result[0];
-      $scope.user.user_first_name = $scope.sessionResponse.user_first_name;
-      $scope.user.user_last_name = $scope.sessionResponse.user_last_name;
       $scope.user.user_id = $scope.sessionResponse.user_id;
 
       //check for profileImage
@@ -33,6 +31,15 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
       } else {
         $scope.user.img_ref = '/noexec/square.jpg';
       }
+    });
+
+    var post_data2 = {};
+    post_data2.table_name = 'tb_user';
+    post_data2.condition = {'user_id': $scope.sessionResponse.user_id};
+
+    authService.getInfo(post_data2).then(function (result) {
+      $scope.user.user_first_name = result[0].user_first_name;
+      $scope.user.user_last_name = result[0].user_last_name;
     });
   }
 
@@ -124,8 +131,6 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
     authService.updateInfo(ajaxObj).then(function(response) {
       if (response == "Successfully updated information") {
         growl.success('Successfully updated user information.',{title: 'Success!'});
-        //update page change
-        init();
       }else if (response == "Failed to update information") {
         growl.error('Failed to update info',{title: 'Error!'});
       }else {
@@ -144,7 +149,6 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
     authService.updateInfo(ajaxObj).then(function(response) {
       if (response == "Successfully updated information") {
         growl.success('Successfully updated user information.',{title: 'Success!'});
-        //update page change
         init();
       }else if (response == "Failed to update information") {
         growl.error('Failed to update info',{title: 'Error!'});
@@ -158,12 +162,13 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
     //flag to see if all information has been given.
     var informationCheck = true;
     if (($scope.user.user_cert == null || $scope.user.user_cert == "") || ( $scope.user.user_ssn == null | $scope.user.user_ssn =="")) {
-      growl.error('Required documents have not been uploaded. Please upload certificate of occupancy.',{title: 'Warning!'});
+      growl.warning('Required documents have not been uploaded.',{title: 'Warning!'});
       return;
     }
 
     for (var key in $scope.user ) {
       if ($scope.user[key] == null || $scope.user[key] == "" ) {
+        $scope.missing_info = key;
         informationCheck = false;
         break;
       }
@@ -177,7 +182,7 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
   }
 
   //finalize confirm request
-  $scope.confirmVerifcationRequest = function () {
+  $scope.confirmVerificationRequest = function () {
     var post_data = {};
     post_data = {
       "table_name": "tb_request",
@@ -201,6 +206,7 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
         statusUpdateResult.then(function(result) {
           if (result == 'Successfully updated information') {
             updateUser();
+            console.log("SUCCESS");
             growl.success('Request Sent!',{title: 'Success!'});
           } else if ( result == 'Failed to update information') {
             growl.error('Failed to update restaurant status.',{title: 'Error!'});

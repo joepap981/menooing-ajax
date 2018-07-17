@@ -151,7 +151,7 @@
             <div class="modal-body">
 
               <p> You forgot to give us some information about your user. Your request may be rejected if your restaurant lacks
-                too much information. Do you want to continue? </p>
+                too much information. The information you are missing is "{{ missing_info }}". Do you want to continue? </p>
 
             </div>
             <div class="modal-footer">

@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="css/user/pagination-custom.css">
 <div class="admin-container" ng-controller = "adminRequestCtrl">
   <select class="form-control">
-    <option value="rent_request">One</option>
-    <option value="restaurant_confirmation">Two</option>
-    <option value="user_">Three</option>
+    <option value="rent_request">Rent Request</option>
+    <option value="restaurant_confirmation">Restaurant Confirmation </option>
+    <option value="user_verification">User Verification</option>
   </select>
 
   <table class="table table-hover">
