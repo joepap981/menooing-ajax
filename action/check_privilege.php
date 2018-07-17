@@ -24,13 +24,17 @@ $restaurant_id = json_decode($postdata, true);
 //connect to mysql with infor from inc_signin_db
 $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
 
+if($user['user_id'] == 1) {
+  exit('ACCEPTED');
+}
+
 //query mysql for sql result
 //search for a restaurant with the session user's user_id and the given restaurant id
 $query = "SELECT user_ref FROM $dbName.tb_restaurant WHERE user_ref = " . $user['user_id'] . " and restaurant_id = $restaurant_id;";
 $result = mysqli_fetch_assoc(mysqli_query($conn, $query));
 
 mysqli_close($conn);
-if ($user["user_id"] == $result["user_ref"] || $user["user_id"] == 1) {
+if ($user["user_id"] == $result["user_ref"]) {
   echo "ACCEPTED";
 } else {
   echo "DENIED";

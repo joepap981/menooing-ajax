@@ -2,10 +2,10 @@
 
 <div>
   <img class="masthead-img" src="img/bg-masthead.jpg">
-  <button class="top-left btn btn-primary" ng-click="redirect('/restaurant-list')">Go Back to Restaurant</div>
+  <button class="btn btn-primary" style="position: absolute; left: 300px; top: 80px;" ng-click="redirect('/restaurant-list')">Go Back to Restaurant</div>
 </div>
 
-<div class="container mt-5" ng-controller= "adminRestaurantProfileCtrl">
+<div class="container mt-5">
   <div id="restaurant-main-info" class="row">
     <div class="col-8">
       <div class="restaurant-header">

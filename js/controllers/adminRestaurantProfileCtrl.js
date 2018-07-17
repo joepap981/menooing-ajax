@@ -1,4 +1,4 @@
-angular.module('menuApp').controller('adminRestaurantProfileCtrl',['$scope', '$location', '$routeParams', 'restaurantService', 'authService', 'adminService', 'growl', 'FileSaver', 'Blob', function ($scope, $location, $routeParams, restaurantService, authService, adminService, growl, FileSaver, Blob, $uibModal) {
+angular.module('menuApp').controller('adminRestaurantProfileCtrl',['$scope', '$location', '$routeParams', 'restaurantService', 'authService', 'growl', 'FileSaver', 'Blob', function ($scope, $location, $routeParams, restaurantService, authService, growl, FileSaver, Blob, $uibModal) {
   $scope.restaurant = {};
   $scope.user = {};
 
@@ -22,12 +22,13 @@ angular.module('menuApp').controller('adminRestaurantProfileCtrl',['$scope', '$l
 
   //initializing function
   var init = function () {
-    console.log('this is the restaurant profile');
+    console.log('this is the admin restaurant profile');
     //get the restaurant id from the url
-    restaurant_id = adminService.selectedRestaurant;
+    var url = $location.path().split('/');
+    restaurant_id = url.pop();
 
     //check if the restaurant belongs to current session user
-    var priviledgeCheck = restaurantService.checkPrivilege(restaurant_id);
+    var priviledgeCheck = restaurantService.checkPrivilege(1);
     priviledgeCheck.then(function (result) {
       if(result == "ACCEPTED") {
         //bring restaurant information based on restaurant id
@@ -44,7 +45,7 @@ angular.module('menuApp').controller('adminRestaurantProfileCtrl',['$scope', '$l
         growl.error('Please log in to continue.',{title: 'Error!'});
         $location.path('/signin');
       } else {
-        growl.error('Something has gone wrong.',{title: 'Error!'});
+        growl.error('Something has gone wrong. (line 48)',{title: 'Error!'});
         $location.path('/');
       }
     })

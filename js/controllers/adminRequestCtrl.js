@@ -1,6 +1,7 @@
 angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 'authService', 'adminService', 'growl', function ($scope, $location, authService, adminService, growl) {
   $scope.selectedRequest;
   $scope.selectedRestaurant;
+  var restaurant_id;
   $scope.selectedUser;
 
   $scope.Requests = [];
@@ -37,10 +38,8 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     $scope.selectedRequest = request;
     if($scope.selectedRequest.request_type == "restaurant_confirmation") {
       getRestaurant($scope.selectedRequest.restaurant_ref);
-      adminService.selectedRestaurant = $scope.selectedRequest.restaurant_ref;
     } else if ($scope.selectedRequest.request_type == "rent_request") {
       getGuestUser();
-      adminService.selectedRestaurant = $scope.selectedRequest.request_host_restaurant_ref;
     }
 
   }
@@ -223,8 +222,10 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     })
   }
 
-  $scope.redirectToRestaurantProfile = function (restaurant_id) {
-    $location.path('/restaurant-profile-admin');
+  $scope.redirectToRestaurantProfile = function () {
+    $('body').removeClass('modal-open')
+    $('.modal-backdrop').remove();
+    $location.path('/admin/restaurant-profile/'+ $scope.selectedRequest.request_host_restaurant_ref);
   }
 
 }]);

@@ -82,6 +82,6 @@
     </div>
 
   </table>
-<button class="btn btn-primary btn-sm" ng-click="redirectToRestaurantProfile(88)"> View Profile </button>
+<button class="btn btn-primary btn-sm" ng-click="redirectToRestaurantProfile()"> View Profile </button>
   <ul class="pagination mt-5 d-flex justify-content-center" uib-pagination total-items="requestTotalItems" ng-model="requestCurrentPage" ng-change="pageChanged()" items-per-page="requestItemsPerPage"></ul>
 </div>

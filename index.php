@@ -42,15 +42,18 @@ $jsTimeStamp = '?version=v-'.$timeStr;
 		<?php
 
 			$urlStr =  $_SERVER['REQUEST_URI'];
-			$urlStr = substr($urlStr, -5);
+			$urlStr = explode("/", $urlStr);
 
-			$b2bFlag = false;
+			$adminFlag = false;
 
-			if ($urlStr == "admin"){
-				$b2bFlag = true;
+			foreach($urlStr as $word) {
+				if ($word == 'admin') {
+					$adminFlag = true;
+					break;
+				}
 			}
 
-			if ($b2bFlag ) {
+			if ($adminFlag) {
 				include 'admin_index.php';
 			} else {
 				include 'user_index.php';
