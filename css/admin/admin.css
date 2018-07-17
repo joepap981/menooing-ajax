@@ -539,3 +539,14 @@ fieldset[disabled] .btn-default.focus {
   color: #fff;
   background-color: #333;
 }
+
+
+/********************************************************/
+
+
+.admin-container {
+  padding-left: 5%;
+  padding-top: 5%;
+  padding-right: 5%;
+  min-height: 77vh;
+}

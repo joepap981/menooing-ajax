@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="css/user/pagination-custom.css">
-<div ng-controller = "adminRequestCtrl">
+<div class="admin-container" ng-controller = "adminRequestCtrl">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -82,6 +82,7 @@
     </div>
 
   </table>
-<button class="btn btn-primary btn-sm" ng-click="redirectToRestaurantProfile()"> View Profile </button>
-  <ul class="pagination mt-5 d-flex justify-content-center" uib-pagination total-items="requestTotalItems" ng-model="requestCurrentPage" ng-change="pageChanged()" items-per-page="requestItemsPerPage"></ul>
+
 </div>
+
+<ul class="pagination mt-5 d-flex justify-content-center" uib-pagination total-items="requestTotalItems" ng-model="requestCurrentPage" ng-change="pageChanged()" items-per-page="requestItemsPerPage"></ul>
