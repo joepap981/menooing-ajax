@@ -32,12 +32,15 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     });
   }
 
+  //when a request is selected, load the appropriate information depending on type of request
   $scope.loadRequest = function (request) {
     $scope.selectedRequest = request;
     if($scope.selectedRequest.request_type == "restaurant_confirmation") {
       getRestaurant($scope.selectedRequest.restaurant_ref);
+      adminService.selectedRestaurant = $scope.selectedRequest.restaurant_ref;
     } else if ($scope.selectedRequest.request_type == "rent_request") {
       getGuestUser();
+      adminService.selectedRestaurant = $scope.selectedRequest.request_host_restaurant_ref;
     }
 
   }
@@ -68,6 +71,7 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     var getRestaurant = authService.getInfo(queryObj);
     getRestaurant.then(function (result) {
       $scope.selectedRestaurant = result[0];
+      adminService.selectedRestaurant = $scope.selectedRestaurant
       getUser();
       //change certification related buttons and messages to green (file found)
       if ($scope.selectedRestaurant['restaurant_cert'] != null){
@@ -183,6 +187,7 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     var downloadResult = authService.downloadFile (post_data);
   }
 
+  //update restaurant status in db
   $scope.changeRestaurantStatus = function (status) {
     var post_info = {};
     post_info['table_name'] = 'tb_restaurant';
@@ -193,7 +198,7 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     statusUpdateResult.then(function(result) {
       if (result == "Successfully updated information") {
         //update restaurantList
-        getRestaurant();
+        taurant();
 
         var post_info = {};
         post_info['table_name'] = 'tb_request';

@@ -61,4 +61,32 @@ $jsTimeStamp = '?version=v-'.$timeStr;
 	<script src="lib/growl-js/angular-growl.min.js"></script>
 
 	</body>
+
+	<!-- Javascript links -->
+	<script src="js/app.js<?php echo $jsTimeStamp ?>"></script>
+
+	<script src="js/controllers/AdminController.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/controllers/adminRestaurantProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/controllers/adminRequestCtrl.js<?php echo $jsTimeStamp ?>"></script>
+
+	<script src="js/controllers/AuthController.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/controllers/UserDashboardController.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/controllers/restaurantCtrl.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/controllers/restaurantRegisterCtrl.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/controllers/restaurantProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/controllers/restaurantGuestProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/controllers/googlePlaceCtrl.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/controllers/userProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/controllers/restaurantSearchCtrl.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/controllers/restaurantGuestRequestCtrl.js<?php echo $jsTimeStamp ?>"></script>
+
+	<script src="js/services/AuthService.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/services/restaurantService.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/services/adminService.js<?php echo $jsTimeStamp ?>"></script>
+
+	<script src="js/directives/UserPage.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/directives/UserDashboardViewDirective.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/directives/fileInputDirective.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/directives/imageInputDirective.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/directives/AdminViewDirective.js<?php echo $jsTimeStamp ?>"></script>
 </html>

@@ -15,3 +15,9 @@ angular.module('menuApp').directive('requestsView', function() {
     templateUrl: 'view/admin/requests.php'
   };
 });
+
+angular.module('menuApp').directive('restaurantProfileView', function() {
+  return {
+    templateUrl: 'view/admin/restaurant-profile-admin.php'
+  };
+});
