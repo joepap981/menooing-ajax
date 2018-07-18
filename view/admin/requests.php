@@ -2,20 +2,20 @@
 <div class="admin-container" ng-controller = "adminRequestCtrl">
   <div class="d-flex mb-3">
     <select class="form-control w-25" ng-model="request_type_filter">
-      <option value="all">All </option>
+      <option value="{{undefined}}">All </option>
       <option value="rent_request">Rent Request</option>
       <option value="restaurant_confirmation">Restaurant Confirmation </option>
       <option value="user_verification">User Verification</option>
     </select>
 
     <div class="btn-group btn-group-toggle ml-3" data-toggle="buttons">
-      <label class="btn btn-default active" ng-click="changeRequestStatusFilter('All')">
+      <label class="btn btn-default active" ng-click="changeRequestStatusFilter(undefined)">
         <input type="radio" autocomplete="off" checked > All </input>
       </label>
-      <label class="btn btn-default" ng-click="changeRequestStatusFilter('HANDLED')">
+      <label class="btn btn-default" ng-click="changeRequestStatusFilter(true)">
         <input type="radio" autocomplete="off" > Handled </input>
       </label>
-      <label class="btn btn-default" ng-click="changeRequestStatusFilter('UNHANDLED')">
+      <label class="btn btn-default" ng-click="changeRequestStatusFilter(false)">
         <input type="radio" autocomplete="off" > Unhandled </input>
       </label>
 
@@ -34,7 +34,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr style="cursor:pointer;" ng-repeat="request in Requests.slice(((requestCurrentPage-1)*requestItemsPerPage), ((requestCurrentPage)*requestItemsPerPage))" data-toggle="modal" data-target="#requestModal" data-whatever="{{ request }}" ng-click="loadRequest(request)">
+      <tr style="cursor:pointer;" ng-repeat="request in Requests.slice(((requestCurrentPage-1)*requestItemsPerPage), ((requestCurrentPage)*requestItemsPerPage))
+      | filter: {request_type: request_type_filter}
+      | filter: requestStatusFilter"
+      data-toggle="modal" data-target="#requestModal" data-whatever="{{ request }}" ng-click="loadRequest(request)">
         <th >{{ request.request_id }}</th>
         <td> {{ request.request_created }}</td>
         <td> {{ request.request_type }} </td>

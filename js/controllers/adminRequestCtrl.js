@@ -265,13 +265,29 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
   //*******************************************************//
   //request frontend code
 
-  $scope.request_type_filter = "all";
-  var request_status_filter = "All";
+  //filter for request type - rent_request, user_verification, restaurant_confirmation
+  $scope.request_type_filter = undefined;
+  //filter for request status - handled, unhandled
+  $scope.request_status_filter = undefined;
+
+  //custome filter for request status
+  $scope.requestStatusFilter = function (item) {
+    //return item that have been handled - HANDLED, ALLOWED, DENIED
+    if ($scope.request_status_filter == true) {
+      return item.request_status != 'UNHANDLED';
+      //return items that have not been handled - UNHANDLED
+    } else if ($scope.request_status_filter == false){
+      return item.request_status == 'UNHANDLED';
+      //return all items without filter
+    } else {
+      return item;
+    }
+  }
 
   $scope.changeRequestStatusFilter = function (status) {
-    request_status_filter = status;
+    $scope.request_status_filter = status;
     console.log($scope.request_type_filter);
-    console.log(request_status_filter);
+    console.log($scope.request_status_filter);
   }
 
 }]);
