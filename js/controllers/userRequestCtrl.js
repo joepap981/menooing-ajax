@@ -21,23 +21,6 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
 
   init();
 
-  //confirm request
-  $scope.confirmRequest = function () {
-    var data = {};
-    data['request_type'] = $scope.selectedRequest['request_type'];
-    data['restaurant_ref'] = $scope.selectedRequest['restaurant_ref'];
-    data['request_id'] = $scope.selectedRequest['request_id']
-    adminService.confirmRestaurantRegister(data)
-    .then(function mySuccess(response) {
-      if(response == "Successfully updated restaurant status") {
-        growl.success(response,{title: 'Success!'});
-        $('#requestModal').modal('hide');
-      } else {
-        growl.error(response,{title: 'Error!'});
-      }
-    });
-  }
-
   //when a request is selected, load the appropriate information depending on type of request
   $scope.loadRequest = function (request) {
     $scope.selectedRequest = request;
@@ -69,24 +52,6 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
     console.log($scope.requestTotalItems);
   };
 
-  var getRestaurant = function (restaurant_id) {
-    var queryObj = {
-      "table_name": "tb_restaurant",
-      "condition": {"restaurant_id": restaurant_id }
-    };
-    //bring restaurant information based on restaurant id
-    var getRestaurant = authService.getInfo(queryObj);
-    getRestaurant.then(function (result) {
-      $scope.selectedRestaurant = result[0];
-      adminService.selectedRestaurant = $scope.selectedRestaurant
-      getUser();
-      //change certification related buttons and messages to green (file found)
-      if ($scope.selectedRestaurant['restaurant_cert'] != null){
-        restaurantCertGreen();
-      }
-      $scope.selectedRestaurant.address = $scope.selectedRestaurant.restaurant_street_number + " " + $scope.selectedRestaurant.restaurant_route + " " + $scope.selectedRestaurant.restaurant_locality + ", " + $scope.selectedRestaurant.restaurant_administrative_area_level_1;
-    })
-  }
 
   var getUser = function () {
     var queryObj = {
@@ -148,9 +113,7 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
     });
   }
 
-  $scope.restaurantCertButton = "btn-danger";
   $scope.userCertButton = "btn-danger";
-  $scope.restaurantCertMessage = "No file";
   $scope.userCertMessage = "No file";
   $scope.userSSNButton = "btn-danger";
   $scope.userSSNMessage = "No file";
@@ -194,35 +157,6 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
     var downloadResult = authService.downloadFile (post_data);
   }
 
-  //update restaurant status in db
-  $scope.changeRestaurantStatus = function (status) {
-    var post_info = {};
-    post_info['table_name'] = 'tb_restaurant';
-    post_info['update_info'] = {'restaurant_status': status};
-    post_info['condition'] = {'restaurant_id': $scope.selectedRestaurant.restaurant_id };
-
-    var statusUpdateResult = authService.updateInfo(post_info);
-    statusUpdateResult.then(function(result) {
-      if (result == "Successfully updated information") {
-        //update restaurantList
-        getRestaurant();
-
-        var request_status;
-        if (status == 'CONFIRMED') {
-          request_status = 'AUTHORIZED';
-        } else if (status = 'UNCONFIRMED') {
-          request_status = 'DENIED';
-        }
-        $scope.changeRequestStatus(request_status);
-
-        growl.success('Status has been successfully updated.',{title: 'Success!'});
-      } else if (result == "Failed to update information") {
-        growl.error('Status has failed to update.',{title: 'Error!'});
-      } else {
-        growl.error('Something has gone wrong.',{title: 'Error!'});
-      }
-    })
-  }
 
   //change restaurant rent request
   $scope.changeRequestStatus = function(request_update) {
@@ -238,27 +172,34 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
     });
   }
 
-  //change restaurant rent request
-  $scope.changeUserStatus = function(user_status) {
-    var post_info = {};
-    post_info['table_name'] = 'tb_user_info';
-    post_info['update_info'] = {'user_status': user_status};
-    post_info['condition'] = {'user_ref': $scope.selectedRequest.user_ref };
-
-    var statusUpdateResult = authService.updateInfo(post_info);
-    statusUpdateResult.then(function(result) {
-      //update request list
-      updateRequestList();
-      //update user info
-      getGuestUser();
-    });
-  }
-
   $scope.redirectToRestaurantProfile = function () {
     $('body').removeClass('modal-open')
     $('.modal-backdrop').remove();
     $location.path('/admin/restaurant-profile/'+ $scope.selectedRequest.request_host_restaurant_ref);
   }
 
+
+  //*******************************************************//
+  //request frontend code
+  //filter for request status - handled, unhandled
+  $scope.request_status_filter = undefined;
+
+  //custome filter for request status
+  $scope.requestStatusFilter = function (item) {
+    //return item that have been handled - HANDLED, ALLOWED, DENIED
+    if ($scope.request_status_filter == true) {
+      return item.request_status != 'UNHANDLED';
+      //return items that have not been handled - UNHANDLED
+    } else if ($scope.request_status_filter == false){
+      return item.request_status == 'UNHANDLED';
+      //return all items without filter
+    } else {
+      return item;
+    }
+  }
+
+  $scope.changeRequestStatusFilter = function (status) {
+    $scope.request_status_filter = status;
+  }
 
 }]);
