@@ -74,12 +74,15 @@ $jsTimeStamp = '?version=v-'.$timeStr;
 
 	<script src="js/controllers/AuthController.js<?php echo $jsTimeStamp ?>"></script>
 	<script src="js/controllers/UserDashboardController.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/controllers/userRequestCtrl.js<?php echo $jsTimeStamp ?>"></script>
+	<script src="js/controllers/userProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
+
 	<script src="js/controllers/restaurantCtrl.js<?php echo $jsTimeStamp ?>"></script>
 	<script src="js/controllers/restaurantRegisterCtrl.js<?php echo $jsTimeStamp ?>"></script>
 	<script src="js/controllers/restaurantProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
 	<script src="js/controllers/restaurantGuestProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
 	<script src="js/controllers/googlePlaceCtrl.js<?php echo $jsTimeStamp ?>"></script>
-	<script src="js/controllers/userProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
+
 	<script src="js/controllers/restaurantSearchCtrl.js<?php echo $jsTimeStamp ?>"></script>
 	<script src="js/controllers/restaurantGuestRequestCtrl.js<?php echo $jsTimeStamp ?>"></script>
 
@@ -91,5 +94,4 @@ $jsTimeStamp = '?version=v-'.$timeStr;
 	<script src="js/directives/UserDashboardViewDirective.js<?php echo $jsTimeStamp ?>"></script>
 	<script src="js/directives/fileInputDirective.js<?php echo $jsTimeStamp ?>"></script>
 	<script src="js/directives/imageInputDirective.js<?php echo $jsTimeStamp ?>"></script>
-	<script src="js/directives/AdminViewDirective.js<?php echo $jsTimeStamp ?>"></script>
 </html>

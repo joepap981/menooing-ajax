@@ -75,14 +75,6 @@
                 <span class="nav-link-text">Requests</span>
               </a>
             </li>
-            <!--Restaurant Profile -->
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Requests">
-              <a class="nav-link" ng-click ="redirect('/admin/restaurant-profile/142')">
-                <i class="fa fa-fw fa-user"></i>
-                <span class="nav-link-text">Restaurant Profile</span>
-              </a>
-            </li>
-
           </ul>
 
 

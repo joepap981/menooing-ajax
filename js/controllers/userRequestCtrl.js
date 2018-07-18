@@ -1,4 +1,4 @@
-angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 'authService', 'adminService', 'growl', function ($scope, $location, authService, adminService, growl) {
+angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', 'authService', 'adminService', 'growl', function ($scope, $location, authService, adminService, growl) {
   $scope.selectedRequest;
   $scope.selectedRestaurant;
   var restaurant_id;
@@ -260,31 +260,5 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     $location.path('/admin/restaurant-profile/'+ $scope.selectedRequest.request_host_restaurant_ref);
   }
 
-
-  //*******************************************************//
-  //request frontend code
-
-  //filter for request type - rent_request, user_verification, restaurant_confirmation
-  $scope.request_type_filter = undefined;
-  //filter for request status - handled, unhandled
-  $scope.request_status_filter = undefined;
-
-  //custome filter for request status
-  $scope.requestStatusFilter = function (item) {
-    //return item that have been handled - HANDLED, ALLOWED, DENIED
-    if ($scope.request_status_filter == true) {
-      return item.request_status != 'UNHANDLED';
-      //return items that have not been handled - UNHANDLED
-    } else if ($scope.request_status_filter == false){
-      return item.request_status == 'UNHANDLED';
-      //return all items without filter
-    } else {
-      return item;
-    }
-  }
-
-  $scope.changeRequestStatusFilter = function (status) {
-    $scope.request_status_filter = status;
-  }
 
 }]);
