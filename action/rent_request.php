@@ -17,6 +17,7 @@ if(!$postdata) {
 //decoding json into array
 $data = json_decode($postdata, true);
 $restaurant_ref = $data['restaurant_ref'];
+$host_user_ref = $data['request_host_user_ref'];
 $info = $data['condition'];
 
 //start mysql transaction
@@ -28,7 +29,7 @@ $commit_query = "COMMIT;";
 mysqli_query($conn, $transaction_query);
 
 //create request
-$create_request_query = "INSERT INTO $dbName.tb_request (user_ref, request_type, request_host_restaurant_ref) VALUES (" . $user['user_id'] . ", 'rent_request', $restaurant_ref);";
+$create_request_query = "INSERT INTO $dbName.tb_request (user_ref, request_type, request_host_user_ref, request_host_restaurant_ref) VALUES (" . $user['user_id'] . ", 'rent_request', $host_user_ref, $restaurant_ref);";
 $create_request_result = (mysqli_query($conn, $create_request_query));
 
 if($create_request_result != 1) {

@@ -1,18 +1,27 @@
 angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', 'authService', 'adminService', 'growl', function ($scope, $location, authService, adminService, growl) {
   $scope.selectedRequest;
-  $scope.selectedRestaurant;
   var restaurant_id;
   $scope.selectedUser;
+  $scope.sessionResponse;
 
   $scope.Requests = [];
   var init = function () {
+    authService.checkSession().then(function (response) {
+      $scope.sessionResponse = response;
+      updateUser();
+    });
     //get all restaurants from user in current session (check in server)
     updateRequestList();
   }
 
   var updateRequestList = function () {
+    var post_data = {
+      "table_name": "tb_request",
+      "condition": {"user_ref": '33' }
+    };
+
     //get all restaurants from user in current session (check in server)
-    var requestList = adminService.getRequestList();
+    var requestList = authService.getInfo();
     requestList.then (function (result) {
       $scope.Requests = result;
       $scope.requestTotalItems = $scope.Requests.length;
@@ -56,7 +65,7 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
   var getUser = function () {
     var queryObj = {
       "table_name": "tb_user_info",
-      "condition": {"user_ref":  $scope.selectedRestaurant.user_ref}
+      "condition": {"user_ref":  $scope.selectedUser.user_ref}
     };
 
     //bring restaurant information based on restaurant id
@@ -73,7 +82,7 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
 
     var queryObj = {
       "table_name": "tb_user",
-      "condition": {"user_id":  $scope.selectedRestaurant.user_ref}
+      "condition": {"user_id":  $scope.selectedUser.user_ref}
     };
 
     var getUser = authService.getInfo(queryObj);
@@ -141,16 +150,13 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
       var path = $scope.selectedUser.user_ssn;
     } else if (file_type == "user_cert") {
       var path = $scope.selectedUser.user_cert;
-    } else if (file_type == "restaurant_cert") {
-      var path = $scope.selectedRestaurant.restaurant_cert;
-    }
-    else {
+    } else {
       console.log(file_type + " does not exist.");
       return;
     }
 
     var post_data = {
-      'user_id': $scope.restaurant.user_ref,
+      'user_id': $scope.selectedUser2.user_id,
       'path': path,
     }
 

@@ -6,6 +6,7 @@ angular.module('menuApp').controller('restaurantGuestRequestCtrl',['$scope', '$l
     var url = $location.path().split('/');
     restaurant_id = url.pop();
 
+    getHostUser();
     //update available time list
     updateAvailableList();
     getPrice();
@@ -27,10 +28,22 @@ angular.module('menuApp').controller('restaurantGuestRequestCtrl',['$scope', '$l
     })
   }
 
+
+  var getHostUser = function () {
+    var queryObj = {
+      "table_name": "tb_restaurant",
+      "condition": {"restaurant_id": restaurant_id },
+      "field": ["user_ref"]
+    };
+
+    //bring restaurant information based on restaurant id
+    var getHostUser= authService.getInfo(queryObj);
+    getHostUser.then(function (result) {
+      $scope.host_user_ref = result[0].user_ref;
+    })
+  }
+
   //rent by rent standard
-
-  ;
-
   var getPrice = function () {
     var queryObj = {
       "table_name": "tb_restaurant",
@@ -237,7 +250,8 @@ angular.module('menuApp').controller('restaurantGuestRequestCtrl',['$scope', '$l
     var post_data = {};
     post_data = {
       "restaurant_ref": restaurant_id,
-      "condition": $scope.requestTimeList
+      "request_host_user_ref": $scope.host_user_ref,
+      "condition": $scope.requestTimeList,
     }
 
     var sendResult = authService.rentRequest(post_data);
