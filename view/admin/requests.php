@@ -1,10 +1,26 @@
 <link rel="stylesheet" href="css/user/pagination-custom.css">
 <div class="admin-container" ng-controller = "adminRequestCtrl">
-  <select class="form-control">
-    <option value="rent_request">Rent Request</option>
-    <option value="restaurant_confirmation">Restaurant Confirmation </option>
-    <option value="user_verification">User Verification</option>
-  </select>
+  <div class="d-flex mb-3">
+    <select class="form-control w-25" ng-model="request_type_filter">
+      <option value="all">All </option>
+      <option value="rent_request">Rent Request</option>
+      <option value="restaurant_confirmation">Restaurant Confirmation </option>
+      <option value="user_verification">User Verification</option>
+    </select>
+
+    <div class="btn-group btn-group-toggle ml-3" data-toggle="buttons">
+      <label class="btn btn-default active" ng-click="changeRequestStatusFilter('All')">
+        <input type="radio" autocomplete="off" checked > All </input>
+      </label>
+      <label class="btn btn-default" ng-click="changeRequestStatusFilter('HANDLED')">
+        <input type="radio" autocomplete="off" > Handled </input>
+      </label>
+      <label class="btn btn-default" ng-click="changeRequestStatusFilter('UNHANDLED')">
+        <input type="radio" autocomplete="off" > Unhandled </input>
+      </label>
+
+    </div>
+  </div>
 
   <table class="table table-hover">
     <thead>
@@ -60,7 +76,7 @@
             </div>
 
             <!-- Modal for rent requests-->
-            <div ng-if="selectedRequest.request_type = 'rent_request'">
+            <div ng-if="selectedRequest.request_type == 'rent_request'">
               <h5> Guest </h5>
               <p> Request Sender User ID:  {{ selectedUser.user_ref }} </p>
               <p> User status: <button class="btn btn-sm btn-default">{{ selectedUser.user_status}}</button> <p>
@@ -77,6 +93,22 @@
               <div class="btn-box mt-5">
                 <button class="btn btn-primary btn-sm" ng-click="changeRequestStatus('ALLOWED')"> Confirm Request </button>
                 <button class="btn btn-danger btn-sm" ng-click="changeRequestStatus('DENIED')"> Deny Request </button>
+              </div>
+            </div>
+
+            <!-- Modal for user verification requests-->
+            <div ng-if="selectedRequest.request_type == 'user_verification'">
+              <h5> User </h5>
+              <p> Request Sender User ID:  {{ selectedUser.user_ref }} </p>
+              <p> User status: <button class="btn btn-sm btn-default">{{ selectedUser.user_status}}</button> <p>
+              <label> Food Handler Certificate </label>
+              <button class="btn btn-sm" ng-class = "userCertButton" ng-click ="downloadFile('user_cert')"> {{ userCertMessage }} </button>
+              <label> User Identification Document </label>
+              <button class="btn btn-sm" ng-class = "userSSNButton" ng-click ="downloadFile('user_ssn')"> {{ userSSNMessage }} </button>
+
+              <div class="btn-box mt-5">
+                <button class="btn btn-primary btn-sm" ng-click="changeRequestStatus('ALLOWED'); changeUserStatus('VERIFIED')"> Confirm Request </button>
+                <button class="btn btn-danger btn-sm" ng-click="changeRequestStatus('DENIED'); changeUserStatus('UNVERIFIED')"> Deny Request </button>
               </div>
             </div>
 

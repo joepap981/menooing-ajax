@@ -7,6 +7,11 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
   $scope.Requests = [];
   var init = function () {
     //get all restaurants from user in current session (check in server)
+    updateRequestList();
+  }
+
+  var updateRequestList = function () {
+    //get all restaurants from user in current session (check in server)
     var requestList = adminService.getRequestList();
     requestList.then (function (result) {
       $scope.Requests = result;
@@ -40,8 +45,11 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
       getRestaurant($scope.selectedRequest.restaurant_ref);
     } else if ($scope.selectedRequest.request_type == "rent_request") {
       getGuestUser();
-    }
+    } else if ($scope.selectedRequest.request_type == "user_verification") {
+      getGuestUser();
+    } else {
 
+    }
   }
 
   //request pagination
@@ -226,11 +234,24 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     var statusUpdateResult = authService.updateInfo(post_info);
     statusUpdateResult.then(function(result) {
       //update request list
-      var requestList = adminService.getRequestList();
-      requestList.then (function (result) {
-        $scope.Requests = result;
-        $scope.totalItems = $scope.Requests.length;
-      });
+      updateRequestList();
+    });
+  }
+
+  //change restaurant rent request
+  $scope.changeUserStatus = function(user_status) {
+    var post_info = {};
+    post_info['table_name'] = 'tb_user_info';
+    post_info['update_info'] = {'user_status': user_status};
+    post_info['condition'] = {'user_ref': $scope.selectedRequest.user_ref };
+
+    var statusUpdateResult = authService.updateInfo(post_info);
+    statusUpdateResult.then(function(result) {
+      console.log(result);
+      //update request list
+      updateRequestList();
+      //update user info
+      getGuestUser();
     });
   }
 
@@ -238,6 +259,19 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     $('body').removeClass('modal-open')
     $('.modal-backdrop').remove();
     $location.path('/admin/restaurant-profile/'+ $scope.selectedRequest.request_host_restaurant_ref);
+  }
+
+
+  //*******************************************************//
+  //request frontend code
+
+  $scope.request_type_filter = "all";
+  var request_status_filter = "All";
+
+  $scope.changeRequestStatusFilter = function (status) {
+    request_status_filter = status;
+    console.log($scope.request_type_filter);
+    console.log(request_status_filter);
   }
 
 }]);
