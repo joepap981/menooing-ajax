@@ -18,6 +18,17 @@
     <div class="admin-container col-md-9" ng-controller = "userRequestCtrl">
       <div class="d-flex mb-3">
         <div class="btn-group btn-group-toggle ml-3" data-toggle="buttons">
+          <label class="btn btn-default active" ng-click="changeRequestOwnerFilter('received')">
+            <input type="radio" autocomplete="off" checked> Received </input>
+          </label>
+          <label class="btn btn-default" ng-click="changeRequestOwnerFilter('sent')">
+            <input type="radio" autocomplete="off" > Sent </input>
+          </label>
+
+        </div>
+
+
+        <div ng-if="request_owner =='received'" class="btn-group btn-group-toggle ml-3" data-toggle="buttons">
           <label class="btn btn-default active" ng-click="changeRequestStatusFilter(undefined)">
             <input type="radio" autocomplete="off" checked > All </input>
           </label>
@@ -27,7 +38,6 @@
           <label class="btn btn-default" ng-click="changeRequestStatusFilter(false)">
             <input type="radio" autocomplete="off" > Unhandled </input>
           </label>
-
         </div>
       </div>
 
@@ -43,17 +53,34 @@
           </tr>
         </thead>
         <tbody>
-          <tr style="cursor:pointer;" ng-repeat="request in Requests.slice(((requestCurrentPage-1)*requestItemsPerPage), ((requestCurrentPage)*requestItemsPerPage))
-          | filter: {request_type: 'rent_request'}
-          | filter: requestStatusFilter"
-          data-toggle="modal" data-target="#requestModal" data-whatever="{{ request }}" ng-click="loadRequest(request)">
-            <th >{{ request.request_id }}</th>
-            <td> {{ request.request_created }}</td>
-            <td> {{ request.request_type }} </td>
-            <td> {{ request.user_ref }}</td>
-            <td> {{ request.restaurant_ref }} </td>
-            <td> {{ request.request_status }} </td>
-          </tr>
+          <div ng-if="request_owner == 'received'">
+            <h5> Received </h5>
+            <tr style="cursor:pointer;" ng-repeat="request in Requests.slice(((requestCurrentPage-1)*requestItemsPerPage), ((requestCurrentPage)*requestItemsPerPage))
+            | filter: {request_type: 'rent_request'}
+            | filter: requestStatusFilter"
+            data-toggle="modal" data-target="#requestModal" data-whatever="{{ request }}" ng-click="loadRequest(request)">
+              <th >{{ request.request_id }}</th>
+              <td> {{ request.request_created }}</td>
+              <td> {{ request.request_type }} </td>
+              <td> {{ request.user_ref }}</td>
+              <td> {{ request.restaurant_ref }} </td>
+              <td> {{ request.request_status }} </td>
+            </tr>
+          </div>
+
+          <div ng-if="request_owner == 'sent'">
+            <h5> Sent </h5>
+            <tr style="cursor:pointer;" ng-repeat="request in Requests.slice(((requestCurrentPage-1)*requestItemsPerPage), ((requestCurrentPage)*requestItemsPerPage))
+            | filter: {user_ref: sessionResponse.user_id }"
+            data-toggle="modal" data-target="#requestModal" data-whatever="{{ request }}" ng-click="loadRequest(request)">
+              <th >{{ request.request_id }}</th>
+              <td> {{ request.request_created }}</td>
+              <td> {{ request.request_type }} </td>
+              <td> {{ request.user_ref }}</td>
+              <td> {{ request.restaurant_ref }} </td>
+              <td> {{ request.request_status }} </td>
+            </tr>
+          </div>
         </tbody>
 
         <!-- Request Modal -->
@@ -72,7 +99,7 @@
                 <div ng-if="selectedRequest.request_type == 'rent_request'">
                   <h5> Request Sender </h5>
                   <p> Name :  {{ selectedUser2.user_first_name }} {{ selectedUser2.user_last_name}} </p>
-                  <p> Phone #: {{ selectedUser.user_phone}}
+                  <p ng-if="selectedRequest.request_status == 'ALLOWED'"> Phone #: {{ selectedUser.user_phone}}
                   <div class="d-flex mb-1">
                     <p> Food Handler Certificate </p>
                     <button class="btn btn-sm ml-auto h-75" ng-class = "userCertButton" ng-click ="downloadFile('user_cert')"> {{ userCertMessage }} </button>
@@ -101,7 +128,7 @@
 
 
               <div class="modal-footer">
-                <div class="btn-box mt-2 text-center" ng-if="selectedRequest.request_status == 'ADMIN_VERIFIED'">
+                <div class="btn-box mt-2 text-center" ng-if="selectedRequest.request_status == 'ADMIN_VERIFIED' && request_owner == 'received'">
                   <button class="btn btn-primary btn-sm" ng-click="changeRequestStatus('ALLOWED')"> Confirm Request </button>
                   <button class="btn btn-danger btn-sm" ng-click="changeRequestStatus('DENIED')"> Deny Request </button>
                   <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>

@@ -20,7 +20,7 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
 
   //get the list of rent_request for the current session user that have been verified by admin - request_status: ADMIN_VERIFIED
   var updateRequestList = function () {
-    var query = "SELECT * FROM tb_request WHERE user_ref = '" + $scope.sessionResponse.user_id +
+    var query = "SELECT * FROM tb_request WHERE request_host_user_ref = '" + $scope.sessionResponse.user_id +
     "' and (request_status = 'ADMIN_VERIFIED' or request_status = 'ALLOWED' or request_status = 'DENIED');";
 
     var requestList = authService.directQuery(query);
@@ -191,6 +191,28 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
 
   $scope.changeRequestStatusFilter = function (status) {
     $scope.request_status_filter = status;
+  }
+
+  //sent or received request
+  $scope.request_owner = 'received';
+
+  $scope.changeRequestOwnerFilter = function (status) {
+    $scope.request_owner = status;
+    console.log($scope.sessionResponse.user_id);
+  }
+
+  //custome filter for request ownership
+  $scope.requestStatusFilter = function (item) {
+    //return item that have been handled - HANDLED, ALLOWED, DENIED
+    if ($scope.request_owner == "sent") {
+      return item.request_user_ref == $scope.sessionResponse.user_id;
+      //return items that have not been handled - UNHANDLED
+    } else if ($scope.request_owner == "received"){
+      return item.request_status == 'UNHANDLED' || item.request_status == 'ADMIN_VERIFIED';
+      //return all items without filter
+    } else {
+      return item;
+    }
   }
 
 }]);

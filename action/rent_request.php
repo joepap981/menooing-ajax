@@ -30,7 +30,7 @@ $commit_query = "COMMIT;";
 mysqli_query($conn, $transaction_query);
 
 //create request
-$create_request_query = "INSERT INTO $dbName.tb_request (user_ref, request_type, request_host_user_ref, request_host_restaurant_ref, rent_standard) VALUES (" . $user['user_id'] . ", 'rent_request', $host_user_ref, $restaurant_ref, $rent_standard);";
+$create_request_query = "INSERT INTO $dbName.tb_request (user_ref, request_type, request_host_user_ref, request_host_restaurant_ref) VALUES (" . $user['user_id'] . ", 'rent_request', $host_user_ref, $restaurant_ref);";
 $create_request_result = (mysqli_query($conn, $create_request_query));
 
 if($create_request_result != 1) {
@@ -43,13 +43,13 @@ foreach($info as $condition) {
 
   //create restaurant restaurant
   //Building query string for INSERT into database
-  $insert_query = "INSERT INTO $dbName.tb_rent_time (request_ref, ";
+  $insert_query = "INSERT INTO $dbName.tb_rent_time (request_ref, rent_standard, ";
 
   foreach($condition as $key => $value) {
     $insert_query = $insert_query . " " . $key . ", ";
   }
   //trim end ', '
-  $insert_query = substr($insert_query, 0, -2) . ") VALUES ($request_id, ";
+  $insert_query = substr($insert_query, 0, -2) . ") VALUES ($request_id, '$rent_standard', ";
   foreach($condition as $key => $value) {
     $insert_query = $insert_query . '"' . $value . '", ';
   }
