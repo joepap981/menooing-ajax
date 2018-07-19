@@ -101,10 +101,18 @@
 
 
               <div class="modal-footer">
-                <div class="btn-box mt-2 text-center">
+                <div class="btn-box mt-2 text-center" ng-if="selectedRequest.request_status == 'ADMIN_VERIFIED'">
                   <button class="btn btn-primary btn-sm" ng-click="changeRequestStatus('ALLOWED')"> Confirm Request </button>
                   <button class="btn btn-danger btn-sm" ng-click="changeRequestStatus('DENIED')"> Deny Request </button>
                   <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                </div>
+
+                <div class="w-100" ng-if="selectedRequest.request_status != 'ADMIN_VERIFIED'">
+                  <button ng-if="selectedRequest.request_status=='ALLOWED'" class="btn btn-success w-100"> Accepted </button>
+                  <button ng-if="selectedRequest.request_status=='DENIED'" class="btn btn-danger w-100"> Denied </button>
+                  <div class="btn-box mt-2 text-center" >
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                  </div>
                 </div>
 
               </div>

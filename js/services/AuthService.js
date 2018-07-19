@@ -1,6 +1,14 @@
 angular.module('menuApp').factory('authService', function($http, FileSaver) {
   var data = {};
   return {
+    directQuery: function (query) {
+      return $http({method : "POST", url: 'action/direct_query.php', data: query})
+      .then(function mySuccess(response) {
+        data = response.data;
+        return data;
+      });
+    },
+
     signin: function(signin) {
       return $http({method : "POST", url: 'action/signin.php', data: signin})
       .then(function mySuccess(response) {

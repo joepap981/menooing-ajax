@@ -95,7 +95,7 @@
 
               <div class="btn-box mt-5">
                 <button class="btn btn-primary btn-sm" ng-click="changeRequestStatus('ADMIN_VERIFIED')"> Confirm Request </button>
-                <button class="btn btn-danger btn-sm" ng-click="changeRequestStatus('DENIED')"> Deny Request </button>
+                <button class="btn btn-danger btn-sm" ng-click="changeRequestStatus('ADMIN_DENIED')"> Deny Request </button>
               </div>
             </div>
 

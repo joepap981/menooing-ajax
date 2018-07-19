@@ -20,15 +20,10 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
 
   //get the list of rent_request for the current session user that have been verified by admin - request_status: ADMIN_VERIFIED
   var updateRequestList = function () {
-    var post_data = {
-      "table_name": "tb_request",
-      "condition": {
-        "user_ref": $scope.sessionResponse.user_id,
-        "request_status": "'ADMIN_VERIFIED'",
-      }
-    };
+    var query = "SELECT * FROM tb_request WHERE user_ref = '" + $scope.sessionResponse.user_id +
+    "' and (request_status = 'ADMIN_VERIFIED' or request_status = 'ALLOWED' or request_status = 'DENIED');";
 
-    var requestList = authService.getInfo(post_data);
+    var requestList = authService.directQuery(query);
     requestList.then (function (result) {
       $scope.Requests = result;
       $scope.requestTotalItems = $scope.Requests.length;
@@ -114,8 +109,17 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
 
     var statusUpdateResult = authService.updateInfo(post_info);
     statusUpdateResult.then(function(result) {
-      //update request list
-      updateRequestList();
+      if (result == "Successfully updated information") {
+        var message = "You have " + request_update + " the request";
+        growl.success(message ,{title: 'Success!'});
+        $('#requestModal').modal('hide');
+        //update request list
+        updateRequestList();
+      }else if (result == "Failed to update information") {
+        growl.error("Failed to update information!" ,{title: 'Error!'});
+      }else {
+        growl.error("Something has gone terribly wrong. Refresh and try again!" ,{title: 'Error!'});
+      }
     });
   }
 
@@ -161,7 +165,6 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
     var getAvailable = authService.getInfo(queryObj);
     getAvailable.then(function (result) {
       $scope.rentTime = result;
-      console.log(result);
     })
   }
 
