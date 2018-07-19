@@ -70,25 +70,26 @@
 
                 <!-- Modal for rent requests-->
                 <div ng-if="selectedRequest.request_type == 'rent_request'">
-                  <h5> Guest </h5>
-                  <p> Request Sender User ID:  {{ selectedUser.user_ref }} </p>
-                  <p> User status: <button class="btn btn-sm btn-default">{{ selectedUser.user_status}}</button> <p>
-                  <label> Food Handler Certificate </label>
-                  <button class="btn btn-sm" ng-class = "userCertButton" ng-click ="downloadFile('user_cert')"> {{ userCertMessage }} </button>
-                  <label> User Identification Document </label>
-                  <button class="btn btn-sm" ng-class = "userSSNButton" ng-click ="downloadFile('user_ssn')"> {{ userSSNMessage }} </button>
-
-                  <div class="btn-box mt-5">
-                    <button class="btn btn-primary btn-sm" ng-click="changeRequestStatus('ALLOWED')"> Confirm Request </button>
-                    <button class="btn btn-danger btn-sm" ng-click="changeRequestStatus('DENIED')"> Deny Request </button>
+                  <h5> Request Sender </h5>
+                  <p> Name :  {{ selectedUser2.user_first_name }} {{ selectedUser2.user_last_name}} </p>
+                  <p> Phone #: {{ selectedUser.user_phone}}
+                  <div class="d-flex mb-1">
+                    <p> Food Handler Certificate </p>
+                    <button class="btn btn-sm ml-auto h-75" ng-class = "userCertButton" ng-click ="downloadFile('user_cert')"> {{ userCertMessage }} </button>
+                  </div>
+                  <div class="d-flex">
+                    <label> User Identification Document </label>
+                    <button class="btn btn-sm ml-auto h-75" ng-class = "userSSNButton" ng-click ="downloadFile('user_ssn')"> {{ userSSNMessage }} </button>
                   </div>
                 </div>
-
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button ng-show="selectedRequest['request_status'] == 'Unhandled'" type="button" class="btn btn-primary" ng-click ="confirmRequest()"> Give Confirmation </button>
-                <button ng-show="selectedRequest['request_status'] == 'Handled'" type="button" class="btn btn-danger" ng-click ="confirmRequest()"> Cancel Confirmation </button>
+                <div class="btn-box mt-2">
+                  <button class="btn btn-primary btn-sm" ng-click="changeRequestStatus('ALLOWED')"> Confirm Request </button>
+                  <button class="btn btn-danger btn-sm" ng-click="changeRequestStatus('DENIED')"> Deny Request </button>
+                  <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                </div>
+
               </div>
             </div>
           </div>
