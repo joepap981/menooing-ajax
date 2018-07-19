@@ -41,6 +41,7 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
   //when a request is selected, load the appropriate information depending on type of request
   $scope.loadRequest = function (request) {
     $scope.selectedRequest = request;
+    updateRentTimes();
      if ($scope.selectedRequest.request_type == "rent_request") {
       getGuestUser();
     } else {
@@ -72,18 +73,13 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
   $scope.userSSNButton = "btn-danger";
   $scope.userSSNMessage = "No file";
 
-  //change restaurant certificate buttons to indicate file exists
-  var restaurantCertGreen = function () {
-    $scope.restaurantCertButton = "btn-success";
-    $scope.restaurantCertMessage = "View Restaurant Certificate";
-  }
 
   var userSSNGreen = function () {
     $scope.userSSNButton = "btn-success";
     $scope.userSSNMessage = "View User Identification";
   }
 
-  //change restaurant certificate buttons to indicate file exists
+  //change user certificate buttons to indicate file exists
   var userCertGreen = function () {
     $scope.userCertButton = "btn-success";
     $scope.userCertMessage = "View User Certificate";
@@ -109,7 +105,7 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
   }
 
 
-  //change restaurant rent request
+  //change rent request status
   $scope.changeRequestStatus = function(request_update) {
     var post_info = {};
     post_info['table_name'] = 'tb_request';
@@ -154,11 +150,21 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
     });
   }
 
-  $scope.redirectToRestaurantProfile = function () {
-    $('body').removeClass('modal-open')
-    $('.modal-backdrop').remove();
-    $location.path('/admin/restaurant-profile/'+ $scope.selectedRequest.request_host_restaurant_ref);
+  //update avaiable list for individual request modal
+  var updateRentTimes = function () {
+    var queryObj = {
+      "table_name": "tb_rent_time",
+      "condition": {"request_ref": $scope.selectedRequest.request_id}
+    };
+
+    //bring restaurant information based on restaurant id
+    var getAvailable = authService.getInfo(queryObj);
+    getAvailable.then(function (result) {
+      $scope.rentTime = result;
+      console.log(result);
+    })
   }
+
 
 
   //*******************************************************//

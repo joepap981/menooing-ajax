@@ -81,10 +81,27 @@
                     <label> User Identification Document </label>
                     <button class="btn btn-sm ml-auto h-75" ng-class = "userSSNButton" ng-click ="downloadFile('user_ssn')"> {{ userSSNMessage }} </button>
                   </div>
+
+                  <hr>
+
+                  <!-- available time cards -->
+                  <h5> Requested Time </h5>
+                  <div id="available-list">
+                    <div ng-repeat="item in rentTime">
+                      <div class="text-center">
+                        <button ng-if="item.rent_standard == 'month'" class="btn btn-default w-100 mt-1"> {{item.beginTime | date: 'MMM dd' }} to {{item.endTime | date: 'MMM dd' }} </button>
+                        <button ng-if="item.rent_standard == 'day'" class="btn btn-default w-100 mt-1"> {{item.beginTime | date: 'MMM dd' }} </button>
+                        <button ng-if="item.rent_standard == 'hour'" class="btn btn-default w-100 mt-1"> {{item.beginTime | date: 'MMM dd' }}, {{item.beginTime | date: 'HH:mm' }} to {{item.endTime | date: 'HH-mm' }} </button>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
+
+
               <div class="modal-footer">
-                <div class="btn-box mt-2">
+                <div class="btn-box mt-2 text-center">
                   <button class="btn btn-primary btn-sm" ng-click="changeRequestStatus('ALLOWED')"> Confirm Request </button>
                   <button class="btn btn-danger btn-sm" ng-click="changeRequestStatus('DENIED')"> Deny Request </button>
                   <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>

@@ -251,6 +251,7 @@ angular.module('menuApp').controller('restaurantGuestRequestCtrl',['$scope', '$l
     post_data = {
       "restaurant_ref": restaurant_id,
       "request_host_user_ref": $scope.host_user_ref,
+      "rent_standard": $scope.rentBy,
       "condition": $scope.requestTimeList,
     }
 
