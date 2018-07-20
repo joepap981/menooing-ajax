@@ -529,7 +529,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
         if (result == "Successfully uploaded file") {
           //clear file input
           $("#coFile").val("");
-          restaurantCertGreen();
+          updateRestaurantList();
           growl.success('Equipment has been updated!',{title: 'Success!'});
         } else if (result == "Failed to insert file location to DB. Refresh page") {
           growl.error('Database error!',{title: 'Error!'});
@@ -567,7 +567,9 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
     //flag to see if all information has been given.
     var informationCheck = true;
     if ($scope.user.user_status =! "VERIFIED") {
-
+      growl.error('Your user account has not been verified yet. Please update the required information to get your account verified.',{title: 'Warning!'});
+      $location.path('/profile');
+      return;
     }
     if ($scope.restaurant.restaurant_cert == null) {
       growl.error('Required document have not been uploaded. Please upload certificate of occupancy.',{title: 'Warning!'});
@@ -592,7 +594,7 @@ angular.module('menuApp').controller('restaurantProfileCtrl',['$scope', '$locati
   //finalize confirm request
   $scope.confirmRequest = function () {
     var post_data = {};
-    post_data = {"table_name": "tb_request", "condition": {'request_type': 'restaurant_confirmation', 'user_ref': $scope.user['user_id'], 'restaurant_ref': restaurant_id }};
+    post_data = {"table_name": "tb_request", "condition": {'request_type': 'restaurant_confirmation', 'user_ref': $scope.user['user_id'], 'request_host_restaurant_ref': restaurant_id }};
 
     //save file to file system and save location to database
     var requestResult = authService.insertInfo(post_data);

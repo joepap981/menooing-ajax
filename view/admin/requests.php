@@ -18,7 +18,6 @@
       <label class="btn btn-default" ng-click="changeRequestStatusFilter(false)">
         <input type="radio" autocomplete="off" > Unhandled </input>
       </label>
-
     </div>
   </div>
 

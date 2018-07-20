@@ -43,7 +43,7 @@
         <textarea class="form-control description-input" ng-model="restaurant.restaurant_description"></textarea>
         <div class="btn-box d-flex flex-row-reverse">
           <button class="btn btn-secondary btn-sm" ng-click="toggleDescriptionBox()"> Cancel </button>
-          <button ng-click= "updateDescription()" class="btn btn-primary btn-sm"> Save Changes </button>
+          <button ng-click= "updateDescription()" class="btn btn-primary btn-sm mr-2"> Save Changes </button>
         </div>
       </div>
 
@@ -215,7 +215,7 @@
       </div>
 
 
-      <div ng-if= "user.user_status == 'VERIFIED'" class ="card mb-3">
+      <div class ="card mb-3">
         <div class="card-body">
           <div ng-if="restaurant.restaurant_status == 'UNCONFIRMED'">
             <p> Your restaurant is not discoverable by others yet. Go ahead and request to publish. </p>
@@ -279,7 +279,7 @@
 
             <div class="btn-box d-flex mt-3">
               <button class="btn btn-secondary" ng-click="togglePriceBox()"> Cancel </button>
-              <button ng-click= "updatePrice()" class="btn btn-primary"> Save Changes </button>
+              <button ng-click= "updatePrice()" class="btn btn-primary ml-2"> Save Changes </button>
             </div>
 
           </div>
@@ -287,7 +287,7 @@
           <hr>
           <h5 class="card-title"> Available Hours </h5>
 
-          <button class="btn btn-light" style="width: 97%;"> + </button>
+          <button class="btn btn-light" style="width: 97%;" data-toggle="modal" data-target="#timeModal" > + </button>
 
           <!-- available time cards -->
           <div id="available-list">
