@@ -1,7 +1,6 @@
 angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 'authService', 'adminService', 'growl', function ($scope, $location, authService, adminService, growl) {
   $scope.selectedRequest;
   $scope.selectedRestaurant;
-  var restaurant_id;
   $scope.selectedUser;
 
   $scope.Requests = [];
@@ -25,7 +24,7 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
   $scope.confirmRequest = function () {
     var data = {};
     data['request_type'] = $scope.selectedRequest['request_type'];
-    data['restaurant_ref'] = $scope.selectedRequest['restaurant_ref'];
+    data['request_host_restaurant_ref'] = $scope.selectedRequest['request_host_restaurant_ref'];
     data['request_id'] = $scope.selectedRequest['request_id']
     adminService.confirmRestaurantRegister(data)
     .then(function mySuccess(response) {
@@ -42,7 +41,7 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
   $scope.loadRequest = function (request) {
     $scope.selectedRequest = request;
     if($scope.selectedRequest.request_type == "restaurant_confirmation") {
-      getRestaurant($scope.selectedRequest.restaurant_ref);
+      getRestaurant($scope.selectedRequest.request_host_restaurant_ref);
     } else if ($scope.selectedRequest.request_type == "rent_request") {
       getGuestUser();
     } else if ($scope.selectedRequest.request_type == "user_verification") {
@@ -69,10 +68,10 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     console.log($scope.requestTotalItems);
   };
 
-  var getRestaurant = function (restaurant_id) {
+  var getRestaurant = function (restaurant_ref) {
     var queryObj = {
       "table_name": "tb_restaurant",
-      "condition": {"restaurant_id": restaurant_id }
+      "condition": {"restaurant_id": restaurant_ref }
     };
     //bring restaurant information based on restaurant id
     var getRestaurant = authService.getInfo(queryObj);
@@ -205,13 +204,15 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     statusUpdateResult.then(function(result) {
       if (result == "Successfully updated information") {
         //update restaurantList
-        getRestaurant();
+        getRestaurant($scope.selectedRequest.request_host_restaurant_ref);
 
         var request_status;
-        if (status == 'CONFIRMED') {
-          request_status = 'AUTHORIZED';
-        } else if (status = 'UNCONFIRMED') {
+        if (status == 'VERIFIED') {
+          request_status = 'VERIFIED';
+        } else if (status = 'UNVERIFIED') {
           request_status = 'DENIED';
+        } else {
+          growl.error('Something has gone wrong.',{title: 'Error!'});
         }
         $scope.changeRequestStatus(request_status);
 

@@ -69,7 +69,6 @@ $jsTimeStamp = '?version=v-'.$timeStr;
 	<script src="js/app.js<?php echo $jsTimeStamp ?>"></script>
 
 	<script src="js/controllers/AdminController.js<?php echo $jsTimeStamp ?>"></script>
-	<script src="js/controllers/adminRestaurantProfileCtrl.js<?php echo $jsTimeStamp ?>"></script>
 	<script src="js/controllers/adminRequestCtrl.js<?php echo $jsTimeStamp ?>"></script>
 
 	<script src="js/controllers/AuthController.js<?php echo $jsTimeStamp ?>"></script>

@@ -5,7 +5,7 @@
   <button class="top-left btn btn-primary" ng-click="redirect('/restaurant-list')">Go Back to Restaurant</div>
 </div>
 
-<div class="container mt-5" ng-controller= "restaurantProfileCtrl">
+<div class="container mt-5">
   <div id="restaurant-main-info" class="row">
     <div class="col-8">
       <div class="restaurant-header">
@@ -214,10 +214,9 @@
         </div>
       </div>
 
-
       <div class ="card mb-3">
         <div class="card-body">
-          <div ng-if="restaurant.restaurant_status == 'UNCONFIRMED'">
+          <div ng-if="restaurant.restaurant_status == 'UNVERIFIED' || restaurant.restaurant_status == 'DENIED'">
             <p> Your restaurant is not discoverable by others yet. Go ahead and request to publish. </p>
             <div class="text-center">
               <button class="btn btn-primary" ng-click="verifyConfirmationRequest()"> Request to Publish </button>
@@ -225,11 +224,11 @@
           </div>
           <div ng-if="restaurant.restaurant_status == 'PENDING'" class="text-center">
             <p> Your request has been sent and is being reviewed by the admin </p>
-            <button class="btn btn-warning mt-3"> Cancel Request </button>
+            <button class="btn btn-warning w-100"> Pending </button>
           </div>
-          <div ng-if="restaurant.restaurant_status == 'CONFIRMED'" class="text-center">
+          <div ng-if="restaurant.restaurant_status == 'VERIFIED'" class="text-center">
             <button class="btn btn-success mb-2 w-100"> Confirmed </button>
-            <p> Your restaurant has been confirmed. The changes you make to your restaurant will be public.</p>
+            <p> Your restaurant has been verified. The changes you make to your restaurant will be public.</p>
           </div>
         </div>
       </div>

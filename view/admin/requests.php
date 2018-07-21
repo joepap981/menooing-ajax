@@ -60,7 +60,7 @@
 
             <!-- Modal for restaurant confirmation requests-->
             <div ng-if="selectedRequest.request_type == 'restaurant_confirmation'">
-              <label> Status : {{ selectedRestaurant.restaurant_status }} </label>
+              <label> Status : </label> <button class="btn btn-default btn-sm"> {{ selectedRestaurant.restaurant_status }} </button>
               <p> Restaurant Name : {{ selectedRestaurant.restaurant_name }} </p>
               <p> Address : {{ selectedRestaurant.address}}</p>
               <p> Owner Name : {{ selectedUser2.user_first_name }} {{ selectedUser2.user_last_name }}</p>
@@ -72,8 +72,8 @@
               <button class="btn btn-sm btn-info" ng-click="redirectToRestaurantProfile()"> Edit Restaurant </button>
 
               <div class="btn-box mt-5">
-                <button class="btn btn-primary btn-sm" ng-click="changeRestaurantStatus('CONFIRMED')"> Give Confirmation </button>
-                <button class="btn btn-danger btn-sm" ng-click="changeRestaurantStatus('UNCONFIRMED')"> Unpublish </button>
+                <button class="btn btn-primary btn-sm" ng-click="changeRestaurantStatus('VERIFIED')"> Give Confirmation </button>
+                <button class="btn btn-danger btn-sm" ng-click="changeRestaurantStatus('UNVERIFIED')"> Unpublish </button>
               </div>
             </div>
 

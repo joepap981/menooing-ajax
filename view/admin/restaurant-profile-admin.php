@@ -217,7 +217,7 @@
 
       <div ng-if= "user.user_status == 'VERIFIED'" class ="card mb-3">
         <div class="card-body">
-          <div ng-if="restaurant.restaurant_status == 'UNCONFIRMED'">
+          <div ng-if="restaurant.restaurant_status == 'UNVERIFIED'">
             <p> Your restaurant is not discoverable by others yet. Go ahead and request to publish. </p>
             <div class="text-center">
               <button class="btn btn-primary" ng-click="verifyConfirmationRequest()"> Request to Publish </button>
@@ -227,7 +227,7 @@
             <p> Your request has been sent and is being reviewed by the admin </p>
             <button class="btn btn-warning mt-3"> Cancel Request </button>
           </div>
-          <div ng-if="restaurant.restaurant_status == 'CONFIRMED'" class="text-center">
+          <div ng-if="restaurant.restaurant_status == 'VERIFIED'" class="text-center">
             <button class="btn btn-success mb-2 w-100"> Confirmed </button>
             <p> Your restaurant has been confirmed. The changes you make to your restaurant will be public.</p>
           </div>

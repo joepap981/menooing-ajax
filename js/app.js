@@ -19,7 +19,7 @@ angular.module('menuApp',['ngRoute', 'ngAnimate', 'ngSanitize', 'angular-growl',
     })
     .when('/admin/restaurant-profile/:restaurant_id', {
       templateUrl: 'view/admin/restaurant-profile-admin.php',
-      controller: 'adminRestaurantProfileCtrl'
+      controller: 'restaurantProfileCtrl'
     })
     //Userside
   	.when('/', {

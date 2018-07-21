@@ -20,14 +20,14 @@ $commit_query = "COMMIT;";
 //start transaction
 $transaction_result = (mysqli_query($conn, $transaction_query));
 
-$update_query = "UPDATE tb_restaurant SET restaurant_status = 'confirmed' WHERE restaurant_id = " . $data['restaurant_ref'] . ";";
+$update_query = "UPDATE tb_restaurant SET restaurant_status = 'VERIFIED' WHERE restaurant_id = " . $data['restaurant_ref'] . ";";
 $update_result = (mysqli_query($conn, $update_query));
 
 if ($update_result != 1) {
   exit("Failed to update restaurant status");
 }
 
-$request_update_query = "UPDATE tb_request SET request_status = 'Handled' WHERE request_id = " . $data['request_id'] . ";";
+$request_update_query = "UPDATE tb_request SET request_status = 'HANDLED' WHERE request_id = " . $data['request_id'] . ";";
 $request_update_result = (mysqli_query($conn, $request_update_query));
 
 if ($request_update_result != 1) {
