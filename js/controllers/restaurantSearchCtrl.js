@@ -1,32 +1,46 @@
-angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$location', 'restaurantService', 'growl', '$window', function ($scope, $location, restaurantService, growl, $window) {
+angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$location', 'restaurantService', 'authService', 'growl', '$window', function ($scope, $location, restaurantService, authService, growl, $window) {
   $scope.restaurant = {};
   $scope.userRestaurants = [];
-  $scope.request_type = "ALL";
-  $scope.search_option = "All";
-  //two way bound to input for condition, to sever two way binding for actual condition.
-  $scope.condition_input;
-  $scope.filter = "restaurant_status";
-  $scope.condition = "confirmed";
+
+  //search filter option and input box variable
+  $scope.search_filter = undefined;
+  $scope.search_input;
+
+  //variables to apply to filter two avoid two way binding
+  //to apply filter only when search button is clicked
+
+  $scope.search_filter_apply = undefined;
+  $scope.search_input_apply = null;
 
   var init = function () {
-    //get all restaurants
-    //var request = {"type": "USER"};
+    updateRestaurantList();
 
-    /*test condition
-    $scope.request_type = "restaurant_administrative_area_level_1";
-    $scope.condition =  "TX";
-    */
+  }
 
-    var request = {"type":"ALL", "condition": $scope.condition};
+  var updateRestaurantList = function () {
+    //get all restaurants that are verified
+    var post_data = {
+      "table_name": "tb_restaurant",
+      "condition": {
+        "restaurant_status": "'VERIFIED'",
+      },
+      "field": [
+        "restaurant_id", "restaurant_status", "restaurant_name", "restaurant_locality", "restaurant_administrative_area_level_1", "restaurant_image"
+      ]
+    }
 
-    var restaurantList = restaurantService.getRestaurantList(request);
-    restaurantList.then(function (result) {
-      $scope.userRestaurants = result;
-      $scope.totalItems = $scope.userRestaurants.length;
+    var restaurantsGet = authService.getInfo(post_data);
+    restaurantsGet.then(function(result) {
+      if (result != null) {
+        $scope.userRestaurants = result;
+        $scope.totalItems = $scope.userRestaurants.length;
+      } else if(result == null) {
+        console.log("No restaurants found.");
+      } else {
+        console.log("Failed to load restaurants from DB.");
+      }
     });
   }
-  //run initialization method
-  init();
 
   $scope.redirectToProfile = function (restaurant_id) {
     $location.path('/restaurant-profile-guest/'+restaurant_id);
@@ -62,19 +76,20 @@ angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$locatio
 
     }
   }
-  $scope.filterRestaurantList = function () {
-    $scope.condition = $scope.condition_input;
-    if($scope.condition == "") {
-      var request = {"type": "ALL", "condition": $scope.condition};
+
+  //custome filter for search search_option - restaurant name, city, cuisine
+  $scope.searchFilter = function (item) {
+    if ($scope.search_input_apply == "" || $scope.search_input_apply == null || $scope.search_filter_apply == undefined) {
+      return item;
     } else {
-      var request = {"type": $scope.search_option, "condition": $scope.condition};
+      return item[$scope.search_filter_apply].toLowerCase().includes($scope.search_input_apply);
     }
+  }
 
-    var restaurantList = restaurantService.getRestaurantList(request);
-    restaurantList.then(function (result) {
-      $scope.userRestaurants = result;
+  $scope.filterRestaurantList = function () {
+    $scope.search_filter_apply = $scope.search_filter;
+    $scope.search_input_apply = $scope.search_input.toLowerCase();
 
-    });
   }
 
   //restaurant pagination
@@ -97,6 +112,9 @@ angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$locatio
     $scope.itemsPerPage = num;
     $scope.currentPage = 1; //reset to first page
   }
+
+  //run initialization method
+  init();
 
 
 }]);

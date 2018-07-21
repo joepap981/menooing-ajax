@@ -5,7 +5,8 @@
     <div class="d-flex">
       <div class="p-2">
         <label class="mr-sm-2" for="inlineFormCustomSelect"> Search by </label>
-        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" ng-model="search_option">
+        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" ng-model="search_filter">
+          <option value= "{{undefined}}"> All </option>
           <option value="restaurant_name"> Name </option>
           <option value="restaurant_locality"> City </option>
           <option value="restaurant_cuisine"> Cuisine </option>
@@ -13,7 +14,7 @@
       </div>
 
       <div class="p-2">
-        <input type="text" class="form-control" placeholder="Search" ng-model="condition_input">
+        <input type="text" class="form-control" placeholder="Search" ng-model="search_input">
         <!-- <input ng-show="search_option != 'restaurant_locality'" type="text" class="form-control" placeholder="Search" ng-model="condition_input">
         <input ng-show = "search_option ==  'restaurant_locality'" name="location" class="form-control" ng-controller= "googlePlaceCtrl" id="autocomplete" placeholder="Search for locality" ng-focus="geolocate()" type="text"></input> -->
       </div>
@@ -28,7 +29,8 @@
 
   <div id="restaurant-list">
     <div class="row">
-      <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item" ng-repeat="restaurant in userRestaurants.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+      <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item" ng-repeat="restaurant in userRestaurants.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))
+      | filter: searchFilter : false">
         <div class="card h-80 mt-5 mb-t">
           <a href="#" ng-click="redirectToProfile(restaurant.restaurant_id)"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
           <div class="card-body">
