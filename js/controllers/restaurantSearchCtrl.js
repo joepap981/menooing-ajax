@@ -89,7 +89,6 @@ angular.module('menuApp').controller('restaurantSearchCtrl',['$scope', '$locatio
   $scope.filterRestaurantList = function () {
     $scope.search_filter_apply = $scope.search_filter;
     $scope.search_input_apply = $scope.search_input.toLowerCase();
-
   }
 
   //restaurant pagination

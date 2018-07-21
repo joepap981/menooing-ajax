@@ -20,8 +20,7 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
 
   //get the list of rent_request for the current session user that have been verified by admin - request_status: ADMIN_VERIFIED
   var updateRequestList = function () {
-    var query = "SELECT * FROM tb_request WHERE request_host_user_ref = '" + $scope.sessionResponse.user_id +
-    "' and (request_status = 'ADMIN_VERIFIED' or request_status = 'ALLOWED' or request_status = 'DENIED');";
+    var query = "SELECT * FROM tb_request WHERE user_ref = " + $scope.sessionResponse.user_id + " or request_host_user_ref = " + $scope.sessionResponse.user_id + ";";
 
     var requestList = authService.directQuery(query);
     requestList.then (function (result) {
@@ -198,17 +197,31 @@ angular.module('menuApp').controller('userRequestCtrl',['$scope', '$location', '
 
   $scope.changeRequestOwnerFilter = function (status) {
     $scope.request_owner = status;
-    console.log($scope.sessionResponse.user_id);
   }
 
-  //custome filter for request ownership
+  //custom filter for request ownership
   $scope.requestStatusFilter = function (item) {
-    //return item that have been handled - HANDLED, ALLOWED, DENIED
     if ($scope.request_owner == "sent") {
-      return item.request_user_ref == $scope.sessionResponse.user_id;
+      return item.user_ref == $scope.sessionResponse.user_id;
       //return items that have not been handled - UNHANDLED
     } else if ($scope.request_owner == "received"){
-      return item.request_status == 'UNHANDLED' || item.request_status == 'ADMIN_VERIFIED';
+      //if selected 'ALL' return all received requests
+      if ($scope.request_status_filter == undefined) {
+        return item.request_host_user_ref == $scope.sessionResponse.user_id;
+      //if not return either HANDLED (ALLOWED OR DENIED) or UNHANDLED requests
+      } else {
+        //return HANDLED requests
+        if ($scope.request_status_filter == true) {
+          return (item.request_host_user_ref == $scope.sessionResponse.user_id) &&
+            (item.request_status == 'ALLOWED' || item.request_status == 'DENIED');
+        //return UNHANDLED requests
+        } else if ($scope.request_status_filter == false) {
+          return (item.request_host_user_ref == $scope.sessionResponse.user_id) &&
+            (item.request_status == 'ADMIN_VERIFIED');
+        }
+
+      }
+
       //return all items without filter
     } else {
       return item;

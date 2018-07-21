@@ -234,6 +234,13 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
 
     var statusUpdateResult = authService.updateInfo(post_info);
     statusUpdateResult.then(function(result) {
+      if (result == 'Successfully updated information') {
+        growl.success(result,{title: 'Success!'});
+      }else if (result == 'Failed to update information') {
+        growl.error(result,{title: 'error!'});
+      }else {
+        console.log(result);
+      }
       //update request list
       updateRequestList();
     });

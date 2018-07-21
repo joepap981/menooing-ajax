@@ -43,44 +43,40 @@
 
       <table class="table table-hover">
         <thead>
-          <tr>
+          <tr ng-if="request_owner == 'received'">
             <th scope="col">#</th>
             <th scope="col">Request Created</th>
             <th scope="col">Request Type</th>
-            <th scope="col">User ID</th>
-            <th scope="col">Restaurant ID</th>
+            <th scope="col">Sender ID</th>
+            <th scope="col">Receiving Restaurant ID</th>
+            <th scope="col">Request Status </th>
+          </tr>
+
+          <tr ng-if="request_owner == 'sent'">
+            <th scope="col">#</th>
+            <th scope="col">Request Created</th>
+            <th scope="col">Request Type</th>
+            <th scope="col">Sender ID</th>
+            <th scope="col">Sent to Restaurant</th>
             <th scope="col">Request Status </th>
           </tr>
         </thead>
         <tbody>
-          <div ng-if="request_owner == 'received'">
+          <div >
             <h5> Received </h5>
             <tr style="cursor:pointer;" ng-repeat="request in Requests.slice(((requestCurrentPage-1)*requestItemsPerPage), ((requestCurrentPage)*requestItemsPerPage))
-            | filter: {request_type: 'rent_request'}
             | filter: requestStatusFilter"
             data-toggle="modal" data-target="#requestModal" data-whatever="{{ request }}" ng-click="loadRequest(request)">
               <th >{{ request.request_id }}</th>
               <td> {{ request.request_created }}</td>
               <td> {{ request.request_type }} </td>
               <td> {{ request.user_ref }}</td>
-              <td> {{ request.restaurant_ref }} </td>
+              <td> {{ request.request_host_restaurant_ref }} </td>
               <td> {{ request.request_status }} </td>
             </tr>
           </div>
 
-          <div ng-if="request_owner == 'sent'">
-            <h5> Sent </h5>
-            <tr style="cursor:pointer;" ng-repeat="request in Requests.slice(((requestCurrentPage-1)*requestItemsPerPage), ((requestCurrentPage)*requestItemsPerPage))
-            | filter: {user_ref: sessionResponse.user_id }"
-            data-toggle="modal" data-target="#requestModal" data-whatever="{{ request }}" ng-click="loadRequest(request)">
-              <th >{{ request.request_id }}</th>
-              <td> {{ request.request_created }}</td>
-              <td> {{ request.request_type }} </td>
-              <td> {{ request.user_ref }}</td>
-              <td> {{ request.restaurant_ref }} </td>
-              <td> {{ request.request_status }} </td>
-            </tr>
-          </div>
+
         </tbody>
 
         <!-- Request Modal -->

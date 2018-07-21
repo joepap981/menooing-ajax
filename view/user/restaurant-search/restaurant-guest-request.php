@@ -10,12 +10,12 @@
           </hr>
           <div class="dropdown mt-3">
             <span> Rent by </span>
-            <!-- <button class="btn btn-default btn-sm"> {{ rentBy }} </button> -->
-            <select class="form-control form-control-sm w-50 ml-5" ng-model ="rentBy">
+            <button class="btn btn-default btn-sm"> {{ rentBy }} </button>
+            <!-- <select class="form-control form-control-sm w-50 ml-5" ng-model ="rentBy">
               <option value="month" class="dropdown-item">Month</option>
               <option value="day" class="dropdown-item">Day</option>
               <option value="hour" class="dropdown-item">Hour</option>
-            </select>
+            </select> -->
           </div>
 
           <div class="mt-4">
