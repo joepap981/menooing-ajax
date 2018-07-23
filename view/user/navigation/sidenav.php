@@ -11,7 +11,7 @@
   <li>
     <a href="#" ng-click="redirect('/requests')">Requests</a>
   </li>
-  <li>
+  <!-- <li>
     <a href="#" ng-click="redirect('/documents')">Documents</a>
-  </li>
+  </li> -->
 </ul>

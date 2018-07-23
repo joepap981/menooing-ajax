@@ -45,6 +45,10 @@ angular.module('menuApp').controller('restaurantCtrl',['$scope', '$location', 'r
   };
 
   $scope.redirect = function (url) {
+    $location.path(url);
+  };
+
+  $scope.redirectToGuestProfile = function (url) {
     $location.path(url +'/' + id);
   };
 

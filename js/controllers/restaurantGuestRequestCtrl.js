@@ -246,6 +246,10 @@ angular.module('menuApp').controller('restaurantGuestRequestCtrl',['$scope', '$l
   //send rent request
 
   $scope.sendRequest = function () {
+    if ($scope.requestTimeList.length == 0) {
+      growl.warning('Please add the times that you want to rent the restaurant.');
+      return;
+    }
     //post_data to send to server
     var post_data = {};
     post_data = {
@@ -268,7 +272,6 @@ angular.module('menuApp').controller('restaurantGuestRequestCtrl',['$scope', '$l
       } else {
 
       }
-      console.log(result);
     })
   }
 

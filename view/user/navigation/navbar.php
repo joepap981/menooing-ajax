@@ -20,12 +20,11 @@
   <!--logo-->
   <div ng-click ="redirect('/')" class="navbar-brand cursor-pointer"> menooing </div>
   <div class="row ml-auto">
-    <div ng-click = "redirect('/restaurant-search')" class="clear-btn nav-item ml-auto"> Restaurants </div>
-    <div class="clear-btn nav-item ml-auto" ng-click="redirect('/home')"> Dashboard </div>
+    <div ng-click = "redirect('/restaurant-search')" class="btn btn-default btn-sm nav-item mr-5" style="border-color: #E6E6E6"> Restaurants </div>
   </div>
   <div class="nav-item dropdown">
     <!-- User ICON image -->
-    <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle mr-lg-2 hover-fade" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <img class="img-fluid rounded-circle user_img" src="/img/default-user.png" alt="">
     </a>
 

@@ -43,17 +43,17 @@
           <div class="card mt-3">
             <div id="profile" class="card-header"> User Basic Information </div>
             <div class="card-block container">
-              <div class="form-group row" ng-model = "user">
+              <div class="form-group row" >
                 <label class="col-label"> First Name: </label>
-                <input class="col-input form-control" ng-model = "user.user_first_name"></input>
+                <input type="text" class="col-input form-control" ng-model = "user.user_first_name"></input>
               </div>
               <div class="form-group row">
                 <label class="col-label"> Last Name: </label>
-                <input class="col-input form-control" ng-model = "user.user_last_name"> </input>
+                <input type="text" class="col-input form-control" ng-model = "user.user_last_name"> </input>
               </div>
               <div class="form-group row">
                 <label class="col-label"> Phone: </label>
-                <input class="col-input form-control" ng-model = "user.user_phone"> </input>
+                <input type="text" class="col-input form-control" ng-model = "user.user_phone"> </input>
               </div>
 
               <button class="btn btn-primary mt-3 pull-right pointer" ng-click="saveChanges()"> Save Changes </button>
@@ -123,9 +123,8 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" ng-if="user.user_status != 'VERIFIED'">
           <div class="card-body text-center">
-
             <div ng-if="user.user_status == 'UNVERIFIED'">
               <p> Your user account has not been verified by the admin yet. You need verification in order to publish or rent a restaurant. </p>
               <button class="btn btn-primary pointer" ng-click ="verifyVerificationRequest()"> Request Verification </button>

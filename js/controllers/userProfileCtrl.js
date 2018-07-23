@@ -1,13 +1,13 @@
 angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '$routeParams', 'authService', 'growl', 'FileSaver', 'Blob', function ($scope, $location, $routeParams, authService, growl, FileSaver, Blob, $uibModal) {
   //when click on the profile image preview, a file upload window pops up
   $('#profileImagePreview').click(function(){ $('#profileImageUpload').trigger('click'); });
-  $scope.user = {};
   $scope.input = {};
   $scope.files = {};
 
   $scope.sessionResponse;
 
   var init = function () {
+    console.log('this is the user profile controller');
     authService.checkSession().then(function (response) {
       $scope.sessionResponse = response;
       updateUser();
@@ -25,6 +25,8 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
       $scope.user = result[0];
       $scope.user.user_id = $scope.sessionResponse.user_id;
 
+      getUserName();
+
       //check for profileImage
       if ($scope.user.user_img != null) {
         $scope.user.img_ref = $scope.user.user_img;
@@ -33,13 +35,22 @@ angular.module('menuApp').controller('userProfileCtrl',['$scope', '$location', '
       }
     });
 
+
+  }
+
+  var getUserName = function () {
     var post_data2 = {};
     post_data2.table_name = 'tb_user';
     post_data2.condition = {'user_id': $scope.sessionResponse.user_id};
 
-    authService.getInfo(post_data2).then(function (result) {
-      $scope.user.user_first_name = result[0].user_first_name;
-      $scope.user.user_last_name = result[0].user_last_name;
+    var getUserName = authService.getInfo(post_data2);
+    getUserName.then(function (result2) {
+      if(result2 != null || result2 == "") {
+        $scope.user.user_first_name = result2[0].user_first_name;
+        $scope.user.user_last_name = result2[0].user_last_name;
+      } else {
+        console.log(result2);
+      }
     });
   }
 

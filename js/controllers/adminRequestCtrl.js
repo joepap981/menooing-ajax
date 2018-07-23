@@ -235,14 +235,14 @@ angular.module('menuApp').controller('adminRequestCtrl',['$scope', '$location', 
     var statusUpdateResult = authService.updateInfo(post_info);
     statusUpdateResult.then(function(result) {
       if (result == 'Successfully updated information') {
-        growl.success(result,{title: 'Success!'});
+        console.log(result);
+        //update request list
+        updateRequestList();
       }else if (result == 'Failed to update information') {
-        growl.error(result,{title: 'error!'});
+        console.log(result);
       }else {
         console.log(result);
       }
-      //update request list
-      updateRequestList();
     });
   }
 

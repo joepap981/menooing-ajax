@@ -33,7 +33,7 @@ angular.module('menuApp').controller('restaurantGuestProfileCtrl',['$scope', '$l
     updateFacilityList();
   }
 
-  //initialize function at loading of controller
+
 
   $scope.redirectToRequest = function () {
     $location.path('/restaurant-guest-request/'+$scope.restaurant.restaurant_id);
@@ -193,5 +193,6 @@ angular.module('menuApp').controller('restaurantGuestProfileCtrl',['$scope', '$l
   $scope.editFacilityID;
   $scope.editFacility;
 
+  //initialize function at loading of controller
   init();
 }]);

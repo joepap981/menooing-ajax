@@ -214,12 +214,12 @@
         </div>
       </div>
 
-      <div class ="card mb-3">
+      <div class ="card mb-3" ng-if="user.user_status == 'VERIFIED'">
         <div class="card-body">
           <div ng-if="restaurant.restaurant_status == 'UNVERIFIED' || restaurant.restaurant_status == 'DENIED'">
             <p> Your restaurant is not discoverable by others yet. Go ahead and request to publish. </p>
             <div class="text-center">
-              <button class="btn btn-primary" ng-click="verifyConfirmationRequest()"> Request to Publish </button>
+              <button class="btn btn-primary W-100" ng-click="verifyConfirmationRequest()"> Request to Publish </button>
             </div>
           </div>
           <div ng-if="restaurant.restaurant_status == 'PENDING'" class="text-center">

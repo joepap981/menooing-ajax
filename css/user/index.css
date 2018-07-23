@@ -295,3 +295,7 @@ fieldset[disabled] .btn-default.focus {
   color: #fff;
   background-color: #333;
 }
+
+.hover-fade:hover {
+  opacity: 0.6;
+}
